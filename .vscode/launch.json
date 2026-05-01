@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "UsuariosApplication",
+            "request": "launch",
+            "mainClass": "com.madoscientista.usuarios.UsuariosApplication",
+            "projectName": "usuarios"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GeneradorEjerciciosApplication<generador-ejercicios>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.madoscientista.generador_ejercicios.GeneradorEjerciciosApplication",
+            "projectName": "generador-ejercicios",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
