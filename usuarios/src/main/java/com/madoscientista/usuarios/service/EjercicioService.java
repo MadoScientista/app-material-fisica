@@ -46,6 +46,11 @@ public class EjercicioService {
         return ejercicioRepo.findByUsuariosCompartidosIdUsuario(id);
     }
 
+    // Retorna una lista de ejercicios creados por un usuario
+    public List<Ejercicio> getEjerciciosCreadosByUsuario(long id){
+        return ejercicioRepo.findAllByCreadorIdUsuario(id);
+    }
+
     // Sección Post
     public Ejercicio postEjercicio(RequestEjercicioDTO request, long idUsuario){
         ResponseEjercicioDTO ejercicioDTO = geClient.getEjercicioMRU(request);

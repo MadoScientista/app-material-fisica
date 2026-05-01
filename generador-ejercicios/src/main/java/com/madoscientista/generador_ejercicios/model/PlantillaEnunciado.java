@@ -24,8 +24,8 @@ public class PlantillaEnunciado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPlantillaEnunciado;
 
-    @Lob
-    @Column(nullable = false)
+    
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String enunciado;
 
     @Column(nullable = false)
