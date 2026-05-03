@@ -2,10 +2,13 @@ package com.madoscientista.historial.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,10 +21,17 @@ public class Evento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idEvento;
+    private Long idEvento;
+    
+    @Column(nullable = false)
+    private Long idUsuario;
 
-    private long idUsuario;
+    @Column(nullable = false, updatable = false)
+    private LocalDate fecha;
 
     private String descripcion;
-    private LocalDate fecha;
+
+    @ManyToOne
+    @JoinColumn(name = "idTipoEvento", nullable = false)
+    private TipoEvento tipoEvento;
 }
