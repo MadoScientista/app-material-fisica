@@ -1,7 +1,7 @@
 package com.madoscientista.usuarios.model;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -57,5 +57,5 @@ public class Ejercicio {
         name = "ejercicio_compartido",
         joinColumns = @JoinColumn(name = "idEjercicio"),
         inverseJoinColumns = @JoinColumn(name = "idUsuario"))
-    private List<Usuario> usuariosCompartidos;
+    private Set<Usuario> usuariosCompartidos;
 }
