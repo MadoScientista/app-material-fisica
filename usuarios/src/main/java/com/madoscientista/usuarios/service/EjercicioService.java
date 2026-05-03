@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.madoscientista.usuarios.client.EventoClient;
 import com.madoscientista.usuarios.client.GeneradorEjerciciosClient;
+import com.madoscientista.usuarios.dto.EventoDTO.RequestEventoDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.RequestEjercicioDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.ResponseEjercicioDTO;
 import com.madoscientista.usuarios.mapper.EjercicioMapper;
@@ -21,6 +23,9 @@ public class EjercicioService {
 
     @Autowired
     private GeneradorEjerciciosClient geClient;
+
+    @Autowired
+    private EventoClient eClient;
 
     @Autowired
     private UsuarioService uService;
@@ -64,7 +69,34 @@ public class EjercicioService {
 
         ejercicioRepo.save(ejercicio);
 
+        RequestEventoDTO eventoDTO = new RequestEventoDTO();
+        
+        eventoDTO.setIdUsuario(idUsuario);
+        eventoDTO.setIdTipoEvento(1L); // Suponiendo que 1L es el ID del tipo de evento para ejercicios
+        eventoDTO.setDescripcion("Ejercicio creado por el usuario " + idUsuario);
+
+        eClient.postEvento(eventoDTO);
+
         return ejercicio;
+    }
+
+    // Comparte un ejercicio con otros usuarios
+    public Ejercicio compartirEjercicio(long idEjercicio, long idCreador, List<Long> idsUsuariosCompartir){
+        
+        if(idsUsuariosCompartir == null || idsUsuariosCompartir.isEmpty() || idsUsuariosCompartir.contains(idCreador)){
+            return null;
+        }
+        
+        Ejercicio ejercicio = ejercicioRepo.findById(idEjercicio).orElse(null);
+        
+        if(ejercicio == null || ejercicio.getCreador() == null || ejercicio.getCreador().getIdUsuario() != idCreador){
+            return null;
+        }
+
+        List<Usuario> usuariosCompartir = uService.getUsuariosByIds(idsUsuariosCompartir);
+        ejercicio.getUsuariosCompartidos().addAll(usuariosCompartir);
+
+        return ejercicioRepo.save(ejercicio);
     }
 
 }

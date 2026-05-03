@@ -24,6 +24,7 @@ public class EjercicioController {
     private EjercicioService service;
 
 
+    // Genera un ejercicio nuevo a partir de los datos del request y el id del usuario que lo crea
     @PostMapping("/{id}")
     public ResponseEntity<?> postGenerarEjercicio(@RequestBody RequestEjercicioDTO request, @PathVariable Long id){
         Ejercicio ejercicio = service.postEjercicio(request, id);
@@ -33,6 +34,18 @@ public class EjercicioController {
         }
 
         return ResponseEntity.badRequest().body("turururu");
+    }
+
+    // Comparte un ejercicio con una lista de usuarios
+    @PostMapping("/compartir/{idCreador}/{idEjercicio}")
+    public ResponseEntity<?> postCompartirEjercicio(@PathVariable Long idCreador, @PathVariable Long idEjercicio, @RequestBody List<Long> idsUsuarios){
+        Ejercicio compartido = service.compartirEjercicio(idCreador, idEjercicio, idsUsuarios);
+
+        if(compartido != null){
+            return ResponseEntity.ok("Ejercicio compartido");
+        }
+
+        return ResponseEntity.badRequest().body("No se pudo compartir el ejercicio");
     }
 
     @GetMapping("creados/{id}")

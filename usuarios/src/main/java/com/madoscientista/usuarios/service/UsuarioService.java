@@ -1,5 +1,6 @@
 package com.madoscientista.usuarios.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,19 @@ public class UsuarioService {
     public Usuario getUsuarioById(long id){
 
         return repo.findById(id).orElse(null);
+    }
+
+    // Retorna una lista de usuarios filtrados por id
+    public List<Usuario> getUsuariosByIds(List<Long> ids){
+        List<Usuario> usuarios = new ArrayList<>();
+        
+        for(Long id : ids){
+            Usuario u = repo.findById(id).orElse(null);
+            if(u != null){
+                usuarios.add(u);
+            }
+        }
+        return usuarios;
     }
 
     // Crea un usuario

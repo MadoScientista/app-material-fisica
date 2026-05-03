@@ -56,6 +56,15 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró al usuario con id: " + id);
     }
 
+    // Retorna una lista de usuarios filtrados por id
+    @GetMapping("/lista")
+    public List<ResponseUsuarioDTO> getUsuariosByIds(@RequestBody List<Long> ids){
+        return service.getUsuariosByIds(ids)
+                .stream()
+                .map(usuarioMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
     // Sección POST
     @PostMapping
     public ResponseEntity<ResponseUsuarioDTO> postUsuario(@RequestBody Usuario usuario){
