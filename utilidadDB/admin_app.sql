@@ -19,7 +19,7 @@ CREATE USER admin_notificador_db@localhost IDENTIFIED BY "1234";
 GRANT ALL PRIVILEGES ON notificador_db.* TO 'admin_notificador_db'@'localhost';
 
 CREATE DATABASE suscripciones_db;
-CREATE USER admin_suscripciones_dblocalhost IDENTIFIED BY "1234";
+CREATE USER admin_suscripciones_db@localhost IDENTIFIED BY "1234";
 GRANT ALL PRIVILEGES ON suscripciones_db.* TO 'admin_suscripciones_db'@'localhost';
 
 CREATE DATABASE usuarios_db;
