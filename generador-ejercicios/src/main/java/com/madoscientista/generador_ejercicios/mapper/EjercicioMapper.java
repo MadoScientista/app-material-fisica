@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class EjercicioMapper {
 
 
-    public ResponseEjercicioDTO build(EjercicioFisica ejercicio){
+    public ResponseEjercicioDTO toDTO(EjercicioFisica ejercicio){
         List<Map<String, Object>> datos = new ArrayList<>();
 
         String enunciado = ejercicio.getEnunciado().getPlantilla().getEnunciado();

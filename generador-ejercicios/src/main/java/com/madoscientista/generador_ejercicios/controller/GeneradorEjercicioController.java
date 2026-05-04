@@ -42,6 +42,6 @@ public class GeneradorEjercicioController {
             return ResponseEntity.status(500).body("Error al generar el ejercicio");   
         }
 
-        return ResponseEntity.ok(ejercicioMapper.build(ejercicio));
+        return ResponseEntity.ok(ejercicioMapper.toDTO(ejercicio));
     }
 }
