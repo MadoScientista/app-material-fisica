@@ -1,6 +1,6 @@
 package com.madoscientista.historial.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,7 +27,7 @@ public class Evento {
     private Long idUsuario;
 
     @Column(nullable = false, updatable = false)
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     private String descripcion;
 

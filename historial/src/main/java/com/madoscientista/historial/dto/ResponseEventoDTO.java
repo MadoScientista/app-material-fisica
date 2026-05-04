@@ -1,6 +1,6 @@
 package com.madoscientista.historial.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +13,6 @@ public class ResponseEventoDTO {
 
     private long idEvento;
     private long idUsuario;
-    private LocalDate fecha;
+    private LocalDateTime fecha;
     private String descripcion;
 }
