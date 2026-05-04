@@ -24,12 +24,22 @@ public class EventoController {
     private EventoService service;
 
 
+    // --------------------------------------------------------
+    // ------------------ Sección GET -------------------------
+    // --------------------------------------------------------
+
+    // Retorna una lista de eventos asociados a un usuario según el ID del usuario
     @GetMapping("/{idUsuario}")
     public ResponseEntity<List<Evento>> getEventosByUsuarioId(@PathVariable Long idUsuario){
         List<Evento> eventos = service.getEventosByIdUsuario(idUsuario);
         return ResponseEntity.ok(eventos);
     }
 
+    // --------------------------------------------------------
+    // ------------------ Sección POST ------------------------
+    // --------------------------------------------------------
+
+    // Crea un nuevo evento a partir de los datos del request
     @PostMapping
     public ResponseEntity<?> postEvento(@RequestBody RequestEventoDTO request){
         Evento evento = service.postEvento(request);
