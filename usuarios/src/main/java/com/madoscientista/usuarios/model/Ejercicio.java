@@ -1,6 +1,6 @@
 package com.madoscientista.usuarios.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -27,7 +27,7 @@ public class Ejercicio {
     private Long idEjercicio;
 
     @Column(nullable = false)
-    private LocalDate fecha;
+    private LocalDateTime fechaCreacion;
     
     @Column(nullable = false)
     private String tema;
@@ -37,6 +37,9 @@ public class Ejercicio {
     
     @Column(nullable = false)
     private String incognita;
+
+    @Column(nullable = false)
+    private Long idPlantillaEnunciado;
     
     @Column(columnDefinition = "TEXT", nullable = false)
     private String enunciado;
