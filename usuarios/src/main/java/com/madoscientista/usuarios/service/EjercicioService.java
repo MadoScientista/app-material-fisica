@@ -18,28 +18,40 @@ import com.madoscientista.usuarios.repository.EjercicioRepository;
 @Service
 public class EjercicioService {
 
+    private static final Long EVENTO_EJERCICIO_CREADO = 3L;
+    private static final Long EVENTO_EJERCICIO_COMPARTIDO = 4L;
+    private static final Long EVENTO_EJERCICIO_DEJADO_COMPARTIR = 5L;
+    private static final Long EVENTO_EJERCICIO_ELIMINADO = 6L;
+
+    // Inyección dependencia repositorio ejercicio
     @Autowired
     private EjercicioRepository ejercicioRepo;
 
+    // Inyección repositorio generador de ejercicios
     @Autowired
     private GeneradorEjerciciosClient geClient;
 
+    // Inyeccción de microservicio de historial de eventos
     @Autowired
     private EventoClient eClient;
 
+    // Inyección de servicio de usuario
     @Autowired
     private UsuarioService uService;
 
+    // Inyección de mapper
     @Autowired
     private EjercicioMapper mapper;
 
-    // Sección GET
+
+    // --------------------------------------------------------
+    // ------------------ Sección GET -------------------------
+    // --------------------------------------------------------
 
     // Retorna la lista de ejercicios disponibles
     public List<Ejercicio> getEjercicios(){
         return ejercicioRepo.findAll();
     }
-
 
     // Retorna una lista de ejercicios filtrados por el idCreador
     public List<Ejercicio> getEjerciciosCreadosUsuario(long id){
@@ -56,7 +68,12 @@ public class EjercicioService {
         return ejercicioRepo.findAllByCreadorIdUsuario(id);
     }
 
-    // Sección Post
+    // --------------------------------------------------------
+    // ------------------ Sección POST ------------------------
+    // --------------------------------------------------------
+
+    // Solicita al microservicio generador de ejercicios la creación de un nuevo ejercicio
+    // Guarda el ejercicio en la base de datos y registra el evento en el microservicio de historial de eventos
     public Ejercicio postEjercicio(RequestEjercicioDTO request, long idUsuario){
         ResponseEjercicioDTO ejercicioDTO = geClient.getEjercicioMRU(request);
         Usuario usuario = uService.getUsuarioById(idUsuario);
@@ -65,22 +82,21 @@ public class EjercicioService {
             return null;
         }
         
-        Ejercicio ejercicio = mapper.toNewEjercicio(ejercicioDTO, usuario);
+        Ejercicio ejercicio = mapper.toEntity(ejercicioDTO, usuario);
+        Ejercicio ejercicioGuardado = ejercicioRepo.save(ejercicio);
 
-        ejercicioRepo.save(ejercicio);
+        // Comunica la creación del ejercicio al microservicio de historial de eventos
+        registrarEvento(
+            idUsuario, 
+            EVENTO_EJERCICIO_CREADO, 
+            "Ejercicio creado por el usuario " + idUsuario
+        );
 
-        RequestEventoDTO eventoDTO = new RequestEventoDTO();
-        
-        eventoDTO.setIdUsuario(idUsuario);
-        eventoDTO.setIdTipoEvento(1L); // Suponiendo que 1L es el ID del tipo de evento para ejercicios
-        eventoDTO.setDescripcion("Ejercicio creado por el usuario " + idUsuario);
-
-        eClient.postEvento(eventoDTO);
-
-        return ejercicio;
+        return ejercicioGuardado;
     }
 
-    // Comparte un ejercicio con otros usuarios
+    // Crea un registro en la tabla ejercicios compartidos con otros usuarios
+    // Utiliza una lista con los IDs de los usuarios con los que se desea compartir el ejercicio
     public Ejercicio compartirEjercicio(long idEjercicio, long idCreador, List<Long> idsUsuariosCompartir){
         
         if(idsUsuariosCompartir == null || idsUsuariosCompartir.isEmpty() || idsUsuariosCompartir.contains(idCreador)){
@@ -96,7 +112,78 @@ public class EjercicioService {
         List<Usuario> usuariosCompartir = uService.getUsuariosByIds(idsUsuariosCompartir);
         ejercicio.getUsuariosCompartidos().addAll(usuariosCompartir);
 
-        return ejercicioRepo.save(ejercicio);
+        if(ejercicioRepo.save(ejercicio) != null){
+            // Comunica el evento de compartir el ejercicio al microservicio de historial de eventos
+            registrarEvento(
+                idCreador, 
+                EVENTO_EJERCICIO_COMPARTIDO, 
+                "Ejercicio ID: " + idEjercicio + " compartido con los usuarios:" + usuariosCompartir
+            );
+        }
+        return ejercicio;
     }
 
+    // Deja de compartir un ejercicio con una lista de usuarios
+    // Elimina los registros de la tabla intermedia ejercicios_compartidos correspondientes
+    public Ejercicio dejarDeCompartirEjercicio(long idEjercicio, long idCreador, List<Long> idsUsuariosRemover){
+        
+        if(idsUsuariosRemover == null || idsUsuariosRemover.isEmpty()){
+            return null;
+        }
+        
+        Ejercicio ejercicio = ejercicioRepo.findById(idEjercicio).orElse(null);
+        
+        if(ejercicio == null || ejercicio.getCreador() == null || ejercicio.getCreador().getIdUsuario() != idCreador){
+            return null;
+        }
+
+        List<Usuario> usuariosRemover = uService.getUsuariosByIds(idsUsuariosRemover);
+        ejercicio.getUsuariosCompartidos().removeAll(usuariosRemover);
+
+        if(ejercicioRepo.save(ejercicio) != null){
+            // Comunica el evento de compartir el ejercicio al microservicio de historial de eventos
+            registrarEvento(
+                idCreador, 
+                EVENTO_EJERCICIO_DEJADO_COMPARTIR, 
+                "Ejercicio ID: " + idEjercicio + " dejado de compartir con los usuarios:" + usuariosRemover
+            );
+        }
+        return ejercicio;
+    }
+
+    // --------------------------------------------------------
+    // ------------------ Sección DELETE ----------------------
+    // --------------------------------------------------------
+
+    // Elimina un ejercicio creado por un usuario según el ID del ejercicio
+    public boolean deleteEjercicio(Long idUsuario, Long idEjercicio){
+        Ejercicio ejercicio = ejercicioRepo.findById(idEjercicio).orElse(null);
+        if(ejercicio == null || ejercicio.getCreador() == null || ejercicio.getCreador().getIdUsuario() != idUsuario){
+            return false;
+        }
+        
+        ejercicioRepo.delete(ejercicio);
+        
+        // Comunica el evento de eliminación del ejercicio al microservicio de historial de eventos
+        registrarEvento(
+            idUsuario,
+            EVENTO_EJERCICIO_ELIMINADO,
+            "Ejercicio ID: " + idEjercicio + " eliminado por el usuario " + idUsuario
+        );
+        
+        return true;
+    }
+
+
+    // --------------------------------------------------------
+    // ------------------ Sección EVENTOS ---------------------
+    // --------------------------------------------------------
+
+    private void registrarEvento(Long idUsuario, Long idTipoEvento, String descripcion) {
+        RequestEventoDTO eventoDTO = new RequestEventoDTO();
+        eventoDTO.setIdUsuario(idUsuario);
+        eventoDTO.setIdTipoEvento(idTipoEvento);
+        eventoDTO.setDescripcion(descripcion);
+        eClient.postEvento(eventoDTO);
+    }
 }
