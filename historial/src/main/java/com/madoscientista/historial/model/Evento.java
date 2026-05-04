@@ -2,6 +2,8 @@ package com.madoscientista.historial.model;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +28,7 @@ public class Evento {
     @Column(nullable = false)
     private Long idUsuario;
 
+    @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime fecha;
 

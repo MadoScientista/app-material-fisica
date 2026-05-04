@@ -32,7 +32,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `historial_db`.`evento` (
   `id_evento` BIGINT NOT NULL AUTO_INCREMENT,
   `id_tipo_evento` BIGINT NOT NULL,
-  `fecha` DATETIME NOT NULL,
+  `fecha` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `id_usuario` BIGINT NOT NULL,
   `descripcion` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id_evento`),

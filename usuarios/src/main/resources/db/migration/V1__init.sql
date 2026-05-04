@@ -41,7 +41,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `usuarios_db`.`ejercicio` (
   `id_creador` BIGINT NOT NULL,
   `id_ejercicio` BIGINT NOT NULL AUTO_INCREMENT,
-  `fecha_creacion` DATETIME NOT NULL,
+  `fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `dificultad` VARCHAR(255) NOT NULL,
   `enunciado` TEXT NOT NULL,
   `incognita` VARCHAR(255) NOT NULL,

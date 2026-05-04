@@ -1,6 +1,5 @@
 package com.madoscientista.usuarios.mapper;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,6 @@ public class EjercicioMapper {
         ejercicio.setCreador(u);
         ejercicio.setDificultad(response.getDificultad());
         ejercicio.setEnunciado(response.getEnunciado());
-        ejercicio.setFechaCreacion(LocalDateTime.now());
         ejercicio.setIncognita(response.getIncognita());
         ejercicio.setRespuesta("Trabajando en ello jajaj");
         ejercicio.setIdPlantillaEnunciado(response.getIdPlantillaEnunciado());

@@ -1,6 +1,5 @@
 package com.madoscientista.historial.service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,6 @@ public class EventoService {
         evento.setIdUsuario(request.getIdUsuario());
         
         evento.setTipoEvento(tipoEvento);
-        evento.setFecha(LocalDateTime.now());
         evento.setDescripcion(request.getDescripcion());
         return eRepo.save(evento);
     }
