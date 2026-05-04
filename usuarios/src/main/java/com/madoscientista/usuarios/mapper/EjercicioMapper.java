@@ -1,6 +1,8 @@
 package com.madoscientista.usuarios.mapper;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -11,17 +13,43 @@ import com.madoscientista.usuarios.model.Usuario;
 @Component
 public class EjercicioMapper {
 
-    public Ejercicio toNewEjercicio(ResponseEjercicioDTO response, Usuario u){
+    public Ejercicio toEntity(ResponseEjercicioDTO response, Usuario u){
         Ejercicio ejercicio = new Ejercicio();
 
         ejercicio.setCreador(u);
         ejercicio.setDificultad(response.getDificultad());
         ejercicio.setEnunciado(response.getEnunciado());
-        ejercicio.setFecha(LocalDate.now());
+        ejercicio.setFechaCreacion(LocalDateTime.now());
         ejercicio.setIncognita(response.getIncognita());
         ejercicio.setRespuesta("Trabajando en ello jajaj");
+        ejercicio.setIdPlantillaEnunciado(response.getIdPlantillaEnunciado());
         ejercicio.setTema(response.getTema());
 
         return ejercicio;
+    }
+
+    public ResponseEjercicioDTO toDTO(Ejercicio ejercicio){
+        ResponseEjercicioDTO response = new ResponseEjercicioDTO();
+
+        response.setIdEjercicio(ejercicio.getIdEjercicio());
+        response.setIdCreador(ejercicio.getCreador().getIdUsuario());
+        response.setFechaCreacion(ejercicio.getFechaCreacion().toString());
+        response.setTema(ejercicio.getTema());
+        response.setDificultad(ejercicio.getDificultad());
+        response.setIncognita(ejercicio.getIncognita());
+        response.setIdPlantillaEnunciado(ejercicio.getIdPlantillaEnunciado());
+        response.setEnunciado(ejercicio.getEnunciado());
+
+        return response;
+    }
+
+    public List<ResponseEjercicioDTO> toDTOList(List<Ejercicio> ejercicios){
+        List<ResponseEjercicioDTO> response = new ArrayList<>();
+
+        for(Ejercicio e : ejercicios){
+            response.add(toDTO(e));
+        }
+
+        return response;
     }
 }

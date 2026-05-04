@@ -1,25 +1,22 @@
 package com.madoscientista.usuarios.dto.ejercicioDTO;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ResponseEjercicioDTO {
+    private Long idEjercicio;
+    private Long idCreador;
+    private String fechaCreacion;
     private String tema;
-    private String contexto;
-    private String incognita;
     private String dificultad;
-    private long idPlantillaEnunciado;
+    private String incognita;
+    private Long idPlantillaEnunciado;
     private String enunciado;
-    private List<Map<String, Object>> datos;
 
-    public ResponseEjercicioDTO(){
-        datos = new ArrayList<>();
-    }
 }

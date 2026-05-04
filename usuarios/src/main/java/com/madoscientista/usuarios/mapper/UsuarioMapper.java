@@ -2,6 +2,7 @@ package com.madoscientista.usuarios.mapper;
 
 import org.springframework.stereotype.Component;
 
+import com.madoscientista.usuarios.dto.usuarioDTO.RequestUsuarioDTO;
 import com.madoscientista.usuarios.dto.usuarioDTO.ResponseUsuarioDTO;
 import com.madoscientista.usuarios.model.Usuario;
 
@@ -20,4 +21,14 @@ public class UsuarioMapper {
             u.getEmail()
         );
     }
+
+    public Usuario toEntity(RequestUsuarioDTO dto) {
+        Usuario u = new Usuario();
+        u.setNombre(dto.getNombre());
+        u.setApellido(dto.getApellido());
+        u.setNombreUsuario(dto.getNombreUsuario());
+        u.setEmail(dto.getEmail());
+        u.setPassword(dto.getPassword());
+    return u;
+}
 }
