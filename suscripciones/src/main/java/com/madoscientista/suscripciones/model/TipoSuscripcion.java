@@ -1,39 +1,36 @@
 package com.madoscientista.suscripciones.model;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Suscripcion {
+@AllArgsConstructor
+public class TipoSuscripcion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idSuscripcion;
+    private Long idTipoSuscripcion;
+
+    @Column(unique = true, nullable = false)
+    private String nombre;
 
     @Column(nullable = false)
-    private Long idUsuario;
+    private Long nMaxEjercicios;
 
     @Column(nullable = false)
-    private boolean activo;
+    private Long precioPorMes;
 
-    @Column(nullable = false)
-    private LocalDateTime fechaInicio;
-
-    @ManyToOne
-    @JoinColumn(name = "idTipoSuscripcion")
-    private TipoSuscripcion tipoSuscripcion;
-    
+    @OneToMany(mappedBy = "tipoSuscripcion")
+    private List<Suscripcion> suscripciones;
 }

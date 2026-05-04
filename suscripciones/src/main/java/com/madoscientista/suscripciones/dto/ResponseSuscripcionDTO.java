@@ -13,4 +13,5 @@ public class ResponseSuscripcionDTO {
     private long idSuscripcion;
     private String tipoSuscripcion;
     private boolean activo;
+    private String fechaInicio;
 }
