@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.madoscientista.usuarios.dto.usuarioDTO.RequestUsuarioDTO;
 import com.madoscientista.usuarios.dto.usuarioDTO.ResponseUsuarioDTO;
 import com.madoscientista.usuarios.mapper.UsuarioMapper;
 import com.madoscientista.usuarios.model.Usuario;
@@ -31,7 +32,9 @@ public class UsuarioController {
     private UsuarioMapper usuarioMapper;
 
 
-    // Sección GET
+    // --------------------------------------------------------
+    // ------------------ Sección GET -------------------------
+    // --------------------------------------------------------
 
     // Retorna la lista de usuarios disponibles
     @GetMapping
@@ -65,19 +68,28 @@ public class UsuarioController {
                 .collect(Collectors.toList());
     }
 
-    // Sección POST
-    @PostMapping
-    public ResponseEntity<ResponseUsuarioDTO> postUsuario(@RequestBody Usuario usuario){
 
-        Usuario creado = service.postUSuario(usuario);
-        ResponseUsuarioDTO response = usuarioMapper.toDTO(creado);
+    // --------------------------------------------------------
+    // ------------------ Sección POST ------------------------
+    // --------------------------------------------------------
+
+    // Crea un usuario nuevo a partir de los datos del request
+    @PostMapping
+    public ResponseEntity<ResponseUsuarioDTO> postUsuario(@RequestBody RequestUsuarioDTO dto){
+
+        Usuario usuarioCreado = service.postUSuario(usuarioMapper.toEntity(dto));
+        ResponseUsuarioDTO response = usuarioMapper.toDTO(usuarioCreado);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
     }
 
-    // Sección DELETE
+    // --------------------------------------------------------
+    // ------------------ Sección DELETE ----------------------
+    // --------------------------------------------------------
+
+    // Elimina un usuario filtrado por su ID
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUsuario(@PathVariable Long id){
 
@@ -92,16 +104,21 @@ public class UsuarioController {
                 .body("No se encontró al usuario con id: " + id);
     }
 
-    // Sección PUT
+
+    // --------------------------------------------------------
+    // ------------------ Sección PUT -------------------------
+    // --------------------------------------------------------
+
+    // Actualiza un usuario filtrado por su ID
     @PutMapping("/{id}")
     public ResponseEntity<?> putUsuario(
             @PathVariable long id,
-            @RequestBody Usuario usuario){
+            @RequestBody RequestUsuarioDTO dto){
 
-        Usuario actualizado = service.putUsuario(id, usuario);
+        Usuario usuarioActualizado = service.putUsuario(id, usuarioMapper.toEntity(dto));
 
-        if(actualizado != null){
-            ResponseUsuarioDTO response = usuarioMapper.toDTO(actualizado);
+        if(usuarioActualizado != null){
+            ResponseUsuarioDTO response = usuarioMapper.toDTO(usuarioActualizado);
             return ResponseEntity.ok(response);
         }
 
