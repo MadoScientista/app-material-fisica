@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.madoscientista.suscripciones.dto.RequestSuscripcionDTO;
-import com.madoscientista.suscripciones.dto.ResponseSuscripcionDTO;
+import com.madoscientista.suscripciones.client.HistorialClient;
+import com.madoscientista.suscripciones.dto.EventoDTO.RequestEventoDTO;
+import com.madoscientista.suscripciones.dto.SuscripcionDTO.RequestSuscripcionDTO;
+import com.madoscientista.suscripciones.dto.SuscripcionDTO.ResponseSuscripcionDTO;
 import com.madoscientista.suscripciones.mapper.SuscripcionMapper;
 import com.madoscientista.suscripciones.model.Suscripcion;
 import com.madoscientista.suscripciones.service.SuscripcionService;
@@ -26,6 +28,10 @@ public class SuscripcionController {
 
     @Autowired
     private SuscripcionMapper suscripcionMapper;
+
+    // Inyección cliente ms de historial
+    @Autowired
+    private HistorialClient hClient;
 
     // ------------------------------------------------------
     // ---------------- Sección GET -------------------------
@@ -63,6 +69,7 @@ public class SuscripcionController {
         return ResponseEntity.ok(maxEjercicios);
     }
 
+
     // Retorna una lista de suscripciones por una lista de IDs de usuario
     // @GetMapping("/usuarios")
     // public List<ResponseSuscripcionDTO> getSuscripcionesByUsuarioIds(@RequestBody List<Long> idUsuarios) {
@@ -84,7 +91,23 @@ public class SuscripcionController {
         if(response == null){
             return ResponseEntity.badRequest().body("No se pudo crear la suscripción. Verifique que el tipo de suscripción sea válido.");
         }
+
+        //registrarEvento(response.getIdUsuario(), null, null);
         
         return ResponseEntity.ok(response);
     }
+
+
+    // --------------------------------------------------------
+    // ------------------ Sección EVENTOS ---------------------
+    // --------------------------------------------------------
+
+    private void registrarEvento(Long idUsuario, Long idTipoEvento, String descripcion) {
+        RequestEventoDTO eventoDTO = new RequestEventoDTO();
+        eventoDTO.setIdUsuario(idUsuario);
+        eventoDTO.setIdTipoEvento(idTipoEvento);
+        eventoDTO.setDescripcion(descripcion);
+        hClient.postEvento(eventoDTO);
+    }
 }
+
