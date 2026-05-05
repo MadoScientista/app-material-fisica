@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ResponseSuscripcionDTO {
 
-    private long idUsuario;
+    private Long idUsuario;
     private long idSuscripcion;
     private String tipoSuscripcion;
     private boolean activo;
