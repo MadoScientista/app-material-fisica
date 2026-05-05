@@ -15,7 +15,9 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository repo;
 
-    // Sección GET
+    // --------------------------------------------------------
+    // ------------------ Sección GET -------------------------
+    // --------------------------------------------------------
 
     // Retorna la lista de usuarios disponibles
     public List<Usuario> getUsuarios(){
@@ -47,7 +49,7 @@ public class UsuarioService {
     }
 
     // Elimina un usuario por id
-    public boolean deleteUsuario(long id){;
+    public boolean deleteUsuario(long id){
 
         if(repo.existsById(id)){
             repo.deleteById(id);

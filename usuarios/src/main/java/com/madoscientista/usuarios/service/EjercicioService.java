@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.madoscientista.usuarios.client.EventoClient;
 import com.madoscientista.usuarios.client.GeneradorEjerciciosClient;
+import com.madoscientista.usuarios.client.SuscripcionesClient;
 import com.madoscientista.usuarios.dto.EventoDTO.RequestEventoDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.RequestEjercicioDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.ResponseEjercicioDTO;
@@ -34,6 +35,9 @@ public class EjercicioService {
     // Inyeccción de microservicio de historial de eventos
     @Autowired
     private EventoClient eClient;
+
+    @Autowired
+    private SuscripcionesClient sClient;
 
     // Inyección de servicio de usuario
     @Autowired
@@ -68,6 +72,11 @@ public class EjercicioService {
         return ejercicioRepo.findAllByCreadorIdUsuario(id);
     }
 
+    // Retorna la cantidad de ejercicios almacenados por un usuario
+    public Long contarEjerciciosByIUsuario(Long id){
+        return ejercicioRepo.countByCreadorIdUsuario(id);
+    }
+
     // --------------------------------------------------------
     // ------------------ Sección POST ------------------------
     // --------------------------------------------------------
@@ -75,6 +84,14 @@ public class EjercicioService {
     // Solicita al microservicio generador de ejercicios la creación de un nuevo ejercicio
     // Guarda el ejercicio en la base de datos y registra el evento en el microservicio de historial de eventos
     public Ejercicio postEjercicio(RequestEjercicioDTO request, long idUsuario){
+
+        Long nEjerciciosAlmacenados = contarEjerciciosByIUsuario(idUsuario);
+        Long maxEjerciciosPermitidos = sClient.getMaxEjerciciosByUsuarioId(idUsuario).getBody();
+
+        if(maxEjerciciosPermitidos == null || maxEjerciciosPermitidos == null|| nEjerciciosAlmacenados >= maxEjerciciosPermitidos ){
+            return null;
+        }
+
         ResponseEjercicioDTO ejercicioDTO = geClient.getEjercicioMRU(request);
         Usuario usuario = uService.getUsuarioById(idUsuario);
 

@@ -16,5 +16,5 @@ public interface EjercicioRepository extends JpaRepository<Ejercicio, Long>{
     // Retorna una lista de ejercicios que se les ha compartido a un usuario
     List<Ejercicio> findByUsuariosCompartidosIdUsuario(long id);
 
-
+    Long countByCreadorIdUsuario(Long id);
 }
