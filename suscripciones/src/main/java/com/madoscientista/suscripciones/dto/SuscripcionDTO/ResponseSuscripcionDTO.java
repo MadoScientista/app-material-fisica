@@ -1,4 +1,4 @@
-package com.madoscientista.suscripciones.dto;
+package com.madoscientista.suscripciones.dto.SuscripcionDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ResponseSuscripcionDTO {
 
-    private long idUsuario;
+    private Long idUsuario;
     private long idSuscripcion;
     private String tipoSuscripcion;
     private boolean activo;

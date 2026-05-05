@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.madoscientista.suscripciones.dto.ResponseSuscripcionDTO;
+import com.madoscientista.suscripciones.dto.SuscripcionDTO.ResponseSuscripcionDTO;
 import com.madoscientista.suscripciones.model.Suscripcion;
 
 @Component

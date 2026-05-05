@@ -1,4 +1,4 @@
-package com.madoscientista.suscripciones.dto;
+package com.madoscientista.suscripciones.dto.SuscripcionDTO;
 
 public class RequestSuscripcionDTO {
     public Long idUsuario;
