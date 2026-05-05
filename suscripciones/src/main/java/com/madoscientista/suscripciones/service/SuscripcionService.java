@@ -81,7 +81,7 @@ public class SuscripcionService {
 
     // Cancela una suscripción de un usuario por el ID del usuario
     public Suscripcion cancelarSuscripcion(Long idUsuario) {
-        Suscripcion suscripcion = susucripcionRepo.findByIdUsuario(idUsuario).orElse(null);
+        Suscripcion suscripcion = susucripcionRepo.findByIdUsuarioActivoTrue(idUsuario).orElse(null);
         if (suscripcion != null) {
             suscripcion.setActivo(false);
             return susucripcionRepo.save(suscripcion);

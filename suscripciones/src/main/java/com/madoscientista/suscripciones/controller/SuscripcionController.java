@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,8 @@ import com.madoscientista.suscripciones.dto.SuscripcionDTO.ResponseSuscripcionDT
 import com.madoscientista.suscripciones.mapper.SuscripcionMapper;
 import com.madoscientista.suscripciones.model.Suscripcion;
 import com.madoscientista.suscripciones.service.SuscripcionService;
+
+import feign.Response;
 
 @RestController
 @RequestMapping("api/v1/suscripciones")
@@ -96,6 +99,18 @@ public class SuscripcionController {
         
         return ResponseEntity.ok(response);
     }
+
+
+    // --------------------------------------------------------
+    // ---------------- Sección PUT ---------------------------
+    // --------------------------------------------------------
+
+    // Cancela una suscripción activa
+    // @PutMapping("/{idUsuario}")
+    // public ResponseEntity<?> cancelarSuscripcion(@PathVariable Long idUsuario){
+    //     return 
+    // }
+
 
 
     // --------------------------------------------------------
