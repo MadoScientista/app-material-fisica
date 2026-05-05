@@ -12,15 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.madoscientista.suscripciones.client.HistorialClient;
-import com.madoscientista.suscripciones.dto.EventoDTO.RequestEventoDTO;
 import com.madoscientista.suscripciones.dto.SuscripcionDTO.RequestSuscripcionDTO;
 import com.madoscientista.suscripciones.dto.SuscripcionDTO.ResponseSuscripcionDTO;
 import com.madoscientista.suscripciones.mapper.SuscripcionMapper;
 import com.madoscientista.suscripciones.model.Suscripcion;
 import com.madoscientista.suscripciones.service.SuscripcionService;
 
-import feign.Response;
 
 @RestController
 @RequestMapping("api/v1/suscripciones")
@@ -31,10 +28,6 @@ public class SuscripcionController {
 
     @Autowired
     private SuscripcionMapper suscripcionMapper;
-
-    // Inyección cliente ms de historial
-    @Autowired
-    private HistorialClient hClient;
 
     // ------------------------------------------------------
     // ---------------- Sección GET -------------------------
@@ -74,10 +67,10 @@ public class SuscripcionController {
 
 
     // Retorna una lista de suscripciones por una lista de IDs de usuario
-    // @GetMapping("/usuarios")
-    // public List<ResponseSuscripcionDTO> getSuscripcionesByUsuarioIds(@RequestBody List<Long> idUsuarios) {
-    //     return suscripcionMapper.toDTOList(service.getSuscripcionesByUsuarioIds(idUsuarios));
-    // }
+    @GetMapping("/usuarios")
+    public List<ResponseSuscripcionDTO> getSuscripcionesByUsuarioIds(@RequestBody List<Long> idUsuarios) {
+        return suscripcionMapper.toDTOList(service.getSuscripcionesByUsuarioIds(idUsuarios));
+    }
 
 
     // ------------------------------------------------------
@@ -94,8 +87,6 @@ public class SuscripcionController {
         if(response == null){
             return ResponseEntity.badRequest().body("No se pudo crear la suscripción. Verifique que el tipo de suscripción sea válido.");
         }
-
-        //registrarEvento(response.getIdUsuario(), null, null);
         
         return ResponseEntity.ok(response);
     }
@@ -106,23 +97,32 @@ public class SuscripcionController {
     // --------------------------------------------------------
 
     // Cancela una suscripción activa
-    // @PutMapping("/{idUsuario}")
-    // public ResponseEntity<?> cancelarSuscripcion(@PathVariable Long idUsuario){
-    //     return 
-    // }
+    @PutMapping("/{idUsuario}")
+    public ResponseEntity<?> cancelarSuscripcion(@PathVariable Long idUsuario){
+        Suscripcion suscripcionCancelada = service.cancelarSuscripcion(idUsuario);
 
+        if(suscripcionCancelada == null){
+            return ResponseEntity.badRequest().body("No se pudo cancelar la suscripción. Verifique que el usuario tenga una suscripción activa.");
+        }
 
+        ResponseSuscripcionDTO response = suscripcionMapper.toDTO(suscripcionCancelada);
 
-    // --------------------------------------------------------
-    // ------------------ Sección EVENTOS ---------------------
-    // --------------------------------------------------------
-
-    private void registrarEvento(Long idUsuario, Long idTipoEvento, String descripcion) {
-        RequestEventoDTO eventoDTO = new RequestEventoDTO();
-        eventoDTO.setIdUsuario(idUsuario);
-        eventoDTO.setIdTipoEvento(idTipoEvento);
-        eventoDTO.setDescripcion(descripcion);
-        hClient.postEvento(eventoDTO);
+        return ResponseEntity.ok(response);
     }
+
+    // Actualiza el tipo de suscripción de un usuario
+    @PutMapping("/actualizar/{idUsuario}")
+    public ResponseEntity<?> actualizarSuscripcion(@PathVariable Long idUsuario, @RequestBody RequestSuscripcionDTO request){
+        Suscripcion suscripcionActualizada = service.actualizarSuscripcion(idUsuario, request.nomrbeTipoSuscripcion);
+
+        if(suscripcionActualizada == null){
+            return ResponseEntity.badRequest().body("No se pudo actualizar la suscripción. Verifique que el usuario tenga una suscripción activa y que el nuevo tipo de suscripción sea válido.");
+        }
+
+        ResponseSuscripcionDTO response = suscripcionMapper.toDTO(suscripcionActualizada);
+
+        return ResponseEntity.ok(response);
+    }
+
 }
 
