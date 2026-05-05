@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.madoscientista.usuarios.client.EventoClient;
+import com.madoscientista.usuarios.client.HistorialClient;
 import com.madoscientista.usuarios.client.GeneradorEjerciciosClient;
 import com.madoscientista.usuarios.client.SuscripcionesClient;
 import com.madoscientista.usuarios.dto.EventoDTO.RequestEventoDTO;
@@ -34,8 +34,9 @@ public class EjercicioService {
 
     // Inyeccción de microservicio de historial de eventos
     @Autowired
-    private EventoClient eClient;
+    private HistorialClient hClient;
 
+    // Inyección de microservicio de suscripciones
     @Autowired
     private SuscripcionesClient sClient;
 
@@ -201,6 +202,6 @@ public class EjercicioService {
         eventoDTO.setIdUsuario(idUsuario);
         eventoDTO.setIdTipoEvento(idTipoEvento);
         eventoDTO.setDescripcion(descripcion);
-        eClient.postEvento(eventoDTO);
+        hClient.postEvento(eventoDTO);
     }
 }

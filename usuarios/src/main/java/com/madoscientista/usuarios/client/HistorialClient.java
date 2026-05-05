@@ -8,7 +8,7 @@ import com.madoscientista.usuarios.dto.EventoDTO.RequestEventoDTO;
 import com.madoscientista.usuarios.dto.EventoDTO.ResponseEventoDTO;
 
 @FeignClient(name = "historial", url="localhost:8082")
-public interface EventoClient {
+public interface HistorialClient {
 
     @PostMapping("/api/v1/eventos")
     ResponseEventoDTO postEvento(@RequestBody RequestEventoDTO request);
