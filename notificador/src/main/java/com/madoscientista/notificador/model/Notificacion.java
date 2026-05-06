@@ -1,6 +1,8 @@
 package com.madoscientista.notificador.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,8 +28,18 @@ public class Notificacion {
     @Column(nullable = false)
     private Long idUsuario;
 
+    @CreationTimestamp
     @Column(nullable = false, updatable = false)
-    private LocalDate fecha;
+    private LocalDateTime fechaCreacion;
+
+    @Column
+    private LocalDateTime fechaLectura;
+
+    @Column(nullable = false)
+    private boolean leido;
+
+    @Column(nullable = false)
+    private String mensaje;
     
     @ManyToOne
     @JoinColumn(name = "idTipoNotificacion", nullable = false)
