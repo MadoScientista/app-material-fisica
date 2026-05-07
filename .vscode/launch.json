@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "NotificadorApplication",
+            "request": "launch",
+            "mainClass": "com.madoscientista.notificador.NotificadorApplication",
+            "projectName": "notificador"
+        },
+        {
+            "type": "java",
             "name": "SuscripcionesApplication",
             "request": "launch",
             "mainClass": "com.madoscientista.suscripciones.SuscripcionesApplication",
