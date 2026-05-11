@@ -5,11 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.madoscientista.historial.dto.RequestEventoDTO;
+import com.madoscientista.historial.client.NotificacionClient;
 import com.madoscientista.historial.model.Evento;
-import com.madoscientista.historial.model.TipoEvento;
 import com.madoscientista.historial.repository.EventoRepository;
-import com.madoscientista.historial.repository.TipoEventoRepository;
 
 @Service
 public class EventoService {
@@ -18,17 +16,12 @@ public class EventoService {
     private EventoRepository eRepo;
 
     @Autowired
-    private TipoEventoRepository teRepo;
+    private NotificacionClient nClient;
+
 
     // Crea un nuevo evento a partir de un RequestDTO
-    public Evento postEvento(RequestEventoDTO request){
-        Evento evento = new Evento();
-        TipoEvento tipoEvento = teRepo.findById(request.getIdTipoEvento()).orElse(null);
+    public Evento postEvento(Evento evento){
 
-        evento.setIdUsuario(request.getIdUsuario());
-        
-        evento.setTipoEvento(tipoEvento);
-        evento.setDescripcion(request.getDescripcion());
         return eRepo.save(evento);
     }
 

@@ -1,4 +1,6 @@
-package com.madoscientista.notificador.dto;
+package com.madoscientista.historial.dto.NotificacionDTO;
+
+import java.util.Map;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class RequestNotificacionDTO {
     private Long idUsuario;
     private Long idTipoNotificacion;
-    private String tipoNotificacion;
+    private Map<String, String> datos;
 }

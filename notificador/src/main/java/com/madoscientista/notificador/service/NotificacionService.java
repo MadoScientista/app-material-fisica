@@ -5,18 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.madoscientista.notificador.dto.RequestNotificacionDTO;
 import com.madoscientista.notificador.model.Notificacion;
 import com.madoscientista.notificador.repository.NotificacionRepository;
 
 @Service
 public class NotificacionService {
 
+    // Inyección del repositorio de notificaciones
     @Autowired
     private NotificacionRepository notificacionRepo;
-
-    @Autowired
-    private TipoNotificacionService tipoNotificacionService;
 
 
     // --------------------------------------------------------
@@ -48,9 +45,13 @@ public class NotificacionService {
     // --------------------------------------------------------
 
     // Crea una nueva notificacion
-    // public Notificacion postNotificacion(RequestNotificacionDTO request){
-        
-    // }
+    public Notificacion postNotificacion(Notificacion notificacion){
 
+        if(notificacion == null) {
+            throw new RuntimeException("Se requieren datos de notificación");
+        }
+
+        return notificacionRepo.save(notificacion);
+    }
 
 }

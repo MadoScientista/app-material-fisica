@@ -1,4 +1,4 @@
-package com.madoscientista.historial.dto;
+package com.madoscientista.historial.dto.EventoDTO;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

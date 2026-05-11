@@ -40,6 +40,8 @@ public class Notificacion {
 
     @Column(nullable = false)
     private String mensaje;
+
+    
     
     @ManyToOne
     @JoinColumn(name = "idTipoNotificacion", nullable = false)
