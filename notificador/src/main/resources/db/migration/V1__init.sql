@@ -52,29 +52,29 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- EJERCICIO_CREADO (idTipoEvento = 3)
 INSERT INTO tipo_notificacion (id_tipo_evento, descripcion, plantilla_mensaje, canal) VALUES
-(3, 'Nuevo ejercicio generado', 'Nuevo ejercicio de física generado', 'push'),
-(3, 'Nuevo ejercicio generado', 'Se ha generado un nuevo ejercicio sobre {temaEjercicio}', 'web');
+(3, 'Nuevo ejercicio generado', 'Nuevo ejercicio generado', 'push'),
+(3, 'Nuevo ejercicio generado', 'Felicidades {usuarioOrigen}, has generado un nuevo ejercicio', 'web');
 -- EJERCICIO_COMPARTIDO (idTipoEvento = 4)
 INSERT INTO tipo_notificacion (id_tipo_evento, descripcion, plantilla_mensaje, canal) VALUES
 (4, 'Ejercicio compartido', 'Un ejercicio ha sido compartido contigo', 'push'),
-(4, 'Ejercicio compartido', '{nombreUsuario} ha compartido un ejercicio sobre {temaEjercicio} contigo', 'web');
+(4, 'Ejercicio compartido', '{usuarioOrigen} ha compartido un ejercicio contigo', 'web');
 -- EJERCICIO_RESUELTO (idTipoEvento = 7)
 INSERT INTO tipo_notificacion (id_tipo_evento, descripcion, plantilla_mensaje, canal) VALUES
 (7, 'Ejercicio resuelto', 'Has resuelto un ejercicio', 'push'),
-(7, 'Ejercicio resuelto', '¡Felicidades {nombreUsuario}, has resuelto correctamente el ejercicio sobre {temaEjercicio}!', 'web');
+(7, 'Ejercicio resuelto', '¡Felicidades {usuarioOrigen}, has resuelto correctamente un ejercicio!', 'web');
 -- SUSCRIPCION_NUEVA (idTipoEvento = 8)
 INSERT INTO tipo_notificacion (id_tipo_evento, descripcion, plantilla_mensaje, canal) VALUES
 (8, 'Nueva suscripción', 'Tu suscripción ha sido activada', 'push'),
-(8, 'Nueva suscripción', 'Hola {nombreUsuario}, tu suscripción ha sido activada exitosamente', 'web');
+(8, 'Nueva suscripción', 'Hola {usuarioOrigen}, tu suscripción ha sido activada exitosamente', 'web');
 -- SUSCRIPCION_CANCELADA (idTipoEvento = 9)
 INSERT INTO tipo_notificacion (id_tipo_evento, descripcion, plantilla_mensaje, canal) VALUES
 (9, 'Suscripción cancelada', 'Tu suscripción ha sido cancelada', 'push'),
-(9, 'Suscripción cancelada', 'Hola {nombreUsuario}, tu suscripción ha sido cancelada. Si fue un error, contáctanos', 'web');
+(9, 'Suscripción cancelada', 'Hola {usuarioOrigen}, tu suscripción ha sido cancelada. Si fue un error, contáctanos', 'web');
 -- SUSCRIPCION_EXPIRADA (idTipoEvento = 10)
 INSERT INTO tipo_notificacion (id_tipo_evento, descripcion, plantilla_mensaje, canal) VALUES
 (10, 'Suscripción expirada', 'Tu suscripción ha expirado', 'push'),
-(10, 'Suscripción expirada', 'Hola {nombreUsuario}, tu suscripción ha expirado. Renueva para seguir accediendo a todas las funciones', 'web');
+(10, 'Suscripción expirada', 'Hola {usuarioOrigen}, tu suscripción ha expirado. Renueva para seguir accediendo a todas las funciones', 'web');
 -- SUSCRIPCION_ACTUALIZADA (idTipoEvento = 11)
 INSERT INTO tipo_notificacion (id_tipo_evento, descripcion, plantilla_mensaje, canal) VALUES
 (11, 'Suscripción actualizada', 'Tu suscripción ha sido actualizada', 'push'),
-(11, 'Suscripción actualizada', 'Hola {nombreUsuario}, tu suscripción ha sido actualizada exitosamente', 'web');
+(11, 'Suscripción actualizada', 'Hola {usuarioOrigen}, tu suscripción ha sido actualizada exitosamente', 'web');

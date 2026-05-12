@@ -61,11 +61,13 @@ public class UsuarioController {
 
     // Retorna una lista de usuarios filtrados por id
     @GetMapping("/lista")
-    public List<ResponseUsuarioDTO> getUsuariosByIds(@RequestBody List<Long> ids){
-        return service.getUsuariosByIds(ids)
+    public ResponseEntity<List<ResponseUsuarioDTO>> getUsuariosByIds(@RequestBody List<Long> ids){
+
+        List<ResponseUsuarioDTO> listaUsuarios = service.getUsuariosByIds(ids)
                 .stream()
                 .map(usuarioMapper::toDTO)
                 .collect(Collectors.toList());
+        return ResponseEntity.ok(listaUsuarios);
     }
 
 

@@ -1,5 +1,7 @@
 package com.madoscientista.notificador.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,9 @@ public class TipoNotificacionService {
 
     public TipoNotificacion getTipoNotificacionById(Long id) {
         return tipoNotificacionRepo.findById(id).orElse(null);
+    }
+
+    public List<TipoNotificacion> getTipoNotificacionByIdTipoEvento(Long idTipoEvento){
+        return tipoNotificacionRepo.findAllByIdTipoEvento(idTipoEvento);
     }
 }

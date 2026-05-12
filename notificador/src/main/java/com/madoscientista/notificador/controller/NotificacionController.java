@@ -38,10 +38,10 @@ public class NotificacionController {
     public ResponseEntity<List<ResponseNotificacionDTO>> postNotificacion(@RequestBody @Valid RequestEventoDTO request) {
 
         // Obtiene el tipo de notificación para obtener la plantilla del mensaje
-        TipoNotificacion tipo = tnService.getTipoNotificacionById(request.getIdTipoEvento());
+        List<TipoNotificacion> tipos = tnService.getTipoNotificacionByIdTipoEvento(request.getIdTipoEvento());
         
-        // Crea la notificación
-        List<Notificacion> nuevasNotificaciones = nService.postNotificaciones(nMapper.toEntities(request, tipo));
+        // Crea las notificaciones para cada tipo, origen y destinatario
+        List<Notificacion> nuevasNotificaciones = nService.postNotificaciones(nMapper.toEntities(request, tipos));
 
         // Retorna DTO
         List<ResponseNotificacionDTO> response = nMapper.toDTOs(nuevasNotificaciones);

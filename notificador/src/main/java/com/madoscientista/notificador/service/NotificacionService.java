@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.madoscientista.notificador.client.UsuarioClient;
+import com.madoscientista.notificador.dto.usuarioDTO.ResponseUsuarioDTO;
 import com.madoscientista.notificador.model.Notificacion;
 import com.madoscientista.notificador.repository.NotificacionRepository;
 
@@ -15,6 +17,10 @@ public class NotificacionService {
     // Inyección del repositorio de notificaciones
     @Autowired
     private NotificacionRepository notificacionRepo;
+
+    // Inyección de cliente del ms Usuario
+    @Autowired
+    private UsuarioClient uClient;
 
 
     // --------------------------------------------------------
@@ -53,7 +59,16 @@ public class NotificacionService {
         }
 
         n.setLeido(false);
-        n.setMensaje("Hola");
+
+        // Reemplazo de placeholders en mensaje de notificación
+        ResponseUsuarioDTO usuarioOrigen = uClient.getUsuarioById(n.getIdUsuarioOrigen()).getBody();
+        ResponseUsuarioDTO usuariosDestino = uClient.getUsuarioById(n.getIdUsuarioDestino()).getBody();
+
+        String mensaje = n.getTipoNotificacion().getPlantillaMensaje();
+        mensaje = mensaje.replace("{usuarioOrigen}", usuarioOrigen.getNombreUsuario());
+        mensaje = mensaje.replace("{usuarioDestino}", usuariosDestino.getNombreUsuario());
+
+        n.setMensaje(mensaje);
 
         return notificacionRepo.save(n);
     }
@@ -67,6 +82,5 @@ public class NotificacionService {
 
         return response;
     }
-
     
 }

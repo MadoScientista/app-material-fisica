@@ -21,16 +21,19 @@ public class NotificacionMapper {
 
 
     // Genera una lista de notificaciones
-    public List<Notificacion> toEntities(RequestEventoDTO request, TipoNotificacion tipo){
+    public List<Notificacion> toEntities(RequestEventoDTO request, List<TipoNotificacion> tipos){
         List<Notificacion> listaNotificaciones = new ArrayList<>();
 
-        for(Long idDestino : request.getIdUsuarioDestino()){
-            Notificacion n = new Notificacion();
-            n.setIdUsuarioOrigen(request.getIdUsuarioOrigen());
-            n.setIdUsuarioDestino(idDestino);
-            n.setTipoNotificacion(tipo);
-            listaNotificaciones.add(n);
+        for(TipoNotificacion tn : tipos){
+            for(Long idDestino : request.getIdUsuarioDestino()){
+                Notificacion n = new Notificacion();
+                n.setIdUsuarioOrigen(request.getIdUsuarioOrigen());
+                n.setIdUsuarioDestino(idDestino);
+                n.setTipoNotificacion(tn);
+                listaNotificaciones.add(n);
+            }
         }
+        
 
         return listaNotificaciones;
     }
