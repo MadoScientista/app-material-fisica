@@ -1,4 +1,4 @@
-package com.madoscientista.logros.dto;
+package com.madoscientista.logros.dto.logroDTO;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

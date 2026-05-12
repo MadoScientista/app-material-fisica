@@ -1,4 +1,4 @@
-package com.madoscientista.logros.dto;
+package com.madoscientista.logros.dto.logroDTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
