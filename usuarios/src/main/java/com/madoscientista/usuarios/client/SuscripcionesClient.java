@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.madoscientista.usuarios.dto.suscripcionDTO.dto.ResponseSuscripcionDTO;
+import com.madoscientista.usuarios.dto.suscripcionDTO.ResponseSuscripcionDTO;
 
 @FeignClient(name = "suscripciones", url = "localhost:8086" )
 public interface SuscripcionesClient {

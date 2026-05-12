@@ -1,4 +1,4 @@
-package com.madoscientista.usuarios.dto.suscripcionDTO.dto;
+package com.madoscientista.usuarios.dto.suscripcionDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
