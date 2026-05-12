@@ -26,7 +26,7 @@ public class Evento {
     private Long idEvento;
     
     @Column(nullable = false)
-    private Long idUsuario;
+    private Long idUsuarioOrigen;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

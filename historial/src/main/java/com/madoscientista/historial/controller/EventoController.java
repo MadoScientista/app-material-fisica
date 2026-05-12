@@ -39,7 +39,7 @@ public class EventoController {
     // Retorna una lista de eventos asociados a un usuario según el ID del usuario
     @GetMapping("/{idUsuario}")
     public ResponseEntity<List<Evento>> getEventosByUsuarioId(@PathVariable Long idUsuario){
-        List<Evento> eventos = eService.getEventosByIdUsuario(idUsuario);
+        List<Evento> eventos = eService.getEventosByIdUsuarioOrigen(idUsuario);
         return ResponseEntity.ok(eventos);
     }
 
@@ -52,7 +52,7 @@ public class EventoController {
     public ResponseEntity<?> postEvento(@RequestBody RequestEventoDTO request){
 
         TipoEvento tipoEvento = teService.getById(request.getIdTipoEvento());
-        Evento evento = eService.postEvento(eMapper.toEntity(request, tipoEvento));
+        Evento evento = eService.postEvento(eMapper.toEntity(request, tipoEvento), request.getIdUsuarioDestino());
 
         if(evento == null){
             return ResponseEntity.badRequest().build();

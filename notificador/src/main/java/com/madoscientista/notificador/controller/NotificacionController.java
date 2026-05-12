@@ -1,5 +1,7 @@
 package com.madoscientista.notificador.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.madoscientista.notificador.dto.NotificacionDTO.RequestNotificacionDTO;
+import com.madoscientista.notificador.dto.EventoDTO.RequestEventoDTO;
 import com.madoscientista.notificador.dto.NotificacionDTO.ResponseNotificacionDTO;
 import com.madoscientista.notificador.mapper.NotificacionMapper;
 import com.madoscientista.notificador.model.Notificacion;
@@ -33,15 +35,17 @@ public class NotificacionController {
 
 
     @PostMapping
-    public ResponseEntity<ResponseNotificacionDTO> postNotificacion(@RequestBody @Valid RequestNotificacionDTO request) {
+    public ResponseEntity<List<ResponseNotificacionDTO>> postNotificacion(@RequestBody @Valid RequestEventoDTO request) {
 
         // Obtiene el tipo de notificación para obtener la plantilla del mensaje
-        TipoNotificacion tipo = tnService.getTipoNotificacionById(request.getIdTipoNotificacion());
+        TipoNotificacion tipo = tnService.getTipoNotificacionById(request.getIdTipoEvento());
         
         // Crea la notificación
-        Notificacion nuevaNotificacion = nService.postNotificacion(nMapper.toEntity(request, tipo));
+        List<Notificacion> nuevasNotificaciones = nService.postNotificaciones(nMapper.toEntities(request, tipo));
 
         // Retorna DTO
-        return ResponseEntity.ok(nMapper.toDTO(nuevaNotificacion));
+        List<ResponseNotificacionDTO> response = nMapper.toDTOs(nuevasNotificaciones);
+        
+        return ResponseEntity.ok(response);
     }
 }

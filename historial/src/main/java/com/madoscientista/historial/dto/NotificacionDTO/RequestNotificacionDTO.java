@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class RequestNotificacionDTO {
-    private Long idUsuario;
+
+    private Long idUsuarioOrigen;
     private Long idTipoNotificacion;
     private Map<String, String> datos;
 }

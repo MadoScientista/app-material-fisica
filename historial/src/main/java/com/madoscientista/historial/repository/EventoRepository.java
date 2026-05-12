@@ -10,5 +10,5 @@ import com.madoscientista.historial.model.Evento;
 @Repository
 public interface EventoRepository extends JpaRepository<Evento, Long>{
 
-    public List<Evento> findAllByIdUsuario(Long idUsuario);
+    public List<Evento> findAllByIdUsuarioOrigen(Long idUsuarioOrigen);
 }

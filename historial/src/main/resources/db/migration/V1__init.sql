@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `historial_db`.`evento` (
   `id_evento` BIGINT NOT NULL AUTO_INCREMENT,
   `id_tipo_evento` BIGINT NOT NULL,
   `fecha` DATETIME DEFAULT CURRENT_TIMESTAMP,
-  `id_usuario` BIGINT NOT NULL,
+  `id_usuario_origen` BIGINT NOT NULL,
   `descripcion` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id_evento`),
   INDEX `FKh8qotjbabxa76li4be7dalbx5` (`id_tipo_evento` ASC) VISIBLE,
@@ -55,10 +55,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 
 INSERT INTO tipo_evento (nombre, descripcion, notificacion_activa) VALUES
-('USUARIO_CREADO', 'Se registra cuando se crea una nueva cuenta de usuario', false),
-('USUARIO_ACTUALIZADO', 'Se registra cuando un usuario modifica su perfil', false),
-('EJERCICIO_CREADO', 'Se registra cuando un usuario genera un nuevo ejercicio de física', true),
-('EJERCICIO_COMPARTIDO', 'Se registra cuando un usuario comparte un ejercicio con otros usuarios', true),
-('EJERCICIO_DEJADO_COMPARTIR', 'Se registra cuando un usuario deja de compartir un ejercicio con otros usuarios', false),
-('EJERCICIO_ELIMINADO', 'Se registra cuando un usuario elimina un ejercicio', false),
-('EJERCICIO_RESUELTO', 'Se registra cuando un usuario responde o resuelve un ejercicio', true);
+('USUARIO_CREADO', ' ha registado como usuario un nuevo usuario con id: ', false),
+('USUARIO_ACTUALIZADO', ' ha modificado el perfil del usuario con id: ', false),
+('EJERCICIO_CREADO', ' ha generado un ejercicio para el usuario id: ', true),
+('EJERCICIO_COMPARTIDO', ' ha compartido un ejercicio con los usuarios id: ', true),
+('EJERCICIO_DEJADO_COMPARTIR', ' ha dejado de compartir un ejercicio con los usuarios con id: ', true),
+('EJERCICIO_ELIMINADO', ' ha eliminado un ejercicio del usuario con id: ', false),
+('EJERCICIO_RESUELTO', ' ha resuelto un ejercicio del usuario con id: ', true);

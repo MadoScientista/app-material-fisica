@@ -26,7 +26,10 @@ public class Notificacion {
     private Long idNotificacion;
 
     @Column(nullable = false)
-    private Long idUsuario;
+    private Long idUsuarioOrigen;
+
+    @Column(nullable = false)
+    private Long idUsuarioDestino;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

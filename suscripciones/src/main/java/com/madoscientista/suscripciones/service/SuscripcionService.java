@@ -1,5 +1,6 @@
 package com.madoscientista.suscripciones.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,7 +62,7 @@ public class SuscripcionService {
 
     // Retorna la cantidad máxima de ejercicios permitidos para un usuario según su tipo de suscripción
     public Long getMaxEjerciciosByUsuarioId(Long idUsuario) {
-        Suscripcion suscripcion = suscripcionRepo.findByIdUsuarioActivoTrue(idUsuario).orElse(null);
+        Suscripcion suscripcion = suscripcionRepo.findByIdUsuarioAndActivoTrue(idUsuario).orElse(null);
         if (suscripcion != null && suscripcion.isActivo()) {
             TipoSuscripcion tipoSub = suscripcion.getTipoSuscripcion();
             return tipoSub.getNMaxEjercicios();
@@ -77,7 +78,7 @@ public class SuscripcionService {
     // Crea una nueva suscripción para un usuario según su ID
     public Suscripcion postSuscripcion(Long idUsuario, String nombreSuscripcion){
         TipoSuscripcion tipoSub = tipoSuscripcionService.getByNombre(nombreSuscripcion);
-        Suscripcion suscripcionActual = suscripcionRepo.findByIdUsuarioActivoTrue(idUsuario).orElse(null);
+        Suscripcion suscripcionActual = suscripcionRepo.findByIdUsuarioAndActivoTrue(idUsuario).orElse(null);
 
         if(tipoSub == null || suscripcionActual != null){
             return null;
@@ -91,10 +92,9 @@ public class SuscripcionService {
         Suscripcion suscripcionCreada = suscripcionRepo.save(nueavaSuscripcion);
 
         // Comunica al ms historial el evento de nueva suscripción
-        registrarEvento(
-            idUsuario, 
-            SUSCRIPCION_NUEVA, 
-            "El usuario ID: " + idUsuario + "ha creado una suscripción de tipo: " + nombreSuscripcion);
+        List<Long> idUsuarioDestino = new ArrayList<>();
+        idUsuarioDestino.add(idUsuario);
+        registrarEvento(idUsuario, idUsuarioDestino, SUSCRIPCION_NUEVA);
 
         return suscripcionCreada;
     }
@@ -105,7 +105,7 @@ public class SuscripcionService {
 
     // Cancela una suscripción de un usuario por el ID del usuario
     public Suscripcion cancelarSuscripcion(Long idUsuario) {
-        Suscripcion suscripcion = suscripcionRepo.findByIdUsuarioActivoTrue(idUsuario).orElse(null);
+        Suscripcion suscripcion = suscripcionRepo.findByIdUsuarioAndActivoTrue(idUsuario).orElse(null);
 
         if (suscripcion != null && suscripcion.isActivo()) {
             suscripcion.setActivo(false);
@@ -113,10 +113,9 @@ public class SuscripcionService {
             Suscripcion subGratuita = postSuscripcion(idUsuario, "GRATUITA");
 
             // Comunica al ms historial el evento de cancelación de suscripción
-            registrarEvento(
-                idUsuario, 
-                SUSCRIPCION_CANCELADA, 
-                "El usuario ID: " + idUsuario + "ha cancelado su suscripción.");
+            List<Long> idUsuarioDestino = new ArrayList<>();
+            idUsuarioDestino.add(idUsuario);
+            registrarEvento(idUsuario, idUsuarioDestino, SUSCRIPCION_CANCELADA);
 
             return subGratuita;
         }
@@ -125,7 +124,7 @@ public class SuscripcionService {
 
     // Actualiza el tipo de suscripción de un usuario por su ID
     public Suscripcion actualizarSuscripcion(Long idUsuario, String nuevoTipoSuscripcion) {
-        Suscripcion subActual = suscripcionRepo.findByIdUsuarioActivoTrue(idUsuario).orElse(null);
+        Suscripcion subActual = suscripcionRepo.findByIdUsuarioAndActivoTrue(idUsuario).orElse(null);
         TipoSuscripcion tipoSub = tipoSuscripcionService.getByNombre(nuevoTipoSuscripcion);
 
         if (subActual != null && subActual.isActivo() && tipoSub != null) {
@@ -134,21 +133,18 @@ public class SuscripcionService {
             subActual.setActivo(false);
             suscripcionRepo.save(subActual);
 
+            List<Long> idUsuarioDestino = new ArrayList<>();
+            idUsuarioDestino.add(idUsuario);
+
             // Comunica al ms historial el evento de actualización de suscripción
-            registrarEvento(
-                idUsuario, 
-                SUSCRIPCION_CANCELADA, 
-                "El usuario ID: " + idUsuario + "ha cancelado su suscripción tipo: " + nuevoTipoSuscripcion);
+            registrarEvento(idUsuario, idUsuarioDestino, SUSCRIPCION_CANCELADA);
 
 
             Suscripcion subActualizada = postSuscripcion(idUsuario, nuevoTipoSuscripcion);
 
             // Comunica al ms historial el evento de actualización de suscripción
-            registrarEvento(
-                idUsuario, 
-                SUSCRIPCION_ACTUALIZADA, 
-                "El usuario ID: " + idUsuario + "ha actualizado su suscripción al tipo: " + nuevoTipoSuscripcion);
-
+            registrarEvento(idUsuario, idUsuarioDestino, SUSCRIPCION_ACTUALIZADA);
+            
             return subActualizada;
         }
         return null;
@@ -158,11 +154,11 @@ public class SuscripcionService {
     // ------------------ Sección EVENTOS ---------------------
     // --------------------------------------------------------
 
-    private void registrarEvento(Long idUsuario, Long idTipoEvento, String descripcion) {
+    private void registrarEvento(Long idUsuarioOrigen, List<Long> idUsuarioDestino, Long idTipoEvento) {
         RequestEventoDTO eventoDTO = new RequestEventoDTO();
-        eventoDTO.setIdUsuario(idUsuario);
         eventoDTO.setIdTipoEvento(idTipoEvento);
-        eventoDTO.setDescripcion(descripcion);
+        eventoDTO.setIdUsuarioDestino(idUsuarioDestino);
+        eventoDTO.setIdUsuarioOrigen(idUsuarioOrigen);
         hClient.postEvento(eventoDTO);
     }
 

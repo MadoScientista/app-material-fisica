@@ -23,7 +23,7 @@ public class Suscripcion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idSuscripcion;
+    private Long idSuscripcion;
 
     @Column(nullable = false)
     private Long idUsuario;

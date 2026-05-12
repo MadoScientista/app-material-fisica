@@ -1,4 +1,4 @@
-package com.madoscientista.suscripciones.dto.EventoDTO;
+package com.madoscientista.notificador.dto.EventoDTO;
 
 import java.util.List;
 

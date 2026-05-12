@@ -1,5 +1,6 @@
 package com.madoscientista.notificador.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +23,17 @@ public class NotificacionService {
     
     // Retorna una lista de notificaciones no leídas por un usuario según el ID del usuario
     public List<Notificacion> getNotificacionesNoLeidasByUsuarioId(Long idUsuario){
-        return notificacionRepo.findByIdUsuarioAndLeidoFalse(idUsuario);
+        return notificacionRepo.findByIdUsuarioOrigenAndLeidoFalse(idUsuario);
     }
 
      // Retorna una lista de notificaciones leídas por un usuario según el ID del usuario
      public List<Notificacion> getNotificacionesLeidasByUsuarioId(Long idUsuario){
-        return notificacionRepo.findByIdUsuarioAndLeidoTrue(idUsuario);
+        return notificacionRepo.findByIdUsuarioOrigenAndLeidoTrue(idUsuario);
     }
 
      // Retorna una lista de todas las notificaciones por un usuario según el ID del usuario
      public List<Notificacion> getAllNotificacionesByUsuarioId(Long idUsuario){
-        return notificacionRepo.findByIdUsuario(idUsuario);
+        return notificacionRepo.findByIdUsuarioOrigen(idUsuario);
     }
 
      // Retorna una notificación específica por su ID
@@ -45,13 +46,27 @@ public class NotificacionService {
     // --------------------------------------------------------
 
     // Crea una nueva notificacion
-    public Notificacion postNotificacion(Notificacion notificacion){
+    public Notificacion postNotificacion(Notificacion n){
 
-        if(notificacion == null) {
+        if(n == null) {
             throw new RuntimeException("Se requieren datos de notificación");
         }
 
-        return notificacionRepo.save(notificacion);
+        n.setLeido(false);
+        n.setMensaje("Hola");
+
+        return notificacionRepo.save(n);
     }
 
+    public List<Notificacion> postNotificaciones(List<Notificacion> listaNotificaciones){
+        List<Notificacion> response = new ArrayList<>();
+
+        for(Notificacion n : listaNotificaciones){
+            response.add(postNotificacion(n));
+        }
+
+        return response;
+    }
+
+    
 }

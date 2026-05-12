@@ -18,8 +18,8 @@ public class EventoMapper {
     public Evento toEntity(RequestEventoDTO request, TipoEvento tipo){
         Evento evento = new Evento();
 
-        evento.setDescripcion(request.getDescripcion());
-        evento.setIdUsuario(request.getIdUsuario());
+        evento.setDescripcion(request.getIdUsuarioOrigen() + tipo.getDescripcion() + request.getIdUsuarioDestino());
+        evento.setIdUsuarioOrigen(request.getIdUsuarioOrigen());
         evento.setTipoEvento(tipo);
 
         return evento;
@@ -29,7 +29,7 @@ public class EventoMapper {
         ResponseEventoDTO response = new ResponseEventoDTO();
 
         response.setIdEvento(evento.getIdEvento());
-        response.setIdUsuario(evento.getIdUsuario());
+        response.setIdUsuario(evento.getIdUsuarioOrigen());
         response.setFecha(evento.getFecha().toString());
         response.setDescripcion(evento.getDescripcion());
 

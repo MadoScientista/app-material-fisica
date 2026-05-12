@@ -14,6 +14,6 @@ public interface SuscripcionRepository extends JpaRepository<Suscripcion, Long>{
     List<Suscripcion> findByActivo(boolean activo);
     Optional<Suscripcion> findByIdUsuario(Long idUsuario);
     List<Suscripcion> findByIdUsuarioIn(List<Long> idUsuarios);
-    Optional<Suscripcion> findByIdUsuarioActivoTrue(Long idUsuario);
+    Optional<Suscripcion> findByIdUsuarioAndActivoTrue(Long idUsuario);
 }
 

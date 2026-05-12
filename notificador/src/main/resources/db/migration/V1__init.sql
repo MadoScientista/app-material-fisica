@@ -8,7 +8,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 CREATE SCHEMA IF NOT EXISTS `notificador_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 USE `notificador_db` ;
 
-
 -- -----------------------------------------------------
 -- Table `notificador_db`.`tipo_notificacion`
 -- -----------------------------------------------------
@@ -18,8 +17,7 @@ CREATE TABLE IF NOT EXISTS `notificador_db`.`tipo_notificacion` (
   `canal` VARCHAR(50) NOT NULL,
   `descripcion` VARCHAR(250) NULL DEFAULT NULL,
   `plantilla_mensaje` VARCHAR(250) NOT NULL,
-  PRIMARY KEY (`id_tipo_notificacion`),
-  UNIQUE INDEX `UKkyxwcb2c18691n7x7nh2vb33c` (`canal` ASC) VISIBLE)
+  PRIMARY KEY (`id_tipo_notificacion`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -34,7 +32,8 @@ CREATE TABLE IF NOT EXISTS `notificador_db`.`notificacion` (
   `fecha_lectura` DATETIME(6) NULL DEFAULT NULL,
   `id_notificacion` BIGINT NOT NULL AUTO_INCREMENT,
   `id_tipo_notificacion` BIGINT NOT NULL,
-  `id_usuario` BIGINT NOT NULL,
+  `id_usuario_destino` BIGINT NOT NULL,
+  `id_usuario_origen` BIGINT NOT NULL,
   `mensaje` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id_notificacion`),
   INDEX `FKid0hhjrcqjg7sqq3ls2mb5d4i` (`id_tipo_notificacion` ASC) VISIBLE,
@@ -49,6 +48,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 -- EJERCICIO_CREADO (idTipoEvento = 3)
 INSERT INTO tipo_notificacion (id_tipo_evento, descripcion, plantilla_mensaje, canal) VALUES

@@ -29,7 +29,7 @@ public class TipoNotificacion {
     @Column(nullable = false, length = 250)
     private String plantillaMensaje;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, length = 50)
     private String canal; // Ejemplo: "email", "sms", "push"
 
     @OneToMany(mappedBy = "tipoNotificacion")

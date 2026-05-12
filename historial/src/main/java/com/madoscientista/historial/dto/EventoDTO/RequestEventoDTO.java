@@ -1,5 +1,7 @@
 package com.madoscientista.historial.dto.EventoDTO;
 
+import java.util.List;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RequestEventoDTO {
 
-    private Long idUsuario;
     private Long idTipoEvento;
-    private String descripcion;
+    private Long idUsuarioOrigen;
+    private List<Long> idUsuarioDestino;
 }
