@@ -18,7 +18,12 @@ public class EventoMapper {
     public Evento toEntity(RequestEventoDTO request, TipoEvento tipo){
         Evento evento = new Evento();
 
-        evento.setDescripcion(request.getIdUsuarioOrigen() + tipo.getDescripcion() + request.getIdUsuarioDestino());
+        // Reemplaza los ids de origen y destino en las plantillas de tipo de evento
+        String idsDestino = request.getIdUsuarioDestino().toString().replace("[", "").replace("]", "");
+        String descripcion = String.format(tipo.getDescripcion(), request.getIdUsuarioOrigen(), idsDestino);
+        
+        // Mapea los datos descripcion, usuarioOrigen y tipo de evento
+        evento.setDescripcion(descripcion);
         evento.setIdUsuarioOrigen(request.getIdUsuarioOrigen());
         evento.setTipoEvento(tipo);
 
