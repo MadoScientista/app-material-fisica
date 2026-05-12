@@ -13,6 +13,8 @@ import com.madoscientista.generador_ejercicios.mapper.EjercicioMapper;
 import com.madoscientista.generador_ejercicios.model.EjercicioFisica;
 import com.madoscientista.generador_ejercicios.service.EjercicioFisicaService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/generar-ejercicio")
 public class GeneradorEjercicioController {
@@ -28,7 +30,7 @@ public class GeneradorEjercicioController {
     // ------------------------------------------------------------
 
     @PostMapping
-    public ResponseEntity<?> getEjercicioMRU(@RequestBody RequestEjercicioDTO request){
+    public ResponseEntity<?> getEjercicioMRU(@Valid @RequestBody RequestEjercicioDTO request){
 
         EjercicioFisica ejercicio = service.getEjercicio(
             request.getTema(),

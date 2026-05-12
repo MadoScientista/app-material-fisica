@@ -21,6 +21,8 @@ import com.madoscientista.usuarios.mapper.UsuarioMapper;
 import com.madoscientista.usuarios.model.Usuario;
 import com.madoscientista.usuarios.service.UsuarioService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("api/v1/usuarios")
 public class UsuarioController {
@@ -61,7 +63,7 @@ public class UsuarioController {
 
     // Retorna una lista de usuarios filtrados por id
     @GetMapping("/lista")
-    public ResponseEntity<List<ResponseUsuarioDTO>> getUsuariosByIds(@RequestBody List<Long> ids){
+    public ResponseEntity<List<ResponseUsuarioDTO>> getUsuariosByIds(@Valid @RequestBody List<Long> ids){
 
         List<ResponseUsuarioDTO> listaUsuarios = service.getUsuariosByIds(ids)
                 .stream()
@@ -77,7 +79,7 @@ public class UsuarioController {
 
     // Crea un usuario nuevo a partir de los datos del request
     @PostMapping
-    public ResponseEntity<ResponseUsuarioDTO> postUsuario(@RequestBody RequestUsuarioDTO dto){
+    public ResponseEntity<ResponseUsuarioDTO> postUsuario(@Valid @RequestBody RequestUsuarioDTO dto){
 
         Usuario usuarioCreado = service.postUSuario(usuarioMapper.toEntity(dto));
         ResponseUsuarioDTO response = usuarioMapper.toDTO(usuarioCreado);
@@ -115,7 +117,7 @@ public class UsuarioController {
     @PutMapping("/{id}")
     public ResponseEntity<?> putUsuario(
             @PathVariable long id,
-            @RequestBody RequestUsuarioDTO dto){
+            @Valid @RequestBody RequestUsuarioDTO dto){
 
         Usuario usuarioActualizado = service.putUsuario(id, usuarioMapper.toEntity(dto));
 

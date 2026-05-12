@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.madoscientista.suscripciones.dto.EventoDTO.RequestEventoDTO;
 import com.madoscientista.suscripciones.dto.EventoDTO.ResponseEventoDTO;
 
+import jakarta.validation.Valid;
+
 @FeignClient(name = "historial", url="localhost:8082")
 public interface HistorialClient {
 
     @PostMapping("/api/v1/eventos")
-    ResponseEventoDTO postEvento(@RequestBody RequestEventoDTO request);
+    ResponseEventoDTO postEvento(@Valid @RequestBody RequestEventoDTO request);
 }

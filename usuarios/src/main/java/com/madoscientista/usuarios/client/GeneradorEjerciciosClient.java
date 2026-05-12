@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.madoscientista.usuarios.dto.ejercicioDTO.RequestEjercicioDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.ResponseEjercicioDTO;
 
+import jakarta.validation.Valid;
+
 @FeignClient(name = "generador-ejercicios", url="localhost:8081")
 public interface GeneradorEjerciciosClient {
 
     // Generar un ejercicio
     @PostMapping("/api/v1/generar-ejercicio")
-    ResponseEjercicioDTO getEjercicioMRU(@RequestBody RequestEjercicioDTO request);
+    ResponseEjercicioDTO getEjercicioMRU(@Valid @RequestBody RequestEjercicioDTO request);
 
 }

@@ -18,6 +18,8 @@ import com.madoscientista.suscripciones.mapper.SuscripcionMapper;
 import com.madoscientista.suscripciones.model.Suscripcion;
 import com.madoscientista.suscripciones.service.SuscripcionService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("api/v1/suscripciones")
@@ -79,9 +81,9 @@ public class SuscripcionController {
 
     // Crea una nueva suscripción para un usuario según su ID
     @PostMapping
-    public ResponseEntity<?> postSuscripcion(@RequestBody RequestSuscripcionDTO request){
+    public ResponseEntity<?> postSuscripcion(@Valid @RequestBody RequestSuscripcionDTO request){
 
-        Suscripcion nuevaSuscripcion = service.postSuscripcion(request.idUsuario, request.nomrbeTipoSuscripcion);
+        Suscripcion nuevaSuscripcion = service.postSuscripcion(request.idUsuario, request.nombreTipoSuscripcion);
         ResponseSuscripcionDTO response = suscripcionMapper.toDTO(nuevaSuscripcion);
 
         if(response == null){
@@ -112,8 +114,8 @@ public class SuscripcionController {
 
     // Actualiza el tipo de suscripción de un usuario
     @PutMapping("/actualizar/{idUsuario}")
-    public ResponseEntity<?> actualizarSuscripcion(@PathVariable Long idUsuario, @RequestBody RequestSuscripcionDTO request){
-        Suscripcion suscripcionActualizada = service.actualizarSuscripcion(idUsuario, request.nomrbeTipoSuscripcion);
+    public ResponseEntity<?> actualizarSuscripcion(@PathVariable Long idUsuario, @Valid @RequestBody RequestSuscripcionDTO request){
+        Suscripcion suscripcionActualizada = service.actualizarSuscripcion(idUsuario, request.nombreTipoSuscripcion);
 
         if(suscripcionActualizada == null){
             return ResponseEntity.badRequest().body("No se pudo actualizar la suscripción. Verifique que el usuario tenga una suscripción activa y que el nuevo tipo de suscripción sea válido.");

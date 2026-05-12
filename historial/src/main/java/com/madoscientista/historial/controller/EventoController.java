@@ -18,6 +18,8 @@ import com.madoscientista.historial.model.TipoEvento;
 import com.madoscientista.historial.service.EventoService;
 import com.madoscientista.historial.service.TipoEventoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("api/v1/eventos")
 public class EventoController {
@@ -49,7 +51,7 @@ public class EventoController {
 
     // Crea un nuevo evento a partir de los datos del request
     @PostMapping
-    public ResponseEntity<?> postEvento(@RequestBody RequestEventoDTO request){
+    public ResponseEntity<?> postEvento(@Valid @RequestBody RequestEventoDTO request){
 
         TipoEvento tipoEvento = teService.getById(request.getIdTipoEvento());
         Evento evento = eService.postEvento(eMapper.toEntity(request, tipoEvento), request.getIdUsuarioDestino());

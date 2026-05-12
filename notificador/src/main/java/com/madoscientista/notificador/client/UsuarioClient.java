@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.madoscientista.notificador.dto.usuarioDTO.ResponseUsuarioDTO;
 
+import jakarta.validation.Valid;
+
 @FeignClient(name = "usuarios", url = "localhost:8087")
 public interface UsuarioClient {
 
@@ -18,5 +20,5 @@ public interface UsuarioClient {
 
 
     @GetMapping("api/v1/usuarios/lista")
-    public ResponseEntity<List<ResponseUsuarioDTO>> getUsuariosByIds(@RequestBody List<Long> ids);
+    public ResponseEntity<List<ResponseUsuarioDTO>> getUsuariosByIds(@Valid @RequestBody List<Long> ids);
 }

@@ -19,6 +19,8 @@ import com.madoscientista.usuarios.mapper.EjercicioMapper;
 import com.madoscientista.usuarios.model.Ejercicio;
 import com.madoscientista.usuarios.service.EjercicioService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("api/v1/ejercicios")
 public class EjercicioController {
@@ -36,7 +38,7 @@ public class EjercicioController {
 
     // Genera un ejercicio nuevo a partir de los datos del request y el id del usuario que lo crea
     @PostMapping("/{id}")
-    public ResponseEntity<?> postGenerarEjercicio(@RequestBody RequestEjercicioDTO request, @PathVariable Long id){
+    public ResponseEntity<?> postGenerarEjercicio(@Valid @RequestBody RequestEjercicioDTO request, @PathVariable Long id){
         Ejercicio ejercicio = service.postEjercicio(request, id);
 
         if(ejercicio != null){
@@ -52,7 +54,7 @@ public class EjercicioController {
 
     // Comparte un ejercicio con una lista de usuarios
     @PutMapping("/compartir/{idCreador}/{idEjercicio}")
-    public ResponseEntity<?> putCompartirEjercicio(@PathVariable Long idCreador, @PathVariable Long idEjercicio, @RequestBody List<Long> idsUsuarios){
+    public ResponseEntity<?> putCompartirEjercicio(@PathVariable Long idCreador, @PathVariable Long idEjercicio, @Valid @RequestBody List<Long> idsUsuarios){
         Ejercicio compartido = service.compartirEjercicio(idCreador, idEjercicio, idsUsuarios);
 
         if(compartido != null){
@@ -64,7 +66,7 @@ public class EjercicioController {
 
     // Deja de compartir un ejercicio con una lista de usuarios
     @PutMapping("/dejar-compartir/{idCreador}/{idEjercicio}")
-    public ResponseEntity<?> putDejarCompartirEjercicio(@PathVariable Long idCreador, @PathVariable Long idEjercicio, @RequestBody List<Long> idsUsuarios){
+    public ResponseEntity<?> putDejarCompartirEjercicio(@PathVariable Long idCreador, @PathVariable Long idEjercicio,@Valid @RequestBody List<Long> idsUsuarios){
         Ejercicio resultado = service.dejarDeCompartirEjercicio(idEjercicio, idCreador, idsUsuarios);
 
         if(resultado != null){
