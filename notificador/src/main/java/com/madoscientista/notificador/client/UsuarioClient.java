@@ -6,6 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.madoscientista.notificador.dto.usuarioDTO.ResponseUsuarioDTO;
@@ -19,6 +20,6 @@ public interface UsuarioClient {
     public ResponseEntity<ResponseUsuarioDTO> getUsuarioById(@PathVariable Long id);
 
 
-    @GetMapping("api/v1/usuarios/lista")
+    @PostMapping("api/v1/usuarios/lista")
     public ResponseEntity<List<ResponseUsuarioDTO>> getUsuariosByIds(@Valid @RequestBody List<Long> ids);
 }
