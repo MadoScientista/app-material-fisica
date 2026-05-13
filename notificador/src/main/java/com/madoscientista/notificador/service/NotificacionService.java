@@ -1,9 +1,16 @@
 package com.madoscientista.notificador.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.notificador.client.UsuarioClient;
@@ -74,13 +81,33 @@ public class NotificacionService {
     }
 
     public List<Notificacion> postNotificaciones(List<Notificacion> listaNotificaciones){
-        List<Notificacion> response = new ArrayList<>();
+        // 1. Recolectar IDs únicos
+        Set<Long> idsUnicos = new HashSet<>();
+        for (Notificacion n : listaNotificaciones) {
+            idsUnicos.add(n.getIdUsuarioOrigen());
+            idsUnicos.add(n.getIdUsuarioDestino());
+        }
+        // 2. Una sola llamada Feign
+        ResponseEntity<List<ResponseUsuarioDTO>> response = uClient.getUsuariosByIds(
+            new ArrayList<>(idsUnicos));
 
-        for(Notificacion n : listaNotificaciones){
-            response.add(postNotificacion(n));
+        List<ResponseUsuarioDTO> listaUsuarios = response.getBody();
+        
+        // 3. Construir mapa: idUsuario -> ResponseUsuarioDTO
+        Map<Long, ResponseUsuarioDTO> mapaUsuarios = new HashMap<>();
+        for (ResponseUsuarioDTO u : listaUsuarios) {
+            mapaUsuarios.put(u.getIdUsuario(), u);
         }
 
-        return response;
+        // 4. Procesar todas con el mapa
+        for (Notificacion n : listaNotificaciones) {
+            n.setLeido(false);
+            String mensaje = n.getTipoNotificacion().getPlantillaMensaje();
+            mensaje = mensaje.replace("{usuarioOrigen}", mapaUsuarios.get(n.getIdUsuarioOrigen()).getNombreUsuario());
+            mensaje = mensaje.replace("{usuarioDestino}", mapaUsuarios.get(n.getIdUsuarioDestino()).getNombreUsuario());
+            n.setMensaje(mensaje);
+        }
+        return notificacionRepo.saveAll(listaNotificaciones);
     }
     
 }
