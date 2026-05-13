@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.madoscientista.usuarios.client.LogrosClient;
 import com.madoscientista.usuarios.model.Usuario;
 import com.madoscientista.usuarios.repository.UsuarioRepository;
 
@@ -14,6 +16,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository repo;
+
+    @Autowired
+    private LogrosClient logrosClient;
 
     // --------------------------------------------------------
     // ------------------ Sección GET -------------------------
@@ -43,9 +48,12 @@ public class UsuarioService {
         return usuarios;
     }
 
-    // Crea un usuario
+    // Crea un usuario y sincroniza sus logros
+    @Transactional
     public Usuario postUSuario(Usuario u){
-        return repo.save(u);
+        Usuario usuarioCreado = repo.save(u);
+        logrosClient.postSincronizarLogrosUsuario(usuarioCreado.getIdUsuario());
+        return usuarioCreado;
     }
 
     // Elimina un usuario por id

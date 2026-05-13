@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.madoscientista.usuarios.client.HistorialClient;
 import com.madoscientista.usuarios.client.GeneradorEjerciciosClient;
+import com.madoscientista.usuarios.client.LogrosClient;
 import com.madoscientista.usuarios.client.SuscripcionesClient;
 import com.madoscientista.usuarios.dto.EventoDTO.RequestEventoDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.RequestEjercicioDTO;
@@ -40,6 +41,10 @@ public class EjercicioService {
     // Inyección de microservicio de suscripciones
     @Autowired
     private SuscripcionesClient sClient;
+
+    // Inyección de microservicio de logros
+    @Autowired
+    private LogrosClient lClient;
 
     // Inyección de servicio de usuario
     @Autowired
@@ -110,6 +115,9 @@ public class EjercicioService {
         // Comunica la creación del ejercicio al microservicio de historial de eventos
         registrarEvento( idUsuario, idUsuarioDestino, EVENTO_EJERCICIO_CREADO);
 
+        // Incrementa el contador de ejercicios creados en el microservicio de logros
+        lClient.postIncrementarEjercicioCreado(idUsuario);
+
         return ejercicioGuardado;
     }
 
@@ -134,6 +142,9 @@ public class EjercicioService {
             // Comunica el evento de compartir el ejercicio al microservicio de historial de eventos
             registrarEvento(
                 idCreador, idsUsuariosCompartir, EVENTO_EJERCICIO_COMPARTIDO);
+
+            // Incrementa el contador de ejercicios compartidos en el microservicio de logros
+            lClient.postIncrementarEjercicioCompartido(idCreador, idsUsuariosCompartir.size());
         }
         return ejercicio;
     }

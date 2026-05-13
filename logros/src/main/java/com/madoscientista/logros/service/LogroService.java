@@ -2,6 +2,8 @@ package com.madoscientista.logros.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import com.madoscientista.logros.repository.TipoLogroRepository;
 @Service
 public class LogroService {
 
+
     // Inyecta el repositorio de logros
     @Autowired
     private LogroRepository lRepo;
@@ -21,6 +24,7 @@ public class LogroService {
     // Inyecta el repositorio de tipo de logros
     @Autowired
     private TipoLogroRepository tlRepo;
+
 
     // --------------------------------------------------------
     // ------------------ Sección GET -------------------------
@@ -46,25 +50,35 @@ public class LogroService {
         return lRepo.save(l);
     }
 
-    // Crea todos los logros sin completar para un usuario nuevo
-    public List<Logro> postIniciarLogrosUsuarioNuevo(Long idUsuario){
+    // Crea los logros faltantes para un usuario según los tipos de logro disponibles
+    public List<Logro> postSincronizarLogrosUsuario(Long idUsuario){
 
-        // Recupera todos los tipos de logros disponibles
-        List<TipoLogro> tiposLogros = tlRepo.findAll();
+        List<TipoLogro> todosTipos = tlRepo.findAll();
+        List<Logro> logrosExistentes = lRepo.findAllByIdUsuario(idUsuario);
+        
+        // IDs de tipoLogro que el usuario ya tiene
+        Set<Long> idsExistentes = logrosExistentes.stream()
+                .map(l -> l.getTipoLogro().getIdTipoLogro())
+                .collect(Collectors.toSet());
 
-        // Genera y guarda la lista de logros
-        List<Logro> listaLogros = new ArrayList<>();
-        for(TipoLogro tl : tiposLogros){
-            Logro l = new Logro();
-            l.setIdUsuario(idUsuario);
-            l.setTipoLogro(tl);
-            l.setCompletado(false);
-
-            listaLogros.add(postLogro(l));
+        // Crear solo los que faltan
+        List<Logro> nuevosLogros = new ArrayList<>();
+        for (TipoLogro tl : todosTipos) {
+            if (!idsExistentes.contains(tl.getIdTipoLogro())) {
+                Logro l = new Logro();
+                l.setIdUsuario(idUsuario);
+                l.setTipoLogro(tl);
+                l.setCompletado(false);
+                nuevosLogros.add(l);
+            }
         }
 
+        // Retornar todo (viejos + nuevos)
+        List<Logro> resultado = new ArrayList<>(logrosExistentes);
+        resultado.addAll(lRepo.saveAll(nuevosLogros));
 
-        return lRepo.saveAll(listaLogros);
+        return resultado;
+
     }
 
     // --------------------------------------------------------
@@ -80,7 +94,7 @@ public class LogroService {
         }
 
         logroActual.setCompletado(true);
-        return logroActual;
+        return lRepo.save(logroActual);
     }
 
 

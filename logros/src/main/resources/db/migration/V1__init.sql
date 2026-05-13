@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `logros_db`.`tipo_logro` (
   `nombre` VARCHAR(100) NOT NULL,
   `descripcion` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`id_tipo_logro`),
-  UNIQUE INDEX `UKin24ywxs2w0845pcwfunijhwp` (`nombre` ASC) VISIBLE)
+  UNIQUE INDEX `UQ_tipo_logro_nombre` (`nombre`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -29,13 +29,13 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `logros_db`.`logro` (
   `completado` BIT(1) NULL DEFAULT NULL,
-  `fecha_completado` DATETIME(6) NOT NULL,
+  `fecha_completado` DATETIME(6) NULL DEFAULT NULL,
   `id_logro` BIGINT NOT NULL AUTO_INCREMENT,
   `id_tipo_logro` BIGINT NULL DEFAULT NULL,
   `id_usuario` BIGINT NOT NULL,
   PRIMARY KEY (`id_logro`),
-  INDEX `FK7ojvg22xjlb368eq8hjc9plrq` (`id_tipo_logro` ASC) VISIBLE,
-  CONSTRAINT `FK7ojvg22xjlb368eq8hjc9plrq`
+  INDEX `FK_logro_tipo_logro` (`id_tipo_logro`),
+  CONSTRAINT `FK_logro_tipo_logro`
     FOREIGN KEY (`id_tipo_logro`)
     REFERENCES `logros_db`.`tipo_logro` (`id_tipo_logro`))
 ENGINE = InnoDB

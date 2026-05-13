@@ -3,8 +3,6 @@ package com.madoscientista.logros.model;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,8 +30,7 @@ public class Logro {
     @Column(columnDefinition = "BIT")
     private boolean completado;
 
-    @CreationTimestamp
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDateTime fechaCompletado;
 
     @ManyToOne
