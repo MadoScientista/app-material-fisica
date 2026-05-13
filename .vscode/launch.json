@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "LogrosApplication",
+            "request": "launch",
+            "mainClass": "com.madoscientista.logros.LogrosApplication",
+            "projectName": "logros"
+        },
+        {
+            "type": "java",
             "name": "NotificadorApplication",
             "request": "launch",
             "mainClass": "com.madoscientista.notificador.NotificadorApplication",
