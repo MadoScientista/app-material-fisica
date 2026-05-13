@@ -64,7 +64,7 @@ public class LogroService {
         }
 
 
-        return listaLogros;
+        return lRepo.saveAll(listaLogros);
     }
 
     // --------------------------------------------------------
