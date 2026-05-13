@@ -88,7 +88,7 @@ public class UsuarioController {
 
     // Retorna una lista de usuarios filtrados por id
     @PostMapping("/lista")
-    public ResponseEntity<List<ResponseUsuarioDTO>> getUsuariosByIds(@Valid @RequestBody List<Long> ids){
+    public ResponseEntity<List<ResponseUsuarioDTO>> listUsuariosByIds(@Valid @RequestBody List<Long> ids){
 
         log.info("Solicitud de información de los usuarios: " + ids);
         List<ResponseUsuarioDTO> listaUsuarios = service.getUsuariosByIds(ids)

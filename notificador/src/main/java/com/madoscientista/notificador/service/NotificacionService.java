@@ -88,7 +88,7 @@ public class NotificacionService {
             idsUnicos.add(n.getIdUsuarioDestino());
         }
         // 2. Una sola llamada Feign
-        ResponseEntity<List<ResponseUsuarioDTO>> response = uClient.getUsuariosByIds(
+        ResponseEntity<List<ResponseUsuarioDTO>> response = uClient.listUsuariosByIds(
             new ArrayList<>(idsUnicos));
 
         List<ResponseUsuarioDTO> listaUsuarios = response.getBody();

@@ -21,5 +21,5 @@ public interface UsuarioClient {
 
 
     @PostMapping("api/v1/usuarios/lista")
-    public ResponseEntity<List<ResponseUsuarioDTO>> getUsuariosByIds(@Valid @RequestBody List<Long> ids);
+    public ResponseEntity<List<ResponseUsuarioDTO>> listUsuariosByIds(@Valid @RequestBody List<Long> ids);
 }
