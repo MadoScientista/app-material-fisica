@@ -14,6 +14,9 @@ import com.madoscientista.generador_ejercicios.mapper.ContextoFisicoMapper;
 import com.madoscientista.generador_ejercicios.model.ContextoFisico;
 import com.madoscientista.generador_ejercicios.service.ContextoFisicoService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping("api/v1/contextos-fisicos")
 public class ContextoFisicoController {
@@ -30,6 +33,7 @@ public class ContextoFisicoController {
 
     @GetMapping
     public ResponseEntity<?> getContextos(){
+        log.info("Contexto físico solicitado");
         List<ContextoFisico> contextos = service.getContextos();
 
         if(contextos.isEmpty()){
@@ -38,6 +42,7 @@ public class ContextoFisicoController {
 
         List<ResponseContextoFisicoDTO> response = contextos.stream().map(c -> mapper.build(c)).toList();
 
+        log.debug("Contextos encontrados: ", response);
         return ResponseEntity.ok(response);
         
     }

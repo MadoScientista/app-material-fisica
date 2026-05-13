@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.madoscientista.historial.dto.EventoDTO.RequestEventoDTO;
+import com.madoscientista.historial.dto.EventoDTO.ResponseEventoDTO;
 import com.madoscientista.historial.mapper.EventoMapper;
 import com.madoscientista.historial.model.Evento;
 import com.madoscientista.historial.model.TipoEvento;
@@ -19,7 +20,9 @@ import com.madoscientista.historial.service.EventoService;
 import com.madoscientista.historial.service.TipoEventoService;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("api/v1/eventos")
 public class EventoController {
@@ -41,6 +44,7 @@ public class EventoController {
     // Retorna una lista de eventos asociados a un usuario según el ID del usuario
     @GetMapping("/{idUsuario}")
     public ResponseEntity<List<Evento>> getEventosByUsuarioId(@PathVariable Long idUsuario){
+        log.info("Se solicitaron el historial del usuario id: " + idUsuario);
         List<Evento> eventos = eService.getEventosByIdUsuarioOrigen(idUsuario);
         return ResponseEntity.ok(eventos);
     }
@@ -53,6 +57,7 @@ public class EventoController {
     @PostMapping
     public ResponseEntity<?> postEvento(@Valid @RequestBody RequestEventoDTO request){
 
+        log.debug("Solicitud de creación de eventos con los datos {} ", request);
         TipoEvento tipoEvento = teService.getById(request.getIdTipoEvento());
         Evento evento = eService.postEvento(eMapper.toEntity(request, tipoEvento), request.getIdUsuarioDestino());
 
@@ -60,7 +65,10 @@ public class EventoController {
             return ResponseEntity.badRequest().build();
         }
 
-        return ResponseEntity.ok(eMapper.toDTO(evento));
+        ResponseEventoDTO response = eMapper.toDTO(evento);
+        
+        log.debug("Eventos creados {}", response);
+        return ResponseEntity.ok(response);
     }
     
 }

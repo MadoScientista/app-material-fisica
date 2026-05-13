@@ -18,7 +18,9 @@ import com.madoscientista.notificador.service.NotificacionService;
 import com.madoscientista.notificador.service.TipoNotificacionService;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("api/v1/notificaciones")
 public class NotificacionController {
@@ -37,6 +39,8 @@ public class NotificacionController {
     @PostMapping
     public ResponseEntity<List<ResponseNotificacionDTO>> postNotificacion(@RequestBody @Valid RequestEventoDTO request) {
 
+        log.debug("Solicitud de creación de notificaciones con los siguientes datos {}", request);
+
         // Obtiene el tipo de notificación para obtener la plantilla del mensaje
         List<TipoNotificacion> tipos = tnService.getTipoNotificacionByIdTipoEvento(request.getIdTipoEvento());
         
@@ -46,6 +50,7 @@ public class NotificacionController {
         // Retorna DTO
         List<ResponseNotificacionDTO> response = nMapper.toDTOs(nuevasNotificaciones);
         
+        log.debug("Norificaciones creadas {} ", response);
         return ResponseEntity.ok(response);
     }
 }

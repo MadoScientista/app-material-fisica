@@ -22,7 +22,9 @@ import com.madoscientista.usuarios.model.Usuario;
 import com.madoscientista.usuarios.service.UsuarioService;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("api/v1/usuarios")
 public class UsuarioController {
@@ -41,6 +43,7 @@ public class UsuarioController {
     // Retorna la lista de usuarios disponibles
     @GetMapping
     public List<ResponseUsuarioDTO> getUsuarios(){
+        log.info("Solicitud usuarios disponibles en la plataforma");
         return service.getUsuarios()
                 .stream()
                 .map(usuarioMapper::toDTO)
@@ -50,26 +53,18 @@ public class UsuarioController {
     // Retorna un usuario filtrado por id
     @GetMapping("/{id}")
     public ResponseEntity<?> getUsuarioById(@PathVariable Long id){
+        log.info("Solicitud de información del usuario id: " + id);
         Usuario u = service.getUsuarioById(id);
 
         ResponseUsuarioDTO response = usuarioMapper.toDTO(u);
 
         if(u != null){
+            log.info("Usuario encontrado");
             return ResponseEntity.ok(response);
         }
 
+        log.info("Usuario no encontrado");
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró al usuario con id: " + id);
-    }
-
-    // Retorna una lista de usuarios filtrados por id
-    @GetMapping("/lista")
-    public ResponseEntity<List<ResponseUsuarioDTO>> getUsuariosByIds(@Valid @RequestBody List<Long> ids){
-
-        List<ResponseUsuarioDTO> listaUsuarios = service.getUsuariosByIds(ids)
-                .stream()
-                .map(usuarioMapper::toDTO)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(listaUsuarios);
     }
 
 
@@ -81,12 +76,28 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<ResponseUsuarioDTO> postUsuario(@Valid @RequestBody RequestUsuarioDTO dto){
 
+        log.info("Solicitud creación de un nuevo usuario");
         Usuario usuarioCreado = service.postUSuario(usuarioMapper.toEntity(dto));
         ResponseUsuarioDTO response = usuarioMapper.toDTO(usuarioCreado);
 
+        log.debug("Usuario creado: ", response);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
+    }
+
+    // Retorna una lista de usuarios filtrados por id
+    @PostMapping("/lista")
+    public ResponseEntity<List<ResponseUsuarioDTO>> getUsuariosByIds(@Valid @RequestBody List<Long> ids){
+
+        log.info("Solicitud de información de los usuarios: " + ids);
+        List<ResponseUsuarioDTO> listaUsuarios = service.getUsuariosByIds(ids)
+                .stream()
+                .map(usuarioMapper::toDTO)
+                .collect(Collectors.toList());
+
+        log.debug("Usuarios encontrados: ", listaUsuarios);
+        return ResponseEntity.ok(listaUsuarios);
     }
 
     // --------------------------------------------------------

@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.madoscientista.generador_ejercicios.dto.ejercicioDTO.RequestEjercicioDTO;
+import com.madoscientista.generador_ejercicios.dto.ejercicioDTO.ResponseEjercicioDTO;
 import com.madoscientista.generador_ejercicios.mapper.EjercicioMapper;
 import com.madoscientista.generador_ejercicios.model.EjercicioFisica;
 import com.madoscientista.generador_ejercicios.service.EjercicioFisicaService;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/generar-ejercicio")
 public class GeneradorEjercicioController {
@@ -32,6 +35,7 @@ public class GeneradorEjercicioController {
     @PostMapping
     public ResponseEntity<?> getEjercicioMRU(@Valid @RequestBody RequestEjercicioDTO request){
 
+        log.info("Ejercicio solicitado");
         EjercicioFisica ejercicio = service.getEjercicio(
             request.getTema(),
             request.getContexto(),
@@ -44,6 +48,10 @@ public class GeneradorEjercicioController {
             return ResponseEntity.status(500).body("Error al generar el ejercicio");   
         }
 
-        return ResponseEntity.ok(ejercicioMapper.toDTO(ejercicio));
+        ResponseEjercicioDTO response = ejercicioMapper.toDTO(ejercicio);
+
+        log.debug("Ejercicio entregado: ", response);
+        
+        return ResponseEntity.ok(response);
     }
 }

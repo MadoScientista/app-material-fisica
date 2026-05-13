@@ -19,8 +19,9 @@ import com.madoscientista.suscripciones.model.Suscripcion;
 import com.madoscientista.suscripciones.service.SuscripcionService;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @RestController
 @RequestMapping("api/v1/suscripciones")
 public class SuscripcionController {
@@ -38,13 +39,14 @@ public class SuscripcionController {
     // Retorna la lista de suscriociones activas
     @GetMapping("/activas")
     public List<ResponseSuscripcionDTO> getSuscripcionesActivas() {
+        log.info("Solicitud de las notificaciones activas");
         return suscripcionMapper.toDTOList(service.getSuscripcionesActivas());
     }
 
     // Retorna una lista con los IDs de usuarios con suscripciones activas
     @GetMapping("/usuarios-activos")
     public ResponseEntity<?> getUsuariosConSuscripcionesActivas() {
-
+        log.info("Solicitud de id de usuarios con suscripciones activas");
         List<Long> usuariosActivos = service.getUsuariosConSuscripcionesActivas();
         return ResponseEntity.ok(usuariosActivos);
     }
@@ -53,16 +55,21 @@ public class SuscripcionController {
     @GetMapping("/{idUsuario}")
     public ResponseEntity<?> getSuscripcionByUsuarioId(@PathVariable Long idUsuario) {
 
+        log.info("Solicitud de la suscripción del usuario id: " + idUsuario);
         ResponseSuscripcionDTO response = suscripcionMapper.toDTO(service.getSuscripcionByUsuarioId(idUsuario));
         if (response == null) {
+            log.info("Suscripción no encontrada");
             return ResponseEntity.notFound().build();
         }
+
+        log.info("Suscripción encontrada");
         return ResponseEntity.ok(response);
     }
 
     // Retorna el número máximo de ejercicios permitidos para un usuario según su suscripción
     @GetMapping("/max-ejercicios/{idUsuario}")
     public ResponseEntity<Long> getMaxEjerciciosByUsuarioId(@PathVariable Long idUsuario) {
+        log.info("Solicittud de número máximo de ejercicios para el usuario id: " + idUsuario);
         Long maxEjercicios = service.getMaxEjerciciosByUsuarioId(idUsuario);
         return ResponseEntity.ok(maxEjercicios);
     }
@@ -71,6 +78,7 @@ public class SuscripcionController {
     // Retorna una lista de suscripciones por una lista de IDs de usuario
     @GetMapping("/usuarios")
     public List<ResponseSuscripcionDTO> getSuscripcionesByUsuarioIds(@RequestBody List<Long> idUsuarios) {
+        log.info("Solicitud de todas las suscripciones del usuario id: ", idUsuarios);
         return suscripcionMapper.toDTOList(service.getSuscripcionesByUsuarioIds(idUsuarios));
     }
 
@@ -83,13 +91,16 @@ public class SuscripcionController {
     @PostMapping
     public ResponseEntity<?> postSuscripcion(@Valid @RequestBody RequestSuscripcionDTO request){
 
+        log.info("Solicitud creación de una nueva suscripçión");
         Suscripcion nuevaSuscripcion = service.postSuscripcion(request.idUsuario, request.nombreTipoSuscripcion);
         ResponseSuscripcionDTO response = suscripcionMapper.toDTO(nuevaSuscripcion);
 
         if(response == null){
+            log.info("No se pudo crear la suscripción");
             return ResponseEntity.badRequest().body("No se pudo crear la suscripción. Verifique que el tipo de suscripción sea válido.");
         }
         
+        log.debug("Suscripción creada", response);
         return ResponseEntity.ok(response);
     }
 
