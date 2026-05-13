@@ -75,13 +75,6 @@ public class SuscripcionController {
     }
 
 
-    // Retorna una lista de suscripciones por una lista de IDs de usuario
-    @GetMapping("/usuarios")
-    public List<ResponseSuscripcionDTO> getSuscripcionesByUsuarioIds(@RequestBody List<Long> idUsuarios) {
-        log.info("Solicitud de todas las suscripciones del usuario id: ", idUsuarios);
-        return suscripcionMapper.toDTOList(service.getSuscripcionesByUsuarioIds(idUsuarios));
-    }
-
 
     // ------------------------------------------------------
     // ---------------- Sección POST ------------------------
@@ -104,6 +97,13 @@ public class SuscripcionController {
         return ResponseEntity.ok(response);
     }
 
+
+    // Retorna una lista de suscripciones por una lista de IDs de usuario
+    @PostMapping("/usuarios")
+    public List<ResponseSuscripcionDTO> listSuscripcionesByUsuarioIds(@Valid @RequestBody List<Long> idUsuarios) {
+        log.info("Solicitud de todas las suscripciones del usuario id: ", idUsuarios);
+        return suscripcionMapper.toDTOList(service.getSuscripcionesByUsuarioIds(idUsuarios));
+    }
 
     // --------------------------------------------------------
     // ---------------- Sección PUT ---------------------------
