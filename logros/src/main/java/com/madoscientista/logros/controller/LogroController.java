@@ -16,6 +16,7 @@ import com.madoscientista.logros.dto.logroDTO.RequestLogroDTO;
 import com.madoscientista.logros.dto.logroDTO.ResponseLogroDTO;
 import com.madoscientista.logros.mapper.LogroMapper;
 import com.madoscientista.logros.model.Logro;
+import com.madoscientista.logros.model.Recuento;
 import com.madoscientista.logros.dto.recuentoDTO.ResponseRecuentoDTO;
 import com.madoscientista.logros.service.LogroService;
 import com.madoscientista.logros.service.RecuentoService;
@@ -69,8 +70,8 @@ public class LogroController {
     @PostMapping("/recuento/ejercicio-creado/{idUsuario}")
     public ResponseEntity<ResponseRecuentoDTO> postIncrementarEjercicioCreado(@PathVariable Long idUsuario) {
         log.info("Incrementando ejercicios creados para el usuario {}", idUsuario);
-        var recuento = rService.incrementarEjerciciosCreados(idUsuario);
-        var response = new ResponseRecuentoDTO(idUsuario, rService.toMap(recuento));
+        Recuento recuento = rService.incrementarEjerciciosCreados(idUsuario);
+        ResponseRecuentoDTO response = new ResponseRecuentoDTO(idUsuario, rService.toMap(recuento));
         return ResponseEntity.ok(response);
     }
 
@@ -79,8 +80,8 @@ public class LogroController {
     public ResponseEntity<ResponseRecuentoDTO> postIncrementarEjercicioCompartido(
             @PathVariable Long idUsuario, @RequestBody int cantidad) {
         log.info("Incrementando ejercicios compartidos para el usuario {} en {}", idUsuario, cantidad);
-        var recuento = rService.incrementarEjerciciosCompartidos(idUsuario, cantidad);
-        var response = new ResponseRecuentoDTO(idUsuario, rService.toMap(recuento));
+        Recuento recuento = rService.incrementarEjerciciosCompartidos(idUsuario, cantidad);
+        ResponseRecuentoDTO response = new ResponseRecuentoDTO(idUsuario, rService.toMap(recuento));
         return ResponseEntity.ok(response);
     }
 
@@ -89,8 +90,8 @@ public class LogroController {
     public ResponseEntity<ResponseRecuentoDTO> postIncrementarComunidad(
             @PathVariable Long idUsuario, @RequestBody int cantidad) {
         log.info("Incrementando comunidades para el usuario {} en {}", idUsuario, cantidad);
-        var recuento = rService.incrementarComunidad(idUsuario, cantidad);
-        var response = new ResponseRecuentoDTO(idUsuario, rService.toMap(recuento));
+        Recuento recuento = rService.incrementarComunidad(idUsuario, cantidad);
+        ResponseRecuentoDTO response = new ResponseRecuentoDTO(idUsuario, rService.toMap(recuento));
         return ResponseEntity.ok(response);
     }
 
