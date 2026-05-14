@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "LogosApplication",
+            "request": "launch",
+            "mainClass": "com.madoscientista.logos.LogosApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "ValoracionesApplication",
             "request": "launch",
             "mainClass": "com.madoscientista.valoraciones.ValoracionesApplication",
