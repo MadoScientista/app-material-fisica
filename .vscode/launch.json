@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ValoracionesApplication",
+            "request": "launch",
+            "mainClass": "com.madoscientista.valoraciones.ValoracionesApplication",
+            "projectName": "valoraciones"
+        },
+        {
+            "type": "java",
             "name": "LogrosApplication",
             "request": "launch",
             "mainClass": "com.madoscientista.logros.LogrosApplication",
