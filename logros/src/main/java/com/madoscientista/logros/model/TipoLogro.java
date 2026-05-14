@@ -27,6 +27,14 @@ public class TipoLogro {
     @Column(nullable = false, length = 200)
     private String descripcion;
 
+    @Column(length = 50)
+    private String criterio;
+
+    @Column(length = 5)
+    private String operador;
+
+    private Long umbral;
+
     @OneToMany(mappedBy = "tipoLogro")
     List<Logro> logros;
     

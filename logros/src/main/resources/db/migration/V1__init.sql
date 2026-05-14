@@ -17,6 +17,9 @@ CREATE TABLE IF NOT EXISTS `logros_db`.`tipo_logro` (
   `id_tipo_logro` BIGINT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
   `descripcion` VARCHAR(200) NOT NULL,
+  `criterio` VARCHAR(50) NULL DEFAULT NULL,
+  `operador` VARCHAR(5) NULL DEFAULT NULL,
+  `umbral` BIGINT NULL DEFAULT NULL,
   PRIMARY KEY (`id_tipo_logro`),
   UNIQUE INDEX `UQ_tipo_logro_nombre` (`nombre`))
 ENGINE = InnoDB

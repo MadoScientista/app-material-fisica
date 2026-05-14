@@ -17,6 +17,9 @@ public class RecuentoService {
     @Autowired
     private RecuentoRepository recuentoRepo;
 
+    @Autowired
+    private LogroEvaluatorService logroEvaluator;
+
     private Recuento obtenerOCrear(Long idUsuario) {
         return recuentoRepo.findByIdUsuario(idUsuario).orElseGet(() -> {
             Recuento nuevo = new Recuento();
@@ -40,20 +43,26 @@ public class RecuentoService {
     public Recuento incrementarEjerciciosCreados(Long idUsuario) {
         Recuento r = obtenerOCrear(idUsuario);
         r.setNEjerciciosCreados(r.getNEjerciciosCreados() + 1);
-        return recuentoRepo.save(r);
+        r = recuentoRepo.save(r);
+        logroEvaluator.evaluar(r);
+        return r;
     }
 
     @Transactional
     public Recuento incrementarEjerciciosCompartidos(Long idUsuario, int cantidad) {
         Recuento r = obtenerOCrear(idUsuario);
         r.setNEjerciciosCompartidos(r.getNEjerciciosCompartidos() + cantidad);
-        return recuentoRepo.save(r);
+        r = recuentoRepo.save(r);
+        logroEvaluator.evaluar(r);
+        return r;
     }
 
     @Transactional
     public Recuento incrementarComunidad(Long idUsuario, int cantidad) {
         Recuento r = obtenerOCrear(idUsuario);
         r.setNComunidades(r.getNComunidades() + cantidad);
-        return recuentoRepo.save(r);
+        r = recuentoRepo.save(r);
+        logroEvaluator.evaluar(r);
+        return r;
     }
 }
