@@ -10,9 +10,11 @@ import com.madoscientista.usuarios.client.HistorialClient;
 import com.madoscientista.usuarios.client.GeneradorEjerciciosClient;
 import com.madoscientista.usuarios.client.LogrosClient;
 import com.madoscientista.usuarios.client.SuscripcionesClient;
+import com.madoscientista.usuarios.client.ValoracionesClient;
 import com.madoscientista.usuarios.dto.EventoDTO.RequestEventoDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.RequestEjercicioDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.ResponseEjercicioDTO;
+import com.madoscientista.usuarios.dto.valoracionDTO.PromedioValoracionDTO;
 import com.madoscientista.usuarios.mapper.EjercicioMapper;
 import com.madoscientista.usuarios.model.Ejercicio;
 import com.madoscientista.usuarios.model.Usuario;
@@ -50,6 +52,10 @@ public class EjercicioService {
     @Autowired
     private UsuarioService uService;
 
+    // Inyección de microservicio de valoraciones
+    @Autowired
+    private ValoracionesClient vClient;
+
     // Inyección de mapper
     @Autowired
     private EjercicioMapper mapper;
@@ -82,6 +88,15 @@ public class EjercicioService {
     // Retorna la cantidad de ejercicios almacenados por un usuario
     public Long contarEjerciciosByIUsuario(Long id){
         return ejercicioRepo.countByCreadorIdUsuario(id);
+    }
+
+    // Retorna el promedio de valoración de un ejercicio consultando al ms valoraciones
+    public PromedioValoracionDTO getPromedioValoracionByEjercicio(Long idEjercicio) {
+        try {
+            return vClient.getPromedioByEjercicio(idEjercicio).getBody();
+        } catch (Exception e) {
+            return new PromedioValoracionDTO(idEjercicio, 0.0, 0L);
+        }
     }
 
     // --------------------------------------------------------

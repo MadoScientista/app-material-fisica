@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.madoscientista.usuarios.dto.ejercicioDTO.RequestEjercicioDTO;
+import com.madoscientista.usuarios.dto.valoracionDTO.PromedioValoracionDTO;
 import com.madoscientista.usuarios.mapper.EjercicioMapper;
 import com.madoscientista.usuarios.model.Ejercicio;
 import com.madoscientista.usuarios.service.EjercicioService;
@@ -129,6 +130,14 @@ public class EjercicioController {
 
         log.debug("Ejercicios encontrados", ejercicios);;
         return ResponseEntity.ok(ejercicioMapper.toDTOList(ejercicios));
+    }
+
+    // Retorna el promedio de valoración de un ejercicio consultando al ms valoraciones
+    @GetMapping("/promedio-valoracion/{idEjercicio}")
+    public ResponseEntity<?> getPromedioValoracion(@PathVariable Long idEjercicio) {
+        log.info("Solicitud de promedio de valoración del ejercicio id: " + idEjercicio);
+        PromedioValoracionDTO promedio = service.getPromedioValoracionByEjercicio(idEjercicio);
+        return ResponseEntity.ok(promedio);
     }
 
     // Retorna una lista con los ejercicios compartidos con el usuario según el ID del usuario
