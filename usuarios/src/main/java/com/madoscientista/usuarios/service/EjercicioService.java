@@ -20,6 +20,9 @@ import com.madoscientista.usuarios.model.Ejercicio;
 import com.madoscientista.usuarios.model.Usuario;
 import com.madoscientista.usuarios.repository.EjercicioRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class EjercicioService {
 
@@ -68,6 +71,11 @@ public class EjercicioService {
     // Retorna la lista de ejercicios disponibles
     public List<Ejercicio> getEjercicios(){
         return ejercicioRepo.findAll();
+    }
+
+
+    public Ejercicio getEjercicioById(Long id){
+        return ejercicioRepo.findById(id).orElse(null);
     }
 
     // Retorna una lista de ejercicios filtrados por el idCreador
@@ -138,17 +146,33 @@ public class EjercicioService {
 
     // Crea un registro en la tabla ejercicios compartidos con otros usuarios
     // Utiliza una lista con los IDs de los usuarios con los que se desea compartir el ejercicio
-    public Ejercicio compartirEjercicio(long idEjercicio, long idCreador, List<Long> idsUsuariosCompartir){
+    public Ejercicio compartirEjercicio(long idCreador, long idEjercicio, List<Long> idsUsuariosCompartir){
+        
         
         if(idsUsuariosCompartir == null || idsUsuariosCompartir.isEmpty() || idsUsuariosCompartir.contains(idCreador)){
+            log.info("Error en datos de búsqueda");
             return null;
         }
         
-        Ejercicio ejercicio = ejercicioRepo.findById(idEjercicio).orElse(null);
+        Ejercicio ejercicio = ejercicioRepo.findByIdEjercicio(idEjercicio).orElse(null);
         
-        if(ejercicio == null || ejercicio.getCreador() == null || ejercicio.getCreador().getIdUsuario() != idCreador){
+        // Verificación de errores para debug
+        if(ejercicio == null){
+            log.info("Ejercicio no encontrado");
             return null;
         }
+
+        if(ejercicio.getCreador() == null){
+            log.info("Ejercicio no tiene creador");
+            return null;
+        }
+
+
+        if(ejercicio.getCreador().getIdUsuario() != idCreador){
+            log.info("Usuario no es el creador del ejercicio, no puede compartirlo");
+            return null;
+        }
+
 
         List<Usuario> usuariosCompartir = uService.getUsuariosByIds(idsUsuariosCompartir);
         ejercicio.getUsuariosCompartidos().addAll(usuariosCompartir);

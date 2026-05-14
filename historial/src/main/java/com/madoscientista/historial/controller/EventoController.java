@@ -3,6 +3,8 @@ package com.madoscientista.historial.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,10 +45,15 @@ public class EventoController {
 
     // Retorna una lista de eventos asociados a un usuario según el ID del usuario
     @GetMapping("/{idUsuario}")
-    public ResponseEntity<List<Evento>> getEventosByUsuarioId(@PathVariable Long idUsuario){
+    public ResponseEntity<List<ResponseEventoDTO>> getEventosByUsuarioId(@PathVariable Long idUsuario){
         log.info("Se solicitaron el historial del usuario id: " + idUsuario);
         List<Evento> eventos = eService.getEventosByIdUsuarioOrigen(idUsuario);
-        return ResponseEntity.ok(eventos);
+
+        if(eventos.isEmpty()){
+            log.debug("Usuario ID: {} no registra eventos", idUsuario);
+            ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(eMapper.toDTOList(eventos));
     }
 
     // --------------------------------------------------------
@@ -68,7 +75,7 @@ public class EventoController {
         ResponseEventoDTO response = eMapper.toDTO(evento);
         
         log.debug("Eventos creados {}", response);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     
 }

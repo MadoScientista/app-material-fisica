@@ -10,6 +10,10 @@ import com.madoscientista.historial.dto.EventoDTO.RequestEventoDTO;
 import com.madoscientista.historial.model.Evento;
 import com.madoscientista.historial.repository.EventoRepository;
 
+import feign.FeignException.FeignClientException;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class EventoService {
 
@@ -36,7 +40,17 @@ public class EventoService {
             request.setIdUsuarioOrigen(eventoCreado.getIdUsuarioOrigen());
             request.setIdUsuarioDestino(idDestino);
 
-            nClient.postNotificacion(request);
+
+            // Intenta establecer la comunicación con el microservicio notificador
+            // Si existe algún error es capturado con FeignClientException
+            try{
+                nClient.postNotificacion(request);
+            }catch(FeignClientException e){
+                log.error("Error al notificar el evento ID: {}, Causa: {}", 
+                eventoCreado.getIdEvento(), 
+                e.getMessage());
+            }
+            
         }
 
         return eventoCreado;

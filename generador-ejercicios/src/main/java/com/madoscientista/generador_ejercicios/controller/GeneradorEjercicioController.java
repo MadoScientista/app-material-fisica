@@ -45,7 +45,7 @@ public class GeneradorEjercicioController {
         );
 
         if(ejercicio == null){
-            return ResponseEntity.status(500).body("Error al generar el ejercicio");   
+            return ResponseEntity.internalServerError().build();   
         }
 
         ResponseEjercicioDTO response = ejercicioMapper.toDTO(ejercicio);

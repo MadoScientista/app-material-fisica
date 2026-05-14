@@ -113,6 +113,18 @@ public class EjercicioController {
     // ------------------ Sección GET -------------------------
     // --------------------------------------------------------
 
+    // Retorna un ejercicio por su id
+    @GetMapping("{id}")
+    public ResponseEntity<Ejercicio> getEjercicioById(@PathVariable Long idEjercicio){
+        Ejercicio ejercicio = service.getEjercicioById(idEjercicio);
+
+        if(ejercicio != null){
+            return ResponseEntity.ok(ejercicio);
+        }
+
+        return ResponseEntity.noContent().build();
+
+    }
     // Retorna una lista de todos los ejercicios disponibles en la plataforma
     @GetMapping
     public ResponseEntity<?> getEjercicios(){

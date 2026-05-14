@@ -1,6 +1,7 @@
 package com.madoscientista.usuarios.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -17,4 +18,6 @@ public interface EjercicioRepository extends JpaRepository<Ejercicio, Long>{
     List<Ejercicio> findByUsuariosCompartidosIdUsuario(long id);
 
     Long countByCreadorIdUsuario(Long id);
+
+    Optional<Ejercicio> findByIdEjercicio(Long id);
 }

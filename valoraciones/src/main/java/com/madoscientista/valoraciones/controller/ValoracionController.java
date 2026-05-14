@@ -36,13 +36,13 @@ public class ValoracionController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getValoracionById(@PathVariable Long id) {
-        log.info("Solicitud de valoraci\u00f3n id: " + id);
+        log.info("Solicitud de valoración id: " + id);
         ResponseValoracionDTO response = valoracionMapper.toDTO(service.getValoracionById(id));
         if (response == null) {
-            log.info("Valoraci\u00f3n no encontrada");
+            log.info("Valoración no encontrada");
             return ResponseEntity.notFound().build();
         }
-        log.info("Valoraci\u00f3n encontrada");
+        log.info("Valoración encontrada");
         return ResponseEntity.ok(response);
     }
 
@@ -67,25 +67,25 @@ public class ValoracionController {
 
     @PostMapping
     public ResponseEntity<?> postValoracion(@Valid @RequestBody RequestValoracionDTO request) {
-        log.info("Solicitud creaci\u00f3n de una nueva valoraci\u00f3n");
+        log.info("Solicitud creación de una nueva valoración");
         Valoracion nuevaValoracion = service.postValoracion(request);
         if (nuevaValoracion == null) {
-            log.info("No se pudo crear la valoraci\u00f3n: el usuario ya valor\u00f3 este ejercicio");
+            log.info("No se pudo crear la valoración: el usuario ya valoró este ejercicio");
             return ResponseEntity.badRequest()
                 .body("El usuario ya ha valorado este ejercicio. Use PUT para actualizar.");
         }
         ResponseValoracionDTO response = valoracionMapper.toDTO(nuevaValoracion);
-        log.debug("Valoraci\u00f3n creada", response);
+        log.debug("Valoración creada", response);
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> putValoracion(@PathVariable Long id,
                                            @Valid @RequestBody RequestValoracionDTO request) {
-        log.info("Solicitud actualizaci\u00f3n de valoraci\u00f3n id: " + id);
+        log.info("Solicitud actualización de valoración id: " + id);
         Valoracion actualizada = service.putValoracion(id, request);
         if (actualizada == null) {
-            log.info("Valoraci\u00f3n no encontrada");
+            log.info("Valoración no encontrada");
             return ResponseEntity.notFound().build();
         }
         ResponseValoracionDTO response = valoracionMapper.toDTO(actualizada);
@@ -94,13 +94,13 @@ public class ValoracionController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteValoracion(@PathVariable Long id) {
-        log.info("Solicitud eliminaci\u00f3n de valoraci\u00f3n id: " + id);
+        log.info("Solicitud eliminación de valoración id: " + id);
         boolean eliminada = service.deleteValoracion(id);
         if (!eliminada) {
-            log.info("Valoraci\u00f3n no encontrada");
+            log.info("Valoración no encontrada");
             return ResponseEntity.notFound().build();
         }
-        log.info("Valoraci\u00f3n eliminada");
-        return ResponseEntity.ok("Valoraci\u00f3n eliminada correctamente");
+        log.info("Valoración eliminada");
+        return ResponseEntity.ok("Valoración eliminada correctamente");
     }
 }

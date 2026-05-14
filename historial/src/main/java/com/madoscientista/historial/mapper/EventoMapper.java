@@ -1,5 +1,9 @@
 package com.madoscientista.historial.mapper;
 
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Component;
 
 import com.madoscientista.historial.dto.EventoDTO.RequestEventoDTO;
@@ -39,5 +43,10 @@ public class EventoMapper {
         response.setDescripcion(evento.getDescripcion());
 
         return response;
+    }
+
+    // Construye una lista de ResponseEventoDTO a partir de una lista de eventos
+    public List<ResponseEventoDTO> toDTOList(List<Evento> eventos){
+        return eventos.stream().map(this::toDTO).collect(Collectors.toList());
     }
 }
