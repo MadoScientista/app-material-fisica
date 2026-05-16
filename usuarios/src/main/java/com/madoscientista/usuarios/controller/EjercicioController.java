@@ -1,6 +1,7 @@
 package com.madoscientista.usuarios.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.madoscientista.usuarios.dto.ejercicioDTO.RequestEjercicioDTO;
+import com.madoscientista.usuarios.dto.ejercicioDTO.ResponseEjercicioDTO;
 import com.madoscientista.usuarios.dto.valoracionDTO.PromedioValoracionDTO;
 import com.madoscientista.usuarios.mapper.EjercicioMapper;
 import com.madoscientista.usuarios.model.Ejercicio;
@@ -41,7 +43,7 @@ public class EjercicioController {
 
     // Genera un ejercicio nuevo a partir de los datos del request y el id del usuario que lo crea
     @PostMapping("/{id}")
-    public ResponseEntity<?> postGenerarEjercicio(@Valid @RequestBody RequestEjercicioDTO request, @PathVariable Long id){
+    public ResponseEntity<ResponseEjercicioDTO> postGenerarEjercicio(@Valid @RequestBody RequestEjercicioDTO request, @PathVariable Long id){
         log.info("Solicitud de creación de un ejercicio");
         Ejercicio ejercicio = service.postEjercicio(request, id);
 
@@ -51,7 +53,16 @@ public class EjercicioController {
         }
 
         log.info("No se pudo crear el ejercicio");
-        return ResponseEntity.badRequest().body("No se ha podido generar el ejercicio");
+        return ResponseEntity.badRequest().build();
+    }
+
+    // Retorna una lista de ejercicios creados por un Set de usuarios
+    @PostMapping
+    public ResponseEntity<List<ResponseEjercicioDTO>> listarEjerciciosDeUsuarios(@Valid @RequestBody Set<Long> idEjercicio){
+        List<Ejercicio> listaEjercicios = service.listarEjerciciosDeUSuarios(idEjercicio);
+
+        List<ResponseEjercicioDTO> response = ejercicioMapper.toDTOList(listaEjercicios);
+        return ResponseEntity.ok(response);
     }
 
     // --------------------------------------------------------

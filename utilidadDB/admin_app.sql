@@ -32,6 +32,10 @@ GRANT ALL PRIVILEGES ON valoraciones_db.* TO 'admin_valoraciones_db'@'localhost'
 
 CREATE DATABASE logos_db;
 CREATE USER admin_logos_db@localhost IDENTIFIED BY "1234";
-GRANT ALL PRIVILEGES ON logos_db.* TO 'admin_logos_db'@'localhost
+GRANT ALL PRIVILEGES ON logos_db.* TO 'admin_logos_db'@'localhost';
+
+CREATE DATABASE comunidades_db;
+CREATE USER admin_comunidades_db@localhost IDENTIFIED BY "1234";
+GRANT ALL PRIVILEGES ON comunidades_db.* TO 'admin_comunidades_db'@'localhost';
 
 FLUSH PRIVILEGES;
