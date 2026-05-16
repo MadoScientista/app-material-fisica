@@ -37,12 +37,6 @@ public class EventoController {
     @Autowired
     private TipoEventoService teService;
 
-
-    // --------------------------------------------------------
-    // ------------------ Sección GET -------------------------
-    // --------------------------------------------------------
-
-    // Retorna una lista de eventos asociados a un usuario según el ID del usuario
     @GetMapping("/{idUsuario}")
     public ResponseEntity<List<ResponseEventoDTO>> getEventosByUsuarioId(@PathVariable Long idUsuario){
         log.info("Se solicitaron el historial del usuario id: " + idUsuario);
@@ -55,14 +49,8 @@ public class EventoController {
         return ResponseEntity.ok(eMapper.toDTOList(eventos));
     }
 
-    // --------------------------------------------------------
-    // ------------------ Sección POST ------------------------
-    // --------------------------------------------------------
-
-    // Crea un nuevo evento a partir de los datos del request
     @PostMapping
-    public ResponseEntity<?> postEvento(@Valid @RequestBody RequestEventoDTO request){
-
+    public ResponseEntity<ResponseEventoDTO> postEvento(@Valid @RequestBody RequestEventoDTO request){
         log.debug("Solicitud de creación de eventos con los datos {} ", request);
         TipoEvento tipoEvento = teService.getById(request.getIdTipoEvento());
         Evento evento = eService.postEvento(eMapper.toEntity(request, tipoEvento), request.getIdUsuarioDestino());
@@ -74,6 +62,19 @@ public class EventoController {
         ResponseEventoDTO response = eMapper.toDTO(evento);
         
         log.debug("Eventos creados {}", response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PostMapping("/lista")
+    public ResponseEntity<List<ResponseEventoDTO>> postVariosEventos(@Valid @RequestBody List<RequestEventoDTO> requests){
+        if (requests.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        List<Evento> eventos = eService.postVariosEventos(requests);
+        List<ResponseEventoDTO> response = eMapper.toDTOList(eventos);
+
+        log.debug("Eventos creados {}", response.size());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     

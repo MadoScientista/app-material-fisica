@@ -2,7 +2,9 @@ package com.madoscientista.logros.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +50,61 @@ public class LogroEvaluatorService {
                     hClient.postEvento(evento);
                 }
             }
+        }
+    }
+
+    public void evaluarVariosUsuarios(List<Recuento> recuentos) {
+        if (recuentos.isEmpty()) return;
+
+        List<TipoLogro> tipos = tlRepo.findAll();
+
+        List<Long> ids = new ArrayList<>();
+        for (Recuento r : recuentos) {
+            ids.add(r.getIdUsuario());
+        }
+        List<Logro> logrosExistentes = lRepo.findAllByIdUsuarioIn(ids);
+
+        Map<Long, Map<String, Logro>> index = new HashMap<>();
+        for (Logro l : logrosExistentes) {
+            long idUsuario = l.getIdUsuario();
+            if (!index.containsKey(idUsuario)) {
+                index.put(idUsuario, new HashMap<>());
+            }
+            index.get(idUsuario).put(l.getTipoLogro().getNombre(), l);
+        }
+
+        List<Logro> aActualizar = new ArrayList<>();
+        List<RequestEventoDTO> eventos = new ArrayList<>();
+
+        for (Recuento r : recuentos) {
+            Map<String, Logro> logrosUsuario = index.get(r.getIdUsuario());
+            if (logrosUsuario == null) continue;
+
+            for (TipoLogro tl : tipos) {
+                if (condicionCumplida(tl, r)) {
+                    Logro logro = logrosUsuario.get(tl.getNombre());
+                    if (logro != null && !logro.isCompletado()) {
+                        logro.setCompletado(true);
+                        logro.setFechaCompletado(LocalDateTime.now());
+                        aActualizar.add(logro);
+
+                        RequestEventoDTO e = new RequestEventoDTO();
+                        e.setIdTipoEvento(LOGRO_COMPLETADO);
+                        e.setIdUsuarioOrigen(r.getIdUsuario());
+                        List<Long> destinos = new ArrayList<>();
+                        destinos.add(r.getIdUsuario());
+                        e.setIdUsuarioDestino(destinos);
+                        eventos.add(e);
+                    }
+                }
+            }
+        }
+
+        if (!aActualizar.isEmpty()) {
+            lRepo.saveAll(aActualizar);
+        }
+        if (!eventos.isEmpty()) {
+            hClient.postEventos(eventos);
         }
     }
 

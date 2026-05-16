@@ -17,4 +17,7 @@ public interface NotificacionClient {
 
     @PostMapping("api/v1/notificaciones")
     public ResponseEntity<List<ResponseNotificacionDTO>> postNotificacion(@RequestBody @Valid RequestEventoDTO request);
+
+    @PostMapping("api/v1/notificaciones/varias")
+    public ResponseEntity<List<ResponseNotificacionDTO>> postVariasNotificaciones(@RequestBody @Valid List<RequestEventoDTO> requests);
 }

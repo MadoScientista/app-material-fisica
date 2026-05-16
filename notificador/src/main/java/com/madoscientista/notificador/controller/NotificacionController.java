@@ -34,23 +34,29 @@ public class NotificacionController {
     @Autowired
     private NotificacionMapper nMapper;
 
-
-
     @PostMapping
     public ResponseEntity<List<ResponseNotificacionDTO>> postNotificacion(@RequestBody @Valid RequestEventoDTO request) {
-
         log.debug("Solicitud de creación de notificaciones con los siguientes datos {}", request);
 
-        // Obtiene el tipo de notificación para obtener la plantilla del mensaje
         List<TipoNotificacion> tipos = tnService.getTipoNotificacionByIdTipoEvento(request.getIdTipoEvento());
-        
-        // Crea las notificaciones para cada tipo, origen y destinatario
         List<Notificacion> nuevasNotificaciones = nService.postNotificaciones(nMapper.toEntities(request, tipos));
-
-        // Retorna DTO
         List<ResponseNotificacionDTO> response = nMapper.toDTOs(nuevasNotificaciones);
         
         log.debug("Norificaciones creadas {} ", response);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/varias")
+    public ResponseEntity<List<ResponseNotificacionDTO>> postVariasNotificaciones(
+            @RequestBody @Valid List<RequestEventoDTO> requests) {
+        log.debug("Solicitud de creación de varias notificaciones con {} eventos", requests.size());
+
+        List<TipoNotificacion> tipos = tnService.getTipoNotificacionByIdsEvento(requests);
+        List<Notificacion> nuevasNotificaciones = nService.postNotificaciones(
+            nMapper.toEntities(requests, tipos));
+        List<ResponseNotificacionDTO> response = nMapper.toDTOs(nuevasNotificaciones);
+
+        log.debug("Notificaciones creadas {} ", response.size());
         return ResponseEntity.ok(response);
     }
 }

@@ -1,6 +1,8 @@
 package com.madoscientista.logros.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -92,6 +94,19 @@ public class LogroController {
         log.info("Incrementando comunidades para el usuario {} en {}", idUsuario, cantidad);
         Recuento recuento = rService.incrementarComunidad(idUsuario, cantidad);
         ResponseRecuentoDTO response = new ResponseRecuentoDTO(idUsuario, rService.toMap(recuento));
+        return ResponseEntity.ok(response);
+    }
+
+    // Incrementa el contador de comunidades para un conjunto de usuarios
+    @PostMapping("/recuento/comunidad")
+    public ResponseEntity<List<ResponseRecuentoDTO>> postIncrementarComunidad(
+            @RequestBody Set<Long> idsUsuarios) {
+        log.info("Incrementando comunidades para {} usuarios", idsUsuarios.size());
+        List<Recuento> recuentos = rService.incrementarComunidadParaUsuarios(idsUsuarios, 1);
+        List<ResponseRecuentoDTO> response = new ArrayList<>();
+        for (Recuento r : recuentos) {
+            response.add(new ResponseRecuentoDTO(r.getIdUsuario(), rService.toMap(r)));
+        }
         return ResponseEntity.ok(response);
     }
 

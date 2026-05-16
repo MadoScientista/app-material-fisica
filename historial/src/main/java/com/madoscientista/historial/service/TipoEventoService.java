@@ -1,5 +1,8 @@
 package com.madoscientista.historial.service;
 
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +17,9 @@ public class TipoEventoService {
     
     public TipoEvento getById(Long id){
         return repo.findById(id).orElse(null);
+    }
+
+    public List<TipoEvento> findAllById(Set<Long> ids){
+        return repo.findAllById(ids);
     }
 }

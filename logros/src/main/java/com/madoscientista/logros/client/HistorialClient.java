@@ -1,6 +1,8 @@
 package com.madoscientista.logros.client;
 
 
+import java.util.List;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,4 +18,7 @@ public interface HistorialClient {
 
     @PostMapping("api/v1/eventos")
     public ResponseEntity<ResponseEventoDTO> postEvento(@Valid @RequestBody RequestEventoDTO request);
+
+    @PostMapping("api/v1/eventos/lista")
+    public ResponseEntity<List<ResponseEventoDTO>> postEventos(@Valid @RequestBody List<RequestEventoDTO> requests);
 }

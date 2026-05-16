@@ -1,7 +1,11 @@
 package com.madoscientista.logros.service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +33,34 @@ public class RecuentoService {
             nuevo.setNComunidades(0L);
             return recuentoRepo.save(nuevo);
         });
+    }
+
+    private List<Recuento> obtenerOCrearVariosUsuarios(Set<Long> idUsuarios) {
+        List<Recuento> existentes = recuentoRepo.findAllByIdUsuarioIn(idUsuarios);
+
+        Set<Long> idsExistentes = new HashSet<>();
+        for (Recuento r : existentes) {
+            idsExistentes.add(r.getIdUsuario());
+        }
+
+        List<Recuento> nuevos = new ArrayList<>();
+        for (Long idUsuario : idUsuarios) {
+            if (!idsExistentes.contains(idUsuario)) {
+                Recuento nuevo = new Recuento();
+                nuevo.setIdUsuario(idUsuario);
+                nuevo.setNEjerciciosCreados(0L);
+                nuevo.setNEjerciciosCompartidos(0L);
+                nuevo.setNComunidades(0L);
+                nuevos.add(nuevo);
+            }
+        }
+
+        if (!nuevos.isEmpty()) {
+            recuentoRepo.saveAll(nuevos);
+            existentes.addAll(nuevos);
+        }
+
+        return existentes;
     }
 
     public Map<String, String> toMap(Recuento r) {
@@ -65,4 +97,24 @@ public class RecuentoService {
         logroEvaluator.evaluar(r);
         return r;
     }
+
+    // Aumenta el contador de logro de comunidad para un conjunto de usuarios
+    @Transactional
+    public List<Recuento> incrementarComunidadParaUsuarios(Set<Long> idUsuarios, int cantidad) {
+        
+        List<Recuento> recuentoUsuarios = new ArrayList<>();
+        recuentoUsuarios = obtenerOCrearVariosUsuarios(idUsuarios);
+
+        List<Recuento> nuevoRecuento = new ArrayList<>();
+
+        for(Recuento r : recuentoUsuarios){
+            r.setNComunidades(r.getNComunidades() + cantidad);
+            nuevoRecuento.add(r);
+        }
+
+        nuevoRecuento = recuentoRepo.saveAll(nuevoRecuento);
+        logroEvaluator.evaluarVariosUsuarios(nuevoRecuento);
+        return nuevoRecuento;
+    }
+    
 }

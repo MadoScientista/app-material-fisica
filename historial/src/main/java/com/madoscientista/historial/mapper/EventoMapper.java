@@ -1,7 +1,9 @@
 package com.madoscientista.historial.mapper;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
@@ -21,16 +23,36 @@ public class EventoMapper {
     public Evento toEntity(RequestEventoDTO request, TipoEvento tipo){
         Evento evento = new Evento();
 
-        // Reemplaza los ids de origen y destino en las plantillas de tipo de evento
         String idsDestino = request.getIdUsuarioDestino().toString().replace("[", "").replace("]", "");
         String descripcion = String.format(tipo.getDescripcion(), request.getIdUsuarioOrigen(), idsDestino);
-        
-        // Mapea los datos descripcion, usuarioOrigen y tipo de evento
+
         evento.setDescripcion(descripcion);
         evento.setIdUsuarioOrigen(request.getIdUsuarioOrigen());
         evento.setTipoEvento(tipo);
 
         return evento;
+    }
+
+    public List<Evento> toEntities(List<RequestEventoDTO> requests, List<TipoEvento> tipos) {
+        Map<Long, TipoEvento> index = new HashMap<>();
+        for (TipoEvento t : tipos) {
+            index.put(t.getIdTipoEvento(), t);
+        }
+
+        List<Evento> eventos = new ArrayList<>();
+        for (RequestEventoDTO req : requests) {
+            TipoEvento tipo = index.get(req.getIdTipoEvento());
+            String idsDestino = req.getIdUsuarioDestino().toString().replace("[", "").replace("]", "");
+            String descripcion = String.format(tipo.getDescripcion(), req.getIdUsuarioOrigen(), idsDestino);
+
+            Evento evento = new Evento();
+            evento.setDescripcion(descripcion);
+            evento.setIdUsuarioOrigen(req.getIdUsuarioOrigen());
+            evento.setTipoEvento(tipo);
+            eventos.add(evento);
+        }
+
+        return eventos;
     }
 
     public ResponseEventoDTO toDTO(Evento evento){
@@ -44,8 +66,11 @@ public class EventoMapper {
         return response;
     }
 
-    // Construye una lista de ResponseEventoDTO a partir de una lista de eventos
     public List<ResponseEventoDTO> toDTOList(List<Evento> eventos){
-        return eventos.stream().map(this::toDTO).collect(Collectors.toList());
+        List<ResponseEventoDTO> dtos = new ArrayList<>();
+        for (Evento e : eventos) {
+            dtos.add(toDTO(e));
+        }
+        return dtos;
     }
 }
