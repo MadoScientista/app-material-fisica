@@ -45,18 +45,4 @@ public class NotificacionController {
         log.debug("Norificaciones creadas {} ", response);
         return ResponseEntity.ok(response);
     }
-
-    @PostMapping("/varias")
-    public ResponseEntity<List<ResponseNotificacionDTO>> postVariasNotificaciones(
-            @RequestBody @Valid List<RequestEventoDTO> requests) {
-        log.debug("Solicitud de creación de varias notificaciones con {} eventos", requests.size());
-
-        List<TipoNotificacion> tipos = tnService.getTipoNotificacionByIdsEvento(requests);
-        List<Notificacion> nuevasNotificaciones = nService.postNotificaciones(
-            nMapper.toEntities(requests, tipos));
-        List<ResponseNotificacionDTO> response = nMapper.toDTOs(nuevasNotificaciones);
-
-        log.debug("Notificaciones creadas {} ", response.size());
-        return ResponseEntity.ok(response);
-    }
 }

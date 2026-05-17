@@ -1,9 +1,7 @@
 package com.madoscientista.historial.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -33,28 +31,6 @@ public class EventoMapper {
         return evento;
     }
 
-    public List<Evento> toEntities(List<RequestEventoDTO> requests, List<TipoEvento> tipos) {
-        Map<Long, TipoEvento> index = new HashMap<>();
-        for (TipoEvento t : tipos) {
-            index.put(t.getIdTipoEvento(), t);
-        }
-
-        List<Evento> eventos = new ArrayList<>();
-        for (RequestEventoDTO req : requests) {
-            TipoEvento tipo = index.get(req.getIdTipoEvento());
-            String idsDestino = req.getIdUsuarioDestino().toString().replace("[", "").replace("]", "");
-            String descripcion = String.format(tipo.getDescripcion(), req.getIdUsuarioOrigen(), idsDestino);
-
-            Evento evento = new Evento();
-            evento.setDescripcion(descripcion);
-            evento.setIdUsuarioOrigen(req.getIdUsuarioOrigen());
-            evento.setTipoEvento(tipo);
-            eventos.add(evento);
-        }
-
-        return eventos;
-    }
-
     public ResponseEventoDTO toDTO(Evento evento){
         ResponseEventoDTO response = new ResponseEventoDTO();
 
@@ -67,10 +43,6 @@ public class EventoMapper {
     }
 
     public List<ResponseEventoDTO> toDTOList(List<Evento> eventos){
-        List<ResponseEventoDTO> dtos = new ArrayList<>();
-        for (Evento e : eventos) {
-            dtos.add(toDTO(e));
-        }
-        return dtos;
+        return eventos.stream().map(this::toDTO).collect(Collectors.toList());
     }
 }

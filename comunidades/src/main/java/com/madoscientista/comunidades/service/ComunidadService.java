@@ -162,9 +162,9 @@ public class ComunidadService {
             comunidad.getIdMiembros().addAll(idMiembros);
             cRepo.save(comunidad);
 
-            // Intenta comunicar los eventos al ms historial
+            // Intenta comunicar el evento al ms historial
             try{
-                registrarVariosEventos(
+                registrarEvento(
                     comunidad.getIdUsuarioCreador(),
                     new ArrayList<>(idMiembros),
                     EVENTO_MIEMBRO_AGREGADO
@@ -194,9 +194,9 @@ public class ComunidadService {
             comunidad.getIdMiembros().removeAll(idMiembros);
             cRepo.save(comunidad);
 
-            // Intenta comunicar los eventos al ms historial
+            // Intenta comunicar el evento al ms historial
             try{
-                registrarVariosEventos(
+                registrarEvento(
                     comunidad.getIdUsuarioCreador(),
                     new ArrayList<>(idMiembros),
                     EVENTO_MIEMBRO_ELIMINADO
@@ -236,20 +236,6 @@ public class ComunidadService {
         eventoDTO.setIdUsuarioDestino(idUsuarioDestino);
         eventoDTO.setIdUsuarioOrigen(idUsuarioOrigen);
         hClient.postEvento(eventoDTO);
-    }
-
-    private void registrarVariosEventos(Long idUsuarioOrigen, List<Long> idsUsuarioDestino, Long idTipoEvento) {
-        List<RequestEventoDTO> eventos = new ArrayList<>();
-        for (Long idDestino : idsUsuarioDestino) {
-            RequestEventoDTO eventoDTO = new RequestEventoDTO();
-            eventoDTO.setIdTipoEvento(idTipoEvento);
-            eventoDTO.setIdUsuarioOrigen(idUsuarioOrigen);
-            ArrayList<Long> destino = new ArrayList<>();
-            destino.add(idDestino);
-            eventoDTO.setIdUsuarioDestino(destino);
-            eventos.add(eventoDTO);
-        }
-        hClient.postVariosEventos(eventos);
     }
 
 }

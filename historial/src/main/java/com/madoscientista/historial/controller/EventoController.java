@@ -50,7 +50,8 @@ public class EventoController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseEventoDTO> postEvento(@Valid @RequestBody RequestEventoDTO request){
+    public ResponseEntity<?> postEvento(@Valid @RequestBody RequestEventoDTO request){
+
         log.debug("Solicitud de creación de eventos con los datos {} ", request);
         TipoEvento tipoEvento = teService.getById(request.getIdTipoEvento());
         Evento evento = eService.postEvento(eMapper.toEntity(request, tipoEvento), request.getIdUsuarioDestino());
@@ -62,19 +63,6 @@ public class EventoController {
         ResponseEventoDTO response = eMapper.toDTO(evento);
         
         log.debug("Eventos creados {}", response);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
-
-    @PostMapping("/lista")
-    public ResponseEntity<List<ResponseEventoDTO>> postVariosEventos(@Valid @RequestBody List<RequestEventoDTO> requests){
-        if (requests.isEmpty()) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        List<Evento> eventos = eService.postVariosEventos(requests);
-        List<ResponseEventoDTO> response = eMapper.toDTOList(eventos);
-
-        log.debug("Eventos creados {}", response.size());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     
