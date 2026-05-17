@@ -1,6 +1,7 @@
 package com.madoscientista.material.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,11 @@ public class ItemEjercicioService {
     // ------------------ Sección GET -------------------------
     // --------------------------------------------------------
 
+    // Retorna todos los items disponibles en la plataforma
+    public List<ItemEjercicio> getItemEjercicios(){
+        return ieRepo.findAll();
+    }
+    
     // Retorna un item por su id
     public ItemEjercicio getItemEjercicioById(Long idItemEjercicio){
         return ieRepo.findById(idItemEjercicio).orElse(null);
@@ -26,6 +32,11 @@ public class ItemEjercicioService {
     // Retorna los items generados por un mismo usuario
     public List<ItemEjercicio> getItemEjercicioByIdUsuarioCreador(Long idUsuarioCreador){
         return ieRepo.findAllByIdUsuarioCreador(idUsuarioCreador);
+    }
+
+    // Retorna una lista de item de ejercicios filtrados por id
+    public List<ItemEjercicio> getItemEjercicioByIdIn(Set<Long> idItemEjercicios){
+        return ieRepo.findByIdIn(idItemEjercicios);
     }
 
     // --------------------------------------------------------
@@ -64,7 +75,6 @@ public class ItemEjercicioService {
     // --------------------------------------------------------
 
     // Actualiza los datos de un item
-    // Solo se puede actualizar el título y la descripción
     public ItemEjercicio putItemEjercicio(Long idItemEjercicio, ItemEjercicio itemActualizado){
         ItemEjercicio itemEjercicioActual = getItemEjercicioById(idItemEjercicio);
 
@@ -74,6 +84,7 @@ public class ItemEjercicioService {
 
         itemEjercicioActual.setDescripcion(itemActualizado.getDescripcion());
         itemEjercicioActual.setTitulo(itemActualizado.getTitulo());
+        itemEjercicioActual.setTextoEjercicios(itemActualizado.getTextoEjercicios());
 
         return ieRepo.save(itemEjercicioActual);
     }
