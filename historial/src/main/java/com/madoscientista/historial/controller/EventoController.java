@@ -37,7 +37,7 @@ public class EventoController {
     @Autowired
     private TipoEventoService teService;
 
-    @GetMapping("/{idUsuario}")
+    @GetMapping("usuarios/{idUsuario}")
     public ResponseEntity<List<ResponseEventoDTO>> getEventosByUsuarioId(@PathVariable Long idUsuario){
         log.info("Se solicitaron el historial del usuario id: " + idUsuario);
         List<Evento> eventos = eService.getEventosByIdUsuarioOrigen(idUsuario);
@@ -50,7 +50,7 @@ public class EventoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> postEvento(@Valid @RequestBody RequestEventoDTO request){
+    public ResponseEntity<ResponseEventoDTO> postEvento(@Valid @RequestBody RequestEventoDTO request){
 
         log.debug("Solicitud de creación de eventos con los datos {} ", request);
         TipoEvento tipoEvento = teService.getById(request.getIdTipoEvento());
