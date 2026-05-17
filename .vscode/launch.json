@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MaterialApplication",
+            "request": "launch",
+            "mainClass": "com.madoscientista.material.MaterialApplication",
+            "projectName": "material"
+        },
+        {
+            "type": "java",
             "name": "ComunidadesApplication",
             "request": "launch",
             "mainClass": "com.madoscientista.comunidades.ComunidadesApplication",

@@ -36,7 +36,7 @@ public class ItemEjercicioService {
 
     // Retorna una lista de item de ejercicios filtrados por id
     public List<ItemEjercicio> getItemEjercicioByIdIn(Set<Long> idItemEjercicios){
-        return ieRepo.findByIdIn(idItemEjercicios);
+        return ieRepo.findByIdItemEjercicioIn(idItemEjercicios);
     }
 
     // --------------------------------------------------------

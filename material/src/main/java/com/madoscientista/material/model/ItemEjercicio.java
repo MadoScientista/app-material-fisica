@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,12 +31,16 @@ public class ItemEjercicio {
     @Column(nullable = false, updatable = false)
     private LocalDateTime fechaCreacion;
 
+    @Column(length = 200)
     private String titulo;
+
+    @Lob
     private String descripcion;
 
     // Los ejercicios solo contendran el enunciado del mismo
     // Esto es para evitar que al eliminar un ejercicio desde
     // otro microservicio pueda generar un error en cadena
+    @Lob
     @Column(nullable = false)
     private String textoEjercicios;
 

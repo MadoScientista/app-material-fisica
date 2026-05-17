@@ -14,7 +14,7 @@ public interface ItemEjercicioRepository extends JpaRepository<ItemEjercicio, Lo
     // Retorna una lista de items creados por un mismo usuario
     public List<ItemEjercicio> findAllByIdUsuarioCreador(Long idUsuarioCreador);
 
-    public List<ItemEjercicio> findByIdIn(Set<Long> idsItemEjercicio);
+    public List<ItemEjercicio> findByIdItemEjercicioIn(Set<Long> idsItemEjercicio);
 
     
 }
