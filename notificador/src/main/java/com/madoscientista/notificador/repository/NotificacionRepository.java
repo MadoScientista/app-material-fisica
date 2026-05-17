@@ -13,7 +13,7 @@ public interface NotificacionRepository extends JpaRepository<Notificacion, Long
     // --------------------------------------------------------
     // ------------------ Sección GET -------------------------
     // --------------------------------------------------------
-    List<Notificacion> findByIdUsuarioOrigenAndLeidoFalse(Long idUsuario);
-    List<Notificacion> findByIdUsuarioOrigenAndLeidoTrue(Long idUsuario);
-    List<Notificacion> findByIdUsuarioOrigen(Long idUsuario);
+    List<Notificacion> findByIdUsuarioDestinoAndLeidoFalse(Long idUsuario);
+    List<Notificacion> findByIdUsuarioDestinoAndLeidoTrue(Long idUsuario);
+    List<Notificacion> findByIdUsuarioDestino(Long idUsuario);
 }

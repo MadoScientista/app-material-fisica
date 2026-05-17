@@ -34,17 +34,17 @@ public class NotificacionService {
     
     // Retorna una lista de notificaciones no leídas por un usuario según el ID del usuario
     public List<Notificacion> getNotificacionesNoLeidasByUsuarioId(Long idUsuario){
-        return notificacionRepo.findByIdUsuarioOrigenAndLeidoFalse(idUsuario);
+        return notificacionRepo.findByIdUsuarioDestinoAndLeidoFalse(idUsuario);
     }
 
      // Retorna una lista de notificaciones leídas por un usuario según el ID del usuario
      public List<Notificacion> getNotificacionesLeidasByUsuarioId(Long idUsuario){
-        return notificacionRepo.findByIdUsuarioOrigenAndLeidoTrue(idUsuario);
+        return notificacionRepo.findByIdUsuarioDestinoAndLeidoTrue(idUsuario);
     }
 
      // Retorna una lista de todas las notificaciones por un usuario según el ID del usuario
      public List<Notificacion> getAllNotificacionesByUsuarioId(Long idUsuario){
-        return notificacionRepo.findByIdUsuarioOrigen(idUsuario);
+        return notificacionRepo.findByIdUsuarioDestino(idUsuario);
     }
 
      // Retorna una notificación específica por su ID
