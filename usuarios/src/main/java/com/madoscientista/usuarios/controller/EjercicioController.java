@@ -125,15 +125,19 @@ public class EjercicioController {
     // --------------------------------------------------------
 
     // Retorna un ejercicio por su id
-    @GetMapping("{id}")
-    public ResponseEntity<Ejercicio> getEjercicioById(@PathVariable Long idEjercicio){
+    @GetMapping("{idEjercicio}")
+    public ResponseEntity<ResponseEjercicioDTO> getEjercicioById(@PathVariable Long idEjercicio){
+        log.info("Solicitud de ejercicio id: " + idEjercicio);
         Ejercicio ejercicio = service.getEjercicioById(idEjercicio);
 
-        if(ejercicio != null){
-            return ResponseEntity.ok(ejercicio);
+        if(ejercicio == null){
+            log.info("Ejercicio no encontrado");
+            return ResponseEntity.noContent().build();
         }
 
-        return ResponseEntity.noContent().build();
+        ResponseEjercicioDTO dto = ejercicioMapper.toDTO(ejercicio);
+        log.debug("Ejercicio encontrado: {} ", dto);
+        return ResponseEntity.ok(dto);
 
     }
     // Retorna una lista de todos los ejercicios disponibles en la plataforma
