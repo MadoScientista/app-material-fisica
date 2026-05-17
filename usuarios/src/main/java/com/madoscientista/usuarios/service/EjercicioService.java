@@ -119,7 +119,7 @@ public class EjercicioService {
         Long nEjerciciosAlmacenados = contarEjerciciosByIUsuario(idUsuario);
         Long maxEjerciciosPermitidos = sClient.getMaxEjerciciosByUsuarioId(idUsuario).getBody();
 
-        if(maxEjerciciosPermitidos == null || maxEjerciciosPermitidos == null|| nEjerciciosAlmacenados >= maxEjerciciosPermitidos ){
+        if(maxEjerciciosPermitidos == null || nEjerciciosAlmacenados == null || nEjerciciosAlmacenados >= maxEjerciciosPermitidos ){
             return null;
         }
 

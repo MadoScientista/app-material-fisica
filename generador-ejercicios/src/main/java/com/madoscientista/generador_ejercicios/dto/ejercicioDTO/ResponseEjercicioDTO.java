@@ -18,6 +18,7 @@ public class ResponseEjercicioDTO {
     private long idPlantillaEnunciado;
     private String enunciado;
     private List<Map<String, Object>> datos;
+    private String respuesta;
 
     public ResponseEjercicioDTO(){
         datos = new ArrayList<>();

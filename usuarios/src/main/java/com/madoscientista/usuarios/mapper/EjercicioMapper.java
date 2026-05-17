@@ -19,7 +19,7 @@ public class EjercicioMapper {
         ejercicio.setDificultad(response.getDificultad());
         ejercicio.setEnunciado(response.getEnunciado());
         ejercicio.setIncognita(response.getIncognita());
-        ejercicio.setRespuesta("Trabajando en ello jajaj");
+        ejercicio.setRespuesta(response.getRespuesta());
         ejercicio.setIdPlantillaEnunciado(response.getIdPlantillaEnunciado());
         ejercicio.setTema(response.getTema());
 
@@ -37,6 +37,7 @@ public class EjercicioMapper {
         response.setIncognita(ejercicio.getIncognita());
         response.setIdPlantillaEnunciado(ejercicio.getIdPlantillaEnunciado());
         response.setEnunciado(ejercicio.getEnunciado());
+        response.setRespuesta(ejercicio.getRespuesta());
 
         return response;
     }

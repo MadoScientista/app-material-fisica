@@ -20,7 +20,7 @@ public class EjercicioMapper {
 
         String enunciado = ejercicio.getEnunciado().getPlantilla().getEnunciado();
         long idEnunciado = ejercicio.getEnunciado().getPlantilla().getIdPlantillaEnunciado();
-
+        String respuestaStr = "";
 
         for(Dato dato : ejercicio.getDatosEjercicio().getDatos()){
             String placeHolder = "{" + dato.getVariable().getSimbolo() + "}";
@@ -35,6 +35,10 @@ public class EjercicioMapper {
                     "Valor", dato.getValor(),
                     "Unidad_de_medida", dato.getUnidadDeMedida().getSimbolo())
             );
+
+            if(dato.getVariable().equals(ejercicio.getIncognita())){
+                respuestaStr = datoConUnidad;
+            }
         }
 
         ResponseEjercicioDTO respuesta = new ResponseEjercicioDTO(
@@ -44,7 +48,8 @@ public class EjercicioMapper {
             ejercicio.getDificultad().getNombre(),
             idEnunciado,
             enunciado,
-            datos
+            datos,
+            respuestaStr
         );
 
         return respuesta;
