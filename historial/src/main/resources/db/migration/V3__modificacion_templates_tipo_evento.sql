@@ -9,5 +9,5 @@ UPDATE tipo_evento SET descripcion = 'El usuario %d ha eliminado un ejercicio.' 
 UPDATE tipo_evento SET descripcion = 'El usuario %d ha resuelto un ejercicio.' WHERE nombre = 'EJERCICIO_RESUELTO';
 UPDATE tipo_evento SET descripcion = 'El usuario %d ha creado una nueva suscripción para los usuarios: %s.' WHERE nombre = 'SUSCRIPCION_NUEVA';
 UPDATE tipo_evento SET descripcion = 'El usuario %d ha cancelado la suscripción de los usuarios: %s.' WHERE nombre = 'SUSCRIPCION_CANCELADA';
-UPDATE tipo_evento SET descripcion = 'Ha expirado la suscripción de los usuarios: %s.' WHERE nombre = 'SUSCRIPCION_EXPIRADA';
+UPDATE tipo_evento SET descripcion = 'ha expirado la suscripción del usuario: %s.' WHERE nombre = 'SUSCRIPCION_EXPIRADA';
 UPDATE tipo_evento SET descripcion = 'El usuario %d ha actualizado la suscripción de los usuarios: %s.' WHERE nombre = 'SUSCRIPCION_ACTUALIZADA';
