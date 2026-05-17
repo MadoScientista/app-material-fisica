@@ -2,12 +2,16 @@ package com.madoscientista.suscripciones.dto.SuscripcionDTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
 public class RequestSuscripcionDTO {
     
     @NotNull
-    public Long idUsuario;
+    private Long idUsuario;
     
     @NotBlank
-    public String nombreTipoSuscripcion;
+    private String nombreTipoSuscripcion;
 }

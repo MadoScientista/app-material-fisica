@@ -55,7 +55,7 @@ public class MaterialService {
     public Material actualizarEjercicios(Long idMaterial, Material materialActualizado){
         Material materialActual = getMaterialById(idMaterial);
 
-        if(materialActualizado != null){
+        if(materialActual != null){
             materialActual.setItemsEjercicios(materialActualizado.getItemsEjercicios());
             materialActual = mRepo.save(materialActual);
         }

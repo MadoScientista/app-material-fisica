@@ -16,6 +16,10 @@ import com.madoscientista.notificador.dto.usuarioDTO.ResponseUsuarioDTO;
 import com.madoscientista.notificador.model.Notificacion;
 import com.madoscientista.notificador.repository.NotificacionRepository;
 
+import feign.FeignException;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class NotificacionService {
 
@@ -56,28 +60,7 @@ public class NotificacionService {
     // ------------------ Sección POST ------------------------
     // --------------------------------------------------------
 
-    // Crea una nueva notificacion
-    public Notificacion postNotificacion(Notificacion n){
-
-        if(n == null) {
-            throw new RuntimeException("Se requieren datos de notificación");
-        }
-
-        n.setLeido(false);
-
-        // Reemplazo de placeholders en mensaje de notificación
-        ResponseUsuarioDTO usuarioOrigen = uClient.getUsuarioById(n.getIdUsuarioOrigen()).getBody();
-        ResponseUsuarioDTO usuariosDestino = uClient.getUsuarioById(n.getIdUsuarioDestino()).getBody();
-
-        String mensaje = n.getTipoNotificacion().getPlantillaMensaje();
-        mensaje = mensaje.replace("{usuarioOrigen}", usuarioOrigen.getNombreUsuario());
-        mensaje = mensaje.replace("{usuarioDestino}", usuariosDestino.getNombreUsuario());
-
-        n.setMensaje(mensaje);
-
-        return notificacionRepo.save(n);
-    }
-
+    // Crea un conjunto de notificaciones
     public List<Notificacion> postNotificaciones(List<Notificacion> listaNotificaciones){
         // 1. Recolectar IDs únicos
         Set<Long> idsUnicos = new HashSet<>();
@@ -85,27 +68,34 @@ public class NotificacionService {
             idsUnicos.add(n.getIdUsuarioOrigen());
             idsUnicos.add(n.getIdUsuarioDestino());
         }
-        // 2. Una sola llamada Feign
-        ResponseEntity<List<ResponseUsuarioDTO>> response = uClient.listUsuariosByIds(
-            new ArrayList<>(idsUnicos));
-
-        List<ResponseUsuarioDTO> listaUsuarios = response.getBody();
-        
-        // 3. Construir mapa: idUsuario -> ResponseUsuarioDTO
-        Map<Long, ResponseUsuarioDTO> mapaUsuarios = new HashMap<>();
-        for (ResponseUsuarioDTO u : listaUsuarios) {
-            mapaUsuarios.put(u.getIdUsuario(), u);
+        // 2. Poblar mapa con IDs como fallback
+        Map<Long, String> mapaNombres = new HashMap<>();
+        for (Notificacion n : listaNotificaciones) {
+            mapaNombres.putIfAbsent(n.getIdUsuarioOrigen(), n.getIdUsuarioOrigen().toString());
+            mapaNombres.putIfAbsent(n.getIdUsuarioDestino(), n.getIdUsuarioDestino().toString());
         }
-
-        // 4. Procesar todas con el mapa
+        // 3. Intentar obtener nombres reales desde ms-usuarios (sobrescribe fallback si funciona)
+        try {
+            ResponseEntity<List<ResponseUsuarioDTO>> response = uClient.listUsuariosByIds(new ArrayList<>(idsUnicos));
+            List<ResponseUsuarioDTO> listaUsuarios = response.getBody();
+            if (listaUsuarios != null) {
+                for (ResponseUsuarioDTO u : listaUsuarios) {
+                    if (u != null && u.getNombreUsuario() != null) {
+                        mapaNombres.put(u.getIdUsuario(), u.getNombreUsuario());
+                    }
+                }
+            }
+        } catch (FeignException e) {
+            log.warn("ms-usuarios no disponible, usando IDs como nombre de usuario");
+        }
+        // 4. Procesar todas las notificaciones con el mapa
         for (Notificacion n : listaNotificaciones) {
             n.setLeido(false);
             String mensaje = n.getTipoNotificacion().getPlantillaMensaje();
-            mensaje = mensaje.replace("{usuarioOrigen}", mapaUsuarios.get(n.getIdUsuarioOrigen()).getNombreUsuario());
-            mensaje = mensaje.replace("{usuarioDestino}", mapaUsuarios.get(n.getIdUsuarioDestino()).getNombreUsuario());
+            mensaje = mensaje.replace("{usuarioOrigen}", mapaNombres.get(n.getIdUsuarioOrigen()));
+            mensaje = mensaje.replace("{usuarioDestino}", mapaNombres.get(n.getIdUsuarioDestino()));
             n.setMensaje(mensaje);
         }
         return notificacionRepo.saveAll(listaNotificaciones);
     }
-    
 }

@@ -85,7 +85,7 @@ public class SuscripcionController {
     public ResponseEntity<?> postSuscripcion(@Valid @RequestBody RequestSuscripcionDTO request){
 
         log.info("Solicitud creación de una nueva suscripçión");
-        Suscripcion nuevaSuscripcion = service.postSuscripcion(request.idUsuario, request.nombreTipoSuscripcion);
+        Suscripcion nuevaSuscripcion = service.postSuscripcion(request.getIdUsuario(), request.getNombreTipoSuscripcion());
         ResponseSuscripcionDTO response = suscripcionMapper.toDTO(nuevaSuscripcion);
 
         if(response == null){
@@ -126,7 +126,7 @@ public class SuscripcionController {
     // Actualiza el tipo de suscripción de un usuario
     @PutMapping("/actualizar/{idUsuario}")
     public ResponseEntity<?> actualizarSuscripcion(@PathVariable Long idUsuario, @Valid @RequestBody RequestSuscripcionDTO request){
-        Suscripcion suscripcionActualizada = service.actualizarSuscripcion(idUsuario, request.nombreTipoSuscripcion);
+        Suscripcion suscripcionActualizada = service.actualizarSuscripcion(idUsuario, request.getNombreTipoSuscripcion());
 
         if(suscripcionActualizada == null){
             return ResponseEntity.badRequest().body("No se pudo actualizar la suscripción. Verifique que el usuario tenga una suscripción activa y que el nuevo tipo de suscripción sea válido.");

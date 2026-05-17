@@ -78,7 +78,7 @@ public class MaterialController {
     }
 
     // Retorna una lista de materiales creados por un usuario
-    @GetMapping("usuario/{idUsuarioCereador}")
+    @GetMapping("usuario/{idUsuarioCreador}")
     public ResponseEntity<List<ResponseMaterialDTO>> getMaterialByIdeUsuarioCreador(
         @PathVariable Long idUsuarioCreador){
 

@@ -116,17 +116,18 @@ public class LogroController {
 
     // Actualiza un logro a completado
     @PutMapping
-    public ResponseEntity<?> putLogroCompletado(@Valid @RequestBody RequestLogroDTO request){
+    public ResponseEntity<ResponseLogroDTO> putLogroCompletado(@Valid @RequestBody RequestLogroDTO request){
         Long idUsuario = request.getIdUsuario();
         String nombreTipoUsuario = request.getNombreTipoLogro();
 
         Logro logroActualizado = lService.putLogroCompletado(idUsuario, nombreTipoUsuario);
 
         if(logroActualizado != null){
-            return ResponseEntity.ok(logroActualizado);
+            ResponseLogroDTO dto = logroMapper.toDTO(logroActualizado);
+            return ResponseEntity.ok(dto);
         }
 
-        return ResponseEntity.badRequest().body("Error al actualizar el logro");
+        return ResponseEntity.badRequest().build();
 
     }
 }

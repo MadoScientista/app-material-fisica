@@ -155,7 +155,7 @@ public class EjercicioController {
         log.info("Solicitud de ejercicios creados y almacenados por el usuario id: " + id);
         List<Ejercicio> ejercicios = service.getEjerciciosCreadosByUsuario(id);
 
-        log.debug("Ejercicios encontrados", ejercicios);;
+        log.debug("Ejercicios encontrados", ejercicios);
         return ResponseEntity.ok(ejercicioMapper.toDTOList(ejercicios));
     }
 
