@@ -52,19 +52,19 @@ public class UsuarioController {
 
     // Retorna un usuario filtrado por id
     @GetMapping("/{id}")
-    public ResponseEntity<?> getUsuarioById(@PathVariable Long id){
+    public ResponseEntity<ResponseUsuarioDTO> getUsuarioById(@PathVariable Long id){
         log.info("Solicitud de información del usuario id: " + id);
         Usuario u = service.getUsuarioById(id);
 
-        ResponseUsuarioDTO response = usuarioMapper.toDTO(u);
-
-        if(u != null){
-            log.info("Usuario encontrado");
-            return ResponseEntity.ok(response);
+        if(u == null){
+            log.info("Usuario no encontrado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        log.info("Usuario no encontrado");
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró al usuario con id: " + id);
+        ResponseUsuarioDTO response = usuarioMapper.toDTO(u);
+
+        log.debug("Usuario encontrado: {}", response);
+        return ResponseEntity.ok(response);
     }
 
 
