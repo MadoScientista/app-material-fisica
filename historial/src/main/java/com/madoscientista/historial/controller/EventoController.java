@@ -44,7 +44,7 @@ public class EventoController {
 
         if(eventos.isEmpty()){
             log.debug("Usuario ID: {} no registra eventos", idUsuario);
-            ResponseEntity.noContent().build();
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(eMapper.toDTOList(eventos));
     }
