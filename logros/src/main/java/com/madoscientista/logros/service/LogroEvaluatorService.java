@@ -45,13 +45,8 @@ public class LogroEvaluatorService {
                     logro.setFechaCompletado(LocalDateTime.now());
                     lRepo.save(logro);
 
-                    RequestEventoDTO evento = new RequestEventoDTO();
-                    evento.setIdTipoEvento(LOGRO_COMPLETADO);
-                    evento.setIdUsuarioOrigen(r.getIdUsuario());
-                    List<Long> destinos = new ArrayList<>();
-                    destinos.add(r.getIdUsuario());
-                    evento.setIdUsuarioDestino(destinos);
-                    hClient.postEvento(evento);
+                    // Intenta comunicar evento al ms historial
+                    registrarEvento(r.getIdUsuario(), LOGRO_COMPLETADO);
                 }
             }
         }
@@ -140,5 +135,25 @@ public class LogroEvaluatorService {
         if (criterio.equals("nItemsCreados"))          return r.getNItemsCreados();
         if (criterio.equals("nMaterialesCreados"))     return r.getNMaterialesCreados();
         return 0;
+    }
+
+
+
+    // --------------------------------------------------------
+    // ------------------ Sección EVENTOS ---------------------
+    // --------------------------------------------------------
+
+    private void registrarEvento(Long idUsuarioOrigen, Long idTipoEvento) {
+        RequestEventoDTO eventoDTO = new RequestEventoDTO();
+        eventoDTO.setIdTipoEvento(idTipoEvento);
+        eventoDTO.setIdUsuarioOrigen(idUsuarioOrigen);
+        List<Long> destinos = new ArrayList<>();
+        destinos.add(idUsuarioOrigen);
+        eventoDTO.setIdUsuarioDestino(destinos);
+        try{
+            hClient.postEvento(eventoDTO);
+        }catch(FeignException e){
+            log.warn("Error de comunicación con microservicio historial. Evento no registrado");
+        }
     }
 }

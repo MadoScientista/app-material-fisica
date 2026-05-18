@@ -72,15 +72,11 @@ public class ComunidadService {
             Comunidad nuevaComunidad = cRepo.save(comunidad);
 
             // Intenta registrar el evento en el ms historial
-            try{
-                registrarEvento(
-                    comunidad.getIdUsuarioCreador(),
-                    new ArrayList<>(comunidad.getIdMiembros()),
-                    EVENTO_COMUNIDAD_CREADA
-                );
-            }catch(FeignException e){
-                log.debug("No se pudo comunicar el evento - crear comunidad -", e);
-            }
+            registrarEvento(
+                comunidad.getIdUsuarioCreador(),
+                new ArrayList<>(comunidad.getIdMiembros()),
+                EVENTO_COMUNIDAD_CREADA
+            );
 
             // Intenta actualizar el recuento para el ms logro
             try{
@@ -111,11 +107,7 @@ public class ComunidadService {
             soloUsuario.add(idUsuario);
 
             // Intenta comunicar el evento al ms historial
-            try{
-                registrarEvento(idUsuario, soloUsuario, EVENTO_MIEMBRO_AGREGADO);
-            }catch(FeignException e){
-                log.debug("No se pudo comunicar el evento - agregar miembro -", e);
-            }
+            registrarEvento(idUsuario, soloUsuario, EVENTO_MIEMBRO_AGREGADO);
 
             // Intenta comunicar el aumento del recuento al ms logros
             try{
@@ -142,11 +134,7 @@ public class ComunidadService {
             soloUsuario.add(idUsuario);
 
             // Intenta comunicar el evento al ms historial
-            try{
-                registrarEvento(idUsuario, soloUsuario, EVENTO_MIEMBRO_ELIMINADO);
-            }catch(FeignException e){
-                log.debug("No se pudo comunicar el evento - eliminar miembro -", e);
-            }
+            registrarEvento(idUsuario, soloUsuario, EVENTO_MIEMBRO_ELIMINADO);
 
             return comunidad;
         }
@@ -163,15 +151,12 @@ public class ComunidadService {
             cRepo.save(comunidad);
 
             // Intenta comunicar el evento al ms historial
-            try{
-                registrarEvento(
-                    comunidad.getIdUsuarioCreador(),
-                    new ArrayList<>(idMiembros),
-                    EVENTO_MIEMBRO_AGREGADO
-                );
-            }catch(FeignException e){
-                log.debug("No se pudo comunicar el evento - agregar miembros -", e);
-            }
+            
+            registrarEvento(
+                comunidad.getIdUsuarioCreador(),
+                new ArrayList<>(idMiembros),
+                EVENTO_MIEMBRO_AGREGADO
+            );
 
             // Intenta comunicar el aumento del recuento al ms logros
             try{
@@ -195,15 +180,11 @@ public class ComunidadService {
             cRepo.save(comunidad);
 
             // Intenta comunicar el evento al ms historial
-            try{
-                registrarEvento(
-                    comunidad.getIdUsuarioCreador(),
-                    new ArrayList<>(idMiembros),
-                    EVENTO_MIEMBRO_ELIMINADO
-                );
-            }catch(FeignException e){
-                log.debug("No se pudo comunicar el evento - eliminar miembros -", e);
-            }
+            registrarEvento(
+                comunidad.getIdUsuarioCreador(),
+                new ArrayList<>(idMiembros),
+                EVENTO_MIEMBRO_ELIMINADO
+            );
 
             return comunidad;
         }
