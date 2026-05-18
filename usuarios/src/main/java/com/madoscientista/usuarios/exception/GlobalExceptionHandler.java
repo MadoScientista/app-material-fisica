@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
         // Captura el mensaje de error
         String mensajeError = e.getMessage();
         String campo = "";
-        String mensaje = "";
+        String mensaje = "Error de comunicación con microservicio";
 
         // Si no hay un código válido retorna siempre 503 (Service Unavailable)
         // Me daba -1 si el microservicio no estaba levantado
@@ -55,10 +55,14 @@ public class GlobalExceptionHandler {
         // Si contiene el puerto del ms suscripciones
         if(mensajeError.contains("8081")){ // Si contiene el puerto del ms generador-ejercicios
             campo = "Generador de ejercicios";
-            mensaje = "Microservicio de generación de ejercicios no disponible";
+        }else if(mensajeError.contains("8082")){ // Si contiene el puerto del ms generador-ejercicios
+            campo = "Historial";
+        }else if(mensajeError.contains("8083")){ // Si contiene el puerto del ms generador-ejercicios
+            campo = "Logros";
+        }else if(mensajeError.contains("8086")){ // Si contiene el puerto del ms generador-ejercicios
+            campo = "Suscripciones";
         }else{ // Por si olvido algún microservicio por ahí
             campo = "Microservicio";
-            mensaje = "No se ha podido establecer la comunicación con un microservicio";
         }
 
         ResponseErrorDTO error = new ResponseErrorDTO();
