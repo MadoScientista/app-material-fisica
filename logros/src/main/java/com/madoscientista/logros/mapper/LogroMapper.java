@@ -2,6 +2,7 @@ package com.madoscientista.logros.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -29,9 +30,7 @@ public class LogroMapper {
 
         List<ResponseLogroDTO> listaDTOs = new ArrayList<>();
 
-        for(Logro l : listaLogros){
-            listaDTOs.add(toDTO(l));
-        }
+        listaDTOs = listaLogros.stream().map(this::toDTO).collect(Collectors.toList());
 
         return listaDTOs;
     }

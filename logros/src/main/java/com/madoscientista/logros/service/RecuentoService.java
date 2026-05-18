@@ -24,7 +24,13 @@ public class RecuentoService {
     @Autowired
     private LogroEvaluatorService logroEvaluator;
 
-    private Recuento obtenerOCrear(Long idUsuario) {
+    // Retorna la lista de recuentos disponible en DB
+    public List<Recuento> getRecuentos(){
+        return recuentoRepo.findAll();
+    }
+
+
+    public Recuento obtenerOCrear(Long idUsuario) {
         return recuentoRepo.findByIdUsuario(idUsuario).orElseGet(() -> {
             Recuento nuevo = new Recuento();
             nuevo.setIdUsuario(idUsuario);

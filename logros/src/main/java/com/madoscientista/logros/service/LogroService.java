@@ -40,6 +40,11 @@ public class LogroService {
         return lRepo.findAllByIdUsuario(idUsuario);
     }
 
+    // Retorna la lista de logros disponibles en DB
+    public List<Logro> getLogros(){
+        return lRepo.findAll();
+    }
+
 
     // --------------------------------------------------------
     // ------------------ Sección POST ------------------------

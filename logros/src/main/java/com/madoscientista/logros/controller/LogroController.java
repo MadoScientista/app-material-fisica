@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.madoscientista.logros.dto.logroDTO.RequestLogroDTO;
 import com.madoscientista.logros.dto.logroDTO.ResponseLogroDTO;
 import com.madoscientista.logros.mapper.LogroMapper;
+import com.madoscientista.logros.mapper.RecuentoMapper;
 import com.madoscientista.logros.model.Logro;
 import com.madoscientista.logros.model.Recuento;
 import com.madoscientista.logros.dto.recuentoDTO.ResponseRecuentoDTO;
 import com.madoscientista.logros.service.LogroService;
 import com.madoscientista.logros.service.RecuentoService;
 
+import feign.Response;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,6 +42,9 @@ public class LogroController {
     @Autowired
     private LogroMapper logroMapper;
 
+    @Autowired
+    private RecuentoMapper recuentoMapper;
+
 
     // --------------------------------------------------------
     // ------------------ Sección GET -------------------------
@@ -51,6 +56,58 @@ public class LogroController {
         List<ResponseLogroDTO> response = logroMapper.toDTOs(lService.getLogrosByIdUsuario(idUsuario));
         return ResponseEntity.ok(response);
     }
+
+    // Retorna la lista de logros disponible en BD
+    @GetMapping
+    public ResponseEntity<List<ResponseLogroDTO>> getLogros() {
+        log.info("Lista de logros en DB solicitada");
+        List<Logro> logroList = lService.getLogros();
+
+        if(logroList.isEmpty()){
+            log.info("No se encontraron logros en DB");
+            return ResponseEntity.notFound().build();
+        }
+
+        log.info("Lista de logros encontrada");
+        List<ResponseLogroDTO> dtoList = logroMapper.toDTOs(logroList);
+
+        return ResponseEntity.ok(dtoList);
+    }
+
+    // Retorna el recuento de un usuario filtrado por su id
+    @GetMapping("recuentos/usuario/{idUsuario}")
+    public ResponseEntity<ResponseRecuentoDTO> getRecuentoByIdUsuario(@PathVariable Long idUsuario){
+        log.info("Solciitud del recuento del usuario ID: " + idUsuario);
+
+        Recuento recuento = rService.obtenerOCrear(idUsuario);
+
+        if(recuento == null){
+            log.info("Error al obtener el recuento");
+            return ResponseEntity.notFound().build();
+        }
+
+        ResponseRecuentoDTO dto = recuentoMapper.toDTO(recuento);
+        log.debug("Recuento encotnrado: {}", dto);
+        return ResponseEntity.ok(dto);
+        
+    }
+
+    // Retorna todos los recuentos disponible en DB
+    @GetMapping("recuentos")
+    public ResponseEntity<List<ResponseRecuentoDTO>> getRecuentos(){
+        log.info("Lista de recuentos en DB solicitada");
+        List<Recuento> recuentos = rService.getRecuentos();
+
+        if(recuentos.isEmpty()){
+            log.info("No se encontraron recuentos en DB");
+            return ResponseEntity.notFound().build();
+        }
+
+        List<ResponseRecuentoDTO> dtoList = recuentoMapper.toDTOList(recuentos);
+        log.debug("Lista de recuentos encontrada: {}", dtoList);
+        return ResponseEntity.ok(dtoList);
+    }
+
 
 
     // --------------------------------------------------------
