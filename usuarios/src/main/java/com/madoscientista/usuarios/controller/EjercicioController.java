@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.madoscientista.usuarios.dto.ejercicioDTO.RequestEjercicioDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.ResponseEjercicioDTO;
-import com.madoscientista.usuarios.dto.valoracionDTO.PromedioValoracionDTO;
 import com.madoscientista.usuarios.mapper.EjercicioMapper;
 import com.madoscientista.usuarios.model.Ejercicio;
 import com.madoscientista.usuarios.service.EjercicioService;
@@ -42,7 +41,7 @@ public class EjercicioController {
     // --------------------------------------------------------
 
     // Genera un ejercicio nuevo a partir de los datos del request y el id del usuario que lo crea
-    @PostMapping("/{id}")
+    @PostMapping("usuario/{id}")
     public ResponseEntity<ResponseEjercicioDTO> postGenerarEjercicio(@Valid @RequestBody RequestEjercicioDTO request, @PathVariable Long id){
         log.info("Solicitud de creación de un ejercicio");
         Ejercicio ejercicio = service.postEjercicio(request, id);
@@ -57,7 +56,7 @@ public class EjercicioController {
     }
 
     // Retorna una lista de ejercicios creados por un Set de usuarios
-    @PostMapping
+    @PostMapping("usuarios")
     public ResponseEntity<List<ResponseEjercicioDTO>> listarEjerciciosDeUsuarios(@Valid @RequestBody Set<Long> idEjercicio){
         List<Ejercicio> listaEjercicios = service.listarEjerciciosDeUSuarios(idEjercicio);
 
@@ -71,32 +70,32 @@ public class EjercicioController {
 
     // Comparte un ejercicio con una lista de usuarios
     @PutMapping("/compartir/{idCreador}/{idEjercicio}")
-    public ResponseEntity<?> putCompartirEjercicio(@PathVariable Long idCreador, @PathVariable Long idEjercicio, @Valid @RequestBody List<Long> idsUsuarios){
+    public ResponseEntity<List<Long>> putCompartirEjercicio(@PathVariable Long idCreador, @PathVariable Long idEjercicio, @Valid @RequestBody List<Long> idsUsuarios){
         log.info("Solicitud para compartir el ejercicio id: " + idEjercicio);
         Ejercicio compartido = service.compartirEjercicio(idCreador, idEjercicio, idsUsuarios);
 
         if(compartido != null){
             log.info("Ejercicio compartido");
-            return ResponseEntity.ok("Ejercicio compartido");
+            return ResponseEntity.ok(idsUsuarios);
         }
 
         log.info("No se pudo compartir el ejercicio");
-        return ResponseEntity.badRequest().body("No se pudo compartir el ejercicio");
+        return ResponseEntity.badRequest().build();
     }
 
     // Deja de compartir un ejercicio con una lista de usuarios
     @PutMapping("/dejar-compartir/{idCreador}/{idEjercicio}")
-    public ResponseEntity<?> putDejarCompartirEjercicio(@PathVariable Long idCreador, @PathVariable Long idEjercicio,@Valid @RequestBody List<Long> idsUsuarios){
+    public ResponseEntity<List<Long>> putDejarCompartirEjercicio(@PathVariable Long idCreador, @PathVariable Long idEjercicio,@Valid @RequestBody List<Long> idsUsuarios){
         log.info("Solicitud para dejar de compartir el ejercicio id: " + idEjercicio);
         Ejercicio resultado = service.dejarDeCompartirEjercicio(idEjercicio, idCreador, idsUsuarios);
 
         if(resultado != null){
             log.info("Operación exitosa");
-            return ResponseEntity.ok("Ejercicio dejado de compartir");
+            return ResponseEntity.ok(idsUsuarios);
         }
 
         log.info("Operación fallida");
-        return ResponseEntity.badRequest().body("No se pudo dejar de compartir el ejercicio");
+        return ResponseEntity.badRequest().build();
     }
 
 
@@ -105,8 +104,8 @@ public class EjercicioController {
     // --------------------------------------------------------
 
     // Elimina un ejercicio creado por un usuario según el ID del ejercicio
-    @DeleteMapping("/{idUsuario}/{idEjercicio}")
-    public ResponseEntity<?> deleteEjercicio(@PathVariable Long idUsuario, @PathVariable Long idEjercicio){
+    @DeleteMapping("usuario/{idUsuario}/{idEjercicio}")
+    public ResponseEntity<ResponseEjercicioDTO> deleteEjercicio(@PathVariable Long idUsuario, @PathVariable Long idEjercicio){
         log.info("Solicitud de eliminación del ejercicio id: " + idEjercicio);
         boolean eliminado = service.deleteEjercicio(idUsuario, idEjercicio);
 
@@ -116,7 +115,7 @@ public class EjercicioController {
         }
 
         log.info("No se pudo eliminar el ejercicio");
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró el ejercicio con id: " + idEjercicio);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
 
@@ -142,36 +141,45 @@ public class EjercicioController {
     }
     // Retorna una lista de todos los ejercicios disponibles en la plataforma
     @GetMapping
-    public ResponseEntity<?> getEjercicios(){
+    public ResponseEntity<List<ResponseEjercicioDTO>> getEjercicios(){
         log.info("Solicitud de la lista de ejercicios disponibles en la plataforma");
         List<Ejercicio> ejercicios = service.getEjercicios();
 
-        return ResponseEntity.ok(ejercicioMapper.toDTOList(ejercicios));
+        if(ejercicios.isEmpty()){
+            log.info("No se encontraron ejercicios en BD");
+            return ResponseEntity.notFound().build();
+        }
+
+        log.info("Ejercicios encontrados");
+        List<ResponseEjercicioDTO> dtoList = ejercicioMapper.toDTOList(ejercicios);
+        return ResponseEntity.ok(dtoList);
     }
 
     // Retorna una lista de ejercicios creados por un usuario según el ID del usuario
     @GetMapping("creados/{id}")
-    public ResponseEntity<?> getEjerciciosCreadosByUsuario(@PathVariable Long id){
+    public ResponseEntity<List<ResponseEjercicioDTO>> getEjerciciosCreadosByUsuario(@PathVariable Long id){
         log.info("Solicitud de ejercicios creados y almacenados por el usuario id: " + id);
         List<Ejercicio> ejercicios = service.getEjerciciosCreadosByUsuario(id);
 
+        if(ejercicios.isEmpty()){
+            log.info("Ejercicios no encontrados");
+            return ResponseEntity.notFound().build();
+        }
         log.debug("Ejercicios encontrados", ejercicios);
         return ResponseEntity.ok(ejercicioMapper.toDTOList(ejercicios));
     }
 
-    // Retorna el promedio de valoración de un ejercicio consultando al ms valoraciones
-    @GetMapping("/promedio-valoracion/{idEjercicio}")
-    public ResponseEntity<?> getPromedioValoracion(@PathVariable Long idEjercicio) {
-        log.info("Solicitud de promedio de valoración del ejercicio id: " + idEjercicio);
-        PromedioValoracionDTO promedio = service.getPromedioValoracionByEjercicio(idEjercicio);
-        return ResponseEntity.ok(promedio);
-    }
 
     // Retorna una lista con los ejercicios compartidos con el usuario según el ID del usuario
     @GetMapping("compartidos/{id}")
-    public ResponseEntity<?> getEjerciciosCompartidosAUsuario(@PathVariable Long id){
+    public ResponseEntity<List<ResponseEjercicioDTO>> getEjerciciosCompartidosAUsuario(@PathVariable Long id){
         log.info("Solicitud ejercicios compartidos por el usuario id: " + id);
         List<Ejercicio> ejercicios = service.getEjerciciosCompartidosAUsuario(id);
+
+        if(ejercicios.isEmpty()){
+            log.info("Ejercicios no encontrados");
+            return ResponseEntity.notFound().build();
+        }
 
         log.info("Ejercicios encontrados");
         return ResponseEntity.ok(ejercicioMapper.toDTOList(ejercicios));

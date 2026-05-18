@@ -15,7 +15,7 @@ import jakarta.validation.Valid;
 @FeignClient(name="usuarios", url="localhost:8087")
 public interface EjercicioClient {
 
-    @PostMapping("api/v1/ejercicios")
+    @PostMapping("api/v1/ejercicios/usuarios")
     public ResponseEntity<List<ResponseEjercicioDTO>> listarEjerciciosDeUsuarios(
         @Valid @RequestBody Set<Long> idEjercicio);
 

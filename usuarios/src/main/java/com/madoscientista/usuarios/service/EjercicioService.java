@@ -11,16 +11,16 @@ import com.madoscientista.usuarios.client.HistorialClient;
 import com.madoscientista.usuarios.client.GeneradorEjerciciosClient;
 import com.madoscientista.usuarios.client.LogrosClient;
 import com.madoscientista.usuarios.client.SuscripcionesClient;
-import com.madoscientista.usuarios.client.ValoracionesClient;
 import com.madoscientista.usuarios.dto.EventoDTO.RequestEventoDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.RequestEjercicioDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.ResponseEjercicioDTO;
-import com.madoscientista.usuarios.dto.valoracionDTO.PromedioValoracionDTO;
+import com.madoscientista.usuarios.exception.SuscripcionesException;
 import com.madoscientista.usuarios.mapper.EjercicioMapper;
 import com.madoscientista.usuarios.model.Ejercicio;
 import com.madoscientista.usuarios.model.Usuario;
 import com.madoscientista.usuarios.repository.EjercicioRepository;
 
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -55,10 +55,6 @@ public class EjercicioService {
     // Inyección de servicio de usuario
     @Autowired
     private UsuarioService uService;
-
-    // Inyección de microservicio de valoraciones
-    @Autowired
-    private ValoracionesClient vClient;
 
     // Inyección de mapper
     @Autowired
@@ -99,14 +95,6 @@ public class EjercicioService {
         return ejercicioRepo.countByCreadorIdUsuario(id);
     }
 
-    // Retorna el promedio de valoración de un ejercicio consultando al ms valoraciones
-    public PromedioValoracionDTO getPromedioValoracionByEjercicio(Long idEjercicio) {
-        try {
-            return vClient.getPromedioByEjercicio(idEjercicio).getBody();
-        } catch (Exception e) {
-            return new PromedioValoracionDTO(idEjercicio, 0.0, 0L);
-        }
-    }
 
     // --------------------------------------------------------
     // ------------------ Sección POST ------------------------
@@ -117,13 +105,36 @@ public class EjercicioService {
     public Ejercicio postEjercicio(RequestEjercicioDTO request, long idUsuario){
 
         Long nEjerciciosAlmacenados = contarEjerciciosByIUsuario(idUsuario);
-        Long maxEjerciciosPermitidos = sClient.getMaxEjerciciosByUsuarioId(idUsuario).getBody();
+        Long maxEjerciciosPermitidos = 0L;
 
-        if(maxEjerciciosPermitidos == null || nEjerciciosAlmacenados == null || nEjerciciosAlmacenados >= maxEjerciciosPermitidos ){
-            return null;
+        // Intenta comunicarse con el microservicio de suscripciones
+        try{
+            maxEjerciciosPermitidos = sClient.getMaxEjerciciosByUsuarioId(idUsuario).getBody();
+        }catch(FeignException fe){
+            log.warn("Error de comunicación con el microservicio Suscripciones");
+            throw new SuscripcionesException("Error de comunicación con microservicio de suscripciones");
+        }
+        
+        // El microservicio de suscripciones responde con null
+        if(maxEjerciciosPermitidos == null){
+            throw new SuscripcionesException("null para máximo de ejercicios permitidos");
         }
 
-        ResponseEjercicioDTO ejercicioDTO = geClient.getEjercicioMRU(request);
+        // Error de máximo ejercicios permitidos
+        if(nEjerciciosAlmacenados >= maxEjerciciosPermitidos ){
+            throw new SuscripcionesException("Máximo de ejercicios permitidos por suscripción alcanzado");
+        }
+
+
+        // Intenta comunicarse con el microservicio generador-ejercicios
+        ResponseEjercicioDTO ejercicioDTO = new ResponseEjercicioDTO();
+        try{
+            ejercicioDTO = geClient.getEjercicioMRU(request);
+        }catch(FeignException fe){
+            log.warn("Error de comunicación con el microservicio generador-ejercicio");
+            throw fe;
+        }
+        
         Usuario usuario = uService.getUsuarioById(idUsuario);
 
         if(usuario == null){
@@ -140,7 +151,12 @@ public class EjercicioService {
         registrarEvento( idUsuario, idUsuarioDestino, EVENTO_EJERCICIO_CREADO);
 
         // Incrementa el contador de ejercicios creados en el microservicio de logros
-        lClient.postIncrementarEjercicioCreado(idUsuario);
+        try{
+            lClient.postIncrementarEjercicioCreado(idUsuario);
+        }catch(FeignException e){
+            log.warn("Error de comunicación con el microservicio de logros. Aumento en el recuento de logros no registrado");
+        }
+        
 
         return ejercicioGuardado;
     }
@@ -253,6 +269,12 @@ public class EjercicioService {
         eventoDTO.setIdTipoEvento(idTipoEvento);
         eventoDTO.setIdUsuarioDestino(idUsuarioDestino);
         eventoDTO.setIdUsuarioOrigen(idUsuarioOrigen);
-        hClient.postEvento(eventoDTO);
+
+        try{
+            hClient.postEvento(eventoDTO);
+        }catch(FeignException e){
+            log.warn("Error de comunicación con el microservicio de eventos. Evento no registrado");
+        }
+        
     }
 }

@@ -42,12 +42,19 @@ public class UsuarioController {
 
     // Retorna la lista de usuarios disponibles
     @GetMapping
-    public List<ResponseUsuarioDTO> getUsuarios(){
+    public ResponseEntity<List<ResponseUsuarioDTO>> getUsuarios(){
         log.info("Solicitud usuarios disponibles en la plataforma");
-        return service.getUsuarios()
-                .stream()
-                .map(usuarioMapper::toDTO)
-                .collect(Collectors.toList());
+
+        List<Usuario> usuarios = service.getUsuarios();
+
+        if(usuarios.isEmpty()){
+            log.info("No se encontraron usuarios");
+            return ResponseEntity.notFound().build();
+        }
+
+        log.info("Usuarios encontrados");
+        List<ResponseUsuarioDTO> dtoList = usuarioMapper.toDTOList(usuarios);
+        return ResponseEntity.ok(dtoList);
     }
 
     // Retorna un usuario filtrado por id
@@ -91,13 +98,17 @@ public class UsuarioController {
     public ResponseEntity<List<ResponseUsuarioDTO>> listUsuariosByIds(@Valid @RequestBody List<Long> ids){
 
         log.info("Solicitud de información de los usuarios: " + ids);
-        List<ResponseUsuarioDTO> listaUsuarios = service.getUsuariosByIds(ids)
-                .stream()
-                .map(usuarioMapper::toDTO)
-                .collect(Collectors.toList());
+        List<Usuario> usuarios = service.getUsuariosByIds(ids);
 
-        log.debug("Usuarios encontrados: ", listaUsuarios);
-        return ResponseEntity.ok(listaUsuarios);
+        if(usuarios.isEmpty()){
+            log.info("No se encontraron usuarios");
+            return ResponseEntity.notFound().build();
+        }
+
+        List<ResponseUsuarioDTO> dtoList = usuarioMapper.toDTOList(usuarios);
+
+        log.debug("Usuarios encontrados: ", dtoList);
+        return ResponseEntity.ok(dtoList);
     }
 
     // --------------------------------------------------------
@@ -106,7 +117,7 @@ public class UsuarioController {
 
     // Elimina un usuario filtrado por su ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUsuario(@PathVariable Long id){
+    public ResponseEntity<ResponseUsuarioDTO> deleteUsuario(@PathVariable Long id){
 
         boolean eliminado = service.deleteUsuario(id);
 
@@ -114,9 +125,7 @@ public class UsuarioController {
             return ResponseEntity.noContent().build(); // 204
         }
 
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body("No se encontró al usuario con id: " + id);
+        return ResponseEntity.notFound().build();
     }
 
 
@@ -126,7 +135,7 @@ public class UsuarioController {
 
     // Actualiza un usuario filtrado por su ID
     @PutMapping("/{id}")
-    public ResponseEntity<?> putUsuario(
+    public ResponseEntity<ResponseUsuarioDTO> putUsuario(
             @PathVariable long id,
             @Valid @RequestBody RequestUsuarioDTO dto){
 
@@ -137,8 +146,6 @@ public class UsuarioController {
             return ResponseEntity.ok(response);
         }
 
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body("No se encontró al usuario con id: " + id);
+        return ResponseEntity.notFound().build();
     }
 }

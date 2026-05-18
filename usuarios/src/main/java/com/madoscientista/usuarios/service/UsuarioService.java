@@ -5,12 +5,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.madoscientista.usuarios.client.LogrosClient;
 import com.madoscientista.usuarios.model.Usuario;
 import com.madoscientista.usuarios.repository.UsuarioRepository;
 
+import feign.FeignException;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class UsuarioService {
 
@@ -49,10 +52,17 @@ public class UsuarioService {
     }
 
     // Crea un usuario y sincroniza sus logros
-    @Transactional
     public Usuario postUSuario(Usuario u){
         Usuario usuarioCreado = repo.save(u);
-        logrosClient.postSincronizarLogrosUsuario(usuarioCreado.getIdUsuario());
+
+        try{
+            log.info("Intentando sincronizar logros");
+            logrosClient.postSincronizarLogrosUsuario(usuarioCreado.getIdUsuario());
+        }catch(FeignException e){
+            log.info("No se pudo comunicar con el microservicio Logros");
+        }
+        
+        log.info("Logros sincronizados");
         return usuarioCreado;
     }
 
