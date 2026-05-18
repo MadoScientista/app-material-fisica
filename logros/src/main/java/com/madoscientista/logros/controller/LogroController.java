@@ -46,7 +46,7 @@ public class LogroController {
     // --------------------------------------------------------
 
     // Retorna todos los logros de un usuario
-    @GetMapping("/{idUsuario}")
+    @GetMapping("/usuario/{idUsuario}")
     public ResponseEntity<List<ResponseLogroDTO>> getLogrosByIdUsuario(@PathVariable Long idUsuario) {
         List<ResponseLogroDTO> response = logroMapper.toDTOs(lService.getLogrosByIdUsuario(idUsuario));
         return ResponseEntity.ok(response);
@@ -98,6 +98,26 @@ public class LogroController {
     }
 
     // Incrementa el contador de comunidades para un conjunto de usuarios
+    // Incrementa el contador de items creados para un usuario
+    @PostMapping("/recuento/item-creado/{idUsuario}")
+    public ResponseEntity<ResponseRecuentoDTO> postIncrementarItemCreado(
+            @PathVariable Long idUsuario, @RequestBody int cantidad) {
+        log.info("Incrementando items creados para el usuario {} en {}", idUsuario, cantidad);
+        Recuento recuento = rService.incrementarItemsCreados(idUsuario, cantidad);
+        ResponseRecuentoDTO response = new ResponseRecuentoDTO(idUsuario, rService.toMap(recuento));
+        return ResponseEntity.ok(response);
+    }
+
+    // Incrementa el contador de materiales creados para un usuario
+    @PostMapping("/recuento/material/{idUsuario}")
+    public ResponseEntity<ResponseRecuentoDTO> postIncrementarMaterialCreado(
+            @PathVariable Long idUsuario) {
+        log.info("Incrementando materiales creados para el usuario {}", idUsuario);
+        Recuento recuento = rService.incrementarMaterialCreado(idUsuario);
+        ResponseRecuentoDTO response = new ResponseRecuentoDTO(idUsuario, rService.toMap(recuento));
+        return ResponseEntity.ok(response);
+    }
+
     @PostMapping("/recuento/comunidad")
     public ResponseEntity<List<ResponseRecuentoDTO>> postIncrementarComunidad(
             @RequestBody Set<Long> idsUsuarios) {

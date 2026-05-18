@@ -28,4 +28,10 @@ public class Recuento {
 
     @Column(nullable = false)
     private Long nComunidades;
+
+    @Column(nullable = false)
+    private Long nItemsCreados;
+
+    @Column(nullable = false)
+    private Long nMaterialesCreados;
 }

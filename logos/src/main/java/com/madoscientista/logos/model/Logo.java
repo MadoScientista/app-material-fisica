@@ -29,7 +29,9 @@ public class Logo {
     
     private String nombre;
     private String descripcion;
-    
+
     @Column(nullable = false)
+    private String imagen;
+    
     private String url;
 }

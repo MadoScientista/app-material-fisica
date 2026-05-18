@@ -129,6 +129,8 @@ public class LogroEvaluatorService {
         if (criterio.equals("nEjerciciosCreados"))    return r.getNEjerciciosCreados();
         if (criterio.equals("nEjerciciosCompartidos")) return r.getNEjerciciosCompartidos();
         if (criterio.equals("nComunidades"))           return r.getNComunidades();
+        if (criterio.equals("nItemsCreados"))          return r.getNItemsCreados();
+        if (criterio.equals("nMaterialesCreados"))     return r.getNMaterialesCreados();
         return 0;
     }
 }

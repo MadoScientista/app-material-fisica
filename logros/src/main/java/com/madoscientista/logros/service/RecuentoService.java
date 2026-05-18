@@ -31,6 +31,8 @@ public class RecuentoService {
             nuevo.setNEjerciciosCreados(0L);
             nuevo.setNEjerciciosCompartidos(0L);
             nuevo.setNComunidades(0L);
+            nuevo.setNItemsCreados(0L);
+            nuevo.setNMaterialesCreados(0L);
             return recuentoRepo.save(nuevo);
         });
     }
@@ -51,6 +53,8 @@ public class RecuentoService {
                 nuevo.setNEjerciciosCreados(0L);
                 nuevo.setNEjerciciosCompartidos(0L);
                 nuevo.setNComunidades(0L);
+                nuevo.setNItemsCreados(0L);
+                nuevo.setNMaterialesCreados(0L);
                 nuevos.add(nuevo);
             }
         }
@@ -68,6 +72,8 @@ public class RecuentoService {
         map.put("ejerciciosCreados", r.getNEjerciciosCreados().toString());
         map.put("ejerciciosCompartidos", r.getNEjerciciosCompartidos().toString());
         map.put("nComunidades", r.getNComunidades().toString());
+        map.put("nItemsCreados", r.getNItemsCreados().toString());
+        map.put("nMaterialesCreados", r.getNMaterialesCreados().toString());
         return map;
     }
 
@@ -99,6 +105,24 @@ public class RecuentoService {
     }
 
     // Aumenta el contador de logro de comunidad para un conjunto de usuarios
+    @Transactional
+    public Recuento incrementarItemsCreados(Long idUsuario, int cantidad) {
+        Recuento r = obtenerOCrear(idUsuario);
+        r.setNItemsCreados(r.getNItemsCreados() + cantidad);
+        r = recuentoRepo.save(r);
+        logroEvaluator.evaluar(r);
+        return r;
+    }
+
+    @Transactional
+    public Recuento incrementarMaterialCreado(Long idUsuario) {
+        Recuento r = obtenerOCrear(idUsuario);
+        r.setNMaterialesCreados(r.getNMaterialesCreados() + 1);
+        r = recuentoRepo.save(r);
+        logroEvaluator.evaluar(r);
+        return r;
+    }
+
     @Transactional
     public List<Recuento> incrementarComunidadParaUsuarios(Set<Long> idUsuarios, int cantidad) {
         
