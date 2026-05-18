@@ -37,6 +37,12 @@ public class EventoController {
     @Autowired
     private TipoEventoService teService;
 
+
+    // --------------------------------------------------------
+    // ------------------ Sección GET -------------------------
+    // --------------------------------------------------------
+
+    // Retorna los eventos de un usuario filtrado por su ID
     @GetMapping("usuarios/{idUsuario}")
     public ResponseEntity<List<ResponseEventoDTO>> getEventosByUsuarioId(@PathVariable Long idUsuario){
         log.info("Se solicitaron el historial del usuario id: " + idUsuario);
@@ -49,6 +55,28 @@ public class EventoController {
         return ResponseEntity.ok(eMapper.toDTOList(eventos));
     }
 
+    // Retorna la lista de eventos disponible en BD
+    @GetMapping
+    public ResponseEntity<List<ResponseEventoDTO>> getEventos(){
+        log.info("Lista de eventos solicitada");
+        List<Evento> listaEventos = eService.getEventos();
+
+        if(listaEventos.isEmpty()){
+            log.info("Lista de eventos vacía. No se encontraron eventos");
+            return ResponseEntity.notFound().build();
+        }
+
+        List<ResponseEventoDTO> dtoList = eMapper.toDTOList(listaEventos);
+
+        return ResponseEntity.ok(dtoList);
+    }
+
+
+    // --------------------------------------------------------
+    // ------------------ Sección POST ------------------------
+    // --------------------------------------------------------
+
+    // Crea eventos para un usuario origen y varios usuarios destino
     @PostMapping
     public ResponseEntity<ResponseEventoDTO> postEvento(@Valid @RequestBody RequestEventoDTO request){
 

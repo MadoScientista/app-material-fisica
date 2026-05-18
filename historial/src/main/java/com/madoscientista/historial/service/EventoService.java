@@ -44,7 +44,17 @@ public class EventoService {
         return eventoCreado;
     }
 
+    // --------------------------------------------------------
+    // ------------------ Sección GET -------------------------
+    // --------------------------------------------------------
+
+    // Retorna una lista de eventos filtrados por el ID de un usuario
     public List<Evento> getEventosByIdUsuarioOrigen(Long idUsuario){
         return eRepo.findAllByIdUsuarioOrigen(idUsuario);
+    }
+
+    // Retorna la lista de eventos disponibles en BD
+    public List<Evento> getEventos(){
+        return eRepo.findAll();
     }
 }
