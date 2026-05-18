@@ -200,7 +200,11 @@ public class EjercicioService {
                 idCreador, idsUsuariosCompartir, EVENTO_EJERCICIO_COMPARTIDO);
 
             // Incrementa el contador de ejercicios compartidos en el microservicio de logros
-            lClient.postIncrementarEjercicioCompartido(idCreador, idsUsuariosCompartir.size());
+            try {
+                lClient.postIncrementarEjercicioCompartido(idCreador, idsUsuariosCompartir.size());
+            } catch (FeignException e) {
+                log.warn("Error de comunicación con el microservicio de logros. Aumento en el recuento de logros no registrado");
+            }
         }
         return ejercicio;
     }

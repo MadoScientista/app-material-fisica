@@ -19,7 +19,7 @@ public class LogroMapper {
         ResponseLogroDTO response = new ResponseLogroDTO();
 
         response.setDescripcionTipoLogro(l.getTipoLogro().getDescripcion());
-        response.setFechaCompletado(l.isCompletado() ? l.getFechaCompletado().toString(): "No completado");
+        response.setFechaCompletado(l.isCompletado() && l.getFechaCompletado() != null ? l.getFechaCompletado().toString() : "No completado");
         response.setIdUsuario(l.getIdUsuario());
         response.setNombreTipoLogro(l.getTipoLogro().getNombre());
 

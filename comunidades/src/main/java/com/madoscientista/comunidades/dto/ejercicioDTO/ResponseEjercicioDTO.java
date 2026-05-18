@@ -18,5 +18,6 @@ public class ResponseEjercicioDTO {
     private String incognita;
     private Long idPlantillaEnunciado;
     private String enunciado;
+    private String respuesta;
 
 }

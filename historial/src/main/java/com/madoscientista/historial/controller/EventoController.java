@@ -1,5 +1,6 @@
 package com.madoscientista.historial.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +93,25 @@ public class EventoController {
         
         log.debug("Eventos creados {}", response);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    // Permite crear eventos para distintos usuarios
+    @PostMapping("/lista")
+    public ResponseEntity<List<ResponseEventoDTO>> postEventos(@Valid @RequestBody List<RequestEventoDTO> requests) {
+        log.debug("Solicitud de creación de eventos múltiples: {}", requests);
+        List<ResponseEventoDTO> responses = new ArrayList<>();
+        for (RequestEventoDTO request : requests) {
+            TipoEvento tipoEvento = teService.getById(request.getIdTipoEvento());
+            if (tipoEvento == null) continue;
+            Evento evento = eService.postEvento(
+                eMapper.toEntity(request, tipoEvento), 
+                request.getIdUsuarioDestino()
+            );
+            if (evento != null) {
+                responses.add(eMapper.toDTO(evento));
+            }
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(responses);
     }
     
 }
