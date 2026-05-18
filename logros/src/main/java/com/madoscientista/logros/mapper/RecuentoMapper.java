@@ -22,11 +22,11 @@ public class RecuentoMapper {
         dto.setIdUsuario(recuento.getIdUsuario());
         Map<String, String> mapaRecuento = new LinkedHashMap<>();
 
-        mapaRecuento.put("Ejercicios creados", recuento.getNEjerciciosCreados().toString());
-        mapaRecuento.put("Ejercicios compartidos", recuento.getNEjerciciosCompartidos().toString());
-        mapaRecuento.put("Comunidades", recuento.getNComunidades().toString());
-        mapaRecuento.put("Items creados", recuento.getNItemsCreados().toString());
-        mapaRecuento.put("Materiales creados", recuento.getNMaterialesCreados().toString());
+        mapaRecuento.put("ejerciciosCreados", recuento.getNEjerciciosCreados().toString());
+        mapaRecuento.put("ejerciciosCompartidos", recuento.getNEjerciciosCompartidos().toString());
+        mapaRecuento.put("comunidades", recuento.getNComunidades().toString());
+        mapaRecuento.put("itemsCreados", recuento.getNItemsCreados().toString());
+        mapaRecuento.put("materialesCreados", recuento.getNMaterialesCreados().toString());
 
         dto.setRecuento(mapaRecuento);
 

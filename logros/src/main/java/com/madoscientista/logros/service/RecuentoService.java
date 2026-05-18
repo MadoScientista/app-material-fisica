@@ -77,9 +77,9 @@ public class RecuentoService {
         Map<String, String> map = new LinkedHashMap<>();
         map.put("ejerciciosCreados", r.getNEjerciciosCreados().toString());
         map.put("ejerciciosCompartidos", r.getNEjerciciosCompartidos().toString());
-        map.put("nComunidades", r.getNComunidades().toString());
-        map.put("nItemsCreados", r.getNItemsCreados().toString());
-        map.put("nMaterialesCreados", r.getNMaterialesCreados().toString());
+        map.put("comunidades", r.getNComunidades().toString());
+        map.put("itemsCreados", r.getNItemsCreados().toString());
+        map.put("materialesCreados", r.getNMaterialesCreados().toString());
         return map;
     }
 
