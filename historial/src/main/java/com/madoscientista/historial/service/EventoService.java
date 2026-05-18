@@ -11,7 +11,6 @@ import com.madoscientista.historial.model.Evento;
 import com.madoscientista.historial.repository.EventoRepository;
 
 import feign.FeignException;
-import feign.FeignException.FeignClientException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

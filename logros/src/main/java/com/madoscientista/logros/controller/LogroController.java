@@ -24,7 +24,6 @@ import com.madoscientista.logros.dto.recuentoDTO.ResponseRecuentoDTO;
 import com.madoscientista.logros.service.LogroService;
 import com.madoscientista.logros.service.RecuentoService;
 
-import feign.Response;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
