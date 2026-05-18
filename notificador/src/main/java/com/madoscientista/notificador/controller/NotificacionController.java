@@ -111,7 +111,7 @@ public class NotificacionController {
 
 
     // Retorna las notificaciones no leídas por un usuario
-    @GetMapping("leidas/usuarios/{idUsuario}")
+    @GetMapping("no-leidas/usuarios/{idUsuario}")
     public ResponseEntity<List<ResponseNotificacionDTO>> getNoLeidasByIdUsuario(@PathVariable Long idUsuario){
         log.info("Lista de notificaciones no leídas por un usuario solicitada");
 
