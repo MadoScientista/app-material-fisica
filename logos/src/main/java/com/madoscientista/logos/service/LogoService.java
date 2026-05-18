@@ -163,6 +163,10 @@ public class LogoService {
         List<Long> destinos = new ArrayList<>();
         destinos.add(idUsuarioOrigen);
         eventoDTO.setIdUsuarioDestino(destinos);
-        hClient.postEvento(eventoDTO);
+        try{
+            hClient.postEvento(eventoDTO);
+        }catch(FeignException e){
+            log.warn("Error de comunicación con microservicio historial. Evento no registrado");
+        }
     }
 }

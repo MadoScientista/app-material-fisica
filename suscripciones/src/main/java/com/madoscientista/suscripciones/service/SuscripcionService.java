@@ -13,6 +13,10 @@ import com.madoscientista.suscripciones.model.Suscripcion;
 import com.madoscientista.suscripciones.model.TipoSuscripcion;
 import com.madoscientista.suscripciones.repository.SuscripcionRepository;
 
+import feign.FeignException;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class SuscripcionService {
     
@@ -159,7 +163,12 @@ public class SuscripcionService {
         eventoDTO.setIdTipoEvento(idTipoEvento);
         eventoDTO.setIdUsuarioDestino(idUsuarioDestino);
         eventoDTO.setIdUsuarioOrigen(idUsuarioOrigen);
-        hClient.postEvento(eventoDTO);
+        try{
+            hClient.postEvento(eventoDTO);
+        }catch(FeignException e){
+            log.warn("Error de comunicación con microservicio historial. Evento no registrado");
+        }
+        
     }
 
 }

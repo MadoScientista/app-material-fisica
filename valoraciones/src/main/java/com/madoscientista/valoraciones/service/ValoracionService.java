@@ -13,6 +13,10 @@ import com.madoscientista.valoraciones.dto.ValoracionDTO.RequestValoracionDTO;
 import com.madoscientista.valoraciones.model.Valoracion;
 import com.madoscientista.valoraciones.repository.ValoracionRepository;
 
+import feign.FeignException;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class ValoracionService {
 
@@ -111,6 +115,10 @@ public class ValoracionService {
         eventoDTO.setIdTipoEvento(idTipoEvento);
         eventoDTO.setIdUsuarioDestino(idUsuarioDestino);
         eventoDTO.setIdUsuarioOrigen(idUsuarioOrigen);
-        hClient.postEvento(eventoDTO);
+        try{
+            hClient.postEvento(eventoDTO);
+        }catch(FeignException e){
+            log.warn("Error de comunicación con microservicio historial. Evento no registrado");
+        }
     }
 }

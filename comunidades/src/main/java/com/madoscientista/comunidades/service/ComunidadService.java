@@ -235,7 +235,11 @@ public class ComunidadService {
         eventoDTO.setIdTipoEvento(idTipoEvento);
         eventoDTO.setIdUsuarioDestino(idUsuarioDestino);
         eventoDTO.setIdUsuarioOrigen(idUsuarioOrigen);
-        hClient.postEvento(eventoDTO);
+        try{
+            hClient.postEvento(eventoDTO);
+        }catch(FeignException e){
+            log.warn("Error de comunicación con microservicio historial. Evento no registrado");
+        }
     }
 
 }

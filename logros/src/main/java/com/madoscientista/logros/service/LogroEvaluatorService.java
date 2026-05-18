@@ -17,6 +17,10 @@ import com.madoscientista.logros.model.TipoLogro;
 import com.madoscientista.logros.repository.LogroRepository;
 import com.madoscientista.logros.repository.TipoLogroRepository;
 
+import feign.FeignException;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class LogroEvaluatorService {
 
@@ -104,7 +108,11 @@ public class LogroEvaluatorService {
             lRepo.saveAll(aActualizar);
         }
         if (!eventos.isEmpty()) {
-            hClient.postEventos(eventos);
+            try{
+                hClient.postEventos(eventos);
+            }catch(FeignException e){
+                log.warn("Error de comunicación con microservicio historial. Evento no registrado");
+            }
         }
     }
 
