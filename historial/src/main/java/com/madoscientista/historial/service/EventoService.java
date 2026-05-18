@@ -10,6 +10,7 @@ import com.madoscientista.historial.dto.EventoDTO.RequestEventoDTO;
 import com.madoscientista.historial.model.Evento;
 import com.madoscientista.historial.repository.EventoRepository;
 
+import feign.FeignException;
 import feign.FeignException.FeignClientException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,7 +35,7 @@ public class EventoService {
 
             try{
                 nClient.postNotificacion(request);
-            }catch(FeignClientException e){
+            }catch(FeignException e){
                 log.error("Error al notificar el evento ID: {}, Causa: {}", 
                 eventoCreado.getIdEvento(), 
                 e.getMessage());
