@@ -41,19 +41,24 @@ public class NotificacionService {
         return notificacionRepo.findByIdUsuarioDestinoAndLeidoFalse(idUsuario);
     }
 
-     // Retorna una lista de notificaciones leídas por un usuario según el ID del usuario
-     public List<Notificacion> getNotificacionesLeidasByUsuarioId(Long idUsuario){
+    // Retorna una lista de notificaciones leídas por un usuario según el ID del usuario
+    public List<Notificacion> getNotificacionesLeidasByUsuarioId(Long idUsuario){
         return notificacionRepo.findByIdUsuarioDestinoAndLeidoTrue(idUsuario);
     }
 
-     // Retorna una lista de todas las notificaciones por un usuario según el ID del usuario
-     public List<Notificacion> getAllNotificacionesByUsuarioId(Long idUsuario){
+    // Retorna una lista de todas las notificaciones por un usuario según el ID del usuario
+    public List<Notificacion> getAllNotificacionesByUsuarioId(Long idUsuario){
         return notificacionRepo.findByIdUsuarioDestino(idUsuario);
     }
 
      // Retorna una notificación específica por su ID
      public Notificacion getNotificacionById(Long idNotificacion){
         return notificacionRepo.findById(idNotificacion).orElse(null);
+    }
+
+    // Retorna todas las notificaciones disponibles en DB
+    public List<Notificacion> getNotificaciones(){
+        return notificacionRepo.findAll();
     }
 
     // --------------------------------------------------------
