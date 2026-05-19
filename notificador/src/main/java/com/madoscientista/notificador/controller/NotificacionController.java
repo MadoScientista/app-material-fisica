@@ -75,6 +75,22 @@ public class NotificacionController {
         return ResponseEntity.ok(dtoList);
     }
 
+    // Retorna una notificación filtrada por id
+    @GetMapping("{idNotificacion}")
+    public ResponseEntity<ResponseNotificacionDTO> getNotificacionById(@PathVariable Long idNotificacion){
+        log.info("Notificación solicitada por id {}", idNotificacion);
+
+        Notificacion n = nService.getNotificacionById(idNotificacion);
+        if (n == null) {
+            log.info("Notificación no encontrada para id {}", idNotificacion);
+            return ResponseEntity.notFound().build();
+        }
+
+        ResponseNotificacionDTO dto = nMapper.toDTO(n);
+        log.debug("Notificación encontrada {}", dto);
+        return ResponseEntity.ok(dto);
+    }
+
     // Retorna las notificaciones filtradas por ID de usuario
     @GetMapping("usuarios/{idUsuario}")
     public ResponseEntity<List<ResponseNotificacionDTO>> getByIdUsuario(@PathVariable Long idUsuario){
@@ -126,4 +142,5 @@ public class NotificacionController {
         log.debug("Lista de notificaciones encontrada, {}", dtoList);
         return ResponseEntity.ok(dtoList);
     }
+
 }

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ResponseNotificacionDTO {
 
+    private Long idNotificacion;
     private Long idUsuario;
     private String fecha;
     private String mensaje;

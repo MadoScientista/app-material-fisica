@@ -59,6 +59,7 @@ public class NotificacionMapper {
     public ResponseNotificacionDTO toDTO(Notificacion notificacion){
         ResponseNotificacionDTO response = new ResponseNotificacionDTO();
 
+        response.setIdNotificacion(notificacion.getIdNotificacion());
         response.setFecha(notificacion.getFechaCreacion().toString());
         response.setIdUsuario(notificacion.getIdUsuarioDestino());
         response.setLeido(notificacion.isLeido());

@@ -53,7 +53,10 @@ public class NotificacionService {
 
      // Retorna una notificación específica por su ID
      public Notificacion getNotificacionById(Long idNotificacion){
-        return notificacionRepo.findById(idNotificacion).orElse(null);
+        Notificacion n = notificacionRepo.findById(idNotificacion).orElse(null);
+        n.setLeido(true);
+        Notificacion nActualizada = notificacionRepo.save(n);
+        return nActualizada;
     }
 
     // Retorna todas las notificaciones disponibles en DB
