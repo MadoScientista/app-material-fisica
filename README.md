@@ -1,4 +1,4 @@
-# App ejercicios de física
+# App Material de Física
 
  Autor: Samuel Cortés
 
@@ -7,7 +7,7 @@
 
 ## Microservicios
 
-1. Generador de ejercicios
+1. Generador de ejercicios: Genera a partir de distintos criterios, ejercicios de física coherentes en variables, resultado y texto.
 2. Usuario
 3. Historial
 4. Notificador
