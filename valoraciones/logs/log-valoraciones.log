@@ -1,0 +1,98 @@
+2026-05-19T01:19:05.166-04:00  INFO 2108 --- [valoraciones] [main] c.m.v.ValoracionesApplication            : Starting ValoracionesApplication using Java 26 with PID 2108 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\valoraciones\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:19:05.168-04:00 DEBUG 2108 --- [valoraciones] [main] c.m.v.ValoracionesApplication            : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:19:05.169-04:00  INFO 2108 --- [valoraciones] [main] c.m.v.ValoracionesApplication            : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:19:06.058-04:00  INFO 2108 --- [valoraciones] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:19:06.120-04:00  INFO 2108 --- [valoraciones] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 1 JPA repository interface.
+2026-05-19T01:19:06.330-04:00  INFO 2108 --- [valoraciones] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=de673eaa-ed0f-32e2-9221-2f83b5f16db4
+2026-05-19T01:19:06.728-04:00  INFO 2108 --- [valoraciones] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8088 (http)
+2026-05-19T01:19:06.746-04:00  INFO 2108 --- [valoraciones] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:19:06.747-04:00  INFO 2108 --- [valoraciones] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:19:06.830-04:00  INFO 2108 --- [valoraciones] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1619 ms
+2026-05-19T01:19:07.522-04:00  INFO 2108 --- [valoraciones] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:19:07.895-04:00  INFO 2108 --- [valoraciones] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2b90cc1
+2026-05-19T01:19:07.899-04:00  INFO 2108 --- [valoraciones] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:19:07.940-04:00  INFO 2108 --- [valoraciones] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/valoraciones_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:19:08.025-04:00  INFO 2108 --- [valoraciones] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.031s)
+2026-05-19T01:19:08.043-04:00  INFO 2108 --- [valoraciones] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `valoraciones_db`: 2
+2026-05-19T01:19:08.049-04:00  INFO 2108 --- [valoraciones] [main] o.f.core.internal.command.DbMigrate      : Schema `valoraciones_db` is up to date. No migration necessary.
+2026-05-19T01:19:08.156-04:00  INFO 2108 --- [valoraciones] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:19:08.209-04:00  INFO 2108 --- [valoraciones] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:19:08.733-04:00  INFO 2108 --- [valoraciones] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:19:08.790-04:00  WARN 2108 --- [valoraciones] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:19:08.802-04:00  INFO 2108 --- [valoraciones] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/valoraciones_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: valoraciones_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:19:09.416-04:00  INFO 2108 --- [valoraciones] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:19:09.425-04:00  INFO 2108 --- [valoraciones] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:19:09.494-04:00  INFO 2108 --- [valoraciones] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:19:09.736-04:00  WARN 2108 --- [valoraciones] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:19:11.461-04:00  INFO 2108 --- [valoraciones] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:19:11.477-04:00  INFO 2108 --- [valoraciones] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:19:11.567-04:00  INFO 2108 --- [valoraciones] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8088 (http) with context path '/'
+2026-05-19T01:19:12.573-04:00  INFO 2108 --- [valoraciones] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:19:12.580-04:00  INFO 2108 --- [valoraciones] [main] c.m.v.ValoracionesApplication            : Started ValoracionesApplication in 8.759 seconds (process running for 9.327)
+2026-05-19T01:19:13.157-04:00  INFO 2108 --- [valoraciones] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:19:13.157-04:00  INFO 2108 --- [valoraciones] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:19:13.158-04:00  INFO 2108 --- [valoraciones] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-05-19T01:40:24.988-04:00  INFO 21476 --- [valoraciones] [main] c.m.v.ValoracionesApplication            : Starting ValoracionesApplication using Java 26 with PID 21476 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\valoraciones\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:40:24.990-04:00 DEBUG 21476 --- [valoraciones] [main] c.m.v.ValoracionesApplication            : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:40:24.991-04:00  INFO 21476 --- [valoraciones] [main] c.m.v.ValoracionesApplication            : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:40:25.747-04:00  INFO 21476 --- [valoraciones] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:40:25.789-04:00  INFO 21476 --- [valoraciones] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 1 JPA repository interface.
+2026-05-19T01:40:25.971-04:00  INFO 21476 --- [valoraciones] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=de673eaa-ed0f-32e2-9221-2f83b5f16db4
+2026-05-19T01:40:26.364-04:00  INFO 21476 --- [valoraciones] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8088 (http)
+2026-05-19T01:40:26.385-04:00  INFO 21476 --- [valoraciones] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:40:26.386-04:00  INFO 21476 --- [valoraciones] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:40:26.442-04:00  INFO 21476 --- [valoraciones] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1411 ms
+2026-05-19T01:40:27.070-04:00  INFO 21476 --- [valoraciones] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:40:27.343-04:00  INFO 21476 --- [valoraciones] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@30bd39d5
+2026-05-19T01:40:27.345-04:00  INFO 21476 --- [valoraciones] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:40:27.383-04:00  INFO 21476 --- [valoraciones] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/valoraciones_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:40:27.447-04:00  INFO 21476 --- [valoraciones] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table `valoraciones_db`.`flyway_schema_history` does not exist yet
+2026-05-19T01:40:27.450-04:00  INFO 21476 --- [valoraciones] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.020s)
+2026-05-19T01:40:27.471-04:00  INFO 21476 --- [valoraciones] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table `valoraciones_db`.`flyway_schema_history` ...
+2026-05-19T01:40:27.529-04:00  INFO 21476 --- [valoraciones] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `valoraciones_db`: << Empty Schema >>
+2026-05-19T01:40:27.539-04:00  INFO 21476 --- [valoraciones] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `valoraciones_db` to version "1 - init"
+2026-05-19T01:40:27.550-04:00  WARN 21476 --- [valoraciones] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: Can't create database 'valoraciones_db'; database exists (SQL State: HY000 - Error Code: 1007)
+2026-05-19T01:40:27.616-04:00  INFO 21476 --- [valoraciones] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `valoraciones_db` to version "2 - poblado datos prueba"
+2026-05-19T01:40:27.643-04:00  INFO 21476 --- [valoraciones] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema `valoraciones_db`, now at version v2 (execution time 00:00.056s)
+2026-05-19T01:40:27.719-04:00  INFO 21476 --- [valoraciones] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:40:27.758-04:00  INFO 21476 --- [valoraciones] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:40:28.061-04:00  INFO 21476 --- [valoraciones] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:40:28.102-04:00  WARN 21476 --- [valoraciones] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:40:28.113-04:00  INFO 21476 --- [valoraciones] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/valoraciones_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: valoraciones_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:40:28.740-04:00  INFO 21476 --- [valoraciones] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:40:28.749-04:00  INFO 21476 --- [valoraciones] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:40:28.809-04:00  INFO 21476 --- [valoraciones] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:40:28.991-04:00  WARN 21476 --- [valoraciones] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:40:29.827-04:00  INFO 21476 --- [valoraciones] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:40:29.828-04:00  INFO 21476 --- [valoraciones] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:40:29.829-04:00  INFO 21476 --- [valoraciones] [RMI TCP Connection(2)-127.0.0.1] o.s.b.f.s.DefaultListableBeanFactory     : Obtaining singleton bean 'webEndpointServletHandlerMapping' in thread "RMI TCP Connection(2)-127.0.0.1" while other thread holds singleton lock for other beans [simpleDiscoveryClient, simpleDiscoveryProperties, compositeDiscoveryClient]
+2026-05-19T01:40:29.830-04:00  INFO 21476 --- [valoraciones] [RMI TCP Connection(2)-127.0.0.1] o.s.b.f.s.DefaultListableBeanFactory     : Obtaining singleton bean 'management.endpoints.web.cors-org.springframework.boot.actuate.autoconfigure.endpoint.web.CorsEndpointProperties' in thread "RMI TCP Connection(2)-127.0.0.1" while other thread holds singleton lock for other beans [simpleDiscoveryClient, simpleDiscoveryProperties, compositeDiscoveryClient]
+2026-05-19T01:40:29.834-04:00  INFO 21476 --- [valoraciones] [RMI TCP Connection(2)-127.0.0.1] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:40:29.838-04:00  INFO 21476 --- [valoraciones] [RMI TCP Connection(2)-127.0.0.1] o.s.b.f.s.DefaultListableBeanFactory     : Obtaining singleton bean 'controllerEndpointHandlerMapping' in thread "RMI TCP Connection(2)-127.0.0.1" while other thread holds singleton lock for other beans [simpleDiscoveryClient, simpleDiscoveryProperties, compositeDiscoveryClient]
+2026-05-19T01:40:29.842-04:00  INFO 21476 --- [valoraciones] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
+2026-05-19T01:40:30.551-04:00  INFO 21476 --- [valoraciones] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:40:30.622-04:00  INFO 21476 --- [valoraciones] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8088 (http) with context path '/'
+2026-05-19T01:40:31.628-04:00  INFO 21476 --- [valoraciones] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:40:31.630-04:00  INFO 21476 --- [valoraciones] [main] c.m.v.ValoracionesApplication            : Started ValoracionesApplication in 8.031 seconds (process running for 8.622)

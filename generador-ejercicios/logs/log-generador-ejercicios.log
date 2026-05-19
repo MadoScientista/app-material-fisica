@@ -1,0 +1,310 @@
+2026-05-19T01:22:49.601-04:00  INFO 16400 --- [generador-ejercicios] [main] c.m.g.GeneradorEjerciciosApplication     : Starting GeneradorEjerciciosApplication using Java 26 with PID 16400 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\generador-ejercicios\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:22:49.603-04:00  INFO 16400 --- [generador-ejercicios] [main] c.m.g.GeneradorEjerciciosApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:22:50.645-04:00  INFO 16400 --- [generador-ejercicios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:22:50.712-04:00  INFO 16400 --- [generador-ejercicios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 5 JPA repository interfaces.
+2026-05-19T01:22:50.919-04:00  INFO 16400 --- [generador-ejercicios] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=079a3f71-6859-3ce3-aceb-560d3b2ca498
+2026-05-19T01:22:51.386-04:00  INFO 16400 --- [generador-ejercicios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2026-05-19T01:22:51.405-04:00  INFO 16400 --- [generador-ejercicios] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:22:51.406-04:00  INFO 16400 --- [generador-ejercicios] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:22:51.483-04:00  INFO 16400 --- [generador-ejercicios] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1829 ms
+2026-05-19T01:22:52.208-04:00  INFO 16400 --- [generador-ejercicios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:22:52.592-04:00  INFO 16400 --- [generador-ejercicios] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@35f760a4
+2026-05-19T01:22:52.594-04:00  INFO 16400 --- [generador-ejercicios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:22:52.638-04:00  INFO 16400 --- [generador-ejercicios] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/generador_ejercicios_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:22:52.742-04:00  INFO 16400 --- [generador-ejercicios] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.038s)
+2026-05-19T01:22:52.763-04:00  INFO 16400 --- [generador-ejercicios] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `generador_ejercicios_db`: 2
+2026-05-19T01:22:52.769-04:00  INFO 16400 --- [generador-ejercicios] [main] o.f.core.internal.command.DbMigrate      : Schema `generador_ejercicios_db` is up to date. No migration necessary.
+2026-05-19T01:22:52.892-04:00  INFO 16400 --- [generador-ejercicios] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:22:53.011-04:00  INFO 16400 --- [generador-ejercicios] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:22:53.428-04:00  INFO 16400 --- [generador-ejercicios] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:22:53.476-04:00  WARN 16400 --- [generador-ejercicios] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:22:53.486-04:00  INFO 16400 --- [generador-ejercicios] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/generador_ejercicios_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: generador_ejercicios_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:22:54.089-04:00  INFO 16400 --- [generador-ejercicios] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:22:54.094-04:00  INFO 16400 --- [generador-ejercicios] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:22:54.153-04:00  INFO 16400 --- [generador-ejercicios] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:22:54.393-04:00  WARN 16400 --- [generador-ejercicios] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:22:55.970-04:00  INFO 16400 --- [generador-ejercicios] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:22:55.995-04:00  INFO 16400 --- [generador-ejercicios] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:22:56.075-04:00  INFO 16400 --- [generador-ejercicios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/'
+2026-05-19T01:22:57.081-04:00  INFO 16400 --- [generador-ejercicios] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:22:57.090-04:00  INFO 16400 --- [generador-ejercicios] [main] c.m.g.GeneradorEjerciciosApplication     : Started GeneradorEjerciciosApplication in 8.885 seconds (process running for 9.519)
+2026-05-19T01:22:57.453-04:00  INFO 16400 --- [generador-ejercicios] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:22:57.453-04:00  INFO 16400 --- [generador-ejercicios] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:22:57.454-04:00  INFO 16400 --- [generador-ejercicios] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-05-19T01:43:05.521-04:00  INFO 2816 --- [generador-ejercicios] [main] c.m.g.GeneradorEjerciciosApplication     : Starting GeneradorEjerciciosApplication using Java 26 with PID 2816 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\generador-ejercicios\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:43:05.524-04:00  INFO 2816 --- [generador-ejercicios] [main] c.m.g.GeneradorEjerciciosApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:43:06.491-04:00  INFO 2816 --- [generador-ejercicios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:43:06.560-04:00  INFO 2816 --- [generador-ejercicios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 5 JPA repository interfaces.
+2026-05-19T01:43:06.776-04:00  INFO 2816 --- [generador-ejercicios] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=079a3f71-6859-3ce3-aceb-560d3b2ca498
+2026-05-19T01:43:07.173-04:00  INFO 2816 --- [generador-ejercicios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2026-05-19T01:43:07.184-04:00  INFO 2816 --- [generador-ejercicios] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:43:07.186-04:00  INFO 2816 --- [generador-ejercicios] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:43:07.233-04:00  INFO 2816 --- [generador-ejercicios] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1664 ms
+2026-05-19T01:43:07.907-04:00  INFO 2816 --- [generador-ejercicios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:43:08.189-04:00  INFO 2816 --- [generador-ejercicios] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@35f760a4
+2026-05-19T01:43:08.191-04:00  INFO 2816 --- [generador-ejercicios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:43:08.231-04:00  INFO 2816 --- [generador-ejercicios] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/generador_ejercicios_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:43:08.307-04:00  INFO 2816 --- [generador-ejercicios] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table `generador_ejercicios_db`.`flyway_schema_history` does not exist yet
+2026-05-19T01:43:08.311-04:00  INFO 2816 --- [generador-ejercicios] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.024s)
+2026-05-19T01:43:08.330-04:00  INFO 2816 --- [generador-ejercicios] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table `generador_ejercicios_db`.`flyway_schema_history` ...
+2026-05-19T01:43:08.421-04:00  INFO 2816 --- [generador-ejercicios] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `generador_ejercicios_db`: << Empty Schema >>
+2026-05-19T01:43:08.439-04:00  INFO 2816 --- [generador-ejercicios] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `generador_ejercicios_db` to version "1 - init"
+2026-05-19T01:43:08.448-04:00  WARN 2816 --- [generador-ejercicios] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: 'utf8' is currently an alias for the character set UTF8MB3, but will be an alias for UTF8MB4 in a future release. Please consider using UTF8MB4 in order to be unambiguous. (SQL State: HY000 - Error Code: 3719)
+2026-05-19T01:43:08.483-04:00  WARN 2816 --- [generador-ejercicios] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: 'utf8mb3' is deprecated and will be removed in a future release. Please use utf8mb4 instead (SQL State: HY000 - Error Code: 1287)
+2026-05-19T01:43:08.522-04:00  WARN 2816 --- [generador-ejercicios] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: 'utf8mb3' is deprecated and will be removed in a future release. Please use utf8mb4 instead (SQL State: HY000 - Error Code: 1287)
+2026-05-19T01:43:08.562-04:00  WARN 2816 --- [generador-ejercicios] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: 'utf8mb3' is deprecated and will be removed in a future release. Please use utf8mb4 instead (SQL State: HY000 - Error Code: 1287)
+2026-05-19T01:43:08.608-04:00  WARN 2816 --- [generador-ejercicios] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: 'utf8mb3' is deprecated and will be removed in a future release. Please use utf8mb4 instead (SQL State: HY000 - Error Code: 1287)
+2026-05-19T01:43:08.649-04:00  WARN 2816 --- [generador-ejercicios] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: 'utf8mb3' is deprecated and will be removed in a future release. Please use utf8mb4 instead (SQL State: HY000 - Error Code: 1287)
+2026-05-19T01:43:08.687-04:00  WARN 2816 --- [generador-ejercicios] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: 'utf8mb3' is deprecated and will be removed in a future release. Please use utf8mb4 instead (SQL State: HY000 - Error Code: 1287)
+2026-05-19T01:43:08.732-04:00  WARN 2816 --- [generador-ejercicios] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: 'utf8mb3' is deprecated and will be removed in a future release. Please use utf8mb4 instead (SQL State: HY000 - Error Code: 1287)
+2026-05-19T01:43:08.766-04:00  INFO 2816 --- [generador-ejercicios] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `generador_ejercicios_db` to version "2 - poblado tablas"
+2026-05-19T01:43:08.885-04:00  INFO 2816 --- [generador-ejercicios] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema `generador_ejercicios_db`, now at version v2 (execution time 00:00.405s)
+2026-05-19T01:43:09.045-04:00  INFO 2816 --- [generador-ejercicios] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:43:09.089-04:00  INFO 2816 --- [generador-ejercicios] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:43:09.404-04:00  INFO 2816 --- [generador-ejercicios] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:43:09.446-04:00  WARN 2816 --- [generador-ejercicios] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:43:09.456-04:00  INFO 2816 --- [generador-ejercicios] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/generador_ejercicios_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: generador_ejercicios_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:43:10.141-04:00  INFO 2816 --- [generador-ejercicios] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:43:10.148-04:00  INFO 2816 --- [generador-ejercicios] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:43:10.205-04:00  INFO 2816 --- [generador-ejercicios] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:43:10.432-04:00  WARN 2816 --- [generador-ejercicios] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:43:12.062-04:00  INFO 2816 --- [generador-ejercicios] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:43:12.087-04:00  INFO 2816 --- [generador-ejercicios] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:43:12.155-04:00  INFO 2816 --- [generador-ejercicios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/'
+2026-05-19T01:43:13.162-04:00  INFO 2816 --- [generador-ejercicios] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:43:13.170-04:00  INFO 2816 --- [generador-ejercicios] [main] c.m.g.GeneradorEjerciciosApplication     : Started GeneradorEjerciciosApplication in 9.0 seconds (process running for 9.62)
+2026-05-19T01:43:13.391-04:00  INFO 2816 --- [generador-ejercicios] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:43:13.391-04:00  INFO 2816 --- [generador-ejercicios] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:43:13.392-04:00  INFO 2816 --- [generador-ejercicios] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-05-19T01:43:19.702-04:00  INFO 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] c.m.g.c.GeneradorEjercicioController     : Ejercicio solicitado
+2026-05-19T01:43:20.150-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        pe1_0.id_plantilla_enunciado,
+        pe1_0.id_contexto_fisico,
+        pe1_0.enunciado,
+        pe1_0.id_incognita,
+        pe1_0.resultado_positivo,
+        pe1_0.id_tema_fisica 
+    from
+        plantilla_enunciado pe1_0 
+    left join
+        tema_fisica t1_0 
+            on t1_0.id_tema_fisica=pe1_0.id_tema_fisica 
+    left join
+        contexto_fisico c1_0 
+            on c1_0.id_contexto_fisico=pe1_0.id_contexto_fisico 
+    left join
+        variable_fisica i1_0 
+            on i1_0.id_variable_fisica=pe1_0.id_incognita 
+    where
+        t1_0.nombre=? 
+        and c1_0.nombre=? 
+        and i1_0.nombre=? 
+        and pe1_0.resultado_positivo=?
+2026-05-19T01:43:20.184-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        cf1_0.id_contexto_fisico,
+        cf1_0.m_max,
+        cf1_0.m_min,
+        cf1_0.nombre,
+        cf1_0.v_max,
+        cf1_0.v_min,
+        cf1_0.x_max,
+        cf1_0.x_min 
+    from
+        contexto_fisico cf1_0 
+    where
+        cf1_0.id_contexto_fisico=?
+2026-05-19T01:43:20.206-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        vf1_0.id_variable_fisica,
+        vf1_0.id_magnitud_fisica,
+        mf1_0.id_magnitud_fisica,
+        mf1_0.nombre,
+        mf1_0.simbolo,
+        vf1_0.nombre,
+        vf1_0.simbolo 
+    from
+        variable_fisica vf1_0 
+    join
+        magnitud_fisica mf1_0 
+            on mf1_0.id_magnitud_fisica=vf1_0.id_magnitud_fisica 
+    where
+        vf1_0.id_variable_fisica=?
+2026-05-19T01:43:20.209-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        tf1_0.id_tema_fisica,
+        tf1_0.descripcion,
+        tf1_0.nombre 
+    from
+        tema_fisica tf1_0 
+    where
+        tf1_0.id_tema_fisica=?
+2026-05-19T01:43:20.228-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        udm1_0.id_unidad_de_medida,
+        udm1_0.es_basesi,
+        udm1_0.essi,
+        udm1_0.factor_conversionsi,
+        udm1_0.id_magnitud_fisica,
+        udm1_0.nombre,
+        udm1_0.simbolo 
+    from
+        unidad_de_medida udm1_0 
+    where
+        udm1_0.simbolo=?
+2026-05-19T01:43:20.234-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        udm1_0.id_unidad_de_medida,
+        udm1_0.es_basesi,
+        udm1_0.essi,
+        udm1_0.factor_conversionsi,
+        udm1_0.id_magnitud_fisica,
+        udm1_0.nombre,
+        udm1_0.simbolo 
+    from
+        unidad_de_medida udm1_0 
+    where
+        udm1_0.simbolo=?
+2026-05-19T01:43:20.238-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        udm1_0.id_unidad_de_medida,
+        udm1_0.es_basesi,
+        udm1_0.essi,
+        udm1_0.factor_conversionsi,
+        udm1_0.id_magnitud_fisica,
+        udm1_0.nombre,
+        udm1_0.simbolo 
+    from
+        unidad_de_medida udm1_0 
+    where
+        udm1_0.simbolo=?
+2026-05-19T01:43:20.240-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        mf1_0.id_magnitud_fisica,
+        mf1_0.nombre,
+        mf1_0.simbolo 
+    from
+        magnitud_fisica mf1_0 
+    where
+        mf1_0.id_magnitud_fisica=?
+2026-05-19T01:43:20.245-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        udm1_0.id_unidad_de_medida,
+        udm1_0.es_basesi,
+        udm1_0.essi,
+        udm1_0.factor_conversionsi,
+        udm1_0.id_magnitud_fisica,
+        udm1_0.nombre,
+        udm1_0.simbolo 
+    from
+        unidad_de_medida udm1_0 
+    where
+        udm1_0.simbolo=?
+2026-05-19T01:43:20.247-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        udm1_0.id_unidad_de_medida,
+        udm1_0.es_basesi,
+        udm1_0.essi,
+        udm1_0.factor_conversionsi,
+        udm1_0.id_magnitud_fisica,
+        udm1_0.nombre,
+        udm1_0.simbolo 
+    from
+        unidad_de_medida udm1_0 
+    where
+        udm1_0.simbolo=?
+2026-05-19T01:43:20.251-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        mf1_0.id_magnitud_fisica,
+        mf1_0.nombre,
+        mf1_0.simbolo 
+    from
+        magnitud_fisica mf1_0 
+    where
+        mf1_0.id_magnitud_fisica=?
+2026-05-19T01:43:20.255-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        udm1_0.id_unidad_de_medida,
+        udm1_0.es_basesi,
+        udm1_0.essi,
+        udm1_0.factor_conversionsi,
+        udm1_0.id_magnitud_fisica,
+        udm1_0.nombre,
+        udm1_0.simbolo 
+    from
+        unidad_de_medida udm1_0 
+    where
+        udm1_0.simbolo=?
+2026-05-19T01:43:20.266-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        vf1_0.id_variable_fisica,
+        vf1_0.id_magnitud_fisica,
+        vf1_0.nombre,
+        vf1_0.simbolo 
+    from
+        variable_fisica vf1_0 
+    where
+        vf1_0.simbolo=?
+2026-05-19T01:43:20.269-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        vf1_0.id_variable_fisica,
+        vf1_0.id_magnitud_fisica,
+        vf1_0.nombre,
+        vf1_0.simbolo 
+    from
+        variable_fisica vf1_0 
+    where
+        vf1_0.simbolo=?
+2026-05-19T01:43:20.274-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        vf1_0.id_variable_fisica,
+        vf1_0.id_magnitud_fisica,
+        vf1_0.nombre,
+        vf1_0.simbolo 
+    from
+        variable_fisica vf1_0 
+    where
+        vf1_0.simbolo=?
+2026-05-19T01:43:20.274-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        vf1_0.id_variable_fisica,
+        vf1_0.id_magnitud_fisica,
+        vf1_0.nombre,
+        vf1_0.simbolo 
+    from
+        variable_fisica vf1_0 
+    where
+        vf1_0.simbolo=?
+2026-05-19T01:43:20.284-04:00 DEBUG 2816 --- [generador-ejercicios] [http-nio-8081-exec-1] org.hibernate.SQL                        : 
+    select
+        vf1_0.id_variable_fisica,
+        vf1_0.id_magnitud_fisica,
+        vf1_0.nombre,
+        vf1_0.simbolo 
+    from
+        variable_fisica vf1_0 
+    where
+        vf1_0.simbolo=?

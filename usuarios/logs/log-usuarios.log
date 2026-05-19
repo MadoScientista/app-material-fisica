@@ -1,0 +1,210 @@
+2026-05-19T01:23:05.498-04:00  INFO 13168 --- [usuarios] [main] c.m.usuarios.UsuariosApplication         : Starting UsuariosApplication using Java 26 with PID 13168 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\usuarios\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:23:05.500-04:00 DEBUG 13168 --- [usuarios] [main] c.m.usuarios.UsuariosApplication         : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:23:05.500-04:00  INFO 13168 --- [usuarios] [main] c.m.usuarios.UsuariosApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:23:06.309-04:00  INFO 13168 --- [usuarios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:23:06.359-04:00  INFO 13168 --- [usuarios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+2026-05-19T01:23:06.546-04:00  INFO 13168 --- [usuarios] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=b40632c8-dfb0-3d68-bb9f-d5e008223b31
+2026-05-19T01:23:07.087-04:00  INFO 13168 --- [usuarios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8087 (http)
+2026-05-19T01:23:07.109-04:00  INFO 13168 --- [usuarios] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:23:07.110-04:00  INFO 13168 --- [usuarios] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:23:07.199-04:00  INFO 13168 --- [usuarios] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1662 ms
+2026-05-19T01:23:07.953-04:00  INFO 13168 --- [usuarios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:23:08.432-04:00  INFO 13168 --- [usuarios] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@14b5325f
+2026-05-19T01:23:08.433-04:00  INFO 13168 --- [usuarios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:23:08.502-04:00  INFO 13168 --- [usuarios] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/usuarios_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:23:08.626-04:00  INFO 13168 --- [usuarios] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.043s)
+2026-05-19T01:23:08.649-04:00  INFO 13168 --- [usuarios] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `usuarios_db`: 2
+2026-05-19T01:23:08.656-04:00  INFO 13168 --- [usuarios] [main] o.f.core.internal.command.DbMigrate      : Schema `usuarios_db` is up to date. No migration necessary.
+2026-05-19T01:23:08.786-04:00  INFO 13168 --- [usuarios] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:23:08.862-04:00  INFO 13168 --- [usuarios] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:23:09.479-04:00  INFO 13168 --- [usuarios] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:23:09.551-04:00  WARN 13168 --- [usuarios] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:23:09.569-04:00  INFO 13168 --- [usuarios] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/usuarios_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: usuarios_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:23:10.563-04:00  INFO 13168 --- [usuarios] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:23:10.576-04:00  INFO 13168 --- [usuarios] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:23:10.679-04:00  INFO 13168 --- [usuarios] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:23:11.045-04:00  WARN 13168 --- [usuarios] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:23:13.053-04:00  INFO 13168 --- [usuarios] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:23:13.080-04:00  INFO 13168 --- [usuarios] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:23:13.187-04:00  INFO 13168 --- [usuarios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8087 (http) with context path '/'
+2026-05-19T01:23:13.528-04:00  INFO 13168 --- [usuarios] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:23:13.528-04:00  INFO 13168 --- [usuarios] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:23:13.530-04:00  INFO 13168 --- [usuarios] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-05-19T01:23:14.193-04:00  INFO 13168 --- [usuarios] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:23:14.197-04:00  INFO 13168 --- [usuarios] [main] c.m.usuarios.UsuariosApplication         : Started UsuariosApplication in 10.04 seconds (process running for 10.639)
+2026-05-19T01:23:49.070-04:00  INFO 13168 --- [usuarios] [http-nio-8087-exec-2] c.m.u.controller.UsuarioController       : Solicitud creación de un nuevo usuario
+2026-05-19T01:23:49.119-04:00 DEBUG 13168 --- [usuarios] [http-nio-8087-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        usuario
+        (apellido, email, nombre, nombre_usuario, password) 
+    values
+        (?, ?, ?, ?, ?)
+2026-05-19T01:23:49.159-04:00  INFO 13168 --- [usuarios] [http-nio-8087-exec-2] c.m.usuarios.service.UsuarioService      : Intentando sincronizar logros
+2026-05-19T01:23:49.229-04:00  INFO 13168 --- [usuarios] [http-nio-8087-exec-2] c.m.usuarios.service.UsuarioService      : Logros sincronizados
+2026-05-19T01:23:49.229-04:00 DEBUG 13168 --- [usuarios] [http-nio-8087-exec-2] c.m.u.controller.UsuarioController       : Usuario creado: 
+2026-05-19T01:25:10.744-04:00  INFO 13168 --- [usuarios] [http-nio-8087-exec-4] c.m.u.controller.UsuarioController       : Solicitud de información de los usuarios: [14]
+2026-05-19T01:25:10.768-04:00 DEBUG 13168 --- [usuarios] [http-nio-8087-exec-4] org.hibernate.SQL                        : 
+    select
+        u1_0.id_usuario,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.nombre_usuario,
+        u1_0.password 
+    from
+        usuario u1_0 
+    where
+        u1_0.id_usuario=?
+2026-05-19T01:25:10.784-04:00  INFO 13168 --- [usuarios] [http-nio-8087-exec-4] c.m.u.controller.UsuarioController       : No se encontraron usuarios
+2026-05-19T01:41:29.041-04:00  INFO 25776 --- [usuarios] [main] c.m.usuarios.UsuariosApplication         : Starting UsuariosApplication using Java 26 with PID 25776 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\usuarios\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:41:29.044-04:00 DEBUG 25776 --- [usuarios] [main] c.m.usuarios.UsuariosApplication         : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:41:29.044-04:00  INFO 25776 --- [usuarios] [main] c.m.usuarios.UsuariosApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:41:29.972-04:00  INFO 25776 --- [usuarios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:41:30.026-04:00  INFO 25776 --- [usuarios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 2 JPA repository interfaces.
+2026-05-19T01:41:30.252-04:00  INFO 25776 --- [usuarios] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=b40632c8-dfb0-3d68-bb9f-d5e008223b31
+2026-05-19T01:41:30.677-04:00  INFO 25776 --- [usuarios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8087 (http)
+2026-05-19T01:41:30.695-04:00  INFO 25776 --- [usuarios] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:41:30.696-04:00  INFO 25776 --- [usuarios] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:41:30.788-04:00  INFO 25776 --- [usuarios] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1704 ms
+2026-05-19T01:41:31.407-04:00  INFO 25776 --- [usuarios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:41:31.757-04:00  INFO 25776 --- [usuarios] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@62360a68
+2026-05-19T01:41:31.761-04:00  INFO 25776 --- [usuarios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:41:31.809-04:00  INFO 25776 --- [usuarios] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/usuarios_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:41:31.892-04:00  INFO 25776 --- [usuarios] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table `usuarios_db`.`flyway_schema_history` does not exist yet
+2026-05-19T01:41:31.896-04:00  INFO 25776 --- [usuarios] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.029s)
+2026-05-19T01:41:31.916-04:00  INFO 25776 --- [usuarios] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table `usuarios_db`.`flyway_schema_history` ...
+2026-05-19T01:41:31.982-04:00  INFO 25776 --- [usuarios] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `usuarios_db`: << Empty Schema >>
+2026-05-19T01:41:31.996-04:00  INFO 25776 --- [usuarios] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `usuarios_db` to version "1 - init"
+2026-05-19T01:41:32.010-04:00  WARN 25776 --- [usuarios] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: Can't create database 'usuarios_db'; database exists (SQL State: HY000 - Error Code: 1007)
+2026-05-19T01:41:32.150-04:00  INFO 25776 --- [usuarios] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `usuarios_db` to version "2 - poblado tabla usuario"
+2026-05-19T01:41:32.189-04:00  INFO 25776 --- [usuarios] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema `usuarios_db`, now at version v2 (execution time 00:00.138s)
+2026-05-19T01:41:32.284-04:00  INFO 25776 --- [usuarios] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:41:32.331-04:00  INFO 25776 --- [usuarios] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:41:32.699-04:00  INFO 25776 --- [usuarios] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:41:32.739-04:00  WARN 25776 --- [usuarios] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:41:32.748-04:00  INFO 25776 --- [usuarios] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/usuarios_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: usuarios_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:41:33.393-04:00  INFO 25776 --- [usuarios] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:41:33.400-04:00  INFO 25776 --- [usuarios] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:41:33.465-04:00  INFO 25776 --- [usuarios] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:41:33.702-04:00  WARN 25776 --- [usuarios] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:41:35.453-04:00  INFO 25776 --- [usuarios] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:41:35.468-04:00  INFO 25776 --- [usuarios] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:41:35.536-04:00  INFO 25776 --- [usuarios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8087 (http) with context path '/'
+2026-05-19T01:41:36.540-04:00  INFO 25776 --- [usuarios] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:41:36.547-04:00  INFO 25776 --- [usuarios] [main] c.m.usuarios.UsuariosApplication         : Started UsuariosApplication in 8.87 seconds (process running for 9.448)
+2026-05-19T01:41:36.948-04:00  INFO 25776 --- [usuarios] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:41:36.948-04:00  INFO 25776 --- [usuarios] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:41:36.949-04:00  INFO 25776 --- [usuarios] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-05-19T01:41:48.530-04:00  INFO 25776 --- [usuarios] [http-nio-8087-exec-7] c.m.u.controller.UsuarioController       : Solicitud creación de un nuevo usuario
+2026-05-19T01:41:48.576-04:00 DEBUG 25776 --- [usuarios] [http-nio-8087-exec-7] org.hibernate.SQL                        : 
+    insert 
+    into
+        usuario
+        (apellido, email, nombre, nombre_usuario, password) 
+    values
+        (?, ?, ?, ?, ?)
+2026-05-19T01:41:48.621-04:00  INFO 25776 --- [usuarios] [http-nio-8087-exec-7] c.m.usuarios.service.UsuarioService      : Intentando sincronizar logros
+2026-05-19T01:41:49.338-04:00  INFO 25776 --- [usuarios] [http-nio-8087-exec-7] c.m.usuarios.service.UsuarioService      : Logros sincronizados
+2026-05-19T01:41:49.338-04:00 DEBUG 25776 --- [usuarios] [http-nio-8087-exec-7] c.m.u.controller.UsuarioController       : Usuario creado: 
+2026-05-19T01:42:17.226-04:00  INFO 25776 --- [usuarios] [http-nio-8087-exec-3] c.m.u.controller.UsuarioController       : Solicitud de información de los usuarios: [13]
+2026-05-19T01:42:17.252-04:00 DEBUG 25776 --- [usuarios] [http-nio-8087-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.id_usuario,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.nombre_usuario,
+        u1_0.password 
+    from
+        usuario u1_0 
+    where
+        u1_0.id_usuario=?
+2026-05-19T01:42:17.276-04:00 DEBUG 25776 --- [usuarios] [http-nio-8087-exec-3] c.m.u.controller.UsuarioController       : Usuarios encontrados: 
+2026-05-19T01:42:23.047-04:00  INFO 25776 --- [usuarios] [http-nio-8087-exec-4] c.m.u.controller.EjercicioController     : Solicitud de creación de un ejercicio
+2026-05-19T01:42:23.497-04:00 DEBUG 25776 --- [usuarios] [http-nio-8087-exec-4] org.hibernate.SQL                        : 
+    select
+        count(e1_0.id_ejercicio) 
+    from
+        ejercicio e1_0 
+    where
+        e1_0.id_creador=?
+2026-05-19T01:42:23.564-04:00  WARN 25776 --- [usuarios] [http-nio-8087-exec-4] c.m.usuarios.service.EjercicioService    : Error de comunicación con el microservicio generador-ejercicio
+2026-05-19T01:43:19.494-04:00  INFO 25776 --- [usuarios] [http-nio-8087-exec-9] c.m.u.controller.EjercicioController     : Solicitud de creación de un ejercicio
+2026-05-19T01:43:19.500-04:00 DEBUG 25776 --- [usuarios] [http-nio-8087-exec-9] org.hibernate.SQL                        : 
+    select
+        count(e1_0.id_ejercicio) 
+    from
+        ejercicio e1_0 
+    where
+        e1_0.id_creador=?
+2026-05-19T01:43:20.325-04:00 DEBUG 25776 --- [usuarios] [http-nio-8087-exec-9] org.hibernate.SQL                        : 
+    select
+        u1_0.id_usuario,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.nombre_usuario,
+        u1_0.password 
+    from
+        usuario u1_0 
+    where
+        u1_0.id_usuario=?
+2026-05-19T01:43:20.330-04:00 DEBUG 25776 --- [usuarios] [http-nio-8087-exec-9] org.hibernate.SQL                        : 
+    insert 
+    into
+        ejercicio
+        (id_creador, dificultad, enunciado, fecha_creacion, id_plantilla_enunciado, incognita, respuesta, tema) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2026-05-19T01:43:20.373-04:00  INFO 25776 --- [usuarios] [http-nio-8087-exec-8] c.m.u.controller.UsuarioController       : Solicitud de información de los usuarios: [13]
+2026-05-19T01:43:20.376-04:00 DEBUG 25776 --- [usuarios] [http-nio-8087-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.id_usuario,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.nombre_usuario,
+        u1_0.password 
+    from
+        usuario u1_0 
+    where
+        u1_0.id_usuario=?
+2026-05-19T01:43:20.376-04:00 DEBUG 25776 --- [usuarios] [http-nio-8087-exec-8] c.m.u.controller.UsuarioController       : Usuarios encontrados: 
+2026-05-19T01:43:20.524-04:00  INFO 25776 --- [usuarios] [http-nio-8087-exec-10] c.m.u.controller.UsuarioController       : Solicitud de información de los usuarios: [13]
+2026-05-19T01:43:20.524-04:00 DEBUG 25776 --- [usuarios] [http-nio-8087-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.id_usuario,
+        u1_0.apellido,
+        u1_0.email,
+        u1_0.nombre,
+        u1_0.nombre_usuario,
+        u1_0.password 
+    from
+        usuario u1_0 
+    where
+        u1_0.id_usuario=?
+2026-05-19T01:43:20.528-04:00 DEBUG 25776 --- [usuarios] [http-nio-8087-exec-10] c.m.u.controller.UsuarioController       : Usuarios encontrados: 
+2026-05-19T01:43:20.606-04:00  INFO 25776 --- [usuarios] [http-nio-8087-exec-9] c.m.u.controller.EjercicioController     : Ejercicio creado con éxito

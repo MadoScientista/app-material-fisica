@@ -1,0 +1,268 @@
+2026-05-19T01:24:34.324-04:00  INFO 24628 --- [material] [main] c.m.material.MaterialApplication         : Starting MaterialApplication using Java 26 with PID 24628 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\material\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:24:34.327-04:00 DEBUG 24628 --- [material] [main] c.m.material.MaterialApplication         : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:24:34.328-04:00  INFO 24628 --- [material] [main] c.m.material.MaterialApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:24:35.407-04:00  INFO 24628 --- [material] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:24:35.491-04:00  INFO 24628 --- [material] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 72 ms. Found 2 JPA repository interfaces.
+2026-05-19T01:24:35.793-04:00  INFO 24628 --- [material] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=9a0386f9-fa7a-3210-b1be-1709f710d931
+2026-05-19T01:24:36.326-04:00  INFO 24628 --- [material] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8084 (http)
+2026-05-19T01:24:36.348-04:00  INFO 24628 --- [material] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:24:36.349-04:00  INFO 24628 --- [material] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:24:36.440-04:00  INFO 24628 --- [material] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2022 ms
+2026-05-19T01:24:37.150-04:00  INFO 24628 --- [material] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:24:37.617-04:00  INFO 24628 --- [material] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7a7f9d45
+2026-05-19T01:24:37.619-04:00  INFO 24628 --- [material] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:24:37.726-04:00  INFO 24628 --- [material] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/material_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:24:37.840-04:00  INFO 24628 --- [material] [main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.039s)
+2026-05-19T01:24:37.860-04:00  INFO 24628 --- [material] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `material_db`: 1
+2026-05-19T01:24:37.868-04:00  INFO 24628 --- [material] [main] o.f.core.internal.command.DbMigrate      : Schema `material_db` is up to date. No migration necessary.
+2026-05-19T01:24:37.990-04:00  INFO 24628 --- [material] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:24:38.059-04:00  INFO 24628 --- [material] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:24:38.601-04:00  INFO 24628 --- [material] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:24:38.670-04:00  WARN 24628 --- [material] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:24:38.679-04:00  INFO 24628 --- [material] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/material_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: material_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:24:39.710-04:00  INFO 24628 --- [material] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:24:39.720-04:00  INFO 24628 --- [material] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:24:39.833-04:00  INFO 24628 --- [material] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:24:40.179-04:00  WARN 24628 --- [material] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:24:42.103-04:00  INFO 24628 --- [material] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:24:42.138-04:00  INFO 24628 --- [material] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:24:42.278-04:00  INFO 24628 --- [material] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8084 (http) with context path '/'
+2026-05-19T01:24:42.368-04:00  INFO 24628 --- [material] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:24:42.369-04:00  INFO 24628 --- [material] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:24:42.372-04:00  INFO 24628 --- [material] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-05-19T01:24:43.286-04:00  INFO 24628 --- [material] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:24:43.289-04:00  INFO 24628 --- [material] [main] c.m.material.MaterialApplication         : Started MaterialApplication in 10.373 seconds (process running for 10.939)
+2026-05-19T01:25:09.632-04:00 DEBUG 24628 --- [material] [http-nio-8084-exec-2] c.m.m.c.ItemEjercicioController          : Solicitud de creación de una lista de items: [RequestItemEjercicioDTO(idUsuarioCreador=14, titulo=Guía MRU, descripcion=Ejercicios de velocidad constante, textoEjercicios=ejercicio1, ejercicio2, ejercicio3), RequestItemEjercicioDTO(idUsuarioCreador=14, titulo=Guía MRUA, descripcion=Ejercicios de aceleración constante, textoEjercicios=ejercicio1, ejercicio2, ejercicio3), RequestItemEjercicioDTO(idUsuarioCreador=14, titulo=Guía fuerzas, descripcion=Ejercicios de leyes de Newton, textoEjercicios=ejercicio1, ejercicio2, ejercicio3)]
+2026-05-19T01:25:09.674-04:00 DEBUG 24628 --- [material] [http-nio-8084-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        item_ejercicio
+        (descripcion, fecha_creacion, id_usuario_creador, texto_ejercicios, titulo) 
+    values
+        (?, ?, ?, ?, ?)
+2026-05-19T01:25:09.710-04:00 DEBUG 24628 --- [material] [http-nio-8084-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        item_ejercicio
+        (descripcion, fecha_creacion, id_usuario_creador, texto_ejercicios, titulo) 
+    values
+        (?, ?, ?, ?, ?)
+2026-05-19T01:25:09.715-04:00 DEBUG 24628 --- [material] [http-nio-8084-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        item_ejercicio
+        (descripcion, fecha_creacion, id_usuario_creador, texto_ejercicios, titulo) 
+    values
+        (?, ?, ?, ?, ?)
+2026-05-19T01:25:11.053-04:00  INFO 24628 --- [material] [http-nio-8084-exec-2] c.m.m.c.ItemEjercicioController          : Lista de items almacenados en DB
+2026-05-19T01:35:59.865-04:00  INFO 19756 --- [material] [main] c.m.material.MaterialApplication         : Starting MaterialApplication using Java 26 with PID 19756 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\material\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:35:59.869-04:00 DEBUG 19756 --- [material] [main] c.m.material.MaterialApplication         : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:35:59.869-04:00  INFO 19756 --- [material] [main] c.m.material.MaterialApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:36:00.715-04:00  INFO 19756 --- [material] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:36:00.773-04:00  INFO 19756 --- [material] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 2 JPA repository interfaces.
+2026-05-19T01:36:00.989-04:00  INFO 19756 --- [material] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=9a0386f9-fa7a-3210-b1be-1709f710d931
+2026-05-19T01:36:01.398-04:00  INFO 19756 --- [material] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8084 (http)
+2026-05-19T01:36:01.419-04:00  INFO 19756 --- [material] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:36:01.419-04:00  INFO 19756 --- [material] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:36:01.481-04:00  INFO 19756 --- [material] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1571 ms
+2026-05-19T01:36:02.109-04:00  INFO 19756 --- [material] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:36:02.418-04:00  INFO 19756 --- [material] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@d2cb2d0
+2026-05-19T01:36:02.420-04:00  INFO 19756 --- [material] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:36:02.460-04:00  INFO 19756 --- [material] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/material_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:36:02.527-04:00  INFO 19756 --- [material] [main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.022s)
+2026-05-19T01:36:02.541-04:00  INFO 19756 --- [material] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `material_db`: 1
+2026-05-19T01:36:02.545-04:00  INFO 19756 --- [material] [main] o.f.core.internal.command.DbMigrate      : Schema `material_db` is up to date. No migration necessary.
+2026-05-19T01:36:02.619-04:00  INFO 19756 --- [material] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:36:02.662-04:00  INFO 19756 --- [material] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:36:02.968-04:00  INFO 19756 --- [material] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:36:03.012-04:00  WARN 19756 --- [material] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:36:03.023-04:00  INFO 19756 --- [material] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/material_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: material_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:36:03.686-04:00  INFO 19756 --- [material] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:36:03.690-04:00  INFO 19756 --- [material] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:36:03.759-04:00  INFO 19756 --- [material] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:36:04.005-04:00  WARN 19756 --- [material] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:36:04.764-04:00  INFO 19756 --- [material] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:36:04.765-04:00  INFO 19756 --- [material] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:36:04.766-04:00  INFO 19756 --- [material] [RMI TCP Connection(2)-127.0.0.1] o.s.b.f.s.DefaultListableBeanFactory     : Obtaining singleton bean 'webEndpointServletHandlerMapping' in thread "RMI TCP Connection(2)-127.0.0.1" while other thread holds singleton lock for other beans [simpleDiscoveryClient, simpleDiscoveryProperties, compositeDiscoveryClient]
+2026-05-19T01:36:04.768-04:00  INFO 19756 --- [material] [RMI TCP Connection(2)-127.0.0.1] o.s.b.f.s.DefaultListableBeanFactory     : Obtaining singleton bean 'management.endpoints.web.cors-org.springframework.boot.actuate.autoconfigure.endpoint.web.CorsEndpointProperties' in thread "RMI TCP Connection(2)-127.0.0.1" while other thread holds singleton lock for other beans [simpleDiscoveryClient, simpleDiscoveryProperties, compositeDiscoveryClient]
+2026-05-19T01:36:04.776-04:00  INFO 19756 --- [material] [RMI TCP Connection(2)-127.0.0.1] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:36:04.782-04:00  INFO 19756 --- [material] [RMI TCP Connection(2)-127.0.0.1] o.s.b.f.s.DefaultListableBeanFactory     : Obtaining singleton bean 'controllerEndpointHandlerMapping' in thread "RMI TCP Connection(2)-127.0.0.1" while other thread holds singleton lock for other beans [simpleDiscoveryClient, simpleDiscoveryProperties, compositeDiscoveryClient]
+2026-05-19T01:36:04.789-04:00  INFO 19756 --- [material] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 24 ms
+2026-05-19T01:36:05.690-04:00  INFO 19756 --- [material] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:36:05.759-04:00  INFO 19756 --- [material] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8084 (http) with context path '/'
+2026-05-19T01:36:06.764-04:00  INFO 19756 --- [material] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:36:06.767-04:00  INFO 19756 --- [material] [main] c.m.material.MaterialApplication         : Started MaterialApplication in 8.303 seconds (process running for 8.884)
+2026-05-19T01:36:45.978-04:00 DEBUG 19756 --- [material] [http-nio-8084-exec-1] c.m.m.c.ItemEjercicioController          : Solicitud de creación de una lista de items: [RequestItemEjercicioDTO(idUsuarioCreador=14, titulo=Guía MRU, descripcion=Ejercicios de velocidad constante, textoEjercicios=ejercicio1, ejercicio2, ejercicio3), RequestItemEjercicioDTO(idUsuarioCreador=14, titulo=Guía MRUA, descripcion=Ejercicios de aceleración constante, textoEjercicios=ejercicio1, ejercicio2, ejercicio3), RequestItemEjercicioDTO(idUsuarioCreador=14, titulo=Guía fuerzas, descripcion=Ejercicios de leyes de Newton, textoEjercicios=ejercicio1, ejercicio2, ejercicio3)]
+2026-05-19T01:36:46.028-04:00 DEBUG 19756 --- [material] [http-nio-8084-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        item_ejercicio
+        (descripcion, fecha_creacion, id_usuario_creador, texto_ejercicios, titulo) 
+    values
+        (?, ?, ?, ?, ?)
+2026-05-19T01:36:46.060-04:00 DEBUG 19756 --- [material] [http-nio-8084-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        item_ejercicio
+        (descripcion, fecha_creacion, id_usuario_creador, texto_ejercicios, titulo) 
+    values
+        (?, ?, ?, ?, ?)
+2026-05-19T01:36:46.062-04:00 DEBUG 19756 --- [material] [http-nio-8084-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        item_ejercicio
+        (descripcion, fecha_creacion, id_usuario_creador, texto_ejercicios, titulo) 
+    values
+        (?, ?, ?, ?, ?)
+2026-05-19T01:36:46.111-04:00  WARN 19756 --- [material] [http-nio-8084-exec-1] c.m.m.service.ItemEjercicioService       : Error de comunicación con microservicio historial. Evento no registrado
+2026-05-19T01:36:46.125-04:00 DEBUG 19756 --- [material] [http-nio-8084-exec-1] c.m.m.service.ItemEjercicioService       : No se pudo solicitar el aumento del recuento de items
+
+feign.RetryableException: Connection refused: getsockopt executing POST http://localhost:8083/api/v1/logros/recuento/item-creado/14
+	at feign.FeignException.errorExecuting(FeignException.java:300) ~[feign-core-13.6.jar:na]
+	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:105) ~[feign-core-13.6.jar:na]
+	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:53) ~[feign-core-13.6.jar:na]
+	at feign.ReflectiveFeign$FeignInvocationHandler.invoke(ReflectiveFeign.java:104) ~[feign-core-13.6.jar:na]
+	at jdk.proxy2/jdk.proxy2.$Proxy175.postIncrementarItemCreado(Unknown Source) ~[na:na]
+	at com.madoscientista.material.service.ItemEjercicioService.postListaItemEjercicio(ItemEjercicioService.java:98) ~[classes/:na]
+	at com.madoscientista.material.controller.ItemEjercicioController.postItemEjercicio(ItemEjercicioController.java:128) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649) ~[tomcat-embed-core-11.0.21.jar:6.1]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.21.jar:6.1]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at java.base/java.lang.Thread.run(Thread.java:1516) ~[na:na]
+Caused by: java.net.ConnectException: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:642) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:548) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:599) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:668) ~[na:na]
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:161) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:516) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:604) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.<init>(HttpClient.java:276) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:380) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.New(HttpClient.java:393) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1030) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:963) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:899) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:872) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getOutputStream0(HttpURLConnection.java:1168) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1132) ~[na:na]
+	at feign.Client$Default.convertAndSend(Client.java:224) ~[feign-core-13.6.jar:na]
+	at feign.Client$Default.execute(Client.java:109) ~[feign-core-13.6.jar:na]
+	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:92) ~[feign-core-13.6.jar:na]
+	... 51 common frames omitted
+
+2026-05-19T01:36:46.132-04:00  INFO 19756 --- [material] [http-nio-8084-exec-1] c.m.m.c.ItemEjercicioController          : Lista de items almacenados en DB
+2026-05-19T01:39:36.048-04:00  INFO 10060 --- [material] [main] c.m.material.MaterialApplication         : Starting MaterialApplication using Java 26 with PID 10060 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\material\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:39:36.050-04:00 DEBUG 10060 --- [material] [main] c.m.material.MaterialApplication         : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:39:36.051-04:00  INFO 10060 --- [material] [main] c.m.material.MaterialApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:39:36.882-04:00  INFO 10060 --- [material] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:39:36.930-04:00  INFO 10060 --- [material] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 2 JPA repository interfaces.
+2026-05-19T01:39:37.131-04:00  INFO 10060 --- [material] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=9a0386f9-fa7a-3210-b1be-1709f710d931
+2026-05-19T01:39:37.528-04:00  INFO 10060 --- [material] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8084 (http)
+2026-05-19T01:39:37.545-04:00  INFO 10060 --- [material] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:39:37.546-04:00  INFO 10060 --- [material] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:39:37.611-04:00  INFO 10060 --- [material] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1520 ms
+2026-05-19T01:39:38.276-04:00  INFO 10060 --- [material] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:39:38.628-04:00  INFO 10060 --- [material] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2d230cff
+2026-05-19T01:39:38.630-04:00  INFO 10060 --- [material] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:39:38.675-04:00  INFO 10060 --- [material] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/material_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:39:38.742-04:00  INFO 10060 --- [material] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table `material_db`.`flyway_schema_history` does not exist yet
+2026-05-19T01:39:38.746-04:00  INFO 10060 --- [material] [main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.024s)
+2026-05-19T01:39:38.775-04:00  INFO 10060 --- [material] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table `material_db`.`flyway_schema_history` ...
+2026-05-19T01:39:38.854-04:00  INFO 10060 --- [material] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `material_db`: << Empty Schema >>
+2026-05-19T01:39:38.866-04:00  INFO 10060 --- [material] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `material_db` to version "1 - init"
+2026-05-19T01:39:38.877-04:00  WARN 10060 --- [material] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: Can't create database 'material_db'; database exists (SQL State: HY000 - Error Code: 1007)
+2026-05-19T01:39:38.971-04:00  INFO 10060 --- [material] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema `material_db`, now at version v1 (execution time 00:00.079s)
+2026-05-19T01:39:39.049-04:00  INFO 10060 --- [material] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:39:39.086-04:00  INFO 10060 --- [material] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:39:39.387-04:00  INFO 10060 --- [material] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:39:39.435-04:00  WARN 10060 --- [material] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:39:39.445-04:00  INFO 10060 --- [material] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/material_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: material_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:39:40.289-04:00  INFO 10060 --- [material] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:39:40.297-04:00  INFO 10060 --- [material] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:39:40.366-04:00  INFO 10060 --- [material] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:39:40.614-04:00  WARN 10060 --- [material] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:39:42.230-04:00  INFO 10060 --- [material] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:39:42.248-04:00  INFO 10060 --- [material] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:39:42.307-04:00  INFO 10060 --- [material] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8084 (http) with context path '/'
+2026-05-19T01:39:43.310-04:00  INFO 10060 --- [material] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:39:43.317-04:00  INFO 10060 --- [material] [main] c.m.material.MaterialApplication         : Started MaterialApplication in 8.602 seconds (process running for 9.167)
+2026-05-19T01:39:43.997-04:00  INFO 10060 --- [material] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:39:43.998-04:00  INFO 10060 --- [material] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:39:43.998-04:00  INFO 10060 --- [material] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms

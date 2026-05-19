@@ -1,0 +1,172 @@
+2026-05-19T01:19:39.768-04:00  INFO 19412 --- [suscripciones] [main] c.m.s.SuscripcionesApplication           : Starting SuscripcionesApplication using Java 26 with PID 19412 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\suscripciones\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:19:39.771-04:00 DEBUG 19412 --- [suscripciones] [main] c.m.s.SuscripcionesApplication           : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:19:39.772-04:00  INFO 19412 --- [suscripciones] [main] c.m.s.SuscripcionesApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:19:40.684-04:00  INFO 19412 --- [suscripciones] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:19:40.739-04:00  INFO 19412 --- [suscripciones] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 2 JPA repository interfaces.
+2026-05-19T01:19:40.972-04:00  INFO 19412 --- [suscripciones] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=9de5a00d-808b-33f3-ae22-7332dd5e2a76
+2026-05-19T01:19:41.393-04:00  INFO 19412 --- [suscripciones] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8086 (http)
+2026-05-19T01:19:41.411-04:00  INFO 19412 --- [suscripciones] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:19:41.412-04:00  INFO 19412 --- [suscripciones] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:19:41.477-04:00  INFO 19412 --- [suscripciones] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1663 ms
+2026-05-19T01:19:42.175-04:00  INFO 19412 --- [suscripciones] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:19:42.571-04:00  INFO 19412 --- [suscripciones] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5b5b9521
+2026-05-19T01:19:42.574-04:00  INFO 19412 --- [suscripciones] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:19:42.635-04:00  INFO 19412 --- [suscripciones] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/suscripciones_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:19:42.761-04:00  INFO 19412 --- [suscripciones] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.047s)
+2026-05-19T01:19:42.785-04:00  INFO 19412 --- [suscripciones] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `suscripciones_db`: 2
+2026-05-19T01:19:42.792-04:00  INFO 19412 --- [suscripciones] [main] o.f.core.internal.command.DbMigrate      : Schema `suscripciones_db` is up to date. No migration necessary.
+2026-05-19T01:19:42.925-04:00  INFO 19412 --- [suscripciones] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:19:42.985-04:00  INFO 19412 --- [suscripciones] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:19:43.626-04:00  INFO 19412 --- [suscripciones] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:19:43.678-04:00  WARN 19412 --- [suscripciones] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:19:43.690-04:00  INFO 19412 --- [suscripciones] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/suscripciones_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: suscripciones_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:19:44.355-04:00  INFO 19412 --- [suscripciones] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:19:44.362-04:00  INFO 19412 --- [suscripciones] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:19:44.430-04:00  INFO 19412 --- [suscripciones] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:19:44.711-04:00  WARN 19412 --- [suscripciones] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:19:46.389-04:00  INFO 19412 --- [suscripciones] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:19:46.409-04:00  INFO 19412 --- [suscripciones] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:19:46.475-04:00  INFO 19412 --- [suscripciones] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8086 (http) with context path '/'
+2026-05-19T01:19:47.481-04:00  INFO 19412 --- [suscripciones] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:19:47.489-04:00  INFO 19412 --- [suscripciones] [main] c.m.s.SuscripcionesApplication           : Started SuscripcionesApplication in 9.083 seconds (process running for 9.702)
+2026-05-19T01:19:47.672-04:00  INFO 19412 --- [suscripciones] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:19:47.672-04:00  INFO 19412 --- [suscripciones] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:19:47.673-04:00  INFO 19412 --- [suscripciones] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-05-19T01:41:05.340-04:00  INFO 18384 --- [suscripciones] [main] c.m.s.SuscripcionesApplication           : Starting SuscripcionesApplication using Java 26 with PID 18384 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\suscripciones\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:41:05.342-04:00 DEBUG 18384 --- [suscripciones] [main] c.m.s.SuscripcionesApplication           : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:41:05.343-04:00  INFO 18384 --- [suscripciones] [main] c.m.s.SuscripcionesApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:41:06.226-04:00  INFO 18384 --- [suscripciones] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:41:06.278-04:00  INFO 18384 --- [suscripciones] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 2 JPA repository interfaces.
+2026-05-19T01:41:06.493-04:00  INFO 18384 --- [suscripciones] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=9de5a00d-808b-33f3-ae22-7332dd5e2a76
+2026-05-19T01:41:06.915-04:00  INFO 18384 --- [suscripciones] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8086 (http)
+2026-05-19T01:41:06.937-04:00  INFO 18384 --- [suscripciones] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:41:06.937-04:00  INFO 18384 --- [suscripciones] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:41:06.998-04:00  INFO 18384 --- [suscripciones] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1614 ms
+2026-05-19T01:41:07.618-04:00  INFO 18384 --- [suscripciones] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:41:08.032-04:00  INFO 18384 --- [suscripciones] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@8aa5ab4
+2026-05-19T01:41:08.035-04:00  INFO 18384 --- [suscripciones] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:41:08.088-04:00  INFO 18384 --- [suscripciones] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/suscripciones_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:41:08.177-04:00  INFO 18384 --- [suscripciones] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table `suscripciones_db`.`flyway_schema_history` does not exist yet
+2026-05-19T01:41:08.182-04:00  INFO 18384 --- [suscripciones] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.031s)
+2026-05-19T01:41:08.213-04:00  INFO 18384 --- [suscripciones] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table `suscripciones_db`.`flyway_schema_history` ...
+2026-05-19T01:41:08.288-04:00  INFO 18384 --- [suscripciones] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `suscripciones_db`: << Empty Schema >>
+2026-05-19T01:41:08.302-04:00  INFO 18384 --- [suscripciones] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `suscripciones_db` to version "1 - init"
+2026-05-19T01:41:08.312-04:00  WARN 18384 --- [suscripciones] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: Can't create database 'suscripciones_db'; database exists (SQL State: HY000 - Error Code: 1007)
+2026-05-19T01:41:08.406-04:00  INFO 18384 --- [suscripciones] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `suscripciones_db` to version "2 - suscripciones de prueba"
+2026-05-19T01:41:08.433-04:00  INFO 18384 --- [suscripciones] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema `suscripciones_db`, now at version v2 (execution time 00:00.082s)
+2026-05-19T01:41:08.518-04:00  INFO 18384 --- [suscripciones] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:41:08.561-04:00  INFO 18384 --- [suscripciones] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:41:08.988-04:00  INFO 18384 --- [suscripciones] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:41:09.035-04:00  WARN 18384 --- [suscripciones] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:41:09.046-04:00  INFO 18384 --- [suscripciones] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/suscripciones_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: suscripciones_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:41:09.653-04:00  INFO 18384 --- [suscripciones] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:41:09.661-04:00  INFO 18384 --- [suscripciones] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:41:09.720-04:00  INFO 18384 --- [suscripciones] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:41:09.952-04:00  WARN 18384 --- [suscripciones] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:41:11.593-04:00  INFO 18384 --- [suscripciones] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:41:11.611-04:00  INFO 18384 --- [suscripciones] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:41:11.677-04:00  INFO 18384 --- [suscripciones] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8086 (http) with context path '/'
+2026-05-19T01:41:12.683-04:00  INFO 18384 --- [suscripciones] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:41:12.690-04:00  INFO 18384 --- [suscripciones] [main] c.m.s.SuscripcionesApplication           : Started SuscripcionesApplication in 8.692 seconds (process running for 9.301)
+2026-05-19T01:41:13.254-04:00  INFO 18384 --- [suscripciones] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:41:13.254-04:00  INFO 18384 --- [suscripciones] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:41:13.254-04:00  INFO 18384 --- [suscripciones] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-05-19T01:42:15.624-04:00  INFO 18384 --- [suscripciones] [http-nio-8086-exec-1] c.m.s.controller.SuscripcionController   : Solicitud creación de una nueva suscripçión
+2026-05-19T01:42:16.032-04:00 DEBUG 18384 --- [suscripciones] [http-nio-8086-exec-1] org.hibernate.SQL                        : 
+    select
+        ts1_0.id_tipo_suscripcion,
+        ts1_0.n_max_ejercicios,
+        ts1_0.nombre,
+        ts1_0.precio_por_mes 
+    from
+        tipo_suscripcion ts1_0 
+    where
+        ts1_0.nombre=?
+2026-05-19T01:42:16.104-04:00 DEBUG 18384 --- [suscripciones] [http-nio-8086-exec-1] org.hibernate.SQL                        : 
+    select
+        s1_0.id_suscripcion,
+        s1_0.activo,
+        s1_0.fecha_inicio,
+        s1_0.id_usuario,
+        s1_0.id_tipo_suscripcion 
+    from
+        suscripcion s1_0 
+    where
+        s1_0.id_usuario=? 
+        and s1_0.activo=true
+2026-05-19T01:42:16.144-04:00 DEBUG 18384 --- [suscripciones] [http-nio-8086-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        suscripcion
+        (activo, fecha_inicio, id_usuario, id_tipo_suscripcion) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:42:17.427-04:00 DEBUG 18384 --- [suscripciones] [http-nio-8086-exec-1] c.m.s.controller.SuscripcionController   : Suscripción creada
+2026-05-19T01:42:23.504-04:00  INFO 18384 --- [suscripciones] [http-nio-8086-exec-8] c.m.s.controller.SuscripcionController   : Solicittud de número máximo de ejercicios para el usuario id: 13
+2026-05-19T01:42:23.511-04:00 DEBUG 18384 --- [suscripciones] [http-nio-8086-exec-8] org.hibernate.SQL                        : 
+    select
+        s1_0.id_suscripcion,
+        s1_0.activo,
+        s1_0.fecha_inicio,
+        s1_0.id_usuario,
+        s1_0.id_tipo_suscripcion 
+    from
+        suscripcion s1_0 
+    where
+        s1_0.id_usuario=? 
+        and s1_0.activo=true
+2026-05-19T01:42:23.519-04:00 DEBUG 18384 --- [suscripciones] [http-nio-8086-exec-8] org.hibernate.SQL                        : 
+    select
+        ts1_0.id_tipo_suscripcion,
+        ts1_0.n_max_ejercicios,
+        ts1_0.nombre,
+        ts1_0.precio_por_mes 
+    from
+        tipo_suscripcion ts1_0 
+    where
+        ts1_0.id_tipo_suscripcion=?
+2026-05-19T01:43:19.505-04:00  INFO 18384 --- [suscripciones] [http-nio-8086-exec-5] c.m.s.controller.SuscripcionController   : Solicittud de número máximo de ejercicios para el usuario id: 13
+2026-05-19T01:43:19.508-04:00 DEBUG 18384 --- [suscripciones] [http-nio-8086-exec-5] org.hibernate.SQL                        : 
+    select
+        s1_0.id_suscripcion,
+        s1_0.activo,
+        s1_0.fecha_inicio,
+        s1_0.id_usuario,
+        s1_0.id_tipo_suscripcion 
+    from
+        suscripcion s1_0 
+    where
+        s1_0.id_usuario=? 
+        and s1_0.activo=true
+2026-05-19T01:43:19.509-04:00 DEBUG 18384 --- [suscripciones] [http-nio-8086-exec-5] org.hibernate.SQL                        : 
+    select
+        ts1_0.id_tipo_suscripcion,
+        ts1_0.n_max_ejercicios,
+        ts1_0.nombre,
+        ts1_0.precio_por_mes 
+    from
+        tipo_suscripcion ts1_0 
+    where
+        ts1_0.id_tipo_suscripcion=?

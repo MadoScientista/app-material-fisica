@@ -1,0 +1,220 @@
+2026-05-19T01:19:50.894-04:00  INFO 24280 --- [historial] [main] c.m.historial.HistorialApplication       : Starting HistorialApplication using Java 26 with PID 24280 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\historial\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:19:50.898-04:00 DEBUG 24280 --- [historial] [main] c.m.historial.HistorialApplication       : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:19:50.899-04:00  INFO 24280 --- [historial] [main] c.m.historial.HistorialApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:19:51.759-04:00  INFO 24280 --- [historial] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:19:51.805-04:00  INFO 24280 --- [historial] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38 ms. Found 2 JPA repository interfaces.
+2026-05-19T01:19:52.029-04:00  INFO 24280 --- [historial] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=ee12364d-4061-337a-bf94-5762f8dc16bb
+2026-05-19T01:19:52.437-04:00  INFO 24280 --- [historial] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8082 (http)
+2026-05-19T01:19:52.458-04:00  INFO 24280 --- [historial] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:19:52.459-04:00  INFO 24280 --- [historial] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:19:52.521-04:00  INFO 24280 --- [historial] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1587 ms
+2026-05-19T01:19:53.129-04:00  INFO 24280 --- [historial] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:19:53.425-04:00  INFO 24280 --- [historial] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@aa8dce8
+2026-05-19T01:19:53.428-04:00  INFO 24280 --- [historial] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:19:53.469-04:00  INFO 24280 --- [historial] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/historial_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:19:53.553-04:00  INFO 24280 --- [historial] [main] o.f.core.internal.command.DbValidate     : Successfully validated 8 migrations (execution time 00:00.035s)
+2026-05-19T01:19:53.568-04:00  INFO 24280 --- [historial] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `historial_db`: 8
+2026-05-19T01:19:53.571-04:00  INFO 24280 --- [historial] [main] o.f.core.internal.command.DbMigrate      : Schema `historial_db` is up to date. No migration necessary.
+2026-05-19T01:19:53.651-04:00  INFO 24280 --- [historial] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:19:53.700-04:00  INFO 24280 --- [historial] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:19:54.064-04:00  INFO 24280 --- [historial] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:19:54.109-04:00  WARN 24280 --- [historial] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:19:54.120-04:00  INFO 24280 --- [historial] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/historial_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: historial_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:19:54.788-04:00  INFO 24280 --- [historial] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:19:54.795-04:00  INFO 24280 --- [historial] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:19:54.859-04:00  INFO 24280 --- [historial] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:19:55.111-04:00  WARN 24280 --- [historial] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:19:55.814-04:00  INFO 24280 --- [historial] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:19:55.815-04:00  INFO 24280 --- [historial] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:19:55.816-04:00  INFO 24280 --- [historial] [RMI TCP Connection(2)-127.0.0.1] o.s.b.f.s.DefaultListableBeanFactory     : Obtaining singleton bean 'webEndpointServletHandlerMapping' in thread "RMI TCP Connection(2)-127.0.0.1" while other thread holds singleton lock for other beans [simpleDiscoveryClient, simpleDiscoveryProperties, compositeDiscoveryClient]
+2026-05-19T01:19:55.817-04:00  INFO 24280 --- [historial] [RMI TCP Connection(2)-127.0.0.1] o.s.b.f.s.DefaultListableBeanFactory     : Obtaining singleton bean 'management.endpoints.web.cors-org.springframework.boot.actuate.autoconfigure.endpoint.web.CorsEndpointProperties' in thread "RMI TCP Connection(2)-127.0.0.1" while other thread holds singleton lock for other beans [simpleDiscoveryClient, simpleDiscoveryProperties, compositeDiscoveryClient]
+2026-05-19T01:19:55.822-04:00  INFO 24280 --- [historial] [RMI TCP Connection(2)-127.0.0.1] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:19:55.826-04:00  INFO 24280 --- [historial] [RMI TCP Connection(2)-127.0.0.1] o.s.b.f.s.DefaultListableBeanFactory     : Obtaining singleton bean 'controllerEndpointHandlerMapping' in thread "RMI TCP Connection(2)-127.0.0.1" while other thread holds singleton lock for other beans [simpleDiscoveryClient, simpleDiscoveryProperties, compositeDiscoveryClient]
+2026-05-19T01:19:55.831-04:00  INFO 24280 --- [historial] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
+2026-05-19T01:19:56.793-04:00  INFO 24280 --- [historial] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:19:56.862-04:00  INFO 24280 --- [historial] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8082 (http) with context path '/'
+2026-05-19T01:19:57.867-04:00  INFO 24280 --- [historial] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:19:57.869-04:00  INFO 24280 --- [historial] [main] c.m.historial.HistorialApplication       : Started HistorialApplication in 8.332 seconds (process running for 8.908)
+2026-05-19T01:25:09.939-04:00 DEBUG 24280 --- [historial] [http-nio-8082-exec-1] c.m.h.controller.EventoController        : Solicitud de creación de eventos con los datos RequestEventoDTO(idTipoEvento=19, idUsuarioOrigen=14, idUsuarioDestino=[14]) 
+2026-05-19T01:25:09.979-04:00 DEBUG 24280 --- [historial] [http-nio-8082-exec-1] org.hibernate.SQL                        : 
+    select
+        te1_0.id_tipo_evento,
+        te1_0.descripcion,
+        te1_0.nombre,
+        te1_0.notificacion_activa 
+    from
+        tipo_evento te1_0 
+    where
+        te1_0.id_tipo_evento=?
+2026-05-19T01:25:10.034-04:00 DEBUG 24280 --- [historial] [http-nio-8082-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        evento
+        (descripcion, fecha, id_usuario_origen, id_tipo_evento) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:25:10.926-04:00 DEBUG 24280 --- [historial] [http-nio-8082-exec-1] c.m.h.controller.EventoController        : Eventos creados ResponseEventoDTO(idEvento=9, idUsuario=14, fecha=2026-05-19T01:25:10.029543, descripcion=El usuario 14 ha creado un nuevo item de ejercicio.)
+2026-05-19T01:41:16.200-04:00  INFO 24008 --- [historial] [main] c.m.historial.HistorialApplication       : Starting HistorialApplication using Java 26 with PID 24008 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\historial\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:41:16.202-04:00 DEBUG 24008 --- [historial] [main] c.m.historial.HistorialApplication       : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:41:16.203-04:00  INFO 24008 --- [historial] [main] c.m.historial.HistorialApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:41:17.086-04:00  INFO 24008 --- [historial] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:41:17.135-04:00  INFO 24008 --- [historial] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 2 JPA repository interfaces.
+2026-05-19T01:41:17.326-04:00  INFO 24008 --- [historial] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=ee12364d-4061-337a-bf94-5762f8dc16bb
+2026-05-19T01:41:17.745-04:00  INFO 24008 --- [historial] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8082 (http)
+2026-05-19T01:41:17.764-04:00  INFO 24008 --- [historial] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:41:17.764-04:00  INFO 24008 --- [historial] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:41:17.827-04:00  INFO 24008 --- [historial] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1587 ms
+2026-05-19T01:41:18.443-04:00  INFO 24008 --- [historial] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:41:18.865-04:00  INFO 24008 --- [historial] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6cc90398
+2026-05-19T01:41:18.868-04:00  INFO 24008 --- [historial] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:41:18.918-04:00  INFO 24008 --- [historial] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/historial_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:41:19.011-04:00  INFO 24008 --- [historial] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table `historial_db`.`flyway_schema_history` does not exist yet
+2026-05-19T01:41:19.016-04:00  INFO 24008 --- [historial] [main] o.f.core.internal.command.DbValidate     : Successfully validated 8 migrations (execution time 00:00.037s)
+2026-05-19T01:41:19.044-04:00  INFO 24008 --- [historial] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table `historial_db`.`flyway_schema_history` ...
+2026-05-19T01:41:19.139-04:00  INFO 24008 --- [historial] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `historial_db`: << Empty Schema >>
+2026-05-19T01:41:19.159-04:00  INFO 24008 --- [historial] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `historial_db` to version "1 - init"
+2026-05-19T01:41:19.170-04:00  WARN 24008 --- [historial] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: Can't create database 'historial_db'; database exists (SQL State: HY000 - Error Code: 1007)
+2026-05-19T01:41:19.272-04:00  INFO 24008 --- [historial] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `historial_db` to version "2 - eventos tipo suscripcion"
+2026-05-19T01:41:19.307-04:00  INFO 24008 --- [historial] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `historial_db` to version "3 - modificacion templates tipo evento"
+2026-05-19T01:41:19.348-04:00  INFO 24008 --- [historial] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `historial_db` to version "4 - agregar evento logro"
+2026-05-19T01:41:19.376-04:00  INFO 24008 --- [historial] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `historial_db` to version "5 - agregar evento valoracion"
+2026-05-19T01:41:19.402-04:00  INFO 24008 --- [historial] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `historial_db` to version "6 - agregar eventos comunidad"
+2026-05-19T01:41:19.423-04:00  INFO 24008 --- [historial] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `historial_db` to version "7 - agregar eventos material"
+2026-05-19T01:41:19.447-04:00  INFO 24008 --- [historial] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `historial_db` to version "8 - agregar eventos logo"
+2026-05-19T01:41:19.464-04:00  INFO 24008 --- [historial] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 8 migrations to schema `historial_db`, now at version v8 (execution time 00:00.128s)
+2026-05-19T01:41:19.534-04:00  INFO 24008 --- [historial] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:41:19.567-04:00  INFO 24008 --- [historial] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:41:19.964-04:00  INFO 24008 --- [historial] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:41:20.013-04:00  WARN 24008 --- [historial] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:41:20.021-04:00  INFO 24008 --- [historial] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/historial_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: historial_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:41:20.598-04:00  INFO 24008 --- [historial] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:41:20.605-04:00  INFO 24008 --- [historial] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:41:20.664-04:00  INFO 24008 --- [historial] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:41:20.882-04:00  WARN 24008 --- [historial] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:41:22.596-04:00  INFO 24008 --- [historial] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:41:22.618-04:00  INFO 24008 --- [historial] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:41:22.702-04:00  INFO 24008 --- [historial] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8082 (http) with context path '/'
+2026-05-19T01:41:23.707-04:00  INFO 24008 --- [historial] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:41:23.715-04:00  INFO 24008 --- [historial] [main] c.m.historial.HistorialApplication       : Started HistorialApplication in 8.87 seconds (process running for 9.451)
+2026-05-19T01:41:24.106-04:00  INFO 24008 --- [historial] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:41:24.106-04:00  INFO 24008 --- [historial] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:41:24.107-04:00  INFO 24008 --- [historial] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-05-19T01:42:16.377-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-1] c.m.h.controller.EventoController        : Solicitud de creación de eventos con los datos RequestEventoDTO(idTipoEvento=8, idUsuarioOrigen=13, idUsuarioDestino=[13]) 
+2026-05-19T01:42:16.419-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-1] org.hibernate.SQL                        : 
+    select
+        te1_0.id_tipo_evento,
+        te1_0.descripcion,
+        te1_0.nombre,
+        te1_0.notificacion_activa 
+    from
+        tipo_evento te1_0 
+    where
+        te1_0.id_tipo_evento=?
+2026-05-19T01:42:16.487-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        evento
+        (descripcion, fecha, id_usuario_origen, id_tipo_evento) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:42:17.396-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-1] c.m.h.controller.EventoController        : Eventos creados ResponseEventoDTO(idEvento=1, idUsuario=13, fecha=2026-05-19T01:42:16.479622, descripcion=El usuario 13 ha creado una nueva suscripción para los usuarios: 13.)
+2026-05-19T01:43:20.348-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-3] c.m.h.controller.EventoController        : Solicitud de creación de eventos con los datos RequestEventoDTO(idTipoEvento=3, idUsuarioOrigen=13, idUsuarioDestino=[13]) 
+2026-05-19T01:43:20.350-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-3] org.hibernate.SQL                        : 
+    select
+        te1_0.id_tipo_evento,
+        te1_0.descripcion,
+        te1_0.nombre,
+        te1_0.notificacion_activa 
+    from
+        tipo_evento te1_0 
+    where
+        te1_0.id_tipo_evento=?
+2026-05-19T01:43:20.353-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        evento
+        (descripcion, fecha, id_usuario_origen, id_tipo_evento) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:43:20.393-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-3] c.m.h.controller.EventoController        : Eventos creados ResponseEventoDTO(idEvento=2, idUsuario=13, fecha=2026-05-19T01:43:20.353922, descripcion=El usuario 13 ha creado un ejercicio para los usuarios: 13.)
+2026-05-19T01:43:20.486-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-4] c.m.h.controller.EventoController        : Solicitud de creación de eventos con los datos RequestEventoDTO(idTipoEvento=12, idUsuarioOrigen=13, idUsuarioDestino=[13]) 
+2026-05-19T01:43:20.486-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-4] org.hibernate.SQL                        : 
+    select
+        te1_0.id_tipo_evento,
+        te1_0.descripcion,
+        te1_0.nombre,
+        te1_0.notificacion_activa 
+    from
+        tipo_evento te1_0 
+    where
+        te1_0.id_tipo_evento=?
+2026-05-19T01:43:20.496-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-4] org.hibernate.SQL                        : 
+    insert 
+    into
+        evento
+        (descripcion, fecha, id_usuario_origen, id_tipo_evento) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:43:20.544-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-4] c.m.h.controller.EventoController        : Eventos creados ResponseEventoDTO(idEvento=3, idUsuario=13, fecha=2026-05-19T01:43:20.496118, descripcion=El usuario 13 ha completado un logro.)
+2026-05-19T01:43:25.474-04:00  INFO 24008 --- [historial] [http-nio-8082-exec-5] c.m.h.controller.EventoController        : Lista de eventos solicitada
+2026-05-19T01:43:25.595-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-5] org.hibernate.SQL                        : 
+    select
+        e1_0.id_evento,
+        e1_0.descripcion,
+        e1_0.fecha,
+        e1_0.id_usuario_origen,
+        e1_0.id_tipo_evento 
+    from
+        evento e1_0
+2026-05-19T01:43:25.600-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-5] org.hibernate.SQL                        : 
+    select
+        te1_0.id_tipo_evento,
+        te1_0.descripcion,
+        te1_0.nombre,
+        te1_0.notificacion_activa 
+    from
+        tipo_evento te1_0 
+    where
+        te1_0.id_tipo_evento=?
+2026-05-19T01:43:25.606-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-5] org.hibernate.SQL                        : 
+    select
+        te1_0.id_tipo_evento,
+        te1_0.descripcion,
+        te1_0.nombre,
+        te1_0.notificacion_activa 
+    from
+        tipo_evento te1_0 
+    where
+        te1_0.id_tipo_evento=?
+2026-05-19T01:43:25.606-04:00 DEBUG 24008 --- [historial] [http-nio-8082-exec-5] org.hibernate.SQL                        : 
+    select
+        te1_0.id_tipo_evento,
+        te1_0.descripcion,
+        te1_0.nombre,
+        te1_0.notificacion_activa 
+    from
+        tipo_evento te1_0 
+    where
+        te1_0.id_tipo_evento=?

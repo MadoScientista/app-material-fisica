@@ -1,0 +1,528 @@
+2026-05-19T01:19:16.143-04:00  INFO 14268 --- [logros] [main] c.m.logros.LogrosApplication             : Starting LogrosApplication using Java 26 with PID 14268 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\logros\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:19:16.145-04:00 DEBUG 14268 --- [logros] [main] c.m.logros.LogrosApplication             : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:19:16.146-04:00  INFO 14268 --- [logros] [main] c.m.logros.LogrosApplication             : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:19:17.076-04:00  INFO 14268 --- [logros] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:19:17.126-04:00  INFO 14268 --- [logros] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 3 JPA repository interfaces.
+2026-05-19T01:19:17.325-04:00  INFO 14268 --- [logros] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=a11815ab-8147-336f-a281-7b82d7642856
+2026-05-19T01:19:17.759-04:00  INFO 14268 --- [logros] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8083 (http)
+2026-05-19T01:19:17.776-04:00  INFO 14268 --- [logros] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:19:17.777-04:00  INFO 14268 --- [logros] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:19:17.838-04:00  INFO 14268 --- [logros] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1645 ms
+2026-05-19T01:19:18.475-04:00  INFO 14268 --- [logros] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:19:18.886-04:00  INFO 14268 --- [logros] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2cdb5974
+2026-05-19T01:19:18.890-04:00  INFO 14268 --- [logros] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:19:18.953-04:00  INFO 14268 --- [logros] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/logros_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:19:19.086-04:00  INFO 14268 --- [logros] [main] o.f.core.internal.command.DbValidate     : Successfully validated 4 migrations (execution time 00:00.054s)
+2026-05-19T01:19:19.110-04:00  INFO 14268 --- [logros] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `logros_db`: 4
+2026-05-19T01:19:19.118-04:00  INFO 14268 --- [logros] [main] o.f.core.internal.command.DbMigrate      : Schema `logros_db` is up to date. No migration necessary.
+2026-05-19T01:19:19.253-04:00  INFO 14268 --- [logros] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:19:19.335-04:00  INFO 14268 --- [logros] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:19:19.880-04:00  INFO 14268 --- [logros] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:19:19.938-04:00  WARN 14268 --- [logros] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:19:19.954-04:00  INFO 14268 --- [logros] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/logros_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: logros_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:19:20.625-04:00  INFO 14268 --- [logros] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:19:20.632-04:00  INFO 14268 --- [logros] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:19:20.700-04:00  INFO 14268 --- [logros] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:19:20.990-04:00  WARN 14268 --- [logros] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:19:22.636-04:00  INFO 14268 --- [logros] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:19:22.656-04:00  INFO 14268 --- [logros] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:19:22.723-04:00  INFO 14268 --- [logros] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8083 (http) with context path '/'
+2026-05-19T01:19:23.728-04:00  INFO 14268 --- [logros] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:19:23.736-04:00  INFO 14268 --- [logros] [main] c.m.logros.LogrosApplication             : Started LogrosApplication in 8.97 seconds (process running for 9.753)
+2026-05-19T01:19:24.018-04:00  INFO 14268 --- [logros] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:19:24.018-04:00  INFO 14268 --- [logros] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:19:24.020-04:00  INFO 14268 --- [logros] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-05-19T01:21:10.144-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-1] org.hibernate.SQL                        : 
+    select
+        tl1_0.id_tipo_logro,
+        tl1_0.criterio,
+        tl1_0.descripcion,
+        tl1_0.nombre,
+        tl1_0.operador,
+        tl1_0.umbral 
+    from
+        tipo_logro tl1_0
+2026-05-19T01:21:10.470-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-1] org.hibernate.SQL                        : 
+    select
+        l1_0.id_logro,
+        l1_0.completado,
+        l1_0.fecha_completado,
+        l1_0.id_usuario,
+        l1_0.id_tipo_logro 
+    from
+        logro l1_0 
+    where
+        l1_0.id_usuario=?
+2026-05-19T01:21:10.511-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:21:10.528-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:21:10.531-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:21:10.532-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:21:10.537-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:21:10.540-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:21:10.540-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:23:49.173-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    select
+        tl1_0.id_tipo_logro,
+        tl1_0.criterio,
+        tl1_0.descripcion,
+        tl1_0.nombre,
+        tl1_0.operador,
+        tl1_0.umbral 
+    from
+        tipo_logro tl1_0
+2026-05-19T01:23:49.183-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    select
+        l1_0.id_logro,
+        l1_0.completado,
+        l1_0.fecha_completado,
+        l1_0.id_usuario,
+        l1_0.id_tipo_logro 
+    from
+        logro l1_0 
+    where
+        l1_0.id_usuario=?
+2026-05-19T01:23:49.189-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:23:49.191-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:23:49.193-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:23:49.198-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:23:49.201-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:23:49.201-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:23:49.206-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:25:10.978-04:00  INFO 14268 --- [logros] [http-nio-8083-exec-5] c.m.logros.controller.LogroController    : Incrementando items creados para el usuario 14 en 3
+2026-05-19T01:25:10.986-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-5] org.hibernate.SQL                        : 
+    select
+        r1_0.id_recuento,
+        r1_0.id_usuario,
+        r1_0.n_comunidades,
+        r1_0.n_ejercicios_compartidos,
+        r1_0.n_ejercicios_creados,
+        r1_0.n_items_creados,
+        r1_0.n_materiales_creados 
+    from
+        recuento r1_0 
+    where
+        r1_0.id_usuario=?
+2026-05-19T01:25:10.990-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-5] org.hibernate.SQL                        : 
+    insert 
+    into
+        recuento
+        (id_usuario, n_comunidades, n_ejercicios_compartidos, n_ejercicios_creados, n_items_creados, n_materiales_creados) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-05-19T01:25:11.000-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-5] org.hibernate.SQL                        : 
+    select
+        tl1_0.id_tipo_logro,
+        tl1_0.criterio,
+        tl1_0.descripcion,
+        tl1_0.nombre,
+        tl1_0.operador,
+        tl1_0.umbral 
+    from
+        tipo_logro tl1_0
+2026-05-19T01:25:11.029-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-5] org.hibernate.SQL                        : 
+    select
+        l1_0.id_logro,
+        l1_0.completado,
+        l1_0.fecha_completado,
+        l1_0.id_usuario,
+        l1_0.id_tipo_logro 
+    from
+        logro l1_0 
+    left join
+        tipo_logro tl1_0 
+            on tl1_0.id_tipo_logro=l1_0.id_tipo_logro 
+    where
+        l1_0.id_usuario=? 
+        and tl1_0.nombre=?
+2026-05-19T01:25:11.038-04:00 DEBUG 14268 --- [logros] [http-nio-8083-exec-5] org.hibernate.SQL                        : 
+    update
+        recuento 
+    set
+        id_usuario=?,
+        n_comunidades=?,
+        n_ejercicios_compartidos=?,
+        n_ejercicios_creados=?,
+        n_items_creados=?,
+        n_materiales_creados=? 
+    where
+        id_recuento=?
+2026-05-19T01:40:41.290-04:00  INFO 21844 --- [logros] [main] c.m.logros.LogrosApplication             : Starting LogrosApplication using Java 26 with PID 21844 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\logros\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:40:41.292-04:00 DEBUG 21844 --- [logros] [main] c.m.logros.LogrosApplication             : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:40:41.293-04:00  INFO 21844 --- [logros] [main] c.m.logros.LogrosApplication             : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:40:42.069-04:00  INFO 21844 --- [logros] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:40:42.120-04:00  INFO 21844 --- [logros] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 3 JPA repository interfaces.
+2026-05-19T01:40:42.314-04:00  INFO 21844 --- [logros] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=a11815ab-8147-336f-a281-7b82d7642856
+2026-05-19T01:40:42.724-04:00  INFO 21844 --- [logros] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8083 (http)
+2026-05-19T01:40:42.741-04:00  INFO 21844 --- [logros] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:40:42.742-04:00  INFO 21844 --- [logros] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:40:42.814-04:00  INFO 21844 --- [logros] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1482 ms
+2026-05-19T01:40:43.538-04:00  INFO 21844 --- [logros] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:40:44.056-04:00  INFO 21844 --- [logros] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54556723
+2026-05-19T01:40:44.060-04:00  INFO 21844 --- [logros] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:40:44.132-04:00  INFO 21844 --- [logros] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/logros_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:40:44.263-04:00  INFO 21844 --- [logros] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table `logros_db`.`flyway_schema_history` does not exist yet
+2026-05-19T01:40:44.270-04:00  INFO 21844 --- [logros] [main] o.f.core.internal.command.DbValidate     : Successfully validated 4 migrations (execution time 00:00.050s)
+2026-05-19T01:40:44.306-04:00  INFO 21844 --- [logros] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table `logros_db`.`flyway_schema_history` ...
+2026-05-19T01:40:44.404-04:00  INFO 21844 --- [logros] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `logros_db`: << Empty Schema >>
+2026-05-19T01:40:44.437-04:00  INFO 21844 --- [logros] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `logros_db` to version "1 - init"
+2026-05-19T01:40:44.455-04:00  WARN 21844 --- [logros] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: Can't create database 'logros_db'; database exists (SQL State: HY000 - Error Code: 1007)
+2026-05-19T01:40:44.620-04:00  INFO 21844 --- [logros] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `logros_db` to version "2 - poblado tipo logro"
+2026-05-19T01:40:44.674-04:00  INFO 21844 --- [logros] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `logros_db` to version "3 - agregar recuento material"
+2026-05-19T01:40:44.764-04:00  INFO 21844 --- [logros] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `logros_db` to version "4 - poblado tipo logro material"
+2026-05-19T01:40:44.807-04:00  INFO 21844 --- [logros] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 4 migrations to schema `logros_db`, now at version v4 (execution time 00:00.221s)
+2026-05-19T01:40:44.955-04:00  INFO 21844 --- [logros] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:40:45.029-04:00  INFO 21844 --- [logros] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:40:45.414-04:00  INFO 21844 --- [logros] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:40:45.463-04:00  WARN 21844 --- [logros] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:40:45.474-04:00  INFO 21844 --- [logros] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/logros_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: logros_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:40:46.170-04:00  INFO 21844 --- [logros] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:40:46.177-04:00  INFO 21844 --- [logros] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:40:46.266-04:00  INFO 21844 --- [logros] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:40:46.656-04:00  WARN 21844 --- [logros] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:40:48.537-04:00  INFO 21844 --- [logros] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:40:48.554-04:00  INFO 21844 --- [logros] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:40:48.618-04:00  INFO 21844 --- [logros] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8083 (http) with context path '/'
+2026-05-19T01:40:49.239-04:00  INFO 21844 --- [logros] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:40:49.240-04:00  INFO 21844 --- [logros] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:40:49.241-04:00  INFO 21844 --- [logros] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-05-19T01:40:49.622-04:00  INFO 21844 --- [logros] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:40:49.625-04:00  INFO 21844 --- [logros] [main] c.m.logros.LogrosApplication             : Started LogrosApplication in 9.678 seconds (process running for 10.238)
+2026-05-19T01:41:48.899-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-2] org.hibernate.SQL                        : 
+    select
+        tl1_0.id_tipo_logro,
+        tl1_0.criterio,
+        tl1_0.descripcion,
+        tl1_0.nombre,
+        tl1_0.operador,
+        tl1_0.umbral 
+    from
+        tipo_logro tl1_0
+2026-05-19T01:41:49.227-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-2] org.hibernate.SQL                        : 
+    select
+        l1_0.id_logro,
+        l1_0.completado,
+        l1_0.fecha_completado,
+        l1_0.id_usuario,
+        l1_0.id_tipo_logro 
+    from
+        logro l1_0 
+    where
+        l1_0.id_usuario=?
+2026-05-19T01:41:49.261-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:41:49.271-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:41:49.276-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:41:49.278-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:41:49.281-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:41:49.283-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:41:49.285-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-2] org.hibernate.SQL                        : 
+    insert 
+    into
+        logro
+        (completado, fecha_completado, id_usuario, id_tipo_logro) 
+    values
+        (?, ?, ?, ?)
+2026-05-19T01:43:20.404-04:00  INFO 21844 --- [logros] [http-nio-8083-exec-3] c.m.logros.controller.LogroController    : Incrementando ejercicios creados para el usuario 13
+2026-05-19T01:43:20.410-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    select
+        r1_0.id_recuento,
+        r1_0.id_usuario,
+        r1_0.n_comunidades,
+        r1_0.n_ejercicios_compartidos,
+        r1_0.n_ejercicios_creados,
+        r1_0.n_items_creados,
+        r1_0.n_materiales_creados 
+    from
+        recuento r1_0 
+    where
+        r1_0.id_usuario=?
+2026-05-19T01:43:20.415-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    insert 
+    into
+        recuento
+        (id_usuario, n_comunidades, n_ejercicios_compartidos, n_ejercicios_creados, n_items_creados, n_materiales_creados) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-05-19T01:43:20.424-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    select
+        tl1_0.id_tipo_logro,
+        tl1_0.criterio,
+        tl1_0.descripcion,
+        tl1_0.nombre,
+        tl1_0.operador,
+        tl1_0.umbral 
+    from
+        tipo_logro tl1_0
+2026-05-19T01:43:20.454-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    select
+        l1_0.id_logro,
+        l1_0.completado,
+        l1_0.fecha_completado,
+        l1_0.id_usuario,
+        l1_0.id_tipo_logro 
+    from
+        logro l1_0 
+    left join
+        tipo_logro tl1_0 
+            on tl1_0.id_tipo_logro=l1_0.id_tipo_logro 
+    where
+        l1_0.id_usuario=? 
+        and tl1_0.nombre=?
+2026-05-19T01:43:20.585-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    update
+        recuento 
+    set
+        id_usuario=?,
+        n_comunidades=?,
+        n_ejercicios_compartidos=?,
+        n_ejercicios_creados=?,
+        n_items_creados=?,
+        n_materiales_creados=? 
+    where
+        id_recuento=?
+2026-05-19T01:43:20.591-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-3] org.hibernate.SQL                        : 
+    update
+        logro 
+    set
+        completado=?,
+        fecha_completado=?,
+        id_usuario=?,
+        id_tipo_logro=? 
+    where
+        id_logro=?
+2026-05-19T01:43:51.715-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-5] org.hibernate.SQL                        : 
+    select
+        l1_0.id_logro,
+        l1_0.completado,
+        l1_0.fecha_completado,
+        l1_0.id_usuario,
+        l1_0.id_tipo_logro 
+    from
+        logro l1_0 
+    where
+        l1_0.id_usuario=?
+2026-05-19T01:43:51.723-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-5] org.hibernate.SQL                        : 
+    select
+        tl1_0.id_tipo_logro,
+        tl1_0.criterio,
+        tl1_0.descripcion,
+        tl1_0.nombre,
+        tl1_0.operador,
+        tl1_0.umbral 
+    from
+        tipo_logro tl1_0 
+    where
+        tl1_0.id_tipo_logro=?
+2026-05-19T01:43:51.727-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-5] org.hibernate.SQL                        : 
+    select
+        tl1_0.id_tipo_logro,
+        tl1_0.criterio,
+        tl1_0.descripcion,
+        tl1_0.nombre,
+        tl1_0.operador,
+        tl1_0.umbral 
+    from
+        tipo_logro tl1_0 
+    where
+        tl1_0.id_tipo_logro=?
+2026-05-19T01:43:51.729-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-5] org.hibernate.SQL                        : 
+    select
+        tl1_0.id_tipo_logro,
+        tl1_0.criterio,
+        tl1_0.descripcion,
+        tl1_0.nombre,
+        tl1_0.operador,
+        tl1_0.umbral 
+    from
+        tipo_logro tl1_0 
+    where
+        tl1_0.id_tipo_logro=?
+2026-05-19T01:43:51.731-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-5] org.hibernate.SQL                        : 
+    select
+        tl1_0.id_tipo_logro,
+        tl1_0.criterio,
+        tl1_0.descripcion,
+        tl1_0.nombre,
+        tl1_0.operador,
+        tl1_0.umbral 
+    from
+        tipo_logro tl1_0 
+    where
+        tl1_0.id_tipo_logro=?
+2026-05-19T01:43:51.733-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-5] org.hibernate.SQL                        : 
+    select
+        tl1_0.id_tipo_logro,
+        tl1_0.criterio,
+        tl1_0.descripcion,
+        tl1_0.nombre,
+        tl1_0.operador,
+        tl1_0.umbral 
+    from
+        tipo_logro tl1_0 
+    where
+        tl1_0.id_tipo_logro=?
+2026-05-19T01:43:51.734-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-5] org.hibernate.SQL                        : 
+    select
+        tl1_0.id_tipo_logro,
+        tl1_0.criterio,
+        tl1_0.descripcion,
+        tl1_0.nombre,
+        tl1_0.operador,
+        tl1_0.umbral 
+    from
+        tipo_logro tl1_0 
+    where
+        tl1_0.id_tipo_logro=?
+2026-05-19T01:43:51.734-04:00 DEBUG 21844 --- [logros] [http-nio-8083-exec-5] org.hibernate.SQL                        : 
+    select
+        tl1_0.id_tipo_logro,
+        tl1_0.criterio,
+        tl1_0.descripcion,
+        tl1_0.nombre,
+        tl1_0.operador,
+        tl1_0.umbral 
+    from
+        tipo_logro tl1_0 
+    where
+        tl1_0.id_tipo_logro=?
