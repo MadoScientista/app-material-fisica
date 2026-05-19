@@ -671,3 +671,55 @@ Caused by: java.net.ConnectException: Connection refused: getsockopt
 2026-05-19T01:18:52.748-04:00  INFO 21820 --- [comunidades] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2026-05-19T01:18:52.748-04:00  INFO 21820 --- [comunidades] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2026-05-19T01:18:52.750-04:00  INFO 21820 --- [comunidades] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-05-19T01:39:47.546-04:00  INFO 18604 --- [comunidades] [main] c.m.comunidades.ComunidadesApplication   : Starting ComunidadesApplication using Java 26 with PID 18604 (C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica\comunidades\target\classes started by Sam in C:\Users\Sam\Desktop\Github_MadoScientista\app-material-fisica)
+2026-05-19T01:39:47.547-04:00 DEBUG 18604 --- [comunidades] [main] c.m.comunidades.ComunidadesApplication   : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-19T01:39:47.548-04:00  INFO 18604 --- [comunidades] [main] c.m.comunidades.ComunidadesApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-05-19T01:39:48.387-04:00  INFO 18604 --- [comunidades] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-19T01:39:48.432-04:00  INFO 18604 --- [comunidades] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 1 JPA repository interface.
+2026-05-19T01:39:48.642-04:00  INFO 18604 --- [comunidades] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=0bbdfbd6-f6e3-360a-ba05-980d6387e6a3
+2026-05-19T01:39:49.056-04:00  INFO 18604 --- [comunidades] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8090 (http)
+2026-05-19T01:39:49.073-04:00  INFO 18604 --- [comunidades] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-19T01:39:49.074-04:00  INFO 18604 --- [comunidades] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-19T01:39:49.131-04:00  INFO 18604 --- [comunidades] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1542 ms
+2026-05-19T01:39:49.726-04:00  INFO 18604 --- [comunidades] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-19T01:39:50.054-04:00  INFO 18604 --- [comunidades] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4e756867
+2026-05-19T01:39:50.057-04:00  INFO 18604 --- [comunidades] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-19T01:39:50.093-04:00  INFO 18604 --- [comunidades] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/comunidades_db?createDatabaseIfNotExist=true (MySQL 8.0)
+2026-05-19T01:39:50.153-04:00  INFO 18604 --- [comunidades] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table `comunidades_db`.`flyway_schema_history` does not exist yet
+2026-05-19T01:39:50.156-04:00  INFO 18604 --- [comunidades] [main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.018s)
+2026-05-19T01:39:50.178-04:00  INFO 18604 --- [comunidades] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table `comunidades_db`.`flyway_schema_history` ...
+2026-05-19T01:39:50.238-04:00  INFO 18604 --- [comunidades] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `comunidades_db`: << Empty Schema >>
+2026-05-19T01:39:50.249-04:00  INFO 18604 --- [comunidades] [main] o.f.core.internal.command.DbMigrate      : Migrating schema `comunidades_db` to version "1 - init"
+2026-05-19T01:39:50.262-04:00  WARN 18604 --- [comunidades] [main] o.f.c.i.s.DefaultSqlScriptExecutor       : DB: Can't create database 'comunidades_db'; database exists (SQL State: HY000 - Error Code: 1007)
+2026-05-19T01:39:50.337-04:00  INFO 18604 --- [comunidades] [main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema `comunidades_db`, now at version v1 (execution time 00:00.062s)
+2026-05-19T01:39:50.415-04:00  INFO 18604 --- [comunidades] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-19T01:39:50.458-04:00  INFO 18604 --- [comunidades] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-19T01:39:50.759-04:00  INFO 18604 --- [comunidades] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-19T01:39:50.799-04:00  WARN 18604 --- [comunidades] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-19T01:39:50.808-04:00  INFO 18604 --- [comunidades] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/comunidades_db?createDatabaseIfNotExist=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.46
+	Default catalog/schema: comunidades_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-19T01:39:51.454-04:00  INFO 18604 --- [comunidades] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-19T01:39:51.462-04:00  INFO 18604 --- [comunidades] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-19T01:39:51.523-04:00  INFO 18604 --- [comunidades] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-19T01:39:51.760-04:00  WARN 18604 --- [comunidades] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-19T01:39:52.381-04:00  INFO 18604 --- [comunidades] [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-19T01:39:52.381-04:00  INFO 18604 --- [comunidades] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-19T01:39:52.388-04:00  INFO 18604 --- [comunidades] [RMI TCP Connection(2)-127.0.0.1] o.s.b.f.s.DefaultListableBeanFactory     : Obtaining singleton bean 'webEndpointServletHandlerMapping' in thread "RMI TCP Connection(2)-127.0.0.1" while other thread holds singleton lock for other beans [simpleDiscoveryClient, simpleDiscoveryProperties, compositeDiscoveryClient]
+2026-05-19T01:39:52.390-04:00  INFO 18604 --- [comunidades] [RMI TCP Connection(2)-127.0.0.1] o.s.b.f.s.DefaultListableBeanFactory     : Obtaining singleton bean 'management.endpoints.web.cors-org.springframework.boot.actuate.autoconfigure.endpoint.web.CorsEndpointProperties' in thread "RMI TCP Connection(2)-127.0.0.1" while other thread holds singleton lock for other beans [simpleDiscoveryClient, simpleDiscoveryProperties, compositeDiscoveryClient]
+2026-05-19T01:39:52.401-04:00  INFO 18604 --- [comunidades] [RMI TCP Connection(2)-127.0.0.1] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-05-19T01:39:52.414-04:00  INFO 18604 --- [comunidades] [RMI TCP Connection(2)-127.0.0.1] o.s.b.f.s.DefaultListableBeanFactory     : Obtaining singleton bean 'controllerEndpointHandlerMapping' in thread "RMI TCP Connection(2)-127.0.0.1" while other thread holds singleton lock for other beans [simpleDiscoveryClient, simpleDiscoveryProperties, compositeDiscoveryClient]
+2026-05-19T01:39:52.420-04:00  INFO 18604 --- [comunidades] [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 38 ms
+2026-05-19T01:39:53.337-04:00  INFO 18604 --- [comunidades] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:39:53.405-04:00  INFO 18604 --- [comunidades] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8090 (http) with context path '/'
+2026-05-19T01:39:54.409-04:00  INFO 18604 --- [comunidades] [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2026-05-19T01:39:54.413-04:00  INFO 18604 --- [comunidades] [main] c.m.comunidades.ComunidadesApplication   : Started ComunidadesApplication in 8.3 seconds (process running for 8.872)
