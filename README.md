@@ -31,7 +31,7 @@
  3. Se requiere de MySQL instalado junto a MySQL Workbench.
  4. Para preparar el espacio de trabajo se deben crear usuarios para la administración de cada microservicios con el script utilidadesDB/admin_app.sql en MySQL Workbench.
  5. Levantar los microservicios en VSCode desde la nueva pestaña Run and Debug de la extensión Spring Boot Extensión Pack.
- 6. Importar a Postman la colección postman/consultasHTTP-app-generador-ejercicios
+ 6. Importar a Postman la colección postman/app-material-fisica.postman_collection.json
 
  ## Flujo de Trabajo
 
