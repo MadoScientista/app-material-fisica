@@ -21,22 +21,30 @@ import com.madoscientista.historial.model.TipoEvento;
 import com.madoscientista.historial.service.EventoService;
 import com.madoscientista.historial.service.TipoEventoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
+@Tag(name = "Eventos")
 @Slf4j
 @RestController
 @RequestMapping("api/v1/eventos")
 public class EventoController {
 
+    // Inyección de servicios
     @Autowired
     private EventoService eService;
 
     @Autowired
-    private EventoMapper eMapper;
-
-    @Autowired
     private TipoEventoService teService;
+
+    // Inyección de mappers
+    @Autowired
+    private EventoMapper eMapper;
 
 
     // --------------------------------------------------------
@@ -44,6 +52,12 @@ public class EventoController {
     // --------------------------------------------------------
 
     // Retorna los eventos de un usuario filtrado por su ID
+    @Operation(summary = "Obtener los eventos de un usuario identificado por su ID")
+    @ApiResponses({
+        @ApiResponse(responseCode="200", description="Eventos encontrados"),
+        @ApiResponse(responseCode="404", description="No se han encontrado eventos o usuario no encontrado")
+    })
+
     @GetMapping("usuarios/{idUsuario}")
     public ResponseEntity<List<ResponseEventoDTO>> getEventosByUsuarioId(@PathVariable Long idUsuario){
         log.info("Se solicitaron el historial del usuario id: " + idUsuario);
@@ -57,6 +71,12 @@ public class EventoController {
     }
 
     // Retorna la lista de eventos disponible en BD
+    @Operation(summary = "Obtener todos los eventos de la BD")
+    @ApiResponses({
+        @ApiResponse(responseCode="200", description="Se han recuperado los eventos correctamente"),
+        @ApiResponse(responseCode="404", description="No se han encontrado eventos")
+    })
+
     @GetMapping
     public ResponseEntity<List<ResponseEventoDTO>> getEventos(){
         log.info("Lista de eventos solicitada");
@@ -78,8 +98,16 @@ public class EventoController {
     // --------------------------------------------------------
 
     // Crea eventos para un usuario origen y varios usuarios destino
+    @Operation(summary="Crear eventos para un usuario origen y varios usuarios destino")
+    @ApiResponses({
+        @ApiResponse(responseCode="201", description="Eventos creados con éxito"),
+        @ApiResponse(responseCode="400", description="Error en la solicitud"),
+        @ApiResponse(responseCode="500", description="Error interno")
+    })
     @PostMapping
-    public ResponseEntity<ResponseEventoDTO> postEvento(@Valid @RequestBody RequestEventoDTO request){
+    public ResponseEntity<ResponseEventoDTO> postEvento(
+        
+        @Valid @RequestBody RequestEventoDTO request){
 
         log.debug("Solicitud de creación de eventos con los datos {} ", request);
         TipoEvento tipoEvento = teService.getById(request.getIdTipoEvento());

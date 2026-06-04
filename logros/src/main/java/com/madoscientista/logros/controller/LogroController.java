@@ -27,6 +27,7 @@ import com.madoscientista.logros.service.RecuentoService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
+
 @Slf4j
 @RestController
 @RequestMapping("api/v1/logros")
@@ -49,6 +50,7 @@ public class LogroController {
     // ------------------ Sección GET -------------------------
     // --------------------------------------------------------
 
+    
     // Retorna todos los logros de un usuario
     @GetMapping("/usuario/{idUsuario}")
     public ResponseEntity<List<ResponseLogroDTO>> getLogrosByIdUsuario(@PathVariable Long idUsuario) {

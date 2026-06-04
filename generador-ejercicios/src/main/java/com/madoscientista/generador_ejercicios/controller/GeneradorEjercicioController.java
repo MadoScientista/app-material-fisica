@@ -14,14 +14,22 @@ import com.madoscientista.generador_ejercicios.mapper.EjercicioMapper;
 import com.madoscientista.generador_ejercicios.model.EjercicioFisica;
 import com.madoscientista.generador_ejercicios.service.EjercicioFisicaService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
+@Tag(name="Ejercicios")
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/generar-ejercicio")
 public class GeneradorEjercicioController {
 
+    // Inyección de servicios
     @Autowired
     private EjercicioFisicaService service;
     
@@ -32,8 +40,19 @@ public class GeneradorEjercicioController {
     // --------------- GENERAR EJERCICIO MRU ----------------------
     // ------------------------------------------------------------
 
+
+    // ---------------- Genera un ejercicio -----------------------
+    @Operation(summary = "Generar un ejercicio MRU", description = "Genera un ejercicio de movimiento rectilíneo uniforme")
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200", 
+            description = "Ejercicio generado correctamente",
+            content = @Content(schema = @Schema(implementation = ResponseEjercicioDTO.class))),
+        @ApiResponse(responseCode = "500", description = "Error al generar el ejercicio")
+    })
+
     @PostMapping
-    public ResponseEntity<?> getEjercicioMRU(@Valid @RequestBody RequestEjercicioDTO request){
+    public ResponseEntity<ResponseEjercicioDTO> getEjercicioMRU(@Valid @RequestBody RequestEjercicioDTO request){
 
         log.info("Ejercicio solicitado");
         EjercicioFisica ejercicio = service.getEjercicio(

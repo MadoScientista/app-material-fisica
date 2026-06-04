@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LogroMapper {
 
+    // Retorna un DTO a partir de un logro
     public ResponseLogroDTO toDTO(Logro l){
         ResponseLogroDTO response = new ResponseLogroDTO();
 

@@ -23,12 +23,22 @@ import com.madoscientista.comunidades.model.Comunidad;
 import com.madoscientista.comunidades.service.ComunidadService;
 
 import feign.FeignException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
+@Tag(name = "Comunidades", description="API de comunidades")
 @RestController
 @RequestMapping("api/v1/comunidades")
 public class ComunidadController {
 
+    // Inyección cliente service
     @Autowired
     ComunidadService cService;
 
@@ -43,7 +53,13 @@ public class ComunidadController {
     // ------------------ Sección GET -------------------------
     // --------------------------------------------------------
 
-    // Retorna una lista con las comunidades disponibles
+
+    // ------------- Obtener comunidades -------------
+    @Operation(summary="Obtener comunidades")
+    @ApiResponses({
+        @ApiResponse(responseCode="200", description="Lista de comunidades disponibles en BD"),
+        @ApiResponse(responseCode="404", description="No se han encontrado comunidades o no se han logrado recuperar comunidades desde DB")
+    })
     @GetMapping
     public ResponseEntity<List<ResponseComunidadDTO>> getComunidades(){
         List<Comunidad> comunidades = cService.getComunidades();
@@ -56,9 +72,18 @@ public class ComunidadController {
         
     }
 
-    // Retorna una comunidad filtrada por su id
+
+    // ---------- Filtrar comunidades por ID ---------------------
+    @Operation(summary = "Filtrar comunidades por ID")
+    @ApiResponses({
+        @ApiResponse(responseCode="200", description="Retorna una comunidad filtrada por su ID"),
+        @ApiResponse(responseCode="404", description="No se encontró comunidad con el ID indicado")
+    })
     @GetMapping("{idComunidad}")
-    public ResponseEntity<ResponseComunidadDTO> getComunidadById(@PathVariable Long idComunidad){
+    public ResponseEntity<ResponseComunidadDTO> getComunidadById(
+        @Parameter(description="ID de la comunidad a buscar", example="4")
+        @PathVariable Long idComunidad){
+        
         Comunidad comunidad = cService.getComunidadById(idComunidad);
 
         if(comunidad == null){
@@ -68,10 +93,16 @@ public class ComunidadController {
         return ResponseEntity.ok(comunidadDTO);
     }
 
-
-    // Retorna un Set con los id de los usuarios miembros
+    //------- Obtener los miembros de una comunidad filtrada por ID --------------
+    @Operation(summary = "Obtener los miembros de una comunidad filtrada por ID")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description="Retorna los miembros de la comunidad filtrada por ID"),
+        @ApiResponse(responseCode = "404", description="La comunidad no tiene miembros o la comunidad no existe")
+    })
     @GetMapping("{idComunidad}/usuarios")
-    public ResponseEntity<Set<Long>> getMiembrosDeComunidad(@PathVariable Long idComunidad){
+    public ResponseEntity<Set<Long>> getMiembrosDeComunidad(
+        @Parameter(description="ID de la comunidad a filtrar", example="8")
+        @PathVariable Long idComunidad){
         Set<Long> idMiembros = cService.getMiembrosDeComunidad(idComunidad);
 
         if(idMiembros == null){
@@ -87,7 +118,15 @@ public class ComunidadController {
     // ------------------ Sección POST ------------------------
     // --------------------------------------------------------
 
-    // Crea una nueva comunidad
+
+    //----------- Crear una nueva comunidad -------------------
+    @Operation(summary = "Crear una nueva comunidad")
+    @ApiResponses({
+        @ApiResponse(
+            responseCode="201", 
+            description = "Retorna la comunidad creada con éxito",
+            content = @Content(schema = @Schema(implementation = ResponseComunidadDTO.class)))
+    })
     @PostMapping
     public ResponseEntity<ResponseComunidadDTO> postComunidad(@Valid @RequestBody RequestComunidadDTO request){
         Comunidad comunidad = cMapper.toEntity(request);
@@ -100,9 +139,19 @@ public class ComunidadController {
     // ------------------ Sección PUT -------------------------
     // --------------------------------------------------------
 
-    // Permite agregar miembros a una comunidad
+    @Operation(summary = "Agrega miembros a la comunidad filtrada por ID, enviando un set de IDs de usuarios en el body")
+    @ApiResponses({
+        @ApiResponse(
+            responseCode="200", 
+            description="Se ha actualizado exitosamente la comunidad", 
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = Long.class))))
+    })
     @PutMapping("/agregar-miembros/{idComunidad}")
-    public ResponseEntity<ResponseComunidadDTO> agregarMiembrosAComunidad(@PathVariable Long idComunidad, @RequestBody Set<Long> idMiembros){
+    public ResponseEntity<ResponseComunidadDTO> agregarMiembrosAComunidad(
+        @Parameter(description = "ID de la comunidad a la que se agregarán los miembros", example = "4")
+        @PathVariable Long idComunidad, 
+        @RequestBody Set<Long> idMiembros){
+        
         Comunidad comunidad = cService.agregarMiembrosAComunidad(idComunidad, idMiembros);
 
         if(comunidad != null){
@@ -115,7 +164,10 @@ public class ComunidadController {
     }
 
 
-    // Permite eliminar miembros a una comunidad
+    @Operation(summary = "Elimina miembros de la comunidad filtrada por ID, enviando un set de IDs de usuarios en el body")
+    @ApiResponses({
+        @ApiResponse(responseCode="200", description="Se han eliminado los miembrosde la comunidad exitosamente")
+    })
     @PutMapping("/eliminar-miembros/{idComunidad}")
     public ResponseEntity<ResponseComunidadDTO> eliminarMiembrosDeComunidad(@PathVariable Long idComunidad, @RequestBody Set<Long> idMiembros){
         Comunidad comunidad = cService.eliminarMiembrosDeComunidad(idComunidad, idMiembros);
@@ -133,6 +185,11 @@ public class ComunidadController {
     // ------------------ Sección Ejercicios ------------------
     // --------------------------------------------------------
 
+    @Operation(summary = "Lista los ejercicios almacenados por los miembros de la comunidad filtrada por ID")
+    @ApiResponses({
+        @ApiResponse(responseCode="200", description="Lista los ejercicios almacenados por los miembros de la comunidad"),
+        @ApiResponse(responseCode="404", description="No se ecnontraron ejercicios para la comunidad")
+    })
     @GetMapping("ejercicios/{idComunidad}")
     public ResponseEntity<List<ResponseEjercicioDTO>> listarEjerciciosDeComunidad(@PathVariable Long idComunidad){
         Set<Long> idUsuarios = cService.getMiembrosDeComunidad(idComunidad);
