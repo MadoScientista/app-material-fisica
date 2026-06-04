@@ -1,0 +1,1853 @@
+{
+	"info": {
+		"_postman_id": "f070ba57-506f-4037-92e7-7f8485ef8422",
+		"name": "app-material-fisica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "53225062"
+	},
+	"item": [
+		{
+			"name": "ms-usuario",
+			"item": [
+				{
+					"name": "Ejercicio",
+					"item": [
+						{
+							"name": "postEjercicio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \r\n    \"tema\": \"MRU\",\r\n    \"incognita\": \"POSICION\",\r\n    \"dificultad\": \"ELEMENTAL\",\r\n    \"contexto\": \"PERSONA\",\r\n    \"resultadoPositivo\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8087/api/v1/ejercicios/usuario/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"api",
+										"v1",
+										"ejercicios",
+										"usuario",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "compartirEjercicio",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[2,3,4,5]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8087/api/v1/ejercicios/compartir/13/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"api",
+										"v1",
+										"ejercicios",
+										"compartir",
+										"13",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "dejarDeCompartirEjercicio",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[5]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8087/api/v1/ejercicios/dejar-compartir/13/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"api",
+										"v1",
+										"ejercicios",
+										"dejar-compartir",
+										"13",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteEjercicio",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8087/api/v1/ejercicios/1/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"api",
+										"v1",
+										"ejercicios",
+										"1",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getEjercicios",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8087/api/v1/ejercicios",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"api",
+										"v1",
+										"ejercicios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getEjerciciosCreadosByUsuario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8087/api/v1/ejercicios/creados/13",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"api",
+										"v1",
+										"ejercicios",
+										"creados",
+										"13"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getEjerciciosCompartidosAUsuario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8087/api/v1/ejercicios/compartidos/5",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"api",
+										"v1",
+										"ejercicios",
+										"compartidos",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Usuario",
+					"item": [
+						{
+							"name": "postUsuario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombreUsuario\" : \"Sam 200\",\r\n    \"email\": \"sam200@sam.com\",\r\n    \"password\": \"passsam\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8087/api/v1/usuarios",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"api",
+										"v1",
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUsuarios",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8087/api/v1/usuarios",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"api",
+										"v1",
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUsuariosByIds",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[1,2,121]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8087/api/v1/usuarios/lista",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"api",
+										"v1",
+										"usuarios",
+										"lista"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ms-generador-ejercicios",
+			"item": [
+				{
+					"name": "MRU",
+					"item": [
+						{
+							"name": "calcularX",
+							"item": [
+								{
+									"name": "PERSONA",
+									"item": [
+										{
+											"name": "x_persona_elemental_positivo",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{   \r\n    \"tema\": \"MRU\",\r\n    \"incognita\": \"POSICION\",\r\n    \"dificultad\": \"ELEMENTAL\",\r\n    \"contexto\": \"PERSONA\",\r\n    \"resultadoPositivo\": true\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "localhost:8080/api/v1/generar-ejercicio",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"api",
+														"v1",
+														"generar-ejercicio"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "x_persona_elemental_negativo",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{   \r\n    \"tema\": \"MRU\",\r\n    \"incognita\": \"POSICION\",\r\n    \"dificultad\": \"ELEMENTAL\",\r\n    \"contexto\": \"PERSONA\",\r\n    \"resultadoPositivo\": false\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "localhost:8080/api/v1/mru",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"api",
+														"v1",
+														"mru"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "x_persona_intermedio_positivo",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{   \r\n    \"tema\": \"MRU\",\r\n    \"incognita\": \"POSICION\",\r\n    \"dificultad\": \"INTERMEDIO\",\r\n    \"contexto\": \"PERSONA\",\r\n    \"resultadoPositivo\": true\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "localhost:8080/api/v1/mru",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"api",
+														"v1",
+														"mru"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "x_persona_intermedio_negativo",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{   \r\n    \"tema\": \"MRU\",\r\n    \"incognita\": \"POSICION\",\r\n    \"dificultad\": \"INTERMEDIO\",\r\n    \"contexto\": \"PERSONA\",\r\n    \"resultadoPositivo\": false\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "localhost:8080/api/v1/mru",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"api",
+														"v1",
+														"mru"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "x_persona_avanzado_negativo",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{   \r\n    \"tema\": \"MRU\",\r\n    \"incognita\": \"POSICION\",\r\n    \"dificultad\": \"AVANZADO\",\r\n    \"contexto\": \"PERSONA\",\r\n    \"resultadoPositivo\": false\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "localhost:8080/api/v1/mru",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"api",
+														"v1",
+														"mru"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "x_persona_avanzado_positivo",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{   \r\n    \"tema\": \"MRU\",\r\n    \"incognita\": \"POSICION\",\r\n    \"dificultad\": \"AAVANZADO\",\r\n    \"contexto\": \"PERSONA\",\r\n    \"resultadoPositivo\": true\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "localhost:8080/api/v1/mru",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"api",
+														"v1",
+														"mru"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "calcularV",
+							"item": [
+								{
+									"name": "calcularV_ELEMENTAL_POSITIVO",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"incognita\": \"VELOCIDAD\",\r\n    \"dificultad\": \"ELEMENTAL_POSITIVO\",\r\n    \"contexto\": \"AUTOMOVIL\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/api/v1/mru",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"v1",
+												"mru"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "calcularV_ELEMENTAL_NEGATIVO",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"incognita\": \"VELOCIDAD\",\r\n    \"dificultad\": \"ELEMENTAL_NEGATIVO\",\r\n    \"contexto\": \"AUTOMOVIL\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/api/v1/mru",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"v1",
+												"mru"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Plantillas",
+					"item": [
+						{
+							"name": "getPlantilla",
+							"item": [
+								{
+									"name": "getPlantillas",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8081/api/v1/plantillas",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"api",
+												"v1",
+												"plantillas"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getPlantillasByTema",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8081/api/v1/plantillas/temas/MRU",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"api",
+												"v1",
+												"plantillas",
+												"temas",
+												"MRU"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getPlantillaById",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8081/api/v1/plantillas/10",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"api",
+												"v1",
+												"plantillas",
+												"10"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "ContextosFisicos",
+					"item": [
+						{
+							"name": "getContextosFisicos",
+							"item": [
+								{
+									"name": "getContextos",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/api/v1/contextos-fisicos",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"api",
+												"v1",
+												"contextos-fisicos"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ms-suscripciones",
+			"item": [
+				{
+					"name": "postSuscripcion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUsuario\":13,\r\n    \"nombreTipoSuscripcion\" : \"GRATUITA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8086/api/v1/suscripciones",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"suscripciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSuscripcionesActivas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8086/api/v1/suscripciones/activas",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"suscripciones",
+								"activas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsuariosConSuscripcionesActivas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8086/api/v1/suscripciones/usuarios-activos",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"suscripciones",
+								"usuarios-activos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSuscripcionByUsuarioId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8086/api/v1/suscripciones/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"suscripciones",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMaxEjerciciosByUsuarioId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8086/api/v1/suscripciones/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"suscripciones",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ms-comunidades",
+			"item": [
+				{
+					"name": "listarEjerciciosDeComunidad",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/v1/comunidades/ejercicios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"comunidades",
+								"ejercicios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postComunidad",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"La buena comunidad\",\r\n    \"idUsuarioCreador\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/v1/comunidades",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"comunidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agregarUsuariosAComunidad",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[1,2,3,4,13]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/v1/comunidades/agregar-miembros/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"comunidades",
+								"agregar-miembros",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarUsuariosDeComunidad",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[13]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/v1/comunidades/eliminar-miembros/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"comunidades",
+								"eliminar-miembros",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getComunidades",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"La buena comunidad\",\r\n    \"idUsuarioCreador\": 1\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8090/api/v1/comunidades",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"comunidades"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ms-logros",
+			"item": [
+				{
+					"name": "Logros",
+					"item": [
+						{
+							"name": "getLogros",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8083/api/v1/logros",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"v1",
+										"logros"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getLogrosByUsuario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8083/api/v1/logros/usuario/13",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"v1",
+										"logros",
+										"usuario",
+										"13"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Recuento",
+					"item": [
+						{
+							"name": "getRecuentos",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ms-logos",
+			"item": []
+		},
+		{
+			"name": "ms-notificador",
+			"item": [
+				{
+					"name": "getNotificaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/api/v1/notificaciones",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"notificaciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getNotificacionesByIdUsuarioOrigen",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/api/v1/notificaciones/usuarios/13",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"notificaciones",
+								"usuarios",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getNotificacionesNoLeidasByIdUsuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/api/v1/notificaciones/no-leidas/usuarios/13",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"notificaciones",
+								"no-leidas",
+								"usuarios",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getNotificacionesLeidasByIdUsuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/api/v1/notificaciones/leidas/usuarios/13",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"notificaciones",
+								"leidas",
+								"usuarios",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getNotificacionById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/api/v1/notificaciones/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"notificaciones",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ms-historial",
+			"item": [
+				{
+					"name": "getEventos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/api/v1/eventos",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"eventos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEventoByIdEvento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/api/v1/eventos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"eventos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEventoByIdUsuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/api/v1/eventos/usuarios/13",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"eventos",
+								"usuarios",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postEvento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTipoEvento\" : 4,\r\n    \"idUsuarioOrigen\": 13,\r\n    \"idUsuarioDestino\": [1,2,3,4]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/api/v1/eventos",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"eventos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ms-material",
+			"item": [
+				{
+					"name": "ItemEjercicio",
+					"item": [
+						{
+							"name": "postItemsEjercicio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"idUsuarioCreador\": 14,\r\n        \"titulo\": \"Guía MRU\",\r\n        \"descripcion\": \"Ejercicios de velocidad constante\",\r\n        \"textoEjercicios\": \"ejercicio1, ejercicio2, ejercicio3\"\r\n    },\r\n    {\r\n        \"idUsuarioCreador\": 14,\r\n        \"titulo\": \"Guía MRUA\",\r\n        \"descripcion\": \"Ejercicios de aceleración constante\",\r\n        \"textoEjercicios\": \"ejercicio1, ejercicio2, ejercicio3\"\r\n    },\r\n    {\r\n        \"idUsuarioCreador\": 14,\r\n        \"titulo\": \"Guía fuerzas\",\r\n        \"descripcion\": \"Ejercicios de leyes de Newton\",\r\n        \"textoEjercicios\": \"ejercicio1, ejercicio2, ejercicio3\"\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8084/api/v1/item-ejercicios/lista",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"api",
+										"v1",
+										"item-ejercicios",
+										"lista"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Material",
+					"item": [
+						{
+							"name": "postMaterial",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idUsuarioCreador\": 14,\r\n    \"idItemsEjercicios\": [1, 2, 3]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8084/api/v1/materiales",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"api",
+										"v1",
+										"materiales"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ms-valoraciones",
+			"item": [
+				{
+					"name": "postValoracion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEjercicio\": 10,\r\n    \"idUsuario\": 1,\r\n    \"puntuacion\": 3,\r\n    \"comentario\": \"Buen ejercicio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8088/api/v1/valoraciones",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"api",
+								"v1",
+								"valoraciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPromedioValoracion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEjercicio\": 10,\r\n    \"idUsuario\": 1,\r\n    \"puntuacion\": 3,\r\n    \"comentario\": \"Buen ejercicio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8088/api/v1/valoraciones/promedio/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"api",
+								"v1",
+								"valoraciones",
+								"promedio",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "1-flujo-geenracion-ejercicios",
+			"item": [
+				{
+					"name": "1-postUsuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreUsuario\" : \"Sam 1993\",\r\n    \"nombre\": \"Samuel\",\r\n    \"apellido\": \"Cortés\",\r\n    \"email\": \"sam1993@sam.com\",\r\n    \"password\": \"passsam\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8087/api/v1/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2-postSuscripcion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUsuario\":13,\r\n    \"nombreTipoSuscripcion\" : \"GRATUITA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8086/api/v1/suscripciones",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"suscripciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3-postEjercicio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"tema\": \"MRU\",\r\n    \"incognita\": \"POSICION\",\r\n    \"dificultad\": \"ELEMENTAL\",\r\n    \"contexto\": \"PERSONA\",\r\n    \"resultadoPositivo\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8087/api/v1/ejercicios/usuario/13",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"v1",
+								"ejercicios",
+								"usuario",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4-getEventos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/api/v1/eventos",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"eventos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5-getNotificaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/api/v1/notificaciones",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"notificaciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6-getLogrosByUsuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8083/api/v1/logros/usuario/13",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"logros",
+								"usuario",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2-usus-de-comunidad",
+			"item": [
+				{
+					"name": "1-postUsuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreUsuario\" : \"Ale 1996 \",\r\n    \"nombre\": \"Alejandro\",\r\n    \"apellido\": \"Cortés\",\r\n    \"email\": \"ale@sam.com\",\r\n    \"password\": \"passale\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8087/api/v1/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2-postSuscripcion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUsuario\":14,\r\n    \"nombreTipoSuscripcion\" : \"GRATUITA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8086/api/v1/suscripciones",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"suscripciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3-postEjercicio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"tema\": \"MRU\",\r\n    \"incognita\": \"POSICION\",\r\n    \"dificultad\": \"ELEMENTAL\",\r\n    \"contexto\": \"PERSONA\",\r\n    \"resultadoPositivo\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8087/api/v1/ejercicios/usuario/14",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"api",
+								"v1",
+								"ejercicios",
+								"usuario",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4-postComunidad",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"La buena comunidad\",\r\n    \"idUsuarioCreador\": 13\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/v1/comunidades",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"comunidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5-agregarUsuariosAComunidad",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[13,14]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/v1/comunidades/agregar-miembros/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"comunidades",
+								"agregar-miembros",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6-listarEjerciciosDeComunidad",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/v1/comunidades/ejercicios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"comunidades",
+								"ejercicios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7-eliminarUsuariosDeComunidad",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[14]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/v1/comunidades/eliminar-miembros/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"comunidades",
+								"eliminar-miembros",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8-listarEjerciciosDeComunidad",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/v1/comunidades/ejercicios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"v1",
+								"comunidades",
+								"ejercicios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3-flujo-creacion-material",
+			"item": [
+				{
+					"name": "1-postItemsEjercicio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"idUsuarioCreador\": 14,\r\n        \"titulo\": \"Guía MRU\",\r\n        \"descripcion\": \"Ejercicios de velocidad constante\",\r\n        \"textoEjercicios\": \"ejercicio1, ejercicio2, ejercicio3\"\r\n    },\r\n    {\r\n        \"idUsuarioCreador\": 14,\r\n        \"titulo\": \"Guía MRUA\",\r\n        \"descripcion\": \"Ejercicios de aceleración constante\",\r\n        \"textoEjercicios\": \"ejercicio1, ejercicio2, ejercicio3\"\r\n    },\r\n    {\r\n        \"idUsuarioCreador\": 14,\r\n        \"titulo\": \"Guía fuerzas\",\r\n        \"descripcion\": \"Ejercicios de leyes de Newton\",\r\n        \"textoEjercicios\": \"ejercicio1, ejercicio2, ejercicio3\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8084/api/v1/item-ejercicios/lista",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"item-ejercicios",
+								"lista"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2-postMaterial",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUsuarioCreador\": 14,\r\n    \"idItemsEjercicios\": [1, 2, 3]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8084/api/v1/materiales",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"materiales"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4-flujo-valoracion",
+			"item": [
+				{
+					"name": "1-postValoracion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEjercicio\": 1,\r\n    \"idUsuario\": 5,\r\n    \"puntuacion\": 3,\r\n    \"comentario\": \"Buen ejercicio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8088/api/v1/valoraciones",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"api",
+								"v1",
+								"valoraciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2-getPromedioValoracion Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEjercicio\": 10,\r\n    \"idUsuario\": 1,\r\n    \"puntuacion\": 3,\r\n    \"comentario\": \"Buen ejercicio\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8088/api/v1/valoraciones/promedio/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"api",
+								"v1",
+								"valoraciones",
+								"promedio",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
