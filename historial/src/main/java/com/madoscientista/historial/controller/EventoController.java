@@ -23,6 +23,9 @@ import com.madoscientista.historial.service.TipoEventoService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -51,15 +54,18 @@ public class EventoController {
     // ------------------ Sección GET -------------------------
     // --------------------------------------------------------
 
-    // Retorna los eventos de un usuario filtrado por su ID
-    @Operation(summary = "Obtener los eventos de un usuario identificado por su ID")
+    //--------------------- Obtener eventos de un usuario --------------------------------
+    @Operation(summary = "Obtener todods los eventos de un usuario identificado")
     @ApiResponses({
         @ApiResponse(responseCode="200", description="Eventos encontrados"),
         @ApiResponse(responseCode="404", description="No se han encontrado eventos o usuario no encontrado")
     })
 
     @GetMapping("usuarios/{idUsuario}")
-    public ResponseEntity<List<ResponseEventoDTO>> getEventosByUsuarioId(@PathVariable Long idUsuario){
+    public ResponseEntity<List<ResponseEventoDTO>> getEventosByUsuarioId(
+        @Parameter(description = "ID de usuario", example="6")
+        @PathVariable Long idUsuario){
+        
         log.info("Se solicitaron el historial del usuario id: " + idUsuario);
         List<Evento> eventos = eService.getEventosByIdUsuarioOrigen(idUsuario);
 
@@ -70,8 +76,8 @@ public class EventoController {
         return ResponseEntity.ok(eMapper.toDTOList(eventos));
     }
 
-    // Retorna la lista de eventos disponible en BD
-    @Operation(summary = "Obtener todos los eventos de la BD")
+    //---------- Obtener todos los eventos disponibles ----------------
+    @Operation(summary = "Obtener todos los eventos disponibles")
     @ApiResponses({
         @ApiResponse(responseCode="200", description="Se han recuperado los eventos correctamente"),
         @ApiResponse(responseCode="404", description="No se han encontrado eventos")
@@ -123,9 +129,18 @@ public class EventoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    // Permite crear eventos para distintos usuarios
+    //--------- Crear eventos para una lista de usuarios --------------
+    @Operation(summary = "Crear eventos para una lista de usuarios")
+    @ApiResponses({
+        @ApiResponse(
+            responseCode="201", 
+            description = "Eventos creados con éxito",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseEventoDTO.class))))
+    })
+
     @PostMapping("/lista")
     public ResponseEntity<List<ResponseEventoDTO>> postEventos(@Valid @RequestBody List<RequestEventoDTO> requests) {
+
         log.debug("Solicitud de creación de eventos múltiples: {}", requests);
         List<ResponseEventoDTO> responses = new ArrayList<>();
         for (RequestEventoDTO request : requests) {
