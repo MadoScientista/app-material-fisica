@@ -24,6 +24,13 @@ import com.madoscientista.logros.dto.recuentoDTO.ResponseRecuentoDTO;
 import com.madoscientista.logros.service.LogroService;
 import com.madoscientista.logros.service.RecuentoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
@@ -52,6 +59,17 @@ public class LogroController {
 
     
     // Retorna todos los logros de un usuario
+
+    @Operation(
+        summary = "Obtener todos los logros de un usuario",
+        description = "Retorna todos los logros de un usuario identificado con su id en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Lista de logros del usuario obtenida exitosamente",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseLogroDTO.class))))
+    })
     @GetMapping("/usuario/{idUsuario}")
     public ResponseEntity<List<ResponseLogroDTO>> getLogrosByIdUsuario(@PathVariable Long idUsuario) {
         List<ResponseLogroDTO> response = logroMapper.toDTOs(lService.getLogrosByIdUsuario(idUsuario));
@@ -59,6 +77,22 @@ public class LogroController {
     }
 
     // Retorna la lista de logros disponible en BD
+
+    @Operation(
+        summary = "Obtener todos los logros",
+        description = "Retorna todos los logros disponibles en la base de datos"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Lista de logros obtenida exitosamente",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseLogroDTO.class)))),
+        @ApiResponse(
+            responseCode = "404",
+            description = "No se encontraron logros",
+            content = @Content
+        )
+    })
     @GetMapping
     public ResponseEntity<List<ResponseLogroDTO>> getLogros() {
         log.info("Lista de logros en DB solicitada");
@@ -76,6 +110,18 @@ public class LogroController {
     }
 
     // Retorna el recuento de un usuario filtrado por su id
+
+    @Operation(
+        summary = "Obtener el recuento de eventos de un usuario",
+        description = "Retorna el recuento de los eventos de un usuario identificado por su ID en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200", 
+            description = "Recuentos encontrados exitosamente",
+            content = @Content(schema = @Schema(implementation = ResponseRecuentoDTO.class))
+        )
+    })
     @GetMapping("recuentos/usuario/{idUsuario}")
     public ResponseEntity<ResponseRecuentoDTO> getRecuentoByIdUsuario(@PathVariable Long idUsuario){
         log.info("Solciitud del recuento del usuario ID: " + idUsuario);
@@ -94,6 +140,16 @@ public class LogroController {
     }
 
     // Retorna todos los recuentos disponible en DB
+    @Operation(
+        summary = "Obtener los recuentos de todos los usuarios",
+        description = "Retorna una lista con todos los recuentos de los usuarios registrados en la plataforma"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode ="200", 
+            description = "Lista de recuentos encontrada",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseRecuentoDTO.class))))
+    })
     @GetMapping("recuentos")
     public ResponseEntity<List<ResponseRecuentoDTO>> getRecuentos(){
         log.info("Lista de recuentos en DB solicitada");
@@ -116,8 +172,23 @@ public class LogroController {
     // --------------------------------------------------------
     
     // Sincroniza los logros del usuario con los tipos de logro disponibles
+
+    @Operation(
+        summary = "Sincroniza los logros del usuario con los tipos de logro disponibles",
+        description = "Actualiza la lista de logros disponible para un usuario, considerando nuevos logros que fueron creados luego que el usuario se registrara"
+    )
+    @ApiResponses(
+        @ApiResponse(
+            responseCode="200",
+            description="Lista de logros actualizada correctamente",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseLogroDTO.class)))
+        )
+    )
     @PostMapping("/sincronizar/{idUsuario}")
-    public ResponseEntity<List<ResponseLogroDTO>> postSincronizarLogrosUsuario(@PathVariable Long idUsuario){
+    public ResponseEntity<List<ResponseLogroDTO>> postSincronizarLogrosUsuario(
+        @Parameter(description = "ID del usuario")
+        @PathVariable Long idUsuario){
+
         List<ResponseLogroDTO> response = logroMapper.toDTOs(lService.postSincronizarLogrosUsuario(idUsuario));
         return ResponseEntity.ok(response);
     }
@@ -127,6 +198,17 @@ public class LogroController {
     // --------------------------------------------------------
 
     // Incrementa en 1 el contador de ejercicios creados para un usuario
+    @Operation(
+        summary = "Incrementa en 1 el contador de ejercicio creado",
+        description = "Aumenta en 1 el contador de ejercicio creado para un usuario identificado por su ID en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Contador de ejercicio creado aumentado en 1",
+            content = @Content(schema = @Schema(implementation = ResponseRecuentoDTO.class))
+        )
+    })
     @PostMapping("/recuento/ejercicio-creado/{idUsuario}")
     public ResponseEntity<ResponseRecuentoDTO> postIncrementarEjercicioCreado(@PathVariable Long idUsuario) {
         log.info("Incrementando ejercicios creados para el usuario {}", idUsuario);
@@ -136,6 +218,16 @@ public class LogroController {
     }
 
     // Incrementa el contador de ejercicios compartidos para un usuario
+    @Operation(
+        summary = "Incrementa el contador de ejercicios compartidos",
+        description = "Incrementa en 1 el contador de ejercicios compartidos para un usuario identificado por su ID en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Contador de ejercicios compartidos aumentado en 1",
+            content = @Content(schema = @Schema(implementation = ResponseRecuentoDTO.class)))
+    })
     @PostMapping("/recuento/ejercicio-compartido/{idUsuario}")
     public ResponseEntity<ResponseRecuentoDTO> postIncrementarEjercicioCompartido(
             @PathVariable Long idUsuario, @RequestBody int cantidad) {
@@ -146,6 +238,17 @@ public class LogroController {
     }
 
     // Incrementa el contador de comunidades para un usuario
+    @Operation(
+        summary = "Incrementa el contador de comunidad",
+        description = "Incrementa el contador de comunidad para un usuario identificado por su ID en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode="200",
+            description = "Contador de comunidad aumentado en 1",
+            content = @Content(schema = @Schema(implementation = ResponseRecuentoDTO.class))
+        )
+    })
     @PostMapping("/recuento/comunidad/{idUsuario}")
     public ResponseEntity<ResponseRecuentoDTO> postIncrementarComunidad(
             @PathVariable Long idUsuario, @RequestBody int cantidad) {
@@ -155,8 +258,19 @@ public class LogroController {
         return ResponseEntity.ok(response);
     }
 
-    // Incrementa el contador de comunidades para un conjunto de usuarios
+    
     // Incrementa el contador de items creados para un usuario
+    @Operation(
+        summary = "Incrementar contador de items creados", 
+        description = "Incrementa el contador de items creados para un usuario identificado por su ID en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Contador de items aumentado en 1",
+            content = @Content(schema = @Schema(implementation = ResponseRecuentoDTO.class))
+        )
+    })
     @PostMapping("/recuento/item-creado/{idUsuario}")
     public ResponseEntity<ResponseRecuentoDTO> postIncrementarItemCreado(
             @PathVariable Long idUsuario, @RequestBody int cantidad) {
@@ -193,6 +307,20 @@ public class LogroController {
     // --------------------------------------------------------
 
     // Actualiza un logro a completado
+    @Operation(
+        summary = "Actualiza un logro a completado",
+        description = "Actualiza un logro a completado y agrega la fecha de completación"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Logro actualizado exitosamente",
+            content = @Content(schema = @Schema(implementation = ResponseLogroDTO.class))),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Logro no encontrado o datos inválidos",
+            content = @Content)
+    })
     @PutMapping
     public ResponseEntity<ResponseLogroDTO> putLogroCompletado(@Valid @RequestBody RequestLogroDTO request){
         Long idUsuario = request.getIdUsuario();

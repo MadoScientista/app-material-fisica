@@ -19,20 +19,30 @@ import com.madoscientista.notificador.model.TipoNotificacion;
 import com.madoscientista.notificador.service.NotificacionService;
 import com.madoscientista.notificador.service.TipoNotificacionService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
+@Tag(name = "Notificación", description = "API para el manejo de notificaciones")
 @Slf4j
 @RestController
 @RequestMapping("api/v1/notificaciones")
 public class NotificacionController {
 
+    // Inyección de servicios
     @Autowired
     private NotificacionService nService;
 
     @Autowired
     private TipoNotificacionService tnService;
 
+    // Inyección de mappers
     @Autowired
     private NotificacionMapper nMapper;
 
@@ -42,6 +52,18 @@ public class NotificacionController {
     // --------------------------------------------------------
 
     // Crea notificaciones para un usuario creador hacia uno o varios usuarios destino
+
+    @Operation(
+        summary = "Crea una notificación",
+        description = "Crea una notificación para un usuario creador y uno o varios destinos"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "201",
+            description = "Notificación creada con éxito",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseNotificacionDTO.class)))
+        )
+    })
     @PostMapping
     public ResponseEntity<List<ResponseNotificacionDTO>> postNotificacion(@RequestBody @Valid RequestEventoDTO request) {
         log.debug("Solicitud de creación de notificaciones con los siguientes datos {}", request);
@@ -59,6 +81,23 @@ public class NotificacionController {
     // --------------------------------------------------------
 
     // Retorna todas las notiicaciones disponibles en BD
+
+    @Operation(
+        summary = "Obtener todas las notificaciones",
+        description = "Retorna todas las notificaciones disponibles en la plataforma"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Lista encontrada con éxito",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseNotificacionDTO.class)))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "No se encontraron notificaciones",
+            content = @Content
+        )
+    })
     @GetMapping
     public ResponseEntity<List<ResponseNotificacionDTO>> getNotificaciones(){
         log.info("Lista de notificaciones disponibles en DB solicitada");
@@ -76,6 +115,22 @@ public class NotificacionController {
     }
 
     // Retorna una notificación filtrada por id
+    @Operation(
+        summary = "Obtener notificación por ID",
+        description = "Retorna una notificación filtrada por el ID indicado en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Notificación encontrada",
+            content = @Content(schema = @Schema(implementation = ResponseNotificacionDTO.class))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Notificación no encontrada",
+            content = @Content
+        )
+    })
     @GetMapping("{idNotificacion}")
     public ResponseEntity<ResponseNotificacionDTO> getNotificacionById(@PathVariable Long idNotificacion){
         log.info("Notificación solicitada por id {}", idNotificacion);
@@ -92,6 +147,23 @@ public class NotificacionController {
     }
 
     // Retorna las notificaciones filtradas por ID de usuario
+
+    @Operation(
+        summary = "Obtener notificaciones de un usuario",
+        description = "Retorna una lista de todas las notificaciones de un usuario filtrado por el ID indicado en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Lista de notificaciones encontradas",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseNotificacionDTO.class)))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Lista de notificaciones no encontrada o usuario no existe",
+            content = @Content
+        )
+    })
     @GetMapping("usuarios/{idUsuario}")
     public ResponseEntity<List<ResponseNotificacionDTO>> getByIdUsuario(@PathVariable Long idUsuario){
         log.info("Lista de notificaciones de usuario solicitada");
@@ -109,6 +181,22 @@ public class NotificacionController {
     }
 
     // Retorna las notificaciones leídas por un usuario
+    @Operation(
+        summary = "Obtener notificaciones leídas por un usuario",
+        description = "Retorna una lista con las notificaciones leídas por un usuario filtrado por el ID indicado en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Lista de notificaciones encontrada",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseNotificacionDTO.class)))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Lista de notificaciones vacía o usuario no existe",
+            content = @Content
+        )
+    })
     @GetMapping("leidas/usuarios/{idUsuario}")
     public ResponseEntity<List<ResponseNotificacionDTO>> getLeidasByIdUsuario(@PathVariable Long idUsuario){
         log.info("Lista de notificaciones leídas por un usuario solicitada");
@@ -127,6 +215,22 @@ public class NotificacionController {
 
 
     // Retorna las notificaciones no leídas por un usuario
+    @Operation(
+        summary = "Obtener las notificaciones no leídas por un usuario",
+        description = "Retorna una lista con las notificaciones no leídas por un usuario filtrado por el ID indicado en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Lista de notificaciones encontrada",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseNotificacionDTO.class)))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Lista de notificaciones vacía o usuario no existe",
+            content = @Content
+        )
+    })
     @GetMapping("no-leidas/usuarios/{idUsuario}")
     public ResponseEntity<List<ResponseNotificacionDTO>> getNoLeidasByIdUsuario(@PathVariable Long idUsuario){
         log.info("Lista de notificaciones no leídas por un usuario solicitada");

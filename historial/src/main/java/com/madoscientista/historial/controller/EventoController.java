@@ -50,12 +50,15 @@ public class EventoController {
     private EventoMapper eMapper;
 
 
-    // --------------------------------------------------------
-    // ------------------ Sección GET -------------------------
-    // --------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------
+    // ----------------------------------------- Sección GET -----------------------------------------------
+    // -----------------------------------------------------------------------------------------------------
 
-    //--------------------- Obtener eventos de un usuario --------------------------------
-    @Operation(summary = "Obtener todods los eventos de un usuario identificado")
+    // --------------------------------- Obtener eventos de un usuario -------------------------------------
+
+    @Operation(
+        summary = "Obtener todos los eventos de un usuario",
+        description = "Retorna todos los eventos de un usuario cuyo ID se indica en el path")
     @ApiResponses({
         @ApiResponse(responseCode="200", description="Eventos encontrados"),
         @ApiResponse(responseCode="404", description="No se han encontrado eventos o usuario no encontrado")
@@ -76,8 +79,11 @@ public class EventoController {
         return ResponseEntity.ok(eMapper.toDTOList(eventos));
     }
 
-    //---------- Obtener todos los eventos disponibles ----------------
-    @Operation(summary = "Obtener todos los eventos disponibles")
+    // --------------------------- Obtener todos los eventos disponibles -------------------------------
+
+    @Operation(
+        summary = "Obtener todos los eventos disponibles",
+        description = "Retorna todos los eventos disponibles en la base de datos")
     @ApiResponses({
         @ApiResponse(responseCode="200", description="Se han recuperado los eventos correctamente"),
         @ApiResponse(responseCode="404", description="No se han encontrado eventos")
@@ -99,20 +105,32 @@ public class EventoController {
     }
 
 
-    // --------------------------------------------------------
-    // ------------------ Sección POST ------------------------
-    // --------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------
+    // ----------------------------------------- Sección POST ----------------------------------------------
+    // -----------------------------------------------------------------------------------------------------
 
-    // Crea eventos para un usuario origen y varios usuarios destino
-    @Operation(summary="Crear eventos para un usuario origen y varios usuarios destino")
+    // ----------------- Crear eventos para un usuario origen y varios usuarios destino --------------------
+
+    @Operation(
+        summary = "Crear eventos para un usuario origen y varios usuarios destino",
+        description = "La creación de eventos tiene un usuario origen y uno o varios de destino")
     @ApiResponses({
-        @ApiResponse(responseCode="201", description="Eventos creados con éxito"),
-        @ApiResponse(responseCode="400", description="Error en la solicitud"),
-        @ApiResponse(responseCode="500", description="Error interno")
+        @ApiResponse(
+            responseCode="201", 
+            description="Eventos creados con éxito",
+            content = @Content(schema = @Schema(implementation = ResponseEventoDTO.class))),
+        @ApiResponse(
+            responseCode="400", 
+            description="Error en la solicitud",
+            content = @Content),
+        @ApiResponse(
+            responseCode="500", 
+            description="Error interno",
+            content = @Content)
     })
+
     @PostMapping
     public ResponseEntity<ResponseEventoDTO> postEvento(
-        
         @Valid @RequestBody RequestEventoDTO request){
 
         log.debug("Solicitud de creación de eventos con los datos {} ", request);
@@ -129,13 +147,20 @@ public class EventoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    //--------- Crear eventos para una lista de usuarios --------------
-    @Operation(summary = "Crear eventos para una lista de usuarios")
+    //-------------------------- Crear eventos para una lista de usuarios --------------------------------------
+
+    @Operation(
+        summary = "Crear eventos para una lista de usuarios",
+        description = "Crea eventos a partir de una lista de solicitudes RequestEventoDTO")
     @ApiResponses({
         @ApiResponse(
             responseCode="201", 
             description = "Eventos creados con éxito",
-            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseEventoDTO.class))))
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseEventoDTO.class)))),
+        @ApiResponse(
+            responseCode="400",
+            description = "Solicitud inválida o datos incorrectos",
+            content = @Content)
     })
 
     @PostMapping("/lista")

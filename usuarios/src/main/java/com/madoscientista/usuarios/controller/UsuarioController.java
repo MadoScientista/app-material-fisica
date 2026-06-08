@@ -20,10 +20,19 @@ import com.madoscientista.usuarios.mapper.UsuarioMapper;
 import com.madoscientista.usuarios.model.Usuario;
 import com.madoscientista.usuarios.service.UsuarioService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Tag(name = "Usuarios", description = "API de usuarios")
 @RestController
 @RequestMapping("api/v1/usuarios")
 public class UsuarioController {
@@ -34,78 +43,110 @@ public class UsuarioController {
     @Autowired
     private UsuarioMapper usuarioMapper;
 
-
     // --------------------------------------------------------
     // ------------------ Sección GET -------------------------
     // --------------------------------------------------------
 
-    // Retorna la lista de usuarios disponibles
+    @Operation(
+        summary = "Obtener todos los usuarios",
+        description = "Retorna una lista de los usuarios disponibles en la plataforma")
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Lista de usuarios obtenida exitosamente",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseUsuarioDTO.class)))),
+        @ApiResponse(
+            responseCode = "404",
+            description = "No se encontraron usuarios en la base de datos",
+            content = @Content)
+    })
     @GetMapping
     public ResponseEntity<List<ResponseUsuarioDTO>> getUsuarios(){
         log.info("Solicitud usuarios disponibles en la plataforma");
-
         List<Usuario> usuarios = service.getUsuarios();
-
         if(usuarios.isEmpty()){
             log.info("No se encontraron usuarios");
             return ResponseEntity.notFound().build();
         }
-
         log.info("Usuarios encontrados");
         List<ResponseUsuarioDTO> dtoList = usuarioMapper.toDTOList(usuarios);
         return ResponseEntity.ok(dtoList);
     }
 
-    // Retorna un usuario filtrado por id
+    @Operation(
+        summary = "Obtener usuario por ID",
+        description = "Retorna la información de un usuario según su ID")
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Usuario encontrado exitosamente",
+            content = @Content(schema = @Schema(implementation = ResponseUsuarioDTO.class))),
+        @ApiResponse(
+            responseCode = "404",
+            description = "No se encontró usuario con el ID indicado",
+            content = @Content)
+    })
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseUsuarioDTO> getUsuarioById(@PathVariable Long id){
+    public ResponseEntity<ResponseUsuarioDTO> getUsuarioById(
+            @Parameter(description = "ID del usuario", example = "1")
+            @PathVariable Long id){
         log.info("Solicitud de información del usuario id: " + id);
         Usuario u = service.getUsuarioById(id);
-
         if(u == null){
             log.info("Usuario no encontrado");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-
         ResponseUsuarioDTO response = usuarioMapper.toDTO(u);
-
         log.debug("Usuario encontrado: {}", response);
         return ResponseEntity.ok(response);
     }
-
 
     // --------------------------------------------------------
     // ------------------ Sección POST ------------------------
     // --------------------------------------------------------
 
-    // Crea un usuario nuevo a partir de los datos del request
+    @Operation(
+        summary = "Crear un nuevo usuario",
+        description = "Crea un nuevo usuario en la plataforma y retorna sus datos")
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "201",
+            description = "Usuario creado exitosamente",
+            content = @Content(schema = @Schema(implementation = ResponseUsuarioDTO.class)))
+    })
     @PostMapping
     public ResponseEntity<ResponseUsuarioDTO> postUsuario(@Valid @RequestBody RequestUsuarioDTO dto){
-
         log.info("Solicitud creación de un nuevo usuario");
         Usuario usuarioCreado = service.postUSuario(usuarioMapper.toEntity(dto));
         ResponseUsuarioDTO response = usuarioMapper.toDTO(usuarioCreado);
-
         log.debug("Usuario creado: ", response);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
     }
 
-    // Retorna una lista de usuarios filtrados por id
+    @Operation(
+        summary = "Obtener usuarios por lista de IDs",
+        description = "Retorna una lista de usuarios según una lista de IDs proporcionada")
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Lista de usuarios obtenida exitosamente",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseUsuarioDTO.class)))),
+        @ApiResponse(
+            responseCode = "404",
+            description = "No se encontraron usuarios para los IDs proporcionados",
+            content = @Content)
+    })
     @PostMapping("/lista")
     public ResponseEntity<List<ResponseUsuarioDTO>> listUsuariosByIds(@Valid @RequestBody List<Long> ids){
-
         log.info("Solicitud de información de los usuarios: " + ids);
         List<Usuario> usuarios = service.getUsuariosByIds(ids);
-
         if(usuarios.isEmpty()){
             log.info("No se encontraron usuarios");
             return ResponseEntity.notFound().build();
         }
-
         List<ResponseUsuarioDTO> dtoList = usuarioMapper.toDTOList(usuarios);
-
         log.debug("Usuarios encontrados: ", dtoList);
         return ResponseEntity.ok(dtoList);
     }
@@ -114,37 +155,57 @@ public class UsuarioController {
     // ------------------ Sección DELETE ----------------------
     // --------------------------------------------------------
 
-    // Elimina un usuario filtrado por su ID
+    @Operation(
+        summary = "Eliminar un usuario",
+        description = "Elimina un usuario de la plataforma según su ID")
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "204",
+            description = "Usuario eliminado exitosamente",
+            content = @Content),
+        @ApiResponse(
+            responseCode = "404",
+            description = "No se encontró usuario con el ID indicado",
+            content = @Content)
+    })
     @DeleteMapping("/{id}")
-    public ResponseEntity<ResponseUsuarioDTO> deleteUsuario(@PathVariable Long id){
-
+    public ResponseEntity<ResponseUsuarioDTO> deleteUsuario(
+            @Parameter(description = "ID del usuario a eliminar", example = "1")
+            @PathVariable Long id){
         boolean eliminado = service.deleteUsuario(id);
-
         if(eliminado){
             return ResponseEntity.noContent().build(); // 204
         }
-
         return ResponseEntity.notFound().build();
     }
-
 
     // --------------------------------------------------------
     // ------------------ Sección PUT -------------------------
     // --------------------------------------------------------
 
-    // Actualiza un usuario filtrado por su ID
+    @Operation(
+        summary = "Actualizar un usuario",
+        description = "Actualiza la información de un usuario según su ID")
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Usuario actualizado exitosamente",
+            content = @Content(schema = @Schema(implementation = ResponseUsuarioDTO.class))),
+        @ApiResponse(
+            responseCode = "404",
+            description = "No se encontró usuario con el ID indicado",
+            content = @Content)
+    })
     @PutMapping("/{id}")
     public ResponseEntity<ResponseUsuarioDTO> putUsuario(
+            @Parameter(description = "ID del usuario a actualizar", example = "1")
             @PathVariable long id,
             @Valid @RequestBody RequestUsuarioDTO dto){
-
         Usuario usuarioActualizado = service.putUsuario(id, usuarioMapper.toEntity(dto));
-
         if(usuarioActualizado != null){
             ResponseUsuarioDTO response = usuarioMapper.toDTO(usuarioActualizado);
             return ResponseEntity.ok(response);
         }
-
         return ResponseEntity.notFound().build();
     }
 }

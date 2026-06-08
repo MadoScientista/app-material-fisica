@@ -22,20 +22,30 @@ import com.madoscientista.material.model.Material;
 import com.madoscientista.material.service.ItemEjercicioService;
 import com.madoscientista.material.service.MaterialService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
+@Tag(name = "Material", description = "API para gestión de Material")
 @Slf4j
 @RestController
 @RequestMapping("api/v1/materiales")
 public class MaterialController {
 
+    // Inyección de servicios
     @Autowired
     MaterialService mService;
 
     @Autowired
     ItemEjercicioService ieService;
 
+    // Inyección de mappers
     @Autowired
     MaterialMapper mMapper;
 
@@ -44,6 +54,23 @@ public class MaterialController {
     // --------------------------------------------------------
 
     // Retorna todos los materiales disponibles en la plataforma
+
+    @Operation(
+        summary = "Obtener todos los materiales disponibles",
+        description = "Retorna todos los materiales disponibles en la plataforma"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Lista de materiales encontrada",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseMaterialDTO.class)))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "No se encontraron materiales",
+            content = @Content
+        )
+    })
     @GetMapping
     public ResponseEntity<List<ResponseMaterialDTO>> getMateriales(){
         log.info("Lista de materiales disponibles en la plataforma solicitada");
@@ -60,6 +87,23 @@ public class MaterialController {
     }
 
     // Retorna un material filtrado por id
+
+    @Operation(
+        summary = "Obtiene un material por su id",
+        description = "Retorna un material filtrado por el ID indicado en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Material encontrado",
+            content = @Content(schema = @Schema(implementation = ResponseMaterialDTO.class))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Material no encontrado",
+            content = @Content
+        )
+    })
     @GetMapping("{idMaterial}")
     public ResponseEntity<ResponseMaterialDTO> getMaterialById(@PathVariable Long idMaterial){
 
@@ -77,7 +121,23 @@ public class MaterialController {
         return ResponseEntity.ok(dto);
     }
 
-    // Retorna una lista de materiales creados por un usuario
+    // ------------------------ Obtener materiales creados por un usuario --------------------------
+    @Operation(
+        summary = "Obtener materiales creados por un usuario",
+        description = "Retorna una lista de materiales creados por un usuario identificado por su ID en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Lista de materiales retornada exito",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseMaterialDTO.class)))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "No se encontro la lista de materiales o usuario no existe",
+            content = @Content
+        )
+    })
     @GetMapping("usuario/{idUsuarioCreador}")
     public ResponseEntity<List<ResponseMaterialDTO>> getMaterialByIdeUsuarioCreador(
         @PathVariable Long idUsuarioCreador){
@@ -100,7 +160,24 @@ public class MaterialController {
     // ------------------ Sección POST ------------------------
     // --------------------------------------------------------
     
-    // Crea un nuevo material
+    // ----------------------------- Crear Material -----------------------------
+
+    @Operation(
+        summary = "Crear un nuevo material", 
+        description = "Crea un nuevo material a partir de los datos del DTO enviado en el cuerpo de la petición"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "201", 
+            description = "Material creado con éxito",
+            content = @Content(schema = @Schema(implementation = ResponseMaterialDTO.class))
+        ),
+        @ApiResponse(
+            responseCode = "400", 
+            description = "Datos de entrada inválidos", 
+            content = @Content
+        )
+    })
     @PostMapping
     public ResponseEntity<ResponseMaterialDTO> postMaterial(@Valid @RequestBody RequestMaterialDTO request){
         log.debug("Solicitud de creación de material: {}", request);
@@ -117,6 +194,7 @@ public class MaterialController {
         ResponseMaterialDTO dto = mMapper.toDTO(mCreado);
         log.debug("Material creado con éxito: {}", dto);
 
+        // Retorna el código HTTP 201 (CREATED)
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
         
     }
@@ -126,7 +204,24 @@ public class MaterialController {
     // ------------------ Sección PUT -------------------------
     // --------------------------------------------------------
 
-    // Actualiza un material
+    // ------------------------------------- Actualizar material -----------------------------------------
+
+    @Operation(
+        summary = "Actualizar materiales",
+        description = "Actualiza el material identificado por su ID en la ruta con los datos del DTO del cuerpo de la petición"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200", 
+            description = "Material actualizado correctamente", 
+            content = @Content(schema = @Schema(implementation = ResponseMaterialDTO.class))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Material no encontrado o ID inválido", 
+            content = @Content
+        )
+    })
     @PutMapping("{idMaterial}")
     public ResponseEntity<ResponseMaterialDTO> actualizarItemEjercicios(
         @PathVariable Long idMaterial, 

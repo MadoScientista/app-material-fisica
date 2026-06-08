@@ -20,9 +20,17 @@ import com.madoscientista.material.mapper.ItemEjercicioMapper;
 import com.madoscientista.material.model.ItemEjercicio;
 import com.madoscientista.material.service.ItemEjercicioService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
+@Tag(name = "Item Ejercicio", description = "API de gestión de items de ejercios")
 @Slf4j
 @RestController
 @RequestMapping("api/v1/item-ejercicios")
@@ -38,11 +46,28 @@ public class ItemEjercicioController {
     ItemEjercicioMapper ieMapper;
 
 
-    // --------------------------------------------------------
-    // ------------------ Sección GET -------------------------
-    // --------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------
+    // -------------------------------------- Sección GET -------------------------------------------
+    // ----------------------------------------------------------------------------------------------
 
-    // Retorna todos los items de ejercicios de la plataforma
+    // ------------------------- Obtener todos los ítems de ejercicios ------------------------------
+
+    @Operation(
+        summary = "Obtenera todos los ítems de ejercicios",
+        description = "Retorna todos los ítems de ejercicios disponibles en la plataforma"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Lista de ítems de ejercicios encontrada",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseItemEjercicioDTO.class)))),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Error en la solicitud o no se encontraron ítems de ejercicios",
+            content = @Content
+        )
+    })
+
     @GetMapping
     public ResponseEntity<List<ResponseItemEjercicioDTO>> getItemEjercicios(){
         log.info("Lista de items de ejercicios solicitada");
@@ -58,7 +83,26 @@ public class ItemEjercicioController {
         return ResponseEntity.ok(dtoList);
     }
 
-    // Retorna un iteme de ejercicio filtrado por id
+
+
+    // ----------------------------------- Filtrar ítem de ejercicios por ID -------------------------------
+
+    @Operation(
+        summary = "Filtrar ítem de ejercicios por ID",
+        description = "Filtra un ítem de ejercicios considerando el ID en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Ítem de ejercicio encontrado",
+            content = @Content(schema = @Schema(implementation = ResponseItemEjercicioDTO.class))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Ítem de ejercicio no encontrado",
+            content = @Content
+        )
+    })
     @GetMapping("{idItemEjercicio}")
     public ResponseEntity<ResponseItemEjercicioDTO> getItemEjercicioById(@PathVariable Long idItemEjercicio){
         log.info("Ejercicio id: " + idItemEjercicio + " solicitado" );
@@ -74,7 +118,24 @@ public class ItemEjercicioController {
         return ResponseEntity.ok(dto);
     }
 
-    // Retorna todos los items de ejercicios creados por un usuario
+    // ---------------------------- Obtener ítems ejercicios de un usuario ------------------------------
+
+    @Operation(
+        summary = "Obtener ítems ejercicios de un usuario",
+        description = "Retorna la lista de ejercicios creados y almacenados por un usuario indicando su ID en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Ejercicios encontrados",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseItemEjercicioDTO.class)))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "No se encontraron ejercicios o el usuario no existe",
+            content = @Content
+        )
+    })
     @GetMapping("usuario/{idUsuarioCreador}")
     public ResponseEntity<List<ResponseItemEjercicioDTO>> getItemEjercicioByIdUsuarioCreador(
         @PathVariable Long idUsuarioCreador){
@@ -92,11 +153,28 @@ public class ItemEjercicioController {
         return ResponseEntity.ok(dtoList);
     }
 
-    // --------------------------------------------------------
-    // ------------------ Sección POST ------------------------
-    // --------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------
+    // -------------------------------------- Sección POST -------------------------------------------
+    // -----------------------------------------------------------------------------------------------
 
-    // Crea un item de ejercicio
+    // ------------------------------- Crea un ítem de ejercicios ------------------------------------
+
+    @Operation(
+        summary = "Crear un ítem de ejercicios",
+        description = "Crea un ejercicio y lo almacena en la plataforma"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "201",
+            description = "El ítem de ejercicios se ha creado exitósamente",
+            content = @Content(schema = @Schema(implementation = ResponseItemEjercicioDTO.class))
+        ),
+        @ApiResponse(
+            responseCode = "400",
+            description = "No se ha podido crear el ejercicio",
+            content = @Content
+        )
+    })
     @PostMapping
     public ResponseEntity<ResponseItemEjercicioDTO> postItemEjercicio(
         @Valid @RequestBody RequestItemEjercicioDTO request){
@@ -115,7 +193,25 @@ public class ItemEjercicioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);        
     }
 
-        // Crea un item de ejercicio
+    
+    // ------------------------- Crear varios ítems de ejercicios -----------------------------
+
+    @Operation(
+        summary = "Crear varios ítems de ejercicios",
+        description = "Endpoint para crear varios ítems de ejercicios a partir de una lista de DTOs"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "201",
+            description = "Lista de ítems de ejercicios creada con éxito",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseItemEjercicioDTO.class)))
+        ),
+        @ApiResponse(
+            responseCode = "400",
+            description = "No se ha podido crear la lista de ítems de ejercicios",
+            content = @Content
+        )
+    })
     @PostMapping("lista")
     public ResponseEntity<List<ResponseItemEjercicioDTO>> postItemEjercicio(
         @Valid 
@@ -137,11 +233,28 @@ public class ItemEjercicioController {
     }
 
 
-    // --------------------------------------------------------
-    // ------------------ Sección DELETE ----------------------
-    // --------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------
+    // -------------------------------------- Sección DELETE -----------------------------------------
+    // -----------------------------------------------------------------------------------------------
 
-    // Elimina un item de ejercicio
+    // ---------------------------------- Elimina un item de ejercicio -------------------------------
+
+    @Operation(
+        summary = "Elimina un item de ejercicio filtrado por ID",
+        description = "Elimina un ítem de ejercicio filtrado por el ID indicado en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "204",
+            description = "Ítem de ejercicio eliminado existosamente",
+            content = @Content(schema = @Schema(implementation = ResponseItemEjercicioDTO.class))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Ítem de ejercicio no encontrado",
+            content = @Content
+        )
+    })
     @DeleteMapping("{idItemEjercicio}")
     public ResponseEntity<ResponseItemEjercicioDTO> deleteItemEjercicio(@PathVariable Long idItemEjercicio){
         
@@ -158,11 +271,28 @@ public class ItemEjercicioController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(dto);
     }
 
-    // --------------------------------------------------------
-    // ------------------ Sección PUT -------------------------
-    // --------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------
+    // -------------------------------------- Sección PUT --------------------------------------------
+    // -----------------------------------------------------------------------------------------------
 
-    // Actualiza un item de ejercicio filtrado por id
+    // ----------------- Actualizar Ítem de ejercicio filtrado por ID --------------------------------
+
+    @Operation(
+        summary = "Actualizar ítem de ejercicio filtrado por ID",
+        description = "Actualiza un ítem de ejercicio filtrando por el ID indicado en la ruta"
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "Ítem de ejercicio actualizado exitosamente",
+            content = @Content(schema = @Schema(implementation = ResponseItemEjercicioDTO.class))
+        ),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Ítem de ejercicio no encontrado",
+            content = @Content
+        )
+    })
     @PutMapping("{idItemEjercicio}")
     public ResponseEntity<ResponseItemEjercicioDTO> putItemEjercicio(
         @PathVariable Long idItemEjercicio,
