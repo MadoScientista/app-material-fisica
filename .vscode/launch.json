@@ -54,7 +54,8 @@
             "name": "HistorialApplication",
             "request": "launch",
             "mainClass": "com.madoscientista.historial.HistorialApplication",
-            "projectName": "historial"
+            "projectName": "historial",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=57956 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=historial"
         },
         {
             "type": "java",
@@ -70,6 +71,28 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.madoscientista.generador_ejercicios.GeneradorEjerciciosApplication",
             "projectName": "generador-ejercicios",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=57948 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=generador-ejercicios"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ComunidadesApplication<comunidades>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.madoscientista.comunidades.ComunidadesApplication",
+            "projectName": "comunidades",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=52648 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=comunidades"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-LogosApplication<logos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.madoscientista.logos.LogosApplication",
+            "projectName": "logos",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

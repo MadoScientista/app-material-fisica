@@ -1,0 +1,95 @@
+spring:
+  application:
+    name: generador-ejercicios
+
+
+  # Oracle Autonomous Database
+  # datasource:
+  #   url: jdbc:oracle:thin:@${DB_TNS_ALIAS}?TNS_ADMIN=${WALLET_PATH}
+  #   username: ${DB_USER}
+  #   password: ${DB_PASSWORD}
+  #   driver-class-name: oracle.jdbc.OracleDriver
+
+  # Conexión a MySql
+  datasource:
+    url: jdbc:mysql://localhost:3306/generador_ejercicios_db?createDatabaseIfNotExist=true
+    username: admin_generador_ejercicios_db
+    password: 1234
+
+  # Configuración de JPA y Hibernate
+  # jpa:
+  #   hibernate:
+  #     ddl-auto: validate
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+  # jpa:
+  #   properties:
+  #     hibernate:
+  #       dialect: org.hibernate.dialect.MySQL8Dialect
+
+  # Configuración de Flyway
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+
+# Puertos de los microservicios
+
+# Ejercicios generados
+server:
+  port: 8081
+
+# Historial
+# server:
+#   port: 8082
+
+# Logros
+# server:
+#   port: 8083
+
+# Material
+# server:
+#   port: 8084
+
+# Notificador
+# server:
+#   port: 8085
+
+# Suscripciones
+# server:
+#   port: 8086
+
+# Usuarios
+# server:
+#   port: 8087
+
+# Valoraciones
+# server:
+#   port: 8088
+
+
+# LOGGING (SLF4J + Logback)
+logging:
+  level:
+    root: INFO
+    com.madoscientista.generador-ejercicios: DEBUG
+
+    # Para ver las consultas SQL en el log:
+    org.hibernate.SQL: DEBUG
+
+# Opción A: Solo el nombre del archivo (se crea en la raíz del proyecto)
+# logging:
+#   file:
+#     name: generador-ejercicios/logs/log-generador-ejercicios.log
+
+# Configuración Swagger
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html
