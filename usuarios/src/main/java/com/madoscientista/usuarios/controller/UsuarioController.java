@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.madoscientista.usuarios.dto.usuarioDTO.RequestUsuarioDTO;
 import com.madoscientista.usuarios.dto.usuarioDTO.ResponseUsuarioDTO;
 import com.madoscientista.usuarios.mapper.UsuarioMapper;
 import com.madoscientista.usuarios.model.Usuario;
+import com.madoscientista.usuarios.service.GeneradorUsuariosService;
 import com.madoscientista.usuarios.service.UsuarioService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,6 +44,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioMapper usuarioMapper;
+
+    @Autowired
+    private GeneradorUsuariosService generadorUsuariosService;
 
     // --------------------------------------------------------
     // ------------------ Sección GET -------------------------
@@ -149,6 +154,34 @@ public class UsuarioController {
         List<ResponseUsuarioDTO> dtoList = usuarioMapper.toDTOList(usuarios);
         log.debug("Usuarios encontrados: ", dtoList);
         return ResponseEntity.ok(dtoList);
+    }
+
+    @Operation(
+        summary = "Generar usuarios de prueba con DataFaker",
+        description = "Genera una cantidad específica de usuarios con datos ficticios realistas")
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "201",
+            description = "Usuarios generados exitosamente",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseUsuarioDTO.class)))),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Cantidad inválida (debe ser 1-1000)",
+            content = @Content)
+    })
+    @PostMapping("/generar")
+    public ResponseEntity<List<ResponseUsuarioDTO>> generarUsuarios(
+            @Parameter(description = "Cantidad de usuarios a generar (1-1000)", example = "50")
+            @RequestParam(defaultValue = "10") int cantidad) {
+
+        if (cantidad < 1 || cantidad > 1000) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        log.info("Solicitud de generación de {} usuarios con DataFaker", cantidad);
+        List<Usuario> usuarios = generadorUsuariosService.generarUsuarios(cantidad);
+        List<ResponseUsuarioDTO> dtoList = usuarioMapper.toDTOList(usuarios);
+        return ResponseEntity.status(HttpStatus.CREATED).body(dtoList);
     }
 
     // --------------------------------------------------------
