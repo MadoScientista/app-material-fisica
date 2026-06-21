@@ -2,21 +2,27 @@
 
  Autor: Samuel Cortés
 
- Aplicación de 10 microservicios construidos utilizando Java, Spring Boot, Flyway, Open Feign y MySQL, que en su conjunto conforman una aplicación para la creación, gestión y distribución de material de física. 
+ Aplicación de 10 microservicios construidos utilizando Java, Spring Boot, Flyway, Open Feign y MySQL, que en su conjunto conforman una aplicación para la creación, gestión y distribución de material de física.
+
+ Cuenta con un **Eureka Server** para descubrimiento de servicios y un **API Gateway** como punto de entrada único.
 
 
 ## Microservicios
 
-1. Generador de ejercicios: Genera a partir de distintos criterios, ejercicios de física coherentes en variables, resultado y texto.
-2. Usuario
-3. Historial
-4. Notificador
-5. Logos
-6. Material
-7. Valoración
-8. Suscripciones
-9. Logos
-10. Comunidades
+| # | Microservicio | Puerto | Descripción |
+|---|---------------|--------|-------------|
+| 1 | `eureka-server` | 8761 | Servicio de descubrimiento (Eureka) |
+| 2 | `api-gateway` | 8080 | Punto de entrada único a todos los servicios |
+| 3 | `generador-ejercicios` | 8081 | Genera ejercicios de física coherentes |
+| 4 | `historial` | 8082 | Registro de eventos |
+| 5 | `logros` | 8083 | Sistema de logros |
+| 6 | `material` | 8084 | Compilación de ítems de ejercicios |
+| 7 | `notificador` | 8085 | Notificaciones push y web |
+| 8 | `suscripciones` | 8086 | Gestión de suscripciones |
+| 9 | `usuarios` | 8087 | Usuarios y orquestación central |
+| 10 | `valoraciones` | 8088 | Valoración de ejercicios |
+| 11 | `logos` | 8089 | Gestión de imágenes/logos |
+| 12 | `comunidades` | 8090 | Comunidades de usuarios |
 
 ### Software requerido para la ejecución
 
@@ -29,9 +35,13 @@
  1. Clonar el repositorio
  2. Instalar en VSCode las extensiones Java Extensión Pack y Sprinb Boot Extensión Pack.
  3. Se requiere de MySQL instalado junto a MySQL Workbench.
- 4. Para preparar el espacio de trabajo se deben crear usuarios para la administración de cada microservicios con el script utilidadesDB/admin_app.sql en MySQL Workbench.
- 5. Levantar los microservicios en VSCode desde la nueva pestaña Run and Debug de la extensión Spring Boot Extensión Pack.
- 6. Importar a Postman la colección postman/app-material-fisica.postman_collection.json
+ 4. Para preparar el espacio de trabajo se deben crear usuarios para la administración de cada microservicios con el script `utilidadDB/admin_app.sql` en MySQL Workbench.
+ 5. Levantar los microservicios en VSCode desde la pestaña Run and Debug en el siguiente orden:
+    - `EurekaServerApplication` (puerto 8761)
+    - Los 10 microservicios (puertos 8081-8090)
+    - `ApiGatewayApplication` (puerto 8080)
+ 6. Importar a Postman la colección `postman/app-material-fisica.postman_collection.json`
+ 7. Todas las peticiones se realizan a través del API Gateway en `localhost:8080`
 
  ## Flujo de Trabajo
 

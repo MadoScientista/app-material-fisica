@@ -9,7 +9,7 @@ import com.madoscientista.comunidades.dto.EventoDTO.ResponseEventoDTO;
 
 import jakarta.validation.Valid;
 
-@FeignClient(name = "historial", url="localhost:8082")
+@FeignClient(name = "historial")
 public interface HistorialClient {
 
     @PostMapping("/api/v1/eventos")

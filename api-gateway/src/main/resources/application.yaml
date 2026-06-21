@@ -1,0 +1,65 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: usuarios
+          uri: lb://usuarios
+          predicates:
+            - Path=/api/v1/usuarios/**, /api/v1/ejercicios/**
+
+        - id: generador-ejercicios
+          uri: lb://generador-ejercicios
+          predicates:
+            - Path=/api/v1/generar-ejercicio/**, /api/v1/contextos-fisicos/**, /api/v1/plantillas/**
+
+        - id: historial
+          uri: lb://historial
+          predicates:
+            - Path=/api/v1/eventos/**
+
+        - id: logros
+          uri: lb://logros
+          predicates:
+            - Path=/api/v1/logros/**
+
+        - id: material
+          uri: lb://material
+          predicates:
+            - Path=/api/v1/materiales/**, /api/v1/item-ejercicios/**
+
+        - id: notificador
+          uri: lb://notificador
+          predicates:
+            - Path=/api/v1/notificaciones/**
+
+        - id: suscripciones
+          uri: lb://suscripciones
+          predicates:
+            - Path=/api/v1/suscripciones/**
+
+        - id: valoraciones
+          uri: lb://valoraciones
+          predicates:
+            - Path=/api/v1/valoraciones/**
+
+        - id: logos
+          uri: lb://logos
+          predicates:
+            - Path=/api/v1/logos/**
+
+        - id: comunidades
+          uri: lb://comunidades
+          predicates:
+            - Path=/api/v1/comunidades/**
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true

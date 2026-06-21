@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.madoscientista.material.dto.recuentoDTO.ResponseRecuentoDTO;
 
-@FeignClient(name = "logros", url = "localhost:8083")
+@FeignClient(name = "logros")
 public interface LogrosClient {
 
     @PostMapping("api/v1/logros/recuento/item-creado/{idUsuario}")

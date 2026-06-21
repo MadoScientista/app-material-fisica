@@ -12,7 +12,7 @@ import com.madoscientista.usuarios.dto.logroDTO.ResponseLogroDTO;
 import com.madoscientista.usuarios.dto.recuentoDTO.ResponseRecuentoDTO;
 
 
-@FeignClient(name = "logros", url = "localhost:8083")
+@FeignClient(name = "logros")
 public interface LogrosClient {
 
     @PostMapping("api/v1/logros/sincronizar/{idUsuario}")

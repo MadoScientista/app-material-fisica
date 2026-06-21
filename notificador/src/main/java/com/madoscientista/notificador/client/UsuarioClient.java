@@ -13,7 +13,7 @@ import com.madoscientista.notificador.dto.usuarioDTO.ResponseUsuarioDTO;
 
 import jakarta.validation.Valid;
 
-@FeignClient(name = "usuarios", url = "localhost:8087")
+@FeignClient(name = "usuarios")
 public interface UsuarioClient {
 
     @GetMapping("api/v1/usuarios/{id}")

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.madoscientista.usuarios.dto.suscripcionDTO.ResponseSuscripcionDTO;
 
-@FeignClient(name = "suscripciones", url = "localhost:8086" )
+@FeignClient(name = "suscripciones")
 public interface SuscripcionesClient {
 
     // Recupera suscripciones de un usuario por su ID

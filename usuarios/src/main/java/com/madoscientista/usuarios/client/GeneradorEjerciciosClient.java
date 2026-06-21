@@ -9,7 +9,7 @@ import com.madoscientista.usuarios.dto.ejercicioDTO.ResponseEjercicioDTO;
 
 import jakarta.validation.Valid;
 
-@FeignClient(name = "generador-ejercicios", url="localhost:8081")
+@FeignClient(name = "generador-ejercicios")
 public interface GeneradorEjerciciosClient {
 
     // Generar un ejercicio

@@ -12,7 +12,7 @@ import com.madoscientista.historial.dto.NotificacionDTO.ResponseNotificacionDTO;
 
 import jakarta.validation.Valid;
 
-@FeignClient(name = "notificador", url = "localhost:8085" )
+@FeignClient(name = "notificador")
 public interface NotificacionClient {
 
     @PostMapping("api/v1/notificaciones")

@@ -12,7 +12,7 @@ import com.madoscientista.comunidades.dto.ejercicioDTO.ResponseEjercicioDTO;
 
 import jakarta.validation.Valid;
 
-@FeignClient(name="usuarios", url="localhost:8087")
+@FeignClient(name="usuarios")
 public interface EjercicioClient {
 
     @PostMapping("api/v1/ejercicios/usuarios")
