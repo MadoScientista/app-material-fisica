@@ -3,7 +3,6 @@ package com.madoscientista.historial.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,24 +29,19 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Tag(name = "Eventos")
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("api/v1/eventos")
 public class EventoController {
 
-    // Inyección de servicios
-    @Autowired
-    private EventoService eService;
-
-    @Autowired
-    private TipoEventoService teService;
-
-    // Inyección de mappers
-    @Autowired
-    private EventoMapper eMapper;
+    private final EventoService eService;
+    private final TipoEventoService teService;
+    private final EventoMapper eMapper;
 
 
     // -----------------------------------------------------------------------------------------------------

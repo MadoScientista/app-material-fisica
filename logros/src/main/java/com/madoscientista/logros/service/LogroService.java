@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.logros.model.Logro;
@@ -13,17 +12,14 @@ import com.madoscientista.logros.model.TipoLogro;
 import com.madoscientista.logros.repository.LogroRepository;
 import com.madoscientista.logros.repository.TipoLogroRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class LogroService {
 
-
-    // Inyecta el repositorio de logros
-    @Autowired
-    private LogroRepository lRepo;
-
-    // Inyecta el repositorio de tipo de logros
-    @Autowired
-    private TipoLogroRepository tlRepo;
+    private final LogroRepository lRepo;
+    private final TipoLogroRepository tlRepo;
 
 
     // --------------------------------------------------------

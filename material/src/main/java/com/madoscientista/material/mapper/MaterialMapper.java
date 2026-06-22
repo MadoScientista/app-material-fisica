@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.madoscientista.material.dto.materialDTO.RequestMaterialDTO;
@@ -12,14 +11,13 @@ import com.madoscientista.material.dto.materialDTO.ResponseMaterialDTO;
 import com.madoscientista.material.model.ItemEjercicio;
 import com.madoscientista.material.model.Material;
 
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Component
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class MaterialMapper {
 
-    @Autowired
-    ItemEjercicioMapper ieMapper;
+    private final ItemEjercicioMapper ieMapper;
 
     public ResponseMaterialDTO toDTO(Material m){
         ResponseMaterialDTO dto = new ResponseMaterialDTO();

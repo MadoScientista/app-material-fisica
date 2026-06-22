@@ -1,17 +1,18 @@
 package com.madoscientista.generador_ejercicios.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.generador_ejercicios.model.MagnitudFisica;
 import com.madoscientista.generador_ejercicios.model.UnidadDeMedida;
 import com.madoscientista.generador_ejercicios.repository.UnidadDeMedidaRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UnidadDeMedidaService {
 
-    @Autowired
-    private UnidadDeMedidaRepository repo;
+    private final UnidadDeMedidaRepository repo;
     
     public UnidadDeMedida getBySimbolo(String simbolo){
         return repo.findBySimbolo(simbolo);

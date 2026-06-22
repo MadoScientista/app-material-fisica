@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.logros.client.HistorialClient;
@@ -18,22 +17,19 @@ import com.madoscientista.logros.repository.LogroRepository;
 import com.madoscientista.logros.repository.TipoLogroRepository;
 
 import feign.FeignException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class LogroEvaluatorService {
 
     private static final Long LOGRO_COMPLETADO = 12L;
 
-    @Autowired
-    private TipoLogroRepository tlRepo;
-
-    @Autowired
-    private LogroRepository lRepo;
-
-    @Autowired
-    private HistorialClient hClient;
+    private final TipoLogroRepository tlRepo;
+    private final LogroRepository lRepo;
+    private final HistorialClient hClient;
 
     public void evaluar(Recuento r) {
         List<TipoLogro> tipos = tlRepo.findAll();

@@ -3,7 +3,6 @@ package com.madoscientista.usuarios.controller;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,19 +29,20 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@RequiredArgsConstructor
 @Tag(name = "Ejercicios", description = "API de ejercicios de usuario")
 @RestController
 @RequestMapping("api/v1/ejercicios")
 public class EjercicioController {
 
-    @Autowired
-    private EjercicioService service;
+    
+    private final EjercicioService service;
 
-    @Autowired
-    private EjercicioMapper ejercicioMapper;
+    private final EjercicioMapper ejercicioMapper;
 
     // --------------------------------------------------------
     // ------------------ Sección POST ------------------------

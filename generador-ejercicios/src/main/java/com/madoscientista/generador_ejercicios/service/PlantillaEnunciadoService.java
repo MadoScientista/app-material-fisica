@@ -2,17 +2,18 @@ package com.madoscientista.generador_ejercicios.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.generador_ejercicios.model.PlantillaEnunciado;
 import com.madoscientista.generador_ejercicios.repository.PlantillaEnunciadoRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class PlantillaEnunciadoService {
 
-    @Autowired
-    private PlantillaEnunciadoRepository repo;
+    private final PlantillaEnunciadoRepository repo;
 
 
     //-------------------------------------------------------------

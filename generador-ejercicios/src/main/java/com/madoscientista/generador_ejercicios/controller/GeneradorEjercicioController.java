@@ -1,7 +1,6 @@
 package com.madoscientista.generador_ejercicios.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,17 +20,17 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Tag(name="Ejercicios")
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/generar-ejercicio")
 public class GeneradorEjercicioController {
 
-    // Inyección de servicios
-    @Autowired
-    private EjercicioFisicaService service;
+    private final EjercicioFisicaService service;
     
     private static final EjercicioMapper ejercicioMapper = new EjercicioMapper();
 

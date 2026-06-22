@@ -1,16 +1,17 @@
 package com.madoscientista.suscripciones.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.suscripciones.model.TipoSuscripcion;
 import com.madoscientista.suscripciones.repository.TipoSuscripcionRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class TipoSuscripcionService {
 
-    @Autowired
-    private TipoSuscripcionRepository repo;
+    private final TipoSuscripcionRepository repo;
 
     public TipoSuscripcion getById(Long id){
         return repo.findById(id).orElse(null);

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.usuarios.client.HistorialClient;
@@ -21,10 +20,12 @@ import com.madoscientista.usuarios.model.Usuario;
 import com.madoscientista.usuarios.repository.EjercicioRepository;
 
 import feign.FeignException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class EjercicioService {
 
     private static final Long EVENTO_EJERCICIO_CREADO = 3L;
@@ -32,33 +33,13 @@ public class EjercicioService {
     private static final Long EVENTO_EJERCICIO_DEJADO_COMPARTIR = 5L;
     private static final Long EVENTO_EJERCICIO_ELIMINADO = 6L;
 
-    // Inyección dependencia repositorio ejercicio
-    @Autowired
-    private EjercicioRepository ejercicioRepo;
-
-    // Inyección repositorio generador de ejercicios
-    @Autowired
-    private GeneradorEjerciciosClient geClient;
-
-    // Inyeccción de microservicio de historial de eventos
-    @Autowired
-    private HistorialClient hClient;
-
-    // Inyección de microservicio de suscripciones
-    @Autowired
-    private SuscripcionesClient sClient;
-
-    // Inyección de microservicio de logros
-    @Autowired
-    private LogrosClient lClient;
-
-    // Inyección de servicio de usuario
-    @Autowired
-    private UsuarioService uService;
-
-    // Inyección de mapper
-    @Autowired
-    private EjercicioMapper mapper;
+    private final EjercicioRepository ejercicioRepo;
+    private final GeneradorEjerciciosClient geClient;
+    private final HistorialClient hClient;
+    private final SuscripcionesClient sClient;
+    private final LogrosClient lClient;
+    private final UsuarioService uService;
+    private final EjercicioMapper mapper;
 
 
     // --------------------------------------------------------

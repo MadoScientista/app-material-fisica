@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.comunidades.client.HistorialClient;
@@ -14,20 +13,17 @@ import com.madoscientista.comunidades.model.Comunidad;
 import com.madoscientista.comunidades.repository.ComunidadRepository;
 
 import feign.FeignException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class ComunidadService {
 
-    @Autowired
-    private ComunidadRepository cRepo;
-
-    @Autowired
-    private HistorialClient hClient;
-
-    @Autowired
-    private LogrosClient lClient;
+    private final ComunidadRepository cRepo;
+    private final HistorialClient hClient;
+    private final LogrosClient lClient;
 
     private static final Long EVENTO_COMUNIDAD_CREADA = 16L;
     private static final Long EVENTO_MIEMBRO_AGREGADO = 17L;

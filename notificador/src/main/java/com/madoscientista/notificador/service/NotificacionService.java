@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -17,19 +16,16 @@ import com.madoscientista.notificador.model.Notificacion;
 import com.madoscientista.notificador.repository.NotificacionRepository;
 
 import feign.FeignException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class NotificacionService {
 
-    // Inyección del repositorio de notificaciones
-    @Autowired
-    private NotificacionRepository notificacionRepo;
-
-    // Inyección de cliente del ms Usuario
-    @Autowired
-    private UsuarioClient uClient;
+    private final NotificacionRepository notificacionRepo;
+    private final UsuarioClient uClient;
 
 
     // --------------------------------------------------------

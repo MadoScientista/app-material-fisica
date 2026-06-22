@@ -2,7 +2,6 @@ package com.madoscientista.valoraciones.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,19 +28,18 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Tag(name = "Valoraciones", description = "API de valoraciones")
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("api/v1/valoraciones")
 public class ValoracionController {
 
-    @Autowired
-    private ValoracionService service;
-
-    @Autowired
-    private ValoracionMapper valoracionMapper;
+    private final ValoracionService service;
+    private final ValoracionMapper valoracionMapper;
 
     @Operation(
         summary = "Obtener valoración por ID",

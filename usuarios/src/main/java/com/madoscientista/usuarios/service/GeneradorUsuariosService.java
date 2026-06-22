@@ -4,24 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.usuarios.model.Usuario;
 import com.madoscientista.usuarios.repository.UsuarioRepository;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class GeneradorUsuariosService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private UsuarioService usuarioService;
+    private final UsuarioRepository usuarioRepository;
+    private final UsuarioService usuarioService;
 
     private final Faker faker = new Faker(new Locale("es"));
 

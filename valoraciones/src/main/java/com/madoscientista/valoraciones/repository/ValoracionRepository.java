@@ -4,11 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import com.madoscientista.valoraciones.model.Valoracion;
 
-@Repository
 public interface ValoracionRepository extends JpaRepository<Valoracion, Long> {
 
     List<Valoracion> findByIdEjercicio(Long idEjercicio);

@@ -3,7 +3,6 @@ package com.madoscientista.valoraciones.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.valoraciones.client.HistorialClient;
@@ -14,17 +13,16 @@ import com.madoscientista.valoraciones.model.Valoracion;
 import com.madoscientista.valoraciones.repository.ValoracionRepository;
 
 import feign.FeignException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class ValoracionService {
 
-    @Autowired
-    private ValoracionRepository valoracionRepo;
-
-    @Autowired
-    private HistorialClient hClient;
+    private final ValoracionRepository valoracionRepo;
+    private final HistorialClient hClient;
 
     private static final Long VALORACION_CREADA = 13L;
     private static final Long VALORACION_ACTUALIZADA = 14L;

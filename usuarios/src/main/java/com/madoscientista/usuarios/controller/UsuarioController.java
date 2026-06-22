@@ -2,7 +2,6 @@ package com.madoscientista.usuarios.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,22 +30,21 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@RequiredArgsConstructor
 @Tag(name = "Usuarios", description = "API de usuarios")
 @RestController
 @RequestMapping("api/v1/usuarios")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioService service;
+    private final UsuarioService service;
 
-    @Autowired
-    private UsuarioMapper usuarioMapper;
+    private final UsuarioMapper usuarioMapper;
 
-    @Autowired
-    private GeneradorUsuariosService generadorUsuariosService;
+    private final GeneradorUsuariosService generadorUsuariosService;
 
     // --------------------------------------------------------
     // ------------------ Sección GET -------------------------

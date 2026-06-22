@@ -4,7 +4,6 @@ package com.madoscientista.generador_ejercicios.service;
 import java.util.List;
 import java.util.Random;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.generador_ejercicios.model.DatosEjercicio;
@@ -17,17 +16,15 @@ import com.madoscientista.generador_ejercicios.model.Dificultad;
 import com.madoscientista.generador_ejercicios.model.TemaFisica;
 import com.madoscientista.generador_ejercicios.model.VariableFisica;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class EjercicioFisicaService {
 
-    @Autowired
-    private PlantillaEnunciadoService peService;
-
-    @Autowired
-    private UnidadDeMedidaService umService;
-
-    @Autowired
-    private VariableFisicaService vfService;
+    private final PlantillaEnunciadoService peService;
+    private final UnidadDeMedidaService umService;
+    private final VariableFisicaService vfService;
 
     private static Random random = new Random();
 

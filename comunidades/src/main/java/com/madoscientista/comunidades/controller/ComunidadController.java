@@ -3,7 +3,6 @@ package com.madoscientista.comunidades.controller;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,22 +31,21 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @Tag(name = "Comunidades", description="API de comunidades")
 @RestController
 @RequestMapping("api/v1/comunidades")
+@RequiredArgsConstructor
 public class ComunidadController {
 
     // Inyección cliente service
-    @Autowired
-    ComunidadService cService;
+    private final ComunidadService cService;
 
     // Inyección cliente ejercicios
-    @Autowired
-    EjercicioClient eClient;
+    private final EjercicioClient eClient;
 
-    @Autowired
-    ComunidadMapper cMapper;
+    private final ComunidadMapper cMapper;
 
     // -----------------------------------------------------------------------------------------------------
     // ----------------------------------------- Sección GET -----------------------------------------------

@@ -3,7 +3,6 @@ package com.madoscientista.generador_ejercicios.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,21 +20,18 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Tag(name="Plantillas")
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("api/v1/plantillas")
 public class PlantillaEnunciadoController {
 
-    // Inyección de servicios
-    @Autowired
-    PlantillaEnunciadoService service;
-
-    // Inyección de mappers
-    @Autowired
-    PlantillaEnunciadoMapper mapper;
+    private final PlantillaEnunciadoService service;
+    private final PlantillaEnunciadoMapper mapper;
 
 
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.material.client.HistorialClient;
@@ -14,24 +13,21 @@ import com.madoscientista.material.model.ItemEjercicio;
 import com.madoscientista.material.repository.ItemEjercicioRepository;
 
 import feign.FeignException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class ItemEjercicioService {
 
     private static final Long ITEM_EJERCICIO_CREADO = 19L;
     private static final Long ITEM_EJERCICIO_ACTUALIZADO = 20L;
     private static final Long ITEM_EJERCICIO_ELIMINADO = 21L;
 
-    @Autowired
-    private ItemEjercicioRepository ieRepo;
-
-    @Autowired
-    private HistorialClient hClient;
-
-    @Autowired
-    private LogrosClient lClient;
+    private final ItemEjercicioRepository ieRepo;
+    private final HistorialClient hClient;
+    private final LogrosClient lClient;
 
     // --------------------------------------------------------
     // ------------------ Sección GET -------------------------

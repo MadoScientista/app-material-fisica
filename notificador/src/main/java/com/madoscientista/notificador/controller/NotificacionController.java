@@ -2,7 +2,6 @@ package com.madoscientista.notificador.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,24 +26,19 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Tag(name = "Notificación", description = "API para el manejo de notificaciones")
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("api/v1/notificaciones")
 public class NotificacionController {
 
-    // Inyección de servicios
-    @Autowired
-    private NotificacionService nService;
-
-    @Autowired
-    private TipoNotificacionService tnService;
-
-    // Inyección de mappers
-    @Autowired
-    private NotificacionMapper nMapper;
+    private final NotificacionService nService;
+    private final TipoNotificacionService tnService;
+    private final NotificacionMapper nMapper;
 
 
     // --------------------------------------------------------

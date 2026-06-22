@@ -3,7 +3,6 @@ package com.madoscientista.material.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.material.client.HistorialClient;
@@ -13,24 +12,21 @@ import com.madoscientista.material.model.Material;
 import com.madoscientista.material.repository.MaterialRepository;
 
 import feign.FeignException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class MaterialService {
 
     private static final Long MATERIAL_CREADO = 22L;
     private static final Long MATERIAL_ACTUALIZADO = 23L;
     private static final Long MATERIAL_ELIMINADO = 24L;
 
-    @Autowired
-    MaterialRepository mRepo;
-
-    @Autowired
-    private HistorialClient hClient;
-
-    @Autowired
-    private LogrosClient lClient;
+    private final MaterialRepository mRepo;
+    private final HistorialClient hClient;
+    private final LogrosClient lClient;
 
     // --------------------------------------------------------
     // ------------------ Sección GET -------------------------

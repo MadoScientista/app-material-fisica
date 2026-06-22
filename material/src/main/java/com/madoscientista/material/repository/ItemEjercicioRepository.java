@@ -4,11 +4,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import com.madoscientista.material.model.ItemEjercicio;
 
-@Repository
 public interface ItemEjercicioRepository extends JpaRepository<ItemEjercicio, Long>{
 
     // Retorna una lista de items creados por un mismo usuario

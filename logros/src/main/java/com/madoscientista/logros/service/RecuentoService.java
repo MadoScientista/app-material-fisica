@@ -7,22 +7,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.logros.model.Recuento;
 import com.madoscientista.logros.repository.RecuentoRepository;
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class RecuentoService {
 
-    @Autowired
-    private RecuentoRepository recuentoRepo;
-
-    @Autowired
-    private LogroEvaluatorService logroEvaluator;
+    private final RecuentoRepository recuentoRepo;
+    private final LogroEvaluatorService logroEvaluator;
 
     // Retorna la lista de recuentos disponible en DB
     public List<Recuento> getRecuentos(){

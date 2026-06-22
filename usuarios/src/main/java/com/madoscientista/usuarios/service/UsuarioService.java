@@ -3,7 +3,6 @@ package com.madoscientista.usuarios.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.usuarios.client.LogrosClient;
@@ -11,17 +10,16 @@ import com.madoscientista.usuarios.model.Usuario;
 import com.madoscientista.usuarios.repository.UsuarioRepository;
 
 import feign.FeignException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class UsuarioService {
 
-    @Autowired
-    private UsuarioRepository repo;
-
-    @Autowired
-    private LogrosClient logrosClient;
+    private final UsuarioRepository repo;
+    private final LogrosClient logrosClient;
 
     // --------------------------------------------------------
     // ------------------ Sección GET -------------------------

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,25 +31,20 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("api/v1/logros")
 public class LogroController {
 
-    @Autowired
-    private LogroService lService;
-
-    @Autowired
-    private RecuentoService rService;
-
-    @Autowired
-    private LogroMapper logroMapper;
-
-    @Autowired
-    private RecuentoMapper recuentoMapper;
+    private final LogroService lService;
+    private final RecuentoService rService;
+    private final LogroMapper logroMapper;
+    private final RecuentoMapper recuentoMapper;
 
 
     // --------------------------------------------------------

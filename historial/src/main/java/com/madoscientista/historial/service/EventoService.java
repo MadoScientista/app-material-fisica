@@ -2,7 +2,6 @@ package com.madoscientista.historial.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.historial.client.NotificacionClient;
@@ -11,17 +10,16 @@ import com.madoscientista.historial.model.Evento;
 import com.madoscientista.historial.repository.EventoRepository;
 
 import feign.FeignException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class EventoService {
 
-    @Autowired
-    private EventoRepository eRepo;
-
-    @Autowired
-    private NotificacionClient nClient;
+    private final EventoRepository eRepo;
+    private final NotificacionClient nClient;
 
     public Evento postEvento(Evento evento, List<Long> idDestino){
         Evento eventoCreado = eRepo.save(evento);

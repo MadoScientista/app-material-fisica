@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.madoscientista.suscripciones.client.HistorialClient;
@@ -14,23 +13,17 @@ import com.madoscientista.suscripciones.model.TipoSuscripcion;
 import com.madoscientista.suscripciones.repository.SuscripcionRepository;
 
 import feign.FeignException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class SuscripcionService {
     
-    // Inyección repositorio de suscripciones
-    @Autowired
-    private SuscripcionRepository suscripcionRepo;
-
-    // Inyección servicio de tipos de suscripción
-    @Autowired
-    private TipoSuscripcionService tipoSuscripcionService;
-
-    // Inyección cliente ms de historial
-    @Autowired
-    private HistorialClient hClient;
+    private final SuscripcionRepository suscripcionRepo;
+    private final TipoSuscripcionService tipoSuscripcionService;
+    private final HistorialClient hClient;
 
     // Por ahora los ID de los eventos para comunicación con el ms de historial
     // son constantes coherentes con la base de datos del ms de historial.

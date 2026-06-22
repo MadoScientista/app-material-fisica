@@ -3,7 +3,6 @@ package com.madoscientista.logos.controller;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,21 +29,22 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Tag(name="Logos", description = "API Logos")
 @Slf4j
 @RestController
 @RequestMapping("api/v1/logos")
+@RequiredArgsConstructor
 public class LogoController {
 
     // Inyección de servicios
-    @Autowired
-    private LogoService logoService;
+    
+    private final LogoService logoService;
 
     // Inyección de mappers
-    @Autowired
-    private LogoMapper logoMapper;
+    private final LogoMapper logoMapper;
 
     // ----------------------------------------------------------------------------------------------------------
     // -------------------------------------- Sección GET -------------------------------------------------------
