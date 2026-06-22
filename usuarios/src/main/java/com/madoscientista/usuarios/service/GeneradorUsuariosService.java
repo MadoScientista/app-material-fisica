@@ -21,7 +21,7 @@ public class GeneradorUsuariosService {
     private final UsuarioRepository usuarioRepository;
     private final UsuarioService usuarioService;
 
-    private final Faker faker = new Faker(new Locale("es"));
+    private final Faker faker = new Faker(Locale.of("es"));
 
     public List<Usuario> generarUsuarios(int cantidad) {
         List<Usuario> generados = new ArrayList<>();
@@ -43,7 +43,7 @@ public class GeneradorUsuariosService {
     }
 
     private String generarNombreUsuarioUnico() {
-        String base = faker.name().username()
+        String base = faker.internet().username()
             .replaceAll("[^a-zA-Z0-9]", "")
             .toLowerCase();
         String usuario = base;
