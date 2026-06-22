@@ -24,6 +24,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -76,6 +77,7 @@ public class EjercicioController {
         return ResponseEntity.badRequest().build();
     }
 
+    // Obtener los ejercicios creados y almacenados por un conjunto de usuarios
     @Operation(
         summary = "Listar ejercicios de un conjunto de usuarios",
         description = "Retorna los ejercicios asociados a una lista de IDs de usuarios")
@@ -83,11 +85,29 @@ public class EjercicioController {
         @ApiResponse(
             responseCode = "200",
             description = "Lista de ejercicios obtenida exitosamente",
-            content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseEjercicioDTO.class))))
+            content = @Content(
+                array = @ArraySchema(schema = @Schema(implementation = ResponseEjercicioDTO.class)))),
+        @ApiResponse(
+            responseCode = "204",
+            description = "Usuarios no encontrados",
+            content = @Content
+        )
     })
     @PostMapping("usuarios")
-    public ResponseEntity<List<ResponseEjercicioDTO>> listarEjerciciosDeUsuarios(@Valid @RequestBody Set<Long> idEjercicio){
+    public ResponseEntity<List<ResponseEjercicioDTO>> listarEjerciciosDeUsuarios(
+        @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                description = "IDs usuarios a buscar",
+                required = true,
+                content = @Content(examples = @ExampleObject(value = "[15]")))
+        @Valid 
+        @RequestBody Set<Long> idEjercicio){
+
         List<Ejercicio> listaEjercicios = service.listarEjerciciosDeUSuarios(idEjercicio);
+
+        if(listaEjercicios.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+
         List<ResponseEjercicioDTO> response = ejercicioMapper.toDTOList(listaEjercicios);
         return ResponseEntity.ok(response);
     }
@@ -102,20 +122,30 @@ public class EjercicioController {
     @ApiResponses({
         @ApiResponse(
             responseCode = "200",
-            description = "Ejercicio compartido exitosamente",
-            content = @Content(array = @ArraySchema(schema = @Schema(implementation = Long.class)))),
+            description = "Ejercicio compartido exitosamente con los usuarios",
+            content = @Content(
+                array = @ArraySchema(schema = @Schema(implementation = Long.class)),
+                examples = @ExampleObject(value = "[2,3,4]"))),
         @ApiResponse(
             responseCode = "400",
-            description = "No se pudo compartir el ejercicio",
+            description = "No se pudo compartir el ejercicio con los usuarios",
             content = @Content)
     })
     @PutMapping("/compartir/{idCreador}/{idEjercicio}")
     public ResponseEntity<List<Long>> putCompartirEjercicio(
             @Parameter(description = "ID del usuario creador", example = "1")
             @PathVariable Long idCreador,
+
             @Parameter(description = "ID del ejercicio a compartir", example = "15")
             @PathVariable Long idEjercicio,
-            @Valid @RequestBody List<Long> idsUsuarios){
+
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                description = "IDs usuarios a compartir",
+                required = true,
+                content = @Content(examples = @ExampleObject(value = "[2,3,4]")))
+            @Valid @RequestBody 
+            List<Long> idsUsuarios){
+
         log.info("Solicitud para compartir el ejercicio id: " + idEjercicio);
         Ejercicio compartido = service.compartirEjercicio(idCreador, idEjercicio, idsUsuarios);
         if(compartido != null){
@@ -132,20 +162,29 @@ public class EjercicioController {
     @ApiResponses({
         @ApiResponse(
             responseCode = "200",
-            description = "Acceso revocado exitosamente",
-            content = @Content(array = @ArraySchema(schema = @Schema(implementation = Long.class)))),
+            description = "Acceso revocado exitosamente a los usuarios",
+            content = @Content(
+                array = @ArraySchema(schema = @Schema(implementation = Long.class)),
+                examples = @ExampleObject(value = "[2, 3, 4]"))),
         @ApiResponse(
             responseCode = "400",
-            description = "No se pudo revocar el acceso al ejercicio",
+            description = "No se pudo revocar el acceso al ejercicio a los usuarios",
             content = @Content)
     })
     @PutMapping("/dejar-compartir/{idCreador}/{idEjercicio}")
     public ResponseEntity<List<Long>> putDejarCompartirEjercicio(
             @Parameter(description = "ID del usuario creador", example = "1")
             @PathVariable Long idCreador,
+
             @Parameter(description = "ID del ejercicio", example = "15")
             @PathVariable Long idEjercicio,
+            
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                description = "IDs usuarios a revocar el acceso al ejercicio",
+                required = true,
+                content = @Content(examples = @ExampleObject(value = "[2,3,4]")))
             @Valid @RequestBody List<Long> idsUsuarios){
+
         log.info("Solicitud para dejar de compartir el ejercicio id: " + idEjercicio);
         Ejercicio resultado = service.dejarDeCompartirEjercicio(idEjercicio, idCreador, idsUsuarios);
         if(resultado != null){
@@ -179,12 +218,15 @@ public class EjercicioController {
             @PathVariable Long idUsuario,
             @Parameter(description = "ID del ejercicio a eliminar", example = "15")
             @PathVariable Long idEjercicio){
+
         log.info("Solicitud de eliminación del ejercicio id: " + idEjercicio);
         boolean eliminado = service.deleteEjercicio(idUsuario, idEjercicio);
+
         if(eliminado){
             log.info("Ejercicio eliminado con éxito");
             return ResponseEntity.noContent().build();
         }
+
         log.info("No se pudo eliminar el ejercicio");
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
@@ -193,6 +235,7 @@ public class EjercicioController {
     // ------------------ Sección GET -------------------------
     // --------------------------------------------------------
 
+    // Retorna la información de un ejercicio según su ID
     @Operation(
         summary = "Obtener ejercicio por ID",
         description = "Retorna la información de un ejercicio según su ID")
@@ -210,17 +253,22 @@ public class EjercicioController {
     public ResponseEntity<ResponseEjercicioDTO> getEjercicioById(
             @Parameter(description = "ID del ejercicio", example = "15")
             @PathVariable Long idEjercicio){
+
         log.info("Solicitud de ejercicio id: " + idEjercicio);
         Ejercicio ejercicio = service.getEjercicioById(idEjercicio);
+
         if(ejercicio == null){
             log.info("Ejercicio no encontrado");
             return ResponseEntity.noContent().build();
         }
+
         ResponseEjercicioDTO dto = ejercicioMapper.toDTO(ejercicio);
         log.debug("Ejercicio encontrado: {} ", dto);
+
         return ResponseEntity.ok(dto);
     }
 
+    // Obtener todos los ejercicios
     @Operation(
         summary = "Obtener todos los ejercicios",
         description = "Retorna una lista de todos los ejercicios disponibles en la plataforma")
@@ -230,7 +278,7 @@ public class EjercicioController {
             description = "Lista de ejercicios obtenida exitosamente",
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseEjercicioDTO.class)))),
         @ApiResponse(
-            responseCode = "404",
+            responseCode = "204",
             description = "No se encontraron ejercicios en la base de datos",
             content = @Content)
     })
@@ -240,15 +288,17 @@ public class EjercicioController {
         List<Ejercicio> ejercicios = service.getEjercicios();
         if(ejercicios.isEmpty()){
             log.info("No se encontraron ejercicios en BD");
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         }
         log.info("Ejercicios encontrados");
         List<ResponseEjercicioDTO> dtoList = ejercicioMapper.toDTOList(ejercicios);
         return ResponseEntity.ok(dtoList);
     }
 
+
+    // Obtener los ejercicios creados y almacenados por un usuario
     @Operation(
-        summary = "Obtener ejercicios creados por un usuario",
+        summary = "Obtener ejercicios creados y almacenados por un usuario",
         description = "Retorna los ejercicios que ha creado y almacenado un usuario según su ID")
     @ApiResponses({
         @ApiResponse(
@@ -256,7 +306,7 @@ public class EjercicioController {
             description = "Lista de ejercicios obtenida exitosamente",
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseEjercicioDTO.class)))),
         @ApiResponse(
-            responseCode = "404",
+            responseCode = "204",
             description = "No se encontraron ejercicios para el usuario indicado",
             content = @Content)
     })
@@ -268,12 +318,13 @@ public class EjercicioController {
         List<Ejercicio> ejercicios = service.getEjerciciosCreadosByUsuario(id);
         if(ejercicios.isEmpty()){
             log.info("Ejercicios no encontrados");
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         }
         log.debug("Ejercicios encontrados", ejercicios);
         return ResponseEntity.ok(ejercicioMapper.toDTOList(ejercicios));
     }
 
+    // Obtener los ejercicios compartidos por un usuario
     @Operation(
         summary = "Obtener ejercicios compartidos a un usuario",
         description = "Retorna los ejercicios que han sido compartidos con un usuario según su ID")
@@ -283,7 +334,7 @@ public class EjercicioController {
             description = "Lista de ejercicios obtenida exitosamente",
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = ResponseEjercicioDTO.class)))),
         @ApiResponse(
-            responseCode = "404",
+            responseCode = "204",
             description = "No se encontraron ejercicios compartidos para el usuario indicado",
             content = @Content)
     })
@@ -295,7 +346,7 @@ public class EjercicioController {
         List<Ejercicio> ejercicios = service.getEjerciciosCompartidosAUsuario(id);
         if(ejercicios.isEmpty()){
             log.info("Ejercicios no encontrados");
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         }
         log.info("Ejercicios encontrados");
         return ResponseEntity.ok(ejercicioMapper.toDTOList(ejercicios));
