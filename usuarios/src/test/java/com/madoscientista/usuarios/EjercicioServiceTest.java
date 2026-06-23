@@ -306,44 +306,6 @@ public class EjercicioServiceTest {
     }
 
 
-    // Deja de compartir un ejercicio con una lista de usuarios
-    @Test
-    public void dejarDeCompartirEjercicio(){
-
-        long idEjercicio = 1L;
-        long idCreador = 1L;
-        List<Long> idsUsuariosRemover = new ArrayList<>();
-        idsUsuariosRemover.add(2L);
-
-        Usuario creador = new Usuario();
-        creador.setIdUsuario(idCreador);
-
-        Usuario usuarioRemover = new Usuario();
-        usuarioRemover.setIdUsuario(2L);
-
-        Set<Usuario> usuariosCompartidos = new HashSet<>();
-        usuariosCompartidos.add(usuarioRemover);
-
-        List<Usuario> usuariosRemover = new ArrayList<>();
-        usuariosRemover.add(usuarioRemover);
-
-        Ejercicio ejercicio = new Ejercicio();
-        ejercicio.setIdEjercicio(idEjercicio);
-        ejercicio.setCreador(creador);
-        ejercicio.setUsuariosCompartidos(usuariosCompartidos);
-
-        when(ejercicioRepository.findById(idEjercicio)).thenReturn(Optional.of(ejercicio));
-        when(uService.getUsuariosByIds(idsUsuariosRemover)).thenReturn(usuariosRemover);
-        when(ejercicioRepository.save(ejercicio)).thenReturn(ejercicio);
-
-        Ejercicio resultado = ejercicioService.dejarDeCompartirEjercicio(idEjercicio, idCreador, idsUsuariosRemover);
-
-        assertNotNull(resultado);
-        assertTrue(resultado.getUsuariosCompartidos().isEmpty());
-        verify(hClient).postEvento(any(RequestEventoDTO.class));
-    }
-
-
     // Retorna una lista de ejercicios creados por un Set de usuarios
     @Test
     public void listarEjerciciosDeUSuarios(){

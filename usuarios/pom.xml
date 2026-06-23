@@ -113,6 +113,12 @@
 			<artifactId>datafaker</artifactId>
 			<version>2.4.2</version>
 		</dependency>
+
+		<!-- HATEOAS -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

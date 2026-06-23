@@ -2,6 +2,8 @@ package com.madoscientista.usuarios.controller;
 
 import java.util.List;
 
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.madoscientista.usuarios.assembler.UsuarioAssembler;
 import com.madoscientista.usuarios.dto.usuarioDTO.RequestUsuarioDTO;
 import com.madoscientista.usuarios.dto.usuarioDTO.ResponseUsuarioDTO;
 import com.madoscientista.usuarios.mapper.UsuarioMapper;
@@ -36,13 +39,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-@Tag(name = "Usuarios", description = "API de usuarios")
+@Tag(name = "Usuarios V2", description = "API de usuarios")
 @RestController
-@RequestMapping("api/v1/usuarios")
-public class UsuarioController {
+@RequestMapping("api/v2/usuarios")
+public class UsuarioControllerV2 {
 
     private final UsuarioService service;
 
+    private final UsuarioAssembler assembler;
     private final UsuarioMapper usuarioMapper;
 
     private final GeneradorUsuariosService generadorUsuariosService;
@@ -65,7 +69,7 @@ public class UsuarioController {
             content = @Content)
     })
     @GetMapping
-    public ResponseEntity<List<ResponseUsuarioDTO>> getUsuarios(){
+    public ResponseEntity<CollectionModel<EntityModel<ResponseUsuarioDTO>>> getUsuarios(){
         log.info("Solicitud usuarios disponibles en la plataforma");
         List<Usuario> usuarios = service.getUsuarios();
         if(usuarios.isEmpty()){
@@ -73,7 +77,8 @@ public class UsuarioController {
             return ResponseEntity.notFound().build();
         }
         log.info("Usuarios encontrados");
-        List<ResponseUsuarioDTO> dtoList = usuarioMapper.toDTOList(usuarios);
+        
+        CollectionModel<EntityModel<ResponseUsuarioDTO>> dtoList = assembler.toCollectionModel(usuarios);
         return ResponseEntity.ok(dtoList);
     }
 

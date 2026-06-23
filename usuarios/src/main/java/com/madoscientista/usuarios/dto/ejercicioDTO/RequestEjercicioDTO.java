@@ -16,15 +16,15 @@ public class RequestEjercicioDTO {
     @NotBlank
     private String tema;
 
-    @Schema(description = "Contexto físico del ejercicio", example = "Automóvil en carretera recta")
+    @Schema(description = "Contexto físico del ejercicio", example = "PERSONA")
     @NotBlank
     private String contexto;
 
-    @Schema(description = "Incógnita del ejercicio", example = "velocidad final")
+    @Schema(description = "Incógnita del ejercicio", example = "POSICION")
     @NotBlank
     private String incognita;
 
-    @Schema(description = "Dificultad del ejercicio", example = "Fácil")
+    @Schema(description = "Dificultad del ejercicio", example = "ELEMENTAL")
     @NotBlank
     private String dificultad;
 

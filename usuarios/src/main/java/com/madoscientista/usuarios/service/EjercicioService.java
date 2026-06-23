@@ -1,6 +1,7 @@
 package com.madoscientista.usuarios.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -30,7 +31,6 @@ public class EjercicioService {
 
     private static final Long EVENTO_EJERCICIO_CREADO = 3L;
     private static final Long EVENTO_EJERCICIO_COMPARTIDO = 4L;
-    private static final Long EVENTO_EJERCICIO_DEJADO_COMPARTIR = 5L;
     private static final Long EVENTO_EJERCICIO_ELIMINADO = 6L;
 
     private final EjercicioRepository ejercicioRepo;
@@ -147,21 +147,12 @@ public class EjercicioService {
     public Ejercicio compartirEjercicio(long idCreador, long idEjercicio, List<Long> idsUsuariosCompartir){
         
         
-        if(idsUsuariosCompartir == null || idsUsuariosCompartir.isEmpty() || idsUsuariosCompartir.contains(idCreador)){
-            log.info("Error en datos de búsqueda");
-            return null;
-        }
         
         Ejercicio ejercicio = ejercicioRepo.findByIdEjercicio(idEjercicio).orElse(null);
         
         // Verificación de errores para debug
         if(ejercicio == null){
             log.info("Ejercicio no encontrado");
-            return null;
-        }
-
-        if(ejercicio.getCreador() == null){
-            log.info("Ejercicio no tiene creador");
             return null;
         }
 
@@ -173,7 +164,7 @@ public class EjercicioService {
 
 
         List<Usuario> usuariosCompartir = uService.getUsuariosByIds(idsUsuariosCompartir);
-        ejercicio.getUsuariosCompartidos().addAll(usuariosCompartir);
+        ejercicio.setUsuariosCompartidos(new HashSet<>(usuariosCompartir));
 
         if(ejercicioRepo.save(ejercicio) != null){
             // Comunica el evento de compartir el ejercicio al microservicio de historial de eventos
@@ -186,30 +177,6 @@ public class EjercicioService {
             } catch (FeignException e) {
                 log.warn("Error de comunicación con el microservicio de logros. Aumento en el recuento de logros no registrado");
             }
-        }
-        return ejercicio;
-    }
-
-    // Deja de compartir un ejercicio con una lista de usuarios
-    // Elimina los registros de la tabla intermedia ejercicios_compartidos correspondientes
-    public Ejercicio dejarDeCompartirEjercicio(long idEjercicio, long idCreador, List<Long> idsUsuariosRemover){
-        
-        if(idsUsuariosRemover == null || idsUsuariosRemover.isEmpty()){
-            return null;
-        }
-        
-        Ejercicio ejercicio = ejercicioRepo.findById(idEjercicio).orElse(null);
-        
-        if(ejercicio == null || ejercicio.getCreador() == null || ejercicio.getCreador().getIdUsuario() != idCreador){
-            return null;
-        }
-
-        List<Usuario> usuariosRemover = uService.getUsuariosByIds(idsUsuariosRemover);
-        ejercicio.getUsuariosCompartidos().removeAll(usuariosRemover);
-
-        if(ejercicioRepo.save(ejercicio) != null){
-            // Comunica el evento de compartir el ejercicio al microservicio de historial de eventos
-            registrarEvento(idCreador, idsUsuariosRemover, EVENTO_EJERCICIO_DEJADO_COMPARTIR);
         }
         return ejercicio;
     }

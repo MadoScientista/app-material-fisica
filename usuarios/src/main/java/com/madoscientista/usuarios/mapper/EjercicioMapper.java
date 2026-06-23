@@ -39,6 +39,14 @@ public class EjercicioMapper {
         response.setEnunciado(ejercicio.getEnunciado());
         response.setRespuesta(ejercicio.getRespuesta());
 
+        List<Long> idUsuarios = new ArrayList<>();
+
+        for(Usuario u : ejercicio.getUsuariosCompartidos()){
+            idUsuarios.add(u.getIdUsuario());
+        }
+
+        response.setIdUsuariosCompartido(idUsuarios);
+
         return response;
     }
 

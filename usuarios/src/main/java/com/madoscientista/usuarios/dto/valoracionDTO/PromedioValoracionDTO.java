@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PromedioValoracionDTO {
 
-    @Schema(example = "15")
+    @Schema(example = "3")
     private Long idEjercicio;
 
     @Schema(example = "4.5")

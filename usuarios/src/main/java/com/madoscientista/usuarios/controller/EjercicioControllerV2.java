@@ -1,8 +1,11 @@
 package com.madoscientista.usuarios.controller;
 
+
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.madoscientista.usuarios.assembler.EjercicioAssembler;
 import com.madoscientista.usuarios.dto.ejercicioDTO.RequestEjercicioCompartidoDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.RequestEjercicioDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.ResponseEjercicioDTO;
-import com.madoscientista.usuarios.mapper.EjercicioMapper;
 import com.madoscientista.usuarios.model.Ejercicio;
 import com.madoscientista.usuarios.service.EjercicioService;
 
@@ -36,15 +39,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-@Tag(name = "Ejercicios", description = "API de ejercicios de usuario")
+@Tag(name = "Ejercicios V2", description = "API de ejercicios de usuario")
 @RestController
-@RequestMapping("api/v1/ejercicios")
-public class EjercicioController {
+@RequestMapping("api/v2/ejercicios")
+public class EjercicioControllerV2 {
 
     
     private final EjercicioService service;
-
-    private final EjercicioMapper ejercicioMapper;
+    private final EjercicioAssembler assembler;
 
     // --------------------------------------------------------
     // ------------------ Sección POST ------------------------
@@ -52,11 +54,11 @@ public class EjercicioController {
 
     @Operation(
         summary = "Generar un nuevo ejercicio para un usuario",
-        description = "Crea un ejercicio asociado a un usuario según los parámetros proporcionados")
+        description = "Crea un ejercicio asociado a un usuario según los parámetros proporcionados y retorna un modelo con links HATEOAS")
     @ApiResponses({
         @ApiResponse(
             responseCode = "201",
-            description = "Ejercicio creado exitosamente",
+            description = "Ejercicio creado exitosamente. La respuesta se envuelve en EntityModel con enlaces HATEOAS",
             content = @Content(schema = @Schema(implementation = ResponseEjercicioDTO.class))),
         @ApiResponse(
             responseCode = "400",
@@ -64,15 +66,16 @@ public class EjercicioController {
             content = @Content)
     })
     @PostMapping("usuario/{id}")
-    public ResponseEntity<ResponseEjercicioDTO> postGenerarEjercicio(
+    public ResponseEntity<EntityModel<ResponseEjercicioDTO>> postGenerarEjercicio(
             @Valid @RequestBody RequestEjercicioDTO request,
             @Parameter(description = "ID del usuario que crea el ejercicio", example = "1")
             @PathVariable Long id){
+
         log.info("Solicitud de creación de un ejercicio");
         Ejercicio ejercicio = service.postEjercicio(request, id);
         if(ejercicio != null){
             log.info("Ejercicio creado con éxito");
-            return ResponseEntity.status(HttpStatus.CREATED).body(ejercicioMapper.toDTO(ejercicio));
+            return ResponseEntity.status(HttpStatus.CREATED).body(assembler.toModel(ejercicio));
         }
         log.info("No se pudo crear el ejercicio");
         return ResponseEntity.badRequest().build();
@@ -85,7 +88,7 @@ public class EjercicioController {
     @ApiResponses({
         @ApiResponse(
             responseCode = "200",
-            description = "Lista de ejercicios obtenida exitosamente",
+            description = "Lista de ejercicios obtenida exitosamente. La respuesta se envuelve en CollectionModel con enlaces HATEOAS",
             content = @Content(
                 array = @ArraySchema(schema = @Schema(implementation = ResponseEjercicioDTO.class)))),
         @ApiResponse(
@@ -95,7 +98,7 @@ public class EjercicioController {
         )
     })
     @PostMapping("usuarios")
-    public ResponseEntity<List<ResponseEjercicioDTO>> listarEjerciciosDeUsuarios(
+    public ResponseEntity<CollectionModel<EntityModel<ResponseEjercicioDTO>>> listarEjerciciosDeUsuarios(
         @io.swagger.v3.oas.annotations.parameters.RequestBody(
                 description = "IDs usuarios a buscar",
                 required = true,
@@ -109,8 +112,8 @@ public class EjercicioController {
             return ResponseEntity.noContent().build();
         }
 
-        List<ResponseEjercicioDTO> response = ejercicioMapper.toDTOList(listaEjercicios);
-        return ResponseEntity.ok(response);
+        CollectionModel<EntityModel<ResponseEjercicioDTO>> dtoList = assembler.toCollectionModel(listaEjercicios);
+        return ResponseEntity.ok(dtoList);
     }
 
     // --------------------------------------------------------
@@ -131,7 +134,7 @@ public class EjercicioController {
             content = @Content)
     })
     @PutMapping("/compartir")
-    public ResponseEntity<ResponseEjercicioDTO> putCompartirEjercicio(
+    public ResponseEntity<EntityModel<ResponseEjercicioDTO>> putCompartirEjercicio(
             @Valid @RequestBody 
             RequestEjercicioCompartidoDTO request){
 
@@ -143,13 +146,14 @@ public class EjercicioController {
         if(compartido != null){
             log.info("Ejercicio compartido");
 
-            ResponseEjercicioDTO dto = ejercicioMapper.toDTO(compartido);
+            EntityModel<ResponseEjercicioDTO> dto = assembler.toModel(compartido);
 
             return ResponseEntity.ok(dto);
         }
         log.info("No se pudo compartir el ejercicio");
         return ResponseEntity.badRequest().build();
     }
+
 
 
     // --------------------------------------------------------
@@ -207,7 +211,7 @@ public class EjercicioController {
             content = @Content)
     })
     @GetMapping("{idEjercicio}")
-    public ResponseEntity<ResponseEjercicioDTO> getEjercicioById(
+    public ResponseEntity<EntityModel<ResponseEjercicioDTO>> getEjercicioById(
             @Parameter(description = "ID del ejercicio", example = "3")
             @PathVariable Long idEjercicio){
 
@@ -219,7 +223,7 @@ public class EjercicioController {
             return ResponseEntity.noContent().build();
         }
 
-        ResponseEjercicioDTO dto = ejercicioMapper.toDTO(ejercicio);
+        EntityModel<ResponseEjercicioDTO> dto = assembler.toModel(ejercicio);
         log.debug("Ejercicio encontrado: {} ", dto);
 
         return ResponseEntity.ok(dto);
@@ -240,7 +244,7 @@ public class EjercicioController {
             content = @Content)
     })
     @GetMapping
-    public ResponseEntity<List<ResponseEjercicioDTO>> getEjercicios(){
+    public ResponseEntity<CollectionModel<EntityModel<ResponseEjercicioDTO>>> getEjercicios(){
         log.info("Solicitud de la lista de ejercicios disponibles en la plataforma");
         List<Ejercicio> ejercicios = service.getEjercicios();
         if(ejercicios.isEmpty()){
@@ -248,7 +252,8 @@ public class EjercicioController {
             return ResponseEntity.noContent().build();
         }
         log.info("Ejercicios encontrados");
-        List<ResponseEjercicioDTO> dtoList = ejercicioMapper.toDTOList(ejercicios);
+        CollectionModel<EntityModel<ResponseEjercicioDTO>> dtoList = assembler.toCollectionModel(ejercicios);
+    
         return ResponseEntity.ok(dtoList);
     }
 
@@ -268,7 +273,7 @@ public class EjercicioController {
             content = @Content)
     })
     @GetMapping("creados/{id}")
-    public ResponseEntity<List<ResponseEjercicioDTO>> getEjerciciosCreadosByUsuario(
+    public ResponseEntity<CollectionModel<EntityModel<ResponseEjercicioDTO>>> getEjerciciosCreadosByUsuario(
             @Parameter(description = "ID del usuario", example = "1")
             @PathVariable Long id){
         log.info("Solicitud de ejercicios creados y almacenados por el usuario id: " + id);
@@ -278,7 +283,9 @@ public class EjercicioController {
             return ResponseEntity.noContent().build();
         }
         log.debug("Ejercicios encontrados", ejercicios);
-        return ResponseEntity.ok(ejercicioMapper.toDTOList(ejercicios));
+        CollectionModel<EntityModel<ResponseEjercicioDTO>> dtoList = assembler.toCollectionModel(ejercicios);
+
+        return ResponseEntity.ok(dtoList);
     }
 
     // Obtener los ejercicios compartidos por un usuario
@@ -296,7 +303,7 @@ public class EjercicioController {
             content = @Content)
     })
     @GetMapping("compartidos/{id}")
-    public ResponseEntity<List<ResponseEjercicioDTO>> getEjerciciosCompartidosAUsuario(
+    public ResponseEntity<CollectionModel<EntityModel<ResponseEjercicioDTO>>>getEjerciciosCompartidosAUsuario(
             @Parameter(description = "ID del usuario", example = "1")
             @PathVariable Long id){
         log.info("Solicitud ejercicios compartidos por el usuario id: " + id);
@@ -306,6 +313,8 @@ public class EjercicioController {
             return ResponseEntity.noContent().build();
         }
         log.info("Ejercicios encontrados");
-        return ResponseEntity.ok(ejercicioMapper.toDTOList(ejercicios));
+
+        CollectionModel<EntityModel<ResponseEjercicioDTO>> dtoList = assembler.toCollectionModel(ejercicios);
+        return ResponseEntity.ok(dtoList);
     }
 }

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RequestEventoDTO {
 
-    @Schema(description = "ID del tipo de evento", example = "2")
+    @Schema(description = "ID del tipo de evento. Valores: 3 creado, 4 compartido, 5 dejado compartir, 6 eliminado", example = "3")
     @NotNull
     private Long idTipoEvento;
 
