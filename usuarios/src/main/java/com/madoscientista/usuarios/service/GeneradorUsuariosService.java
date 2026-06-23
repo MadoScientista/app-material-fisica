@@ -28,10 +28,12 @@ public class GeneradorUsuariosService {
 
         for (int i = 0; i < cantidad; i++) {
             Usuario usuario = new Usuario();
-            usuario.setNombre(faker.name().firstName());
-            usuario.setApellido(faker.name().lastName());
-            usuario.setNombreUsuario(generarNombreUsuarioUnico());
-            usuario.setEmail(generarEmailUnico());
+            String nombre = faker.name().firstName();
+            String apellido = faker.name().lastName();
+            usuario.setNombre(nombre);
+            usuario.setApellido(apellido);
+            usuario.setNombreUsuario(generarNombreUsuarioUnico(nombre, apellido));
+            usuario.setEmail(generarEmailUnico(nombre, apellido));
             usuario.setPassword("1234");
 
             Usuario guardado = usuarioService.postUSuario(usuario);
@@ -42,26 +44,28 @@ public class GeneradorUsuariosService {
         return generados;
     }
 
-    private String generarNombreUsuarioUnico() {
-        String base = faker.internet().username()
-            .replaceAll("[^a-zA-Z0-9]", "")
+    private String generarNombreUsuarioUnico(String nombre, String apellido) {
+        String base = nombre + "." + apellido;
+        String usuario = base
+            .replaceAll("[^a-zA-Z0-9]", "") // Quita cualquier caracter que no sea alfanumérico
             .toLowerCase();
-        String usuario = base;
         int sufijo = 1;
         while (usuarioRepository.findByNombreUsuario(usuario) != null) {
-            usuario = base + sufijo;
+            usuario = usuario + sufijo;
             sufijo++;
         }
         return usuario;
     }
 
-    private String generarEmailUnico() {
-        String base = faker.name().firstName().toLowerCase()
-            + "." + faker.name().lastName().toLowerCase();
-        String email = base + "@test.com";
+    private String generarEmailUnico(String nombre, String apellido) {
+        String base = nombre + "_" + apellido;
+        String correoBase = base
+            .replaceAll("[^a-zA-Z0-9]", "") // Quita cualquier caracter que no sea alfanumérico
+            .toLowerCase();
+        String email = correoBase + "@test.com";
         int sufijo = 1;
         while (usuarioRepository.findByEmail(email) != null) {
-            email = base + sufijo + "@test.com";
+            email = correoBase + sufijo + "@test.com";
             sufijo++;
         }
         return email;

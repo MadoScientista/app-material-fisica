@@ -55,4 +55,9 @@ public class EventoService {
     public List<Evento> getEventos(){
         return eRepo.findAll();
     }
+
+    // Retorna un evento filtrado por su ID
+    public Evento getEventoById(Long idEvento){
+        return eRepo.findById(idEvento).orElse(null);
+    }
 }
