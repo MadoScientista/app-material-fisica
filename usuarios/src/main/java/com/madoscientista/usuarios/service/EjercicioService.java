@@ -123,6 +123,7 @@ public class EjercicioService {
         }
         
         Ejercicio ejercicio = mapper.toEntity(ejercicioDTO, usuario);
+        ejercicio.setUsuariosCompartidos(new HashSet<>());
         Ejercicio ejercicioGuardado = ejercicioRepo.save(ejercicio);
 
         List<Long> idUsuarioDestino = new ArrayList<>();
