@@ -14,7 +14,6 @@ spring:
               predicates:
                 - Path=/api/v1/usuarios/**, /api/v1/ejercicios/**
                 
-
             - id: generador-ejercicios
               uri: lb://generador-ejercicios
               predicates:
