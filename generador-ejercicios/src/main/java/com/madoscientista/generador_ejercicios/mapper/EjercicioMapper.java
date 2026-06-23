@@ -8,9 +8,12 @@ import com.madoscientista.generador_ejercicios.dto.ejercicioDTO.ResponseEjercici
 import com.madoscientista.generador_ejercicios.model.Dato;
 import com.madoscientista.generador_ejercicios.model.EjercicioFisica;
 
+import org.springframework.stereotype.Component;
+
 import lombok.NoArgsConstructor;
 
 
+@Component
 @NoArgsConstructor
 public class EjercicioMapper {
 
