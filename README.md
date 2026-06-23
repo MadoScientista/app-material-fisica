@@ -24,6 +24,25 @@
 | 11 | `logos` | 8089 | Gestión de imágenes/logos |
 | 12 | `comunidades` | 8090 | Comunidades de usuarios |
 
+## Documentación Interactiva con Swagger
+
+Cada microservicio expone una interfaz Swagger UI con la documentación OpenAPI de sus endpoints, permitiendo explorar esquemas y probar peticiones directamente desde el navegador.
+
+### Acceso directo por microservicio
+
+| Microservicio | URL Swagger |
+|---|---|
+| generador-ejercicios | `http://localhost:8081/doc/swagger-ui.html` |
+| historial | `http://localhost:8082/doc/swagger-ui.html` |
+| logros | `http://localhost:8083/doc/swagger-ui.html` |
+| material | `http://localhost:8084/doc/swagger-ui.html` |
+| notificador | `http://localhost:8085/doc/swagger-ui.html` |
+| suscripciones | `http://localhost:8086/doc/swagger-ui.html` |
+| usuarios | `http://localhost:8087/doc/swagger-ui.html` |
+| valoraciones | `http://localhost:8088/doc/swagger-ui.html` |
+| logos | `http://localhost:8089/doc/swagger-ui.html` |
+| comunidades | `http://localhost:8090/doc/swagger-ui.html` |
+
 ### Software requerido para la ejecución
 
 - VSCode con extensiones 
