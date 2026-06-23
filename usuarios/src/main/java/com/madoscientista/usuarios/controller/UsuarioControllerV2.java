@@ -96,7 +96,7 @@ public class UsuarioControllerV2 {
             content = @Content)
     })
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseUsuarioDTO> getUsuarioById(
+    public ResponseEntity<EntityModel<ResponseUsuarioDTO>> getUsuarioById(
             @Parameter(description = "ID del usuario", example = "1")
             @PathVariable Long id){
         log.info("Solicitud de información del usuario id: " + id);
@@ -105,7 +105,7 @@ public class UsuarioControllerV2 {
             log.info("Usuario no encontrado");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        ResponseUsuarioDTO response = usuarioMapper.toDTO(u);
+        EntityModel<ResponseUsuarioDTO> response = assembler.toModel(u);
         log.debug("Usuario encontrado: {}", response);
         return ResponseEntity.ok(response);
     }
@@ -128,10 +128,10 @@ public class UsuarioControllerV2 {
             content = @Content)
     })
     @PostMapping
-    public ResponseEntity<ResponseUsuarioDTO> postUsuario(@Valid @RequestBody RequestUsuarioDTO dto){
+    public ResponseEntity<EntityModel<ResponseUsuarioDTO>> postUsuario(@Valid @RequestBody RequestUsuarioDTO dto){
         log.info("Solicitud creación de un nuevo usuario");
         Usuario usuarioCreado = service.postUSuario(usuarioMapper.toEntity(dto));
-        ResponseUsuarioDTO response = usuarioMapper.toDTO(usuarioCreado);
+        EntityModel<ResponseUsuarioDTO> response = assembler.toModel(usuarioCreado);
         log.debug("Usuario creado: ", response);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -152,7 +152,7 @@ public class UsuarioControllerV2 {
             content = @Content)
     })
     @PostMapping("/lista")
-    public ResponseEntity<List<ResponseUsuarioDTO>> listUsuariosByIds(
+    public ResponseEntity<CollectionModel<EntityModel<ResponseUsuarioDTO>>> listUsuariosByIds(
         @io.swagger.v3.oas.annotations.parameters.RequestBody(
                 description = "IDs de usuarios a buscar",
                 required = true,
@@ -164,7 +164,7 @@ public class UsuarioControllerV2 {
             log.info("No se encontraron usuarios");
             return ResponseEntity.notFound().build();
         }
-        List<ResponseUsuarioDTO> dtoList = usuarioMapper.toDTOList(usuarios);
+        CollectionModel<EntityModel<ResponseUsuarioDTO>> dtoList = assembler.toCollectionModel(usuarios);
         log.debug("Usuarios encontrados: ", dtoList);
         return ResponseEntity.ok(dtoList);
     }
@@ -183,7 +183,7 @@ public class UsuarioControllerV2 {
             content = @Content)
     })
     @PostMapping("/generar")
-    public ResponseEntity<List<ResponseUsuarioDTO>> generarUsuarios(
+    public ResponseEntity<CollectionModel<EntityModel<ResponseUsuarioDTO>>> generarUsuarios(
             @Parameter(description = "Cantidad de usuarios a generar (1-1000)", example = "50")
             @RequestParam(defaultValue = "10") int cantidad) {
 
@@ -193,7 +193,7 @@ public class UsuarioControllerV2 {
 
         log.info("Solicitud de generación de {} usuarios con DataFaker", cantidad);
         List<Usuario> usuarios = generadorUsuariosService.generarUsuarios(cantidad);
-        List<ResponseUsuarioDTO> dtoList = usuarioMapper.toDTOList(usuarios);
+        CollectionModel<EntityModel<ResponseUsuarioDTO>> dtoList = assembler.toCollectionModel(usuarios);
         return ResponseEntity.status(HttpStatus.CREATED).body(dtoList);
     }
 
@@ -243,13 +243,13 @@ public class UsuarioControllerV2 {
             content = @Content)
     })
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseUsuarioDTO> putUsuario(
+    public ResponseEntity<EntityModel<ResponseUsuarioDTO>> putUsuario(
             @Parameter(description = "ID del usuario a actualizar", example = "1")
             @PathVariable long id,
             @Valid @RequestBody RequestUsuarioDTO dto){
         Usuario usuarioActualizado = service.putUsuario(id, usuarioMapper.toEntity(dto));
         if(usuarioActualizado != null){
-            ResponseUsuarioDTO response = usuarioMapper.toDTO(usuarioActualizado);
+            EntityModel<ResponseUsuarioDTO> response = assembler.toModel(usuarioActualizado);
             return ResponseEntity.ok(response);
         }
         return ResponseEntity.notFound().build();
