@@ -20,7 +20,7 @@ public class RequestEjercicioDTO {
     @NotBlank
     private String contexto;
     
-    @Schema(description = "Incógnita del ejercicio", example="POSICION_INICIAL")
+    @Schema(description = "Incógnita del ejercicio", example="POSICION")
     @NotBlank
     private String incognita;
     

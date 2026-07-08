@@ -42,7 +42,10 @@ public class GeneradorEjercicioControllerV2 {
             responseCode = "200",
             description = "Ejercicio generado correctamente",
             content = @Content(schema = @Schema(implementation = ResponseEjercicioDTO.class))),
-        @ApiResponse(responseCode = "500", description = "Error al generar el ejercicio")
+        @ApiResponse(
+            responseCode = "500", 
+            description = "Error al generar el ejercicio",
+            content = @Content)
     })
     @PostMapping
     public ResponseEntity<EntityModel<ResponseEjercicioDTO>> getEjercicioMRU(@Valid @RequestBody RequestEjercicioDTO request) {

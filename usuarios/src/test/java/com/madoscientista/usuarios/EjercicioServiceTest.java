@@ -23,6 +23,7 @@ import com.madoscientista.usuarios.client.SuscripcionesClient;
 import com.madoscientista.usuarios.dto.EventoDTO.RequestEventoDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.RequestEjercicioDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.ResponseEjercicioDTO;
+import com.madoscientista.usuarios.dto.suscripcionDTO.ResponseSuscripcionDTO;
 import com.madoscientista.usuarios.mapper.EjercicioMapper;
 import com.madoscientista.usuarios.model.Ejercicio;
 import com.madoscientista.usuarios.model.Usuario;
@@ -248,12 +249,19 @@ public class EjercicioServiceTest {
         Usuario usuario = new Usuario();
         usuario.setIdUsuario(idUsuario);
 
+        // Suscripción de prueba
+        ResponseSuscripcionDTO suscripcionActiva = new ResponseSuscripcionDTO();
+        suscripcionActiva.setIdUsuario(idUsuario);
+        suscripcionActiva.setActivo(true);
+
+        // Ejercicio de prueba
         Ejercicio ejercicio = new Ejercicio();
         ejercicio.setIdEjercicio(idEjercicio);
 
         // Retornos de prueba
         when(ejercicioRepository.countByCreadorIdUsuario(idUsuario)).thenReturn(0L);
         when(sClient.getMaxEjerciciosByUsuarioId(idUsuario)).thenReturn(ResponseEntity.ok(10L));
+        when(sClient.getSuscripcionByUsuarioId(idUsuario)).thenReturn(ResponseEntity.ok(suscripcionActiva));
         when(geClient.getEjercicioMRU(request)).thenReturn(ejercicioDTO);
         when(uService.getUsuarioById(idUsuario)).thenReturn(usuario);
         when(mapper.toEntity(ejercicioDTO, usuario)).thenReturn(ejercicio);
@@ -263,6 +271,7 @@ public class EjercicioServiceTest {
 
         assertNotNull(resultado);
         assertEquals(ejercicio, resultado);
+        verify(sClient).getSuscripcionByUsuarioId(idUsuario);
         verify(lClient).postIncrementarEjercicioCreado(idUsuario);
         verify(hClient).postEvento(any(RequestEventoDTO.class));
     }

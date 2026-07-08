@@ -14,6 +14,7 @@ import com.madoscientista.usuarios.client.SuscripcionesClient;
 import com.madoscientista.usuarios.dto.EventoDTO.RequestEventoDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.RequestEjercicioDTO;
 import com.madoscientista.usuarios.dto.ejercicioDTO.ResponseEjercicioDTO;
+import com.madoscientista.usuarios.dto.suscripcionDTO.ResponseSuscripcionDTO;
 import com.madoscientista.usuarios.exception.SuscripcionesException;
 import com.madoscientista.usuarios.mapper.EjercicioMapper;
 import com.madoscientista.usuarios.model.Ejercicio;
@@ -85,9 +86,25 @@ public class EjercicioService {
     // Guarda el ejercicio en la base de datos y registra el evento en el microservicio de historial de eventos
     public Ejercicio postEjercicio(RequestEjercicioDTO request, long idUsuario){
 
+        // Verificar suscripción activa
+        try {
+            ResponseSuscripcionDTO suscripcion = sClient.getSuscripcionByUsuarioId(idUsuario).getBody();
+            if(!suscripcion.isActivo()) {
+                throw new SuscripcionesException("La suscripción del usuario no está activa");
+            }
+        } catch(FeignException.NotFound e) {
+            // 404 del microservicio = no existe suscripción
+            throw new SuscripcionesException("El usuario no tiene una suscripción activa");
+        } catch(FeignException e) {
+            // microservicio caído, timeout, error interno, etc.
+            log.warn("Error de comunicación con el microservicio Suscripciones");
+            throw new SuscripcionesException("Error de comunicación con microservicio de suscripciones");
+}
+
+
         Long nEjerciciosAlmacenados = contarEjerciciosByIUsuario(idUsuario);
         Long maxEjerciciosPermitidos = 0L;
-
+        
         // Intenta comunicarse con el microservicio de suscripciones
         try{
             maxEjerciciosPermitidos = sClient.getMaxEjerciciosByUsuarioId(idUsuario).getBody();
@@ -123,7 +140,7 @@ public class EjercicioService {
         }
         
         Ejercicio ejercicio = mapper.toEntity(ejercicioDTO, usuario);
-        ejercicio.setUsuariosCompartidos(new HashSet<>());
+        
         Ejercicio ejercicioGuardado = ejercicioRepo.save(ejercicio);
 
         List<Long> idUsuarioDestino = new ArrayList<>();

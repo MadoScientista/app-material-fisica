@@ -94,6 +94,11 @@ public class GlobalExceptionHandler {
             codigo = 403;
         }
 
+        if(mensaje.contains("suscripción activa") || mensaje.contains("no está activa")) {
+            status = HttpStatus.FORBIDDEN;
+            codigo = 403;
+        }
+
         ResponseErrorDTO error = new ResponseErrorDTO();
         error.setCampo(campo);
         error.setCodigo(codigo);

@@ -1,6 +1,7 @@
 package com.madoscientista.usuarios.mapper;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -22,6 +23,7 @@ public class EjercicioMapper {
         ejercicio.setRespuesta(response.getRespuesta());
         ejercicio.setIdPlantillaEnunciado(response.getIdPlantillaEnunciado());
         ejercicio.setTema(response.getTema());
+        ejercicio.setUsuariosCompartidos(new HashSet<>());
 
         return ejercicio;
     }
