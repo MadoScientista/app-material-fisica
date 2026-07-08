@@ -12,52 +12,52 @@ spring:
             - id: usuarios
               uri: lb://usuarios
               predicates:
-                - Path=/api/v1/usuarios/**, /api/v1/ejercicios/**
+                - Path=/api/v1/usuarios/**, /api/v1/ejercicios/**, /api/v2/usuarios/**, /api/v2/ejercicios/**
                 
             - id: generador-ejercicios
               uri: lb://generador-ejercicios
               predicates:
-                - Path=/api/v1/generar-ejercicio/**, /api/v1/contextos-fisicos/**, /api/v1/plantillas/**
+                - Path=/api/v1/generar-ejercicio/**, /api/v1/contextos-fisicos/**, /api/v1/plantillas/**, /api/v2/generar-ejercicio/**, /api/v2/contextos-fisicos/**, /api/v2/plantillas/**
 
             - id: historial
               uri: lb://historial
               predicates:
-                - Path=/api/v1/eventos/**
+                - Path=/api/v1/eventos/**, /api/v2/eventos/**
 
             - id: logros
               uri: lb://logros
               predicates:
-                - Path=/api/v1/logros/**
+                - Path=/api/v1/logros/**, /api/v2/logros/**
 
             - id: material
               uri: lb://material
               predicates:
-                - Path=/api/v1/materiales/**, /api/v1/item-ejercicios/**
+                - Path=/api/v1/materiales/**, /api/v1/item-ejercicios/**, /api/v2/materiales/**, /api/v2/item-ejercicios/**
 
             - id: notificador
               uri: lb://notificador
               predicates:
-                - Path=/api/v1/notificaciones/**
+                - Path=/api/v1/notificaciones/**, /api/v2/notificaciones/**
 
             - id: suscripciones
               uri: lb://suscripciones
               predicates:
-                - Path=/api/v1/suscripciones/**
+                - Path=/api/v1/suscripciones/**, /api/v2/suscripciones/**
 
             - id: valoraciones
               uri: lb://valoraciones
               predicates:
-                - Path=/api/v1/valoraciones/**
+                - Path=/api/v1/valoraciones/**, /api/v2/valoraciones/**
 
             - id: logos
               uri: lb://logos
               predicates:
-                - Path=/api/v1/logos/**
+                - Path=/api/v1/logos/**, /api/v2/logos/**
 
             - id: comunidades
               uri: lb://comunidades
               predicates:
-                - Path=/api/v1/comunidades/**
+                - Path=/api/v1/comunidades/**, /api/v2/comunidades/**
 
 eureka:
   client:
@@ -68,5 +68,5 @@ eureka:
 
 logging:
   level:
-    org.springframework.cloud.gateway: DEBUG
-    org.springframework.web: DEBUG
+    "[org.springframework.cloud.gateway]": DEBUG
+    "[org.springframework.web]": DEBUG
